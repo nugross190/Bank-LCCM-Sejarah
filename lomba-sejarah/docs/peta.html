@@ -1,0 +1,1009 @@
+<!doctype html>
+<html lang="id">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}</style>
+<title>Peta Materi Lomba Sejarah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: museum-catalogue page. Weighted header bar -> study order -> map overview -> era strip -> catalogue cards per domain (each card = one "simpul" with an inventory code). */
+:root{
+  --bg:#F3F4F7; --surface:#FFFFFF; --sunk:#E9EBF1; --ink:#1A1F33; --muted:#585E73; --line:#D6DAE3;
+  --indigo:#2B3A78; --soga:#8A5526; --patina:#2C6B63;
+  --indigo-soft:#E4E8F6; --soga-soft:#F3E9DF; --patina-soft:#DFEFEC;
+  --mark:#F6DE8D; --warn:#9A3B1F; --warn-soft:#F8E6DF; --ok:#2C6B3F;
+  --f-label:"Archivo Narrow","Arial Narrow","Roboto Condensed",system-ui,sans-serif;
+  --f-body:"Literata",Georgia,"Times New Roman",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#11131A; --surface:#191C26; --sunk:#222634; --ink:#E7E9F0; --muted:#A3A9BC; --line:#2E3345;
+  --indigo:#A3B1F2; --soga:#E0A974; --patina:#76C7B9;
+  --indigo-soft:#232A47; --soga-soft:#33271C; --patina-soft:#1C3330;
+  --mark:#6D5A1C; --warn:#F0A58A; --warn-soft:#3A221B; --ok:#8FD3A2; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11131A; --surface:#191C26; --sunk:#222634; --ink:#E7E9F0; --muted:#A3A9BC; --line:#2E3345;
+  --indigo:#A3B1F2; --soga:#E0A974; --patina:#76C7B9;
+  --indigo-soft:#232A47; --soga-soft:#33271C; --patina-soft:#1C3330;
+  --mark:#6D5A1C; --warn:#F0A58A; --warn-soft:#3A221B; --ok:#8FD3A2; color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:20px;padding-block:28px 64px}
+h1,h2,h3{font-family:var(--f-label);text-wrap:balance;line-height:1.15;margin:0}
+h1{font-size:clamp(2rem,5vw,3.1rem);font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.65rem;font-weight:700}
+h3{font-size:1.15rem;font-weight:600}
+p{margin:0}
+a{color:inherit}
+mark{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}
+.eyebrow{font-family:var(--f-label);font-weight:600;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.mono{font-family:var(--f-mono);font-size:.82em;letter-spacing:.01em}
+.lead{max-width:66ch;color:var(--muted);font-size:1.05rem}
+.stack{display:flex;flex-direction:column;gap:12px}
+section{margin-top:44px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 16px;margin-bottom:16px;border-bottom:2px solid var(--ink);padding-bottom:8px}
+.sec-head p{color:var(--muted);font-size:.95rem;max-width:62ch}
+
+/* weight bar */
+.weights{display:grid;grid-template-columns:40fr 30fr 30fr;gap:4px;margin-top:22px}
+.wseg{display:flex;flex-direction:column;gap:6px;text-decoration:none;min-width:0}
+.wseg .bar{height:14px;background:var(--sunk);border-radius:2px;overflow:hidden;position:relative}
+.wseg .bar i{position:absolute;inset:0 auto 0 0;background:var(--c);width:0;transition:width .3s}
+.wseg .bar::after{content:"";position:absolute;inset:0;border:1.5px solid var(--c);border-radius:2px}
+.wseg b{font-family:var(--f-label);font-size:.95rem;font-weight:700;color:var(--c);display:flex;justify-content:space-between;gap:6px;flex-wrap:wrap}
+.wseg span{font-size:.78rem;color:var(--muted);font-family:var(--f-label)}
+.wseg:focus-visible{outline:2px solid var(--c);outline-offset:3px}
+
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:22px}
+.search{flex:1 1 260px;min-width:0;display:flex;align-items:center;gap:8px;background:var(--surface);border:1.5px solid var(--line);border-radius:6px;padding:0 12px}
+.search:focus-within{border-color:var(--ink)}
+.search input{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:inherit;padding:10px 0;outline:none}
+.btn{font-family:var(--f-label);font-weight:600;font-size:.92rem;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);padding:9px 14px;border-radius:6px;cursor:pointer}
+.btn:hover{border-color:var(--ink)}
+.btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+#hits{font-size:.9rem;color:var(--muted);font-family:var(--f-label)}
+.overall{font-family:var(--f-label);font-size:.95rem;color:var(--muted)}
+.overall b{color:var(--ink);font-variant-numeric:tabular-nums}
+
+/* study order */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;counter-reset:s}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.step .n{font-family:var(--f-mono);font-size:.78rem;color:var(--muted)}
+.step h3{font-size:1.05rem}
+.step p{font-size:.92rem;color:var(--muted)}
+.step .out{font-size:.85rem;border-top:1px dashed var(--line);padding-top:8px;margin-top:auto}
+
+/* map overview */
+.map{display:grid;grid-template-columns:40fr 30fr 30fr;gap:14px}
+.mcol{border-top:4px solid var(--c);background:var(--surface);border-radius:0 0 8px 8px;padding:14px;min-width:0}
+.mcol h3{color:var(--c);display:flex;justify-content:space-between;gap:8px}
+.mcol ul{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.chip{display:flex;gap:10px;align-items:baseline;text-decoration:none;padding:6px 8px;border-radius:5px;background:var(--soft);font-size:.93rem;line-height:1.35}
+.chip:hover{outline:1.5px solid var(--c)}
+.chip:focus-visible{outline:2px solid var(--c)}
+.chip .mono{color:var(--c);flex:none}
+.chip.done{text-decoration:line-through;text-decoration-color:var(--muted);opacity:.72}
+.tier{display:inline-block;font-family:var(--f-label);font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:3px;white-space:nowrap}
+.t1{background:var(--ink);color:var(--bg)}
+.t2{border:1.3px solid var(--ink)}
+.t3{border:1.3px dashed var(--muted);color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:12px;font-size:.88rem;color:var(--muted);align-items:center}
+
+/* era strip */
+.eras-wrap{overflow-x:auto;padding-bottom:6px}
+.eras{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(11,minmax(118px,1fr));gap:0;min-width:1240px;position:relative}
+.eras li{border-left:2px solid var(--indigo);padding:0 10px 0 10px;position:relative}
+.eras li::before{content:"";position:absolute;left:-7px;top:0;width:12px;height:12px;border-radius:50%;background:var(--indigo)}
+.eras button{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:4px;padding-top:18px}
+.eras button:focus-visible{outline:2px solid var(--indigo);outline-offset:2px}
+.eras .yr{font-family:var(--f-mono);font-size:.74rem;color:var(--indigo)}
+.eras .nm{font-family:var(--f-label);font-weight:700;font-size:1rem;line-height:1.15}
+.eras .an{font-size:.8rem;color:var(--muted);line-height:1.35}
+
+/* domain + cards */
+.domain-head{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;border-bottom:2px solid var(--c);padding-bottom:8px;margin-bottom:14px}
+.domain-head h2{color:var(--c)}
+.domain-head .w{font-family:var(--f-mono);font-size:1rem;color:var(--c)}
+.domain-head p{color:var(--muted);font-size:.92rem;flex-basis:100%}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;min-width:0;scroll-margin-top:16px}
+.card + .card{margin-top:10px}
+.card-head{display:flex;gap:12px;align-items:flex-start;padding:14px 16px}
+.toggle{all:unset;cursor:pointer;flex:1;min-width:0;display:grid;grid-template-columns:auto 1fr;gap:2px 14px}
+.toggle:focus-visible{outline:2px solid var(--c);outline-offset:4px;border-radius:4px}
+.toggle .code{font-family:var(--f-mono);font-size:.8rem;color:var(--c);padding-top:4px;grid-row:span 3}
+.toggle .ttl{font-family:var(--f-label);font-size:1.22rem;font-weight:700;line-height:1.2;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.toggle .meta{font-size:.82rem;color:var(--muted);font-family:var(--f-label);display:flex;flex-wrap:wrap;gap:4px 12px}
+.toggle .sum{font-size:.95rem;color:var(--muted);max-width:75ch}
+.caret{font-family:var(--f-mono);color:var(--muted);transition:transform .2s;display:inline-block}
+.card.open .caret{transform:rotate(90deg)}
+.done-box{flex:none;display:flex;align-items:center;gap:6px;font-family:var(--f-label);font-size:.85rem;color:var(--muted);cursor:pointer;padding-top:3px;user-select:none}
+.done-box input{width:18px;height:18px;accent-color:var(--ok);cursor:pointer}
+.card.is-done{border-color:color-mix(in srgb,var(--ok) 55%,var(--line))}
+.body{padding:2px 16px 18px 16px;border-top:1px dashed var(--line);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:18px 26px}
+.blk{min-width:0}
+.blk.wide{grid-column:1/-1}
+.blk h4{font-family:var(--f-label);font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c);margin:14px 0 6px}
+.blk ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:5px}
+.blk li{font-size:.95rem;line-height:1.5}
+.blk li::marker{color:var(--c)}
+.blk p{font-size:.95rem}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:.9rem;line-height:1.4}
+th{font-family:var(--f-label);font-weight:700;text-align:left;background:var(--soft);color:var(--ink);padding:7px 10px;white-space:nowrap}
+td{padding:6px 10px;border-top:1px solid var(--line);vertical-align:top}
+td:first-child{font-variant-numeric:tabular-nums}
+.traps{grid-column:1/-1;background:var(--warn-soft);border-radius:6px;padding:12px 14px}
+.traps h4{color:var(--warn);margin-top:0}
+.traps li::marker{color:var(--warn)}
+.cek{font-family:var(--f-label);font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--warn);border:1px solid var(--warn);border-radius:3px;padding:0 4px;margin-left:4px;white-space:nowrap}
+.new{font-family:var(--f-label);font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--bg);background:var(--patina);border-radius:3px;padding:0 5px;margin-right:4px;white-space:nowrap}
+
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:18px}
+.note{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;min-width:0}
+.note ul{margin:8px 0 0;padding-left:1.1em;display:flex;flex-direction:column;gap:6px;font-size:.93rem}
+.src a{word-break:break-word}
+footer{margin-top:40px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);padding-top:14px}
+
+@media (max-width:820px){
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .map{grid-template-columns:1fr}
+}
+@media (max-width:480px){
+  .wrap{padding-inline:16px}
+  .wseg b{flex-direction:column;gap:0;line-height:1.2;min-height:2.5em;justify-content:flex-end}
+  .steps{grid-template-columns:1fr}
+  .toggle{grid-template-columns:1fr}
+  .toggle .code{grid-row:auto;padding-top:0}
+  .card-head{flex-direction:column;gap:8px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Peta materi lomba · 3 bidang · <span id="nodeCount">0</span> simpul</div>
+    <h1 style="margin-top:8px">Peta Materi Lomba Sejarah</h1>
+    <p class="lead" style="margin-top:12px">Semua materi lomba dari masa praaksara sampai Reformasi, ditambah kebudayaan dan permuseuman, disusun sebagai satu peta. Lebar setiap blok mengikuti bobot soalnya. Centang “Dikuasai” di tiap simpul; kemajuan tersimpan di peramban ini saja.</p>
+
+    <nav class="weights" aria-label="Bobot materi">
+      <a class="wseg" href="#d-sni" style="--c:var(--indigo)"><b><span style="color:inherit;font-size:inherit">Sejarah Nasional</span><span style="color:inherit;font-size:inherit" class="mono">40%</span></b><div class="bar"><i id="bar-sni"></i></div><span id="pg-sni">0 dari 0 dikuasai</span></a>
+      <a class="wseg" href="#d-bud" style="--c:var(--soga)"><b><span style="color:inherit;font-size:inherit">Kebudayaan</span><span style="color:inherit;font-size:inherit" class="mono">30%</span></b><div class="bar"><i id="bar-bud"></i></div><span id="pg-bud">0 dari 0 dikuasai</span></a>
+      <a class="wseg" href="#d-mus" style="--c:var(--patina)"><b><span style="color:inherit;font-size:inherit">Museum &amp; Cagar Budaya</span><span style="color:inherit;font-size:inherit" class="mono">30%</span></b><div class="bar"><i id="bar-mus"></i></div><span id="pg-mus">0 dari 0 dikuasai</span></a>
+    </nav>
+
+    <div class="tools">
+      <label class="search" for="q"><span class="mono" aria-hidden="true">⌕</span><input id="q" type="search" placeholder="Cari tokoh, tahun, prasasti, lagu… (mis. Linggarjati, 1928, Ismail Marzuki)" autocomplete="off"></label>
+      <button class="btn" id="openAll" type="button">Buka semua</button>
+      <button class="btn" id="closeAll" type="button">Tutup semua</button>
+      <span id="hits" aria-live="polite"></span>
+    </div>
+    <p class="overall" style="margin-top:10px">Bobot materi yang sudah dikuasai: <b id="overall">0%</b></p>
+  </header>
+
+  <section id="urutan" aria-labelledby="h-urutan">
+    <div class="sec-head"><h2 id="h-urutan">Urutan belajar</h2><p>Mulai dari kerangka, lalu daftar tertutup (jawabannya pasti, poinnya cepat), baru isi detail.</p></div>
+    <div class="steps">
+      <div class="step"><span class="n">Tahap 1</span><h3>Kerangka waktu</h3><p>Hafal 11 era di garis waktu dan tanggal jangkarnya. Semua soal sejarah akan menempel ke kerangka ini.</p><p class="out">Bisa menyebut urutan era dan 1–2 peristiwa kunci tiap era tanpa melihat.</p></div>
+      <div class="step"><span class="n">Tahap 2</span><h3>Daftar tertutup</h3><p>16 WBTb UNESCO, 10 Warisan Dunia, regulasi permuseuman, lagu nasional dan penciptanya, lagu daerah dan provinsinya.</p><p class="out">Jawaban pasti, cocok untuk babak rebutan.</p></div>
+      <div class="step"><span class="n">Tahap 3</span><h3>Isi per simpul</h3><p>Buka simpul berlabel <span class="tier t1">Inti</span> dulu. Baca kotak “Jebakan soal” di tiap simpul.</p><p class="out">Bisa membedakan fakta yang mirip (Linggarjati vs Renville, BPUPKI vs PPKI).</p></div>
+      <div class="step"><span class="n">Tahap 4</span><h3>Latihan soal</h3><p>Latihan bergaya cerdas cermat: soal wajib, lemparan, dan rebutan, memakai kode simpul agar kelemahan terlihat.</p><p class="out"><a href="bank.html" target="_blank" rel="noopener">Buka Bank Soal Lomba Sejarah ↗</a> (457 soal, kode simpul sama dengan peta ini).</p></div>
+    </div>
+  </section>
+
+  <section id="peta" aria-labelledby="h-peta">
+    <div class="sec-head"><h2 id="h-peta">Peta</h2><p>Setiap simpul punya kode. Klik untuk membuka isinya.</p></div>
+    <div class="map" id="map"></div>
+    <div class="legend"><span><span class="tier t1">Inti</span> pelajari dulu</span><span><span class="tier t2">Penting</span> sering keluar</span><span><span class="tier t3">Pelengkap</span> di luar daftar resmi, sering jadi soal tambahan</span><span><span class="cek">cek</span> sumber berbeda-beda, cocokkan dengan buku sekolah</span></div>
+  </section>
+
+  <section id="garis" aria-labelledby="h-garis">
+    <div class="sec-head"><h2 id="h-garis">Garis waktu Sejarah Nasional</h2><p>Tidak berskala: masa praaksara berlangsung jutaan tahun, sedangkan Reformasi baru sekitar 28 tahun. Geser ke samping di layar kecil.</p></div>
+    <div class="eras-wrap"><ol class="eras" id="eras"></ol></div>
+  </section>
+
+  <div id="domains"></div>
+
+  <section id="catatan" aria-labelledby="h-catatan">
+    <div class="sec-head"><h2 id="h-catatan">Catatan dan sumber</h2><p>Data dicek per 13 Oktober 2026.</p></div>
+    <div class="notes">
+      <div class="note">
+        <h3>Perlu dikonfirmasi ke panitia atau guru</h3>
+        <ul>
+          <li><b>Edisi buku ajar.</b> Peta ini memakai buku Kurikulum Merdeka (Kemendikbudristek 2021–2022). Bila sekolah memakai buku K13 atau buku penerbit lain, urutan bab berbeda tetapi isinya sama.</li>
+          <li><b>Arti “Warisan Bersama Budaya Tak Benda”.</b> Di sini ditafsirkan sebagai warisan takbenda yang diakui UNESCO lewat pengusulan bersama negara lain (Pantun, Kebaya, Kolintang). Tanyakan bila maksud panitia lain.</li>
+          <li><b>Tanggal batas data.</b> Sidang UNESCO akhir 2026 akan memutuskan Tempe, Jaranan, dan Mak Yong. Bila lomba setelah sidang itu, cek hasilnya.</li>
+          <li><b>Format lomba.</b> Pembagian 40/30/30 dan susunan materinya mirip Lomba Cerdas Cermat Museum (LCCM) yang biasa digelar Museum Nasional dan dinas kebudayaan daerah. Tanyakan jumlah babak dan sistem nilainya.</li>
+        </ul>
+      </div>
+      <div class="note src">
+        <h3>Sumber utama</h3>
+        <ul>
+          <li>Buku Sejarah Kurikulum Merdeka: <a href="https://static.buku.kemdikbud.go.id/content/pdf/bukuteks/kurikulum21/Sejarah-BS-KLS-XI.pdf" target="_blank" rel="noopener">Kelas XI</a>, <a href="https://static.buku.kemdikbud.go.id/content/pdf/bukuteks/kurikulum21/Sejarah_BS_KLS_XII.pdf" target="_blank" rel="noopener">Kelas XII</a>, <a href="https://static.buku.kemdikbud.go.id/content/pdf/bukuteks/kurikulum21/SEJARAH-BS-KLS%20X.pdf" target="_blank" rel="noopener">Kelas X</a></li>
+          <li>UNESCO: <a href="https://ich.unesco.org/en/RL/cultural-practices-and-expressions-linked-to-balafon-and-kolintang-in-mali-burkina-faso-cote-d-ivoire-and-indonesia-02131" target="_blank" rel="noopener">Balafon dan Kolintang</a>, <a href="https://www.tempo.co/teroka/16-warisan-budaya-takbenda-indonesia-yang-diakui-unesco-termasuk-kolintang-dan-reog-ponorogo-1178478" target="_blank" rel="noopener">16 WBTb Indonesia (Tempo)</a></li>
+          <li>Penetapan 2025: <a href="https://www.viva.co.id/berita/nasional/1868422-pemerintah-tambah-tetapkan-514-warisan-budaya-takbenda-indonesia-sekarang-jadi-2-727" target="_blank" rel="noopener">514 WBTbI, total 2.727</a>; <a href="https://mediaindonesia.com/humaniora/841270/kementerian-kebudayaan-tetapkan-85-cagar-budaya-peringkat-nasional-tahun-2025" target="_blank" rel="noopener">85 Cagar Budaya Peringkat Nasional</a></li>
+          <li>Usulan UNESCO: <a href="https://jatim.antaranews.com/berita/900973/indonesia-ajukan-tempe-jaranan-dan-teater-mak-yong-ke-unesco" target="_blank" rel="noopener">Tempe, Jaranan, Mak Yong</a>; <a href="https://www.antaranews.com/berita/5763677/4-negara-ajukan-tari-zapin-sebagai-warisan-budaya-takbenda-ke-unesco" target="_blank" rel="noopener">Zapin</a></li>
+          <li>Ingatan Kolektif Dunia 2025: <a href="https://gorontalo.antaranews.com/berita/313721/indonesia-catatkan-5-warisan-dokumenter-sebagai-ingatan-kolektif-dunia" target="_blank" rel="noopener">Antara</a></li>
+          <li>Museum: <a href="https://peraturan.bpk.go.id/Details/5642" target="_blank" rel="noopener">PP 66/2015</a>, <a href="https://www.jogloabang.com/pendidikan/permendikbudristek-24-2022-pp-66-2015-museum" target="_blank" rel="noopener">Permendikbudristek 24/2022</a>, <a href="https://peraturan.bpk.go.id/Details/38552" target="_blank" rel="noopener">UU 11/2010</a>, <a href="https://www.detik.com/edu/detikpedia/d-7545102/museum-nasional-kembali-dibuka-buat-publik-15-oktober-2024" target="_blank" rel="noopener">Museum Nasional dibuka kembali</a>, <a href="https://lestari.kompas.com/read/2024/05/20/160000486/lestarikan-warisan-budaya-kemendikbudristek-luncurkan-iha" target="_blank" rel="noopener">Peluncuran IHA</a></li>
+          <li>Temuan dan berita: <a href="https://mongabay.co.id/2026/08/23/lukisan-67-ribu-tahun-silam-di-sulawesi-jadi-karya-seni-tertua-homo-sapiens/" target="_blank" rel="noopener">Seni cadas Muna 67.800 tahun</a>, <a href="https://news.republika.co.id/berita/t38nr6487/pemerintah-belanda-serahkan-fosil-koleksi-dubois-ke-indonesia-termasuk-ltemgthomo-erectusltemgt" target="_blank" rel="noopener">Fosil Dubois</a>, <a href="https://nasional.kompas.com/read/2025/12/15/07363661/ini-10-jilid-baru-buku-sejarah-indonesia-dari-peradaban-nusantara-hingga" target="_blank" rel="noopener">Buku Sejarah Indonesia 10 jilid</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>Disusun dari buku ajar, peraturan, dan pemberitaan resmi. Fakta berlabel <span class="cek">cek</span> punya versi berbeda di sumber yang berbeda; pakai versi buku sekolah bila ada.</footer>
+</div>
+
+<script>
+const DOMAINS = [
+{ id:"sni", name:"Sejarah Nasional Indonesia", weight:40, c:"var(--indigo)", soft:"var(--indigo-soft)",
+  note:"Sumber resmi: buku ajar Sejarah kelas X, XI, dan XII. Disusun kronologis dari praaksara sampai Reformasi.",
+  topics:[
+  { code:"SNI-01", title:"Konsep dasar ilmu sejarah", scope:"Cara berpikir sejarah", src:"Kelas X", tier:2,
+    sum:"Istilah dasar yang sering jadi soal definisi: diakronik, sinkronik, langkah penelitian, jenis historiografi.",
+    blocks:[
+      {h:"Konsep inti", li:[
+        "Tiga unsur sejarah: <b>manusia, ruang, waktu</b>.",
+        "<b>Diakronik</b> = memanjang dalam waktu (kronologis). <b>Sinkronik</b> = meluas dalam ruang pada satu waktu.",
+        "Kronologi (urutan), periodisasi (pembabakan), kausalitas (sebab-akibat); konsep perubahan dan kesinambungan.",
+        "Sejarah sebagai peristiwa, kisah, ilmu, dan seni. Guna sejarah: edukatif, inspiratif, rekreatif, instruktif."]},
+      {h:"Penelitian sejarah", li:[
+        "<b>Heuristik</b> (mengumpulkan sumber) → <b>verifikasi</b> (kritik sumber) → <b>interpretasi</b> (analisis dan sintesis) → <b>historiografi</b> (penulisan).",
+        "Kritik <b>ekstern</b> menguji keaslian fisik sumber; kritik <b>intern</b> menguji kebenaran isinya.",
+        "Sumber primer (sezaman, saksi) dan sekunder; sumber tertulis, lisan, dan benda."]},
+      {h:"Historiografi", li:[
+        "Tradisional: babad, hikayat; istanasentris, bercampur mitos.",
+        "Kolonial: Neerlandosentris (berpusat pada Belanda).",
+        "Nasional: Indonesiasentris. Seminar Sejarah Nasional I, Yogyakarta, 14–18 Des 1957 → <b>Hari Sejarah Nasional 14 Desember</b>.",
+        "Modern/kritis: pendekatan multidimensi, misalnya Sartono Kartodirdjo, <i>Pemberontakan Petani Banten 1888</i>."]}
+    ],
+    traps:["Soal “memanjang dalam waktu” jawabannya diakronik, bukan sinkronik.","Kritik ekstern = keaslian (kertas, tinta, huruf); kritik intern = kredibilitas isi."]},
+
+  { code:"SNI-02", title:"Praaksara dan manusia purba", scope:"Jutaan tahun lalu – ±400 M", src:"Kelas X", tier:1,
+    sum:"Pembabakan, fosil dan penemunya, hasil budaya tiap zaman, dan temuan terbaru dari Sulawesi.",
+    blocks:[
+      {h:"Batas dan pembabakan", li:[
+        "Praaksara = masa sebelum mengenal tulisan. Di Indonesia berakhir dengan <b>prasasti Yupa Kutai</b> (±400 M, huruf Pallawa, bahasa Sanskerta).",
+        "Geologi: Arkaikum → Paleozoikum → Mesozoikum → Neozoikum (Tersier, Kuarter). Manusia purba muncul di <b>Pleistosen</b> (Dilluvium); Homo sapiens di <b>Holosen</b> (Aluvium).",
+        "Arkeologi: Paleolitikum, Mesolitikum, Neolitikum, Megalitikum, Zaman Logam (perundagian).",
+        "Sosial-ekonomi: berburu-meramu (food gathering) → bercocok tanam (food producing, “Revolusi Neolitikum”) → perundagian."]},
+      {h:"Fosil manusia purba", table:{cols:["Fosil","Lokasi","Penemu / tahun"], rows:[
+        ["Meganthropus palaeojavanicus","Sangiran","G.H.R. von Koenigswald, 1936–1941"],
+        ["Pithecanthropus erectus (Java Man)","Trinil, Ngawi","Eugène Dubois, 1891"],
+        ["Pithecanthropus mojokertensis","Perning, Mojokerto","von Koenigswald, 1936"],
+        ["Pithecanthropus soloensis","Ngandong, Blora","Ter Haar, Oppenoorth, von Koenigswald, 1931–1933"],
+        ["Homo wajakensis","Wajak, Tulungagung","van Rietschoten, 1889 (diteliti Dubois)"],
+        ["Homo floresiensis","Liang Bua, Flores","Tim Indonesia–Australia, 2003"]]}},
+      {h:"Hasil budaya", li:[
+        "Paleolitikum: <b>kebudayaan Pacitan</b> (kapak genggam/chopper) dan <b>Ngandong</b> (alat tulang, tanduk rusa, flakes).",
+        "Mesolitikum: <b>kjokkenmoddinger</b> (bukit sampah kerang, pantai timur Sumatra) dengan kapak Sumatra (pebble); <b>abris sous roche</b> (Gua Lawa, Sampung, Ponorogo; van Stein Callenfels 1928–1931); kebudayaan Toala (Sulsel).",
+        "Neolitikum: <b>kapak persegi</b> (Indonesia barat) dan <b>kapak lonjong</b> (Indonesia timur), gerabah, beliung.",
+        "Megalitikum: menhir, dolmen, sarkofagus, kubur batu, waruga (Minahasa), punden berundak (cikal bakal candi), arca.",
+        "Logam: nekara (terbesar “Bulan Pejeng”, Bali), moko (Alor), kapak corong, candrasa, bejana perunggu. Teknik <b>a cire perdue</b> (cetak lilin) dan <b>bivalve</b> (cetakan setangkup).",
+        "Kepercayaan: animisme (roh), dinamisme (kekuatan benda), totemisme (hewan)."]},
+      {h:"Temuan terbaru", li:[
+        "<span class=\"new\">2026</span><b>Liang Metanduno, Pulau Muna (Sultra)</b>: stensil tangan berusia minimal <b>67.800 tahun</b>, seni cadas tertua di dunia (jurnal Nature).",
+        "Sebelumnya: lukisan figuratif Leang Karampuang, Maros, minimal 51.200 tahun (2024).",
+        "<span class=\"new\">2025</span>Belanda menyerahkan <b>koleksi fosil Eugène Dubois</b> (±28 ribu fosil, termasuk Java Man) kepada Indonesia, September 2025.",
+        "Situs Manusia Purba Sangiran: Warisan Dunia UNESCO 1996."]}
+    ],
+    traps:["Pithecanthropus erectus ditemukan di Trinil, bukan Sangiran.","Kapak persegi menyebar di barat, kapak lonjong di timur (Papua).","Nekara dan moko sama-sama perunggu; moko lebih kecil dan khas Alor."]},
+
+  { code:"SNI-03", title:"Asal-usul nenek moyang dan Jalur Rempah", scope:"±1500 SM – abad ke-16", src:"Kelas X", tier:1,
+    sum:"Teori asal-usul, gelombang Proto dan Deutero Melayu, dan rempah sebagai penghubung Nusantara dengan dunia.",
+    blocks:[
+      {h:"Teori asal-usul", li:[
+        "<b>Yunan</b> (Cina selatan): J.H.C. Kern, R. von Heine Geldern, Moh. Ali.",
+        "<b>Nusantara</b>: Moh. Yamin (fosil tertua justru ditemukan di Nusantara).",
+        "<b>Out of Taiwan</b>: Peter Bellwood (penutur Austronesia menyebar dari Taiwan ±4.000–5.000 tahun lalu).",
+        "<b>Out of Africa</b>: Homo sapiens berasal dari Afrika lalu menyebar."]},
+      {h:"Gelombang kedatangan", li:[
+        "Ras Melanesoid (Papua-Melanesoid) datang lebih awal.",
+        "<b>Proto Melayu</b> (±1500 SM): membawa budaya Neolitikum (kapak persegi). Keturunan: Dayak, Toraja, Batak, Sasak.",
+        "<b>Deutero Melayu</b> (±500 SM): membawa budaya logam <b>Dongson</b>. Keturunan: Jawa, Melayu, Bugis, Minangkabau."]},
+      {h:"Jalur Rempah", li:[
+        "Komoditas: cengkih (Ternate, Tidore, Ambon), pala dan fuli (Banda), lada (Sumatra, Banten, Lampung), kapur barus (Barus), cendana (NTT).",
+        "Rempah dipakai sebagai bumbu, obat, dan simbol status; harganya sangat tinggi di Eropa.",
+        "Bandar penting: Barus, Palembang (Sriwijaya), Malaka, Banten, Tuban, Gresik, Makassar, Ternate.",
+        "Jalur Rempah juga jalur pertukaran agama, bahasa, dan teknologi. Pemerintah mengusulkannya sebagai Warisan Dunia UNESCO."]}
+    ],
+    traps:["Proto Melayu = Neolitikum; Deutero Melayu = logam (Dongson). Jangan tertukar.","Pala dari Banda; cengkih dari Maluku Utara (Ternate–Tidore)."]},
+
+  { code:"SNI-04", title:"Kerajaan Hindu–Buddha", scope:"±400 – ±1500 M", src:"Kelas X", tier:1,
+    sum:"Teori masuk, prasasti tiap kerajaan, raja kunci, karya sastra, dan ciri candi.",
+    blocks:[
+      {h:"Teori masuknya Hindu–Buddha", li:[
+        "<b>Brahmana</b>: J.C. van Leur. <b>Ksatria</b>: C.C. Berg, Moens. <b>Waisya</b>: N.J. Krom. <b>Sudra</b>: van Faber. <b>Arus balik</b>: F.D.K. Bosch."]},
+      {h:"Kerajaan dan bukti", table:{cols:["Kerajaan","Tokoh","Bukti / fakta kunci"], rows:[
+        ["Kutai (Kaltim, abad 4–5)","Kudungga, Aswawarman (pendiri dinasti), Mulawarman","7 Yupa; Mulawarman menyedekahkan 20.000 ekor sapi"],
+        ["Tarumanegara (Jabar, abad 5)","Purnawarman","Prasasti Ciaruteun (telapak kaki), Kebon Kopi, Jambu, Muara Cianten, Pasir Awi, Tugu (penggalian Sungai Gomati), Cidanghiang"],
+        ["Kalingga (Jateng, abad 7)","Ratu Shima","Hukum keras dan adil; berita Dinasti Tang"],
+        ["Sriwijaya (Palembang, abad 7–13)","Dapunta Hyang Sri Jayanasa, Balaputradewa","Kedukan Bukit (682), Talang Tuo (684), Kota Kapur (686), Karang Berahi, Telaga Batu, Ligor (775), Nalanda; I-Tsing singgah 671"],
+        ["Mataram Kuno (Jateng, abad 8–10)","Sanjaya, Samaratungga, Rakai Pikatan, Balitung","Canggal (732), Kalasan (778), Kelurak (782), Mantyasih (907, daftar raja); Borobudur dan Prambanan"],
+        ["Medang/Kahuripan (Jatim)","Mpu Sindok, Dharmawangsa, Airlangga","Pindah ke Jatim 929; Pralaya 1016; Prasasti Pucangan; kerajaan dibagi Mpu Bharada: Jenggala dan Panjalu"],
+        ["Kediri","Jayabaya, Kertajaya","Kakawin Bharatayuddha (Mpu Sedah dan Mpu Panuluh); kalah dari Ken Arok di Ganter 1222"],
+        ["Singhasari (1222–1292)","Ken Arok, Wisnuwardhana, Kertanegara","Ekspedisi Pamalayu 1275; menolak utusan Kubilai Khan; diserang Jayakatwang 1292"],
+        ["Majapahit (1293–±1500)","Raden Wijaya, Tribhuwana, Hayam Wuruk, Gajah Mada","Sumpah Palapa; Perang Bubat 1357; Negarakertagama (Mpu Prapanca, 1365); Sutasoma (Mpu Tantular); Perang Paregreg 1404–1406"],
+        ["Bali","Sri Kesari Warmadewa, Udayana, Anak Wungsu","Prasasti Blanjong (914); Udayana ayah Airlangga"],
+        ["Sunda/Pajajaran","Sri Baduga Maharaja","Prasasti Batutulis; perjanjian dengan Portugis 1522"]]}},
+      {h:"Akulturasi", li:[
+        "Candi Jawa Tengah: tambun, batu andesit, menghadap timur. Candi Jawa Timur: ramping, banyak bata, menghadap barat.",
+        "Borobudur: 10 tingkat (Kamadhatu, Rupadhatu, Arupadhatu), dibangun masa Samaratungga; restorasi Van Erp 1907–1911 dan RI–UNESCO 1973–1983.",
+        "Prambanan (Siwagrha, 856) memuat relief Ramayana.",
+        "Kalender Saka (mulai 78 M), sastra kakawin, sistem kerajaan."]}
+    ],
+    traps:["Bhinneka Tunggal Ika berasal dari kakawin Sutasoma karya Mpu Tantular, bukan Negarakertagama.","Prasasti Tugu (Tarumanegara) ≠ Prasasti Talang Tuo (Sriwijaya, tentang taman Sriksetra).","Pamalayu = Singhasari (Kertanegara), bukan Majapahit."]},
+
+  { code:"SNI-05", title:"Kerajaan Islam", scope:"Abad 13 – 18", src:"Kelas X", tier:1,
+    sum:"Teori masuk, bukti tertua, saluran penyebaran, kesultanan dan tokohnya, Walisongo, akulturasi.",
+    blocks:[
+      {h:"Teori dan bukti", li:[
+        "<b>Gujarat</b>: Pijnappel, Snouck Hurgronje, Moquette. <b>Mekkah/Arab</b>: Hamka (abad ke-7). <b>Persia</b>: Hoesein Djajadiningrat (tradisi Tabuik/Tabot). <b>Cina</b>: Slamet Muljana.",
+        "Nisan Fatimah binti Maimun, Leran, Gresik (1082 M); makam Sultan Malik as-Saleh (1297).",
+        "Marco Polo singgah di Perlak (1292); Ibnu Battuta di Samudra Pasai (1345)."]},
+      {h:"Saluran penyebaran", li:["Perdagangan, perkawinan, tasawuf, pendidikan (pesantren), kesenian (wayang, gamelan), politik."]},
+      {h:"Kesultanan", table:{cols:["Kesultanan","Tokoh","Fakta kunci"], rows:[
+        ["Samudra Pasai","Malik as-Saleh","Kerajaan Islam pertama yang terkenal; dirham emas"],
+        ["Aceh Darussalam","Ali Mughayat Syah, Iskandar Muda (1607–1636)","Puncak kejayaan masa Iskandar Muda; ulama Hamzah Fansuri, Nuruddin ar-Raniri"],
+        ["Demak","Raden Patah, Pati Unus, Trenggana","Pati Unus menyerang Portugis di Malaka (1513); Fatahillah merebut Sunda Kelapa 22 Juni 1527 → Jayakarta"],
+        ["Pajang","Jaka Tingkir (Sultan Hadiwijaya)","Penerus Demak"],
+        ["Mataram Islam","Panembahan Senapati, Sultan Agung","Menyerang Batavia 1628 dan 1629; kalender Jawa 1633; Perjanjian Giyanti 1755 dan Salatiga 1757 memecah Mataram"],
+        ["Banten","Maulana Hasanuddin, Sultan Ageng Tirtayasa","Sultan Ageng melawan VOC; putranya Sultan Haji bersekutu dengan VOC"],
+        ["Cirebon","Sunan Gunung Jati","Pusat dakwah Jawa Barat"],
+        ["Gowa–Tallo","Sultan Hasanuddin (“Ayam Jantan dari Timur”)","Kalah dari VOC dan Arung Palakka (Bone) → Perjanjian Bongaya 1667"],
+        ["Ternate","Sultan Khairun, Sultan Baabullah","Baabullah mengusir Portugis 1575; persekutuan Uli Lima"],
+        ["Tidore","Sultan Nuku","Persekutuan Uli Siwa; melawan Belanda"]]}},
+      {h:"Walisongo", li:["Maulana Malik Ibrahim (Gresik), Sunan Ampel (Surabaya), Sunan Giri (Gresik), Sunan Bonang (Tuban), Sunan Drajat (Lamongan), Sunan Kalijaga (Demak), Sunan Kudus, Sunan Muria, Sunan Gunung Jati (Cirebon)."]},
+      {h:"Akulturasi", li:["Masjid beratap tumpang, Menara Kudus berbentuk candi, makam bercungkup, kaligrafi, hikayat, babad, suluk, Grebeg dan Sekaten."]}
+    ],
+    traps:["Giyanti (1755) membagi Surakarta dan Yogyakarta; Salatiga (1757) melahirkan Mangkunegaran.","Teori Persia didukung tradisi peringatan 10 Muharam (Tabuik di Pariaman, Tabot di Bengkulu)."]},
+
+  { code:"SNI-06", title:"Kolonialisme dan perlawanan", scope:"1453 – awal 1900-an", src:"Kelas XI · Bab 1", tier:1,
+    sum:"Penjelajahan samudra, VOC, pemerintahan kolonial, Tanam Paksa sampai Politik Etis, dan perang-perang melawan penjajah.",
+    blocks:[
+      {h:"Penjelajahan samudra", li:[
+        "Pemicu: jatuhnya Konstantinopel ke Turki Usmani (<b>1453</b>), semangat 3G (gold, glory, gospel), kemajuan navigasi.",
+        "Perjanjian Tordesillas (1494) dan Saragosa (1529) membagi dunia antara Portugis dan Spanyol.",
+        "Bartolomeu Dias ke Tanjung Harapan (1488); Vasco da Gama ke Kalikut (1498).",
+        "Portugis merebut <b>Malaka 1511</b> (Alfonso de Albuquerque), tiba di Maluku 1512. Spanyol (rombongan Magelhaens) tiba di Tidore 1521.",
+        "Belanda: Cornelis de Houtman mendarat di Banten (1596); Jacob van Neck (1598) berhasil berdagang."]},
+      {h:"VOC (1602–1799)", li:[
+        "Berdiri <b>20 Maret 1602</b>; hak oktroi (monopoli, mencetak uang, membentuk tentara, berperang, membuat perjanjian).",
+        "Gubernur Jenderal pertama Pieter Both (1610); J.P. Coen merebut Jayakarta → <b>Batavia (1619)</b>.",
+        "Pelayaran Hongi, hak ekstirpasi, verplichte leverantie, contingenten.",
+        "Dibubarkan <b>31 Desember 1799</b> karena korupsi, utang, dan kalah bersaing."]},
+      {h:"Pemerintahan kolonial", li:[
+        "<b>Daendels</b> (1808–1811): Jalan Raya Pos Anyer–Panarukan (±1.000 km), kerja rodi.",
+        "Kapitulasi Tuntang (1811) → <b>Raffles</b> (Inggris, 1811–1816): sistem sewa tanah (landrent), buku <i>The History of Java</i> (1817). Konvensi London (1814) mengembalikan wilayah ke Belanda.",
+        "<b>Tanam Paksa</b> (1830, Van den Bosch): seperlima tanah atau 66 hari kerja. Kritik: <i>Max Havelaar</i> (Multatuli/E. Douwes Dekker, 1860).",
+        "Politik Pintu Terbuka: UU Agraria dan UU Gula (<b>1870</b>) membuka jalan bagi swasta.",
+        "<b>Politik Etis</b> (1901): gagasan C.Th. van Deventer, “Een Eereschuld” (1899) — irigasi, emigrasi, edukasi."]},
+      {h:"Perlawanan", table:{cols:["Perlawanan","Tahun","Tokoh dan fakta"], rows:[
+        ["Ternate vs Portugis","1575","Sultan Baabullah mengusir Portugis"],
+        ["Mataram vs VOC","1628, 1629","Sultan Agung menyerang Batavia"],
+        ["Gowa vs VOC","1666–1669","Sultan Hasanuddin; Perjanjian Bongaya 1667"],
+        ["Pattimura","1817","Saparua; merebut Benteng Duurstede"],
+        ["Perang Padri","1821–1838","Tuanku Imam Bonjol; Plakat Panjang 1833; kaum Adat dan Padri akhirnya bersatu"],
+        ["Perang Diponegoro (Perang Jawa)","1825–1830","Pemicu patok jalan di Tegalrejo; Belanda memakai benteng stelsel (De Kock); Diponegoro ditangkap di Magelang 28 Maret 1830"],
+        ["Perang Bali","1846–1908","Hak tawan karang; Puputan Jagaraga 1849 (I Gusti Ketut Jelantik), Puputan Badung 1906, Klungkung 1908"],
+        ["Perang Banjar","1859–1905","Pangeran Antasari"],
+        ["Perang Aceh","1873–1904","Teuku Umar, Cut Nyak Dhien, Cut Meutia, Panglima Polim; Snouck Hurgronje; Van Heutsz; Plakat Pendek"],
+        ["Perang Batak","1878–1907","Sisingamangaraja XII"]]}}
+    ],
+    traps:["Raffles = Inggris; Daendels = Belanda (masa Louis Napoleon).","Teuku Umar pura-pura menyerah (1893) lalu kembali melawan dengan membawa senjata Belanda (1896).","Max Havelaar ditulis Multatuli, nama samaran Eduard Douwes Dekker; jangan tertukar dengan E.F.E. Douwes Dekker (Indische Partij)."]},
+
+  { code:"SNI-07", title:"Pergerakan kebangsaan", scope:"1908 – 1942", src:"Kelas XI · Bab 2", tier:1,
+    sum:"Organisasi pergerakan dari Budi Utomo sampai GAPI, Sumpah Pemuda, gerakan perempuan, pendidikan, dan pers.",
+    blocks:[
+      {h:"Faktor pendorong", li:[
+        "Dalam negeri: penderitaan akibat penjajahan, kenangan kejayaan masa lalu, lahirnya kaum terpelajar dari Politik Etis.",
+        "Luar negeri: kemenangan Jepang atas Rusia (1905), pergerakan di India, Filipina (Jose Rizal), Tiongkok (Sun Yat Sen), Turki Muda; paham nasionalisme, liberalisme, sosialisme, Pan-Islamisme."]},
+      {h:"Organisasi", table:{cols:["Organisasi","Berdiri","Tokoh dan fakta"], rows:[
+        ["Budi Utomo","20 Mei 1908","dr. Sutomo dan pelajar STOVIA, gagasan dr. Wahidin Sudirohusodo; Hari Kebangkitan Nasional"],
+        ["Sarekat Islam","1912 (dari SDI 1905/1911)","H. Samanhudi, H.O.S. Tjokroaminoto; pecah menjadi SI Putih dan SI Merah"],
+        ["Indische Partij","25 Des 1912","Tiga Serangkai: Douwes Dekker (Setiabudi), Tjipto Mangoenkoesoemo, Soewardi Soerjaningrat; partai politik pertama; tulisan “Als ik eens Nederlander was” (1913)"],
+        ["Muhammadiyah","18 Nov 1912","K.H. Ahmad Dahlan, Yogyakarta"],
+        ["Perhimpunan Indonesia","1925 (dari Indische Vereeniging 1908)","Mahasiswa di Belanda; Moh. Hatta; majalah Indonesia Merdeka"],
+        ["PKI","1920 (dari ISDV 1914)","Sneevliet mendirikan ISDV; pemberontakan 1926–1927"],
+        ["Taman Siswa","3 Juli 1922","Ki Hajar Dewantara, Yogyakarta; Ing ngarsa sung tuladha, ing madya mangun karsa, tut wuri handayani"],
+        ["Nahdlatul Ulama","31 Jan 1926","K.H. Hasyim Asy'ari, Surabaya"],
+        ["PNI","4 Juli 1927, Bandung","Ir. Sukarno; pembelaan “Indonesia Menggugat” (1930)"],
+        ["PNI Baru","1931","Hatta dan Sjahrir; kaderisasi"],
+        ["Parindra","1935","dr. Sutomo"],
+        ["GAPI","1939","Gabungan partai; tuntutan “Indonesia Berparlemen”"]]}},
+      {h:"Pemuda dan perempuan", li:[
+        "Tri Koro Dharmo (1915) → Jong Java (1918); Jong Sumatranen Bond (1917); Jong Islamieten Bond (1925); Kongres Pemuda I (1926).",
+        "<b>Kongres Pemuda II, 27–28 Oktober 1928</b>: tiga rapat; rapat ketiga di Jl. Kramat Raya 106 (kini Museum Sumpah Pemuda). Ketua Soegondo Djojopoespito; rumusan ikrar oleh Moh. Yamin; W.R. Supratman memperdengarkan “Indonesia Raya” dengan biola.",
+        "Kongres Perempuan I, 22 Desember 1928, Yogyakarta → Hari Ibu.",
+        "Kartini: surat-suratnya terbit sebagai <i>Door Duisternis tot Licht</i> (1911); Dewi Sartika: Sakola Istri (1904)."]},
+      {h:"Masa kooperatif dan pers", li:[
+        "Volksraad (1918), Petisi Soetardjo (1936), Kongres Rakyat Indonesia (1939).",
+        "Tirto Adhi Soerjo dan surat kabar <i>Medan Prijaji</i> (1907); Kongres Bahasa Indonesia I di Solo (1938)."]}
+    ],
+    traps:["Budi Utomo = organisasi modern pertama; Indische Partij = partai politik pertama.","PNI 1927 didirikan di Bandung.","Sumpah Pemuda dibacakan 28 Oktober 1928 malam, pada rapat ketiga."]},
+
+  { code:"SNI-08", title:"Pendudukan Jepang dan Proklamasi", scope:"1942 – 18 Agustus 1945", src:"Kelas XI · Bab 3–4", tier:1,
+    sum:"Kapitulasi Kalijati, organisasi bentukan Jepang, perlawanan, BPUPKI–PPKI, dan detik-detik proklamasi.",
+    blocks:[
+      {h:"Jepang masuk", li:[
+        "Mendarat di Tarakan (11 Jan 1942), lalu Palembang dan Jawa.",
+        "<b>Kapitulasi Kalijati, Subang, 8 Maret 1942</b>: Letjen Ter Poorten menyerah kepada Letjen Hitoshi Imamura.",
+        "Tiga wilayah militer: Jawa–Madura (Tentara ke-16, Batavia), Sumatra (Tentara ke-25, Bukittinggi), Indonesia Timur (Angkatan Laut, Makassar)."]},
+      {h:"Organisasi bentukan Jepang", li:[
+        "Gerakan 3A (1942, Mr. Sjamsuddin): Nippon cahaya, pelindung, pemimpin Asia.",
+        "<b>Putera</b> (16 April 1943), Empat Serangkai: Sukarno, Hatta, Ki Hajar Dewantara, K.H. Mas Mansur. Diganti Jawa Hokokai (1944).",
+        "MIAI → Masyumi (1943); Chuo Sangi In (1943).",
+        "Semimiliter: Seinendan, Keibodan, Fujinkai. Militer: Heiho (pembantu prajurit) dan <b>PETA</b> (3 Oktober 1943, usul Gatot Mangkupraja); di Sumatra Giyugun.",
+        "Romusha (kerja paksa), wajib serah padi, Tonarigumi (cikal bakal RT)."]},
+      {h:"Perlawanan", li:[
+        "Cot Plieng, Aceh (Teungku Abdul Djalil, 1942); Singaparna, Tasikmalaya (K.H. Zainal Mustafa, 1944); Indramayu (1944).",
+        "<b>PETA Blitar, 14 Februari 1945</b>, dipimpin Supriyadi.",
+        "Gerakan bawah tanah: Sjahrir, Amir Sjarifuddin, kelompok Menteng 31."]},
+      {h:"Menuju merdeka", table:{cols:["Tanggal","Peristiwa"], rows:[
+        ["7 Sep 1944","Janji kemerdekaan “kelak kemudian hari” dari PM Koiso"],
+        ["28 Mei 1945","BPUPKI (Dokuritsu Junbi Cosakai) dilantik; ketua dr. K.R.T. Radjiman Wedyodiningrat"],
+        ["29 Mei – 1 Jun 1945","Sidang I: usulan dasar negara oleh Moh. Yamin (29 Mei), Soepomo (31 Mei), Sukarno (1 Juni, nama “Pancasila”)"],
+        ["22 Jun 1945","Panitia Sembilan menghasilkan Piagam Jakarta"],
+        ["10–17 Jul 1945","Sidang II: rancangan UUD"],
+        ["7 Agu 1945","PPKI (Dokuritsu Junbi Inkai) dibentuk; ketua Sukarno, wakil Hatta"],
+        ["6 dan 9 Agu 1945","Bom atom Hiroshima dan Nagasaki"],
+        ["15 Agu 1945","Jepang menyerah kepada Sekutu"],
+        ["16 Agu 1945","Peristiwa Rengasdengklok (golongan muda: Sukarni, Wikana, Chaerul Saleh); malamnya perumusan naskah di rumah Laksamana Maeda"],
+        ["17 Agu 1945","Proklamasi, pukul 10.00, Jl. Pegangsaan Timur 56"],
+        ["18 Agu 1945","PPKI mengesahkan UUD 1945, memilih Sukarno–Hatta"],
+        ["19 Agu 1945","8 provinsi dan 12 kementerian"],
+        ["22 Agu 1945","KNIP dan BKR dibentuk"]]}},
+      {h:"Sekitar naskah proklamasi", li:[
+        "Ditulis tangan Sukarno; Hatta dan Ahmad Soebardjo menyumbang gagasan; <b>diketik Sayuti Melik</b>.",
+        "Perubahan saat diketik: “tempoh” → “tempo”; “wakil-wakil bangsa Indonesia” → “atas nama bangsa Indonesia” (usul Sukarni); tanggal ditulis “Djakarta, 17-8-'05” (tahun Jepang 2605).",
+        "Bendera dijahit Fatmawati, dikibarkan Latief Hendraningrat dan Suhud.",
+        "Berita disebarkan lewat kantor berita Domei, radio, dan surat kabar seperti <i>Soeara Asia</i> dan <i>Tjahaja</i>."]}
+    ],
+    traps:["Ketua BPUPKI = Radjiman; ketua PPKI = Sukarno.","Rumah Laksamana Maeda (Jl. Imam Bonjol 1) kini Museum Perumusan Naskah Proklamasi.","Heiho = pembantu tentara Jepang; PETA = tentara sukarela untuk mempertahankan tanah air."]},
+
+  { code:"SNI-09", title:"Mempertahankan kemerdekaan", scope:"1945 – 1950", src:"Kelas XII · Bab 1", tier:1,
+    sum:"Pertempuran melawan Sekutu dan Belanda, perundingan Linggarjati sampai KMB, dan pemberontakan dalam negeri.",
+    blocks:[
+      {h:"Membangun negara", li:[
+        "Maklumat X (16 Okt 1945): KNIP diberi wewenang legislatif; Maklumat 3 Nov 1945 tentang partai politik; Sjahrir menjadi perdana menteri (14 Nov 1945).",
+        "BKR → <b>TKR (5 Oktober 1945, HUT TNI)</b> → TRI → TNI (1947); Panglima Besar Soedirman.",
+        "Rapat Raksasa Lapangan Ikada (19 Sep 1945); Insiden Hotel Yamato, Surabaya (19 Sep 1945).",
+        "Sekutu (AFNEI, Letjen Philip Christison) mendarat 29 Sep 1945, diboncengi NICA."]},
+      {h:"Pertempuran", table:{cols:["Pertempuran","Tanggal","Tokoh dan fakta"], rows:[
+        ["Lima Hari di Semarang","14–19 Okt 1945","dr. Kariadi gugur"],
+        ["Surabaya","10 Nov 1945","Brigjen Mallaby tewas 30 Okt; Bung Tomo; Hari Pahlawan"],
+        ["Palagan Ambarawa","12–15 Des 1945","Kolonel Soedirman, taktik supit urang; Hari Juang Kartika"],
+        ["Medan Area","Des 1945","Ahmad Tahir"],
+        ["Bandung Lautan Api","24 Mar 1946","Bandung selatan dibakar; Moh. Toha"],
+        ["Puputan Margarana","20 Nov 1946","I Gusti Ngurah Rai"],
+        ["Korban 40.000 jiwa, Sulsel","Des 1946 – Feb 1947","Pasukan Westerling"],
+        ["Agresi Militer I","21 Jul 1947","Operatie Product"],
+        ["Agresi Militer II","19 Des 1948","Yogyakarta jatuh; PDRI di Bukittinggi (Sjafruddin Prawiranegara)"],
+        ["Serangan Umum 1 Maret","1 Mar 1949","Yogyakarta diduduki 6 jam; Letkol Soeharto, gagasan Sri Sultan HB IX"]]}},
+      {h:"Diplomasi", table:{cols:["Perundingan","Waktu","Isi pokok"], rows:[
+        ["Hoge Veluwe","Apr 1946","Gagal"],
+        ["Linggarjati","disepakati 15 Nov 1946, ditandatangani 25 Mar 1947","Penengah Lord Killearn; Belanda mengakui de facto RI atas Jawa, Sumatra, Madura; rencana RIS"],
+        ["Renville","8 Des 1947 – 17 Jan 1948","Di kapal USS Renville; penengah Komisi Tiga Negara; garis Van Mook; TNI hijrah (Siliwangi ke Jawa Tengah)"],
+        ["Roem–Roijen","7 Mei 1949","Pemerintah RI kembali ke Yogyakarta"],
+        ["Konferensi Inter-Indonesia","Jul – Agu 1949","Kesepakatan RI dan negara bagian BFO"],
+        ["Konferensi Meja Bundar","23 Agu – 2 Nov 1949, Den Haag","Ketua delegasi Moh. Hatta; Irian Barat ditunda; pengakuan kedaulatan 27 Des 1949"]]}},
+      {h:"Gangguan dalam negeri", li:[
+        "PKI Madiun (18 Sep 1948): Musso, Amir Sjarifuddin.",
+        "DI/TII: Kartosoewirjo (Jabar, 1949), Amir Fatah (Jateng), Kahar Muzakkar (Sulsel), Daud Beureueh (Aceh), Ibnu Hadjar (Kalsel).",
+        "APRA (Westerling, Bandung, Jan 1950); Andi Azis (Makassar, Apr 1950); RMS (Soumokil, 25 Apr 1950).",
+        "RIS kembali menjadi NKRI pada 17 Agustus 1950."]}
+    ],
+    traps:["Komisi Tiga Negara: Australia (pilihan Indonesia), Belgia (pilihan Belanda), Amerika Serikat (netral).","Linggarjati mengakui Jawa, Sumatra, Madura; Renville mempersempit wilayah RI lewat garis Van Mook.","Keppres 2/2022 menetapkan 1 Maret sebagai Hari Penegakan Kedaulatan Negara."]},
+
+  { code:"SNI-10", title:"Demokrasi Liberal dan Demokrasi Terpimpin", scope:"1950 – 1966", src:"Kelas XII · Bab 2", tier:1,
+    sum:"Tujuh kabinet, Pemilu 1955, pergolakan daerah, Dekret 5 Juli 1959, Irian Barat, Konfrontasi, G30S, Supersemar.",
+    blocks:[
+      {h:"Tujuh kabinet (UUDS 1950)", table:{cols:["Kabinet","Masa","Catatan"], rows:[
+        ["Natsir (Masyumi)","1950–1951","Gunting Syafruddin; Program Benteng"],
+        ["Sukiman (Masyumi)","1951–1952","Jatuh karena perjanjian MSA dengan AS"],
+        ["Wilopo (PNI)","1952–1953","Peristiwa 17 Oktober 1952"],
+        ["Ali Sastroamidjojo I (PNI)","1953–1955","<b>Konferensi Asia Afrika, Bandung, 18–24 Apr 1955</b> (Dasasila Bandung); sistem Ali-Baba"],
+        ["Burhanuddin Harahap (Masyumi)","1955–1956","<b>Pemilu 1955</b>: DPR (29 Sep) dan Konstituante (15 Des); empat besar PNI, Masyumi, NU, PKI"],
+        ["Ali Sastroamidjojo II","1956–1957","Pembatalan KMB; pergolakan daerah"],
+        ["Djuanda (Kabinet Karya)","1957–1959","Zaken kabinet; <b>Deklarasi Djuanda 13 Des 1957</b> (wawasan Nusantara)"]]}},
+      {h:"Ekonomi dan pergolakan", li:[
+        "Nasionalisasi De Javasche Bank → Bank Indonesia (1953).",
+        "Dewan Banteng, Gajah, Garuda, Manguni → <b>PRRI</b> (15 Feb 1958, Sjafruddin Prawiranegara) dan <b>Permesta</b> (2 Mar 1957, Ventje Sumual)."]},
+      {h:"Dekret Presiden 5 Juli 1959", li:[
+        "Membubarkan Konstituante; UUD 1945 berlaku kembali dan UUDS 1950 tidak berlaku; MPRS dan DPAS dibentuk.",
+        "Demokrasi Terpimpin: Manipol-USDEK, Nasakom; DPR hasil pemilu dibubarkan (1960) → DPR-GR."]},
+      {h:"Politik luar negeri", li:[
+        "Irian Barat: <b>Trikora 19 Des 1961</b>; Komando Mandala (Mayjen Soeharto); Pertempuran Laut Aru 15 Jan 1962 (Komodor Yos Sudarso); Perjanjian New York 15 Agu 1962 → UNTEA → Pepera 1969.",
+        "Konfrontasi Malaysia: Dwikora (3 Mei 1964); keluar dari PBB (7 Jan 1965); Ganefo (Jakarta, 1963).",
+        "Gerakan Non-Blok (KTT I Beograd, 1961); pidato Sukarno “To Build the World Anew” di PBB (30 Sep 1960)."]},
+      {h:"Krisis 1965–1966", li:[
+        "Sanering (1959); devaluasi Rp1.000 → Rp1 (13 Des 1965); inflasi ratusan persen.",
+        "<b>G30S</b> (30 Sep – 1 Okt 1965): enam jenderal (A. Yani, Soeprapto, M.T. Haryono, S. Parman, D.I. Panjaitan, Sutoyo) dan Lettu Pierre Tendean gugur; Lubang Buaya.",
+        "Tritura (10 Jan 1966): bubarkan PKI, rombak Kabinet Dwikora, turunkan harga.",
+        "<b>Supersemar, 11 Maret 1966</b>."]}
+    ],
+    traps:["KAA = Kabinet Ali I; Pemilu 1955 = Kabinet Burhanuddin Harahap.","Dekret 5 Juli 1959 tidak membubarkan DPR; DPR baru dibubarkan tahun 1960.","Deklarasi Djuanda (13 Des) diperingati sebagai Hari Nusantara."]},
+
+  { code:"SNI-11", title:"Orde Baru dan Reformasi", scope:"1966 – sekarang", src:"Kelas XII · Bab 3", tier:1,
+    sum:"Stabilisasi dan pembangunan Orde Baru, krisis 1997–1998, dan perubahan besar sesudah Reformasi.",
+    blocks:[
+      {h:"Orde Baru", li:[
+        "Soeharto menjadi pejabat presiden (1967), presiden (1968).",
+        "Kembali ke PBB (28 Sep 1966); <b>ASEAN</b> berdiri lewat Deklarasi Bangkok, 8 Agustus 1967 (Indonesia diwakili Adam Malik).",
+        "Pemilu 1971 (10 peserta); fusi partai 1973 → PPP, PDI, Golkar; Penataran P4 (1978); dwifungsi ABRI.",
+        "Trilogi Pembangunan; Repelita sejak 1969; Revolusi Hijau; swasembada beras 1984 (penghargaan FAO 1985).",
+        "Peristiwa Malari (15 Jan 1974); integrasi Timor Timur (1976); krisis moneter (1997)."]},
+      {h:"Reformasi", li:[
+        "Tragedi Trisakti (12 Mei 1998); <b>Soeharto mundur 21 Mei 1998</b>.",
+        "Enam tuntutan Reformasi: amandemen UUD 1945, hapus dwifungsi ABRI, supremasi hukum, berantas KKN, otonomi daerah, adili Soeharto dan kroninya.",
+        "B.J. Habibie: kebebasan pers, Pemilu 1999 (48 partai), referendum Timor Timur (30 Agu 1999).",
+        "Abdurrahman Wahid (1999–2001): pemisahan TNI–Polri; Imlek boleh dirayakan terbuka.",
+        "Megawati (2001–2004): amandemen UUD 1945 (1999–2002); UU KPK (2002); pemilu presiden langsung pertama 2004.",
+        "Susilo Bambang Yudhoyono (2004–2014): MoU Helsinki (15 Agu 2005) mendamaikan Aceh. Joko Widodo (2014–2024). Prabowo Subianto (sejak 20 Okt 2024)."]}
+    ],
+    traps:["Pemilu 1999 diikuti 48 partai; pemilu presiden langsung pertama baru 2004.","ASEAN didirikan lima negara: Indonesia, Malaysia, Filipina, Singapura, Thailand."]}
+  ]},
+
+{ id:"bud", name:"Kebudayaan", weight:30, c:"var(--soga)", soft:"var(--soga-soft)",
+  note:"Sumber: UU 11/2010, UU 5/2017, daftar UNESCO, penetapan Kementerian Kebudayaan.",
+  topics:[
+  { code:"BUD-01", title:"Cagar budaya dan Warisan Dunia", scope:"Konsep dan contoh", src:"UU 11/2010 · UNESCO", tier:1,
+    sum:"Lima jenis cagar budaya, kriteria 50 tahun, peringkat, data penetapan terbaru, dan 10 Warisan Dunia Indonesia.",
+    blocks:[
+      {h:"Konsep (UU 11/2010)", li:[
+        "Cagar budaya = warisan budaya <b>bersifat kebendaan</b> di darat dan/atau di air yang dilestarikan karena nilai penting bagi sejarah, ilmu pengetahuan, pendidikan, agama, dan/atau kebudayaan, melalui proses penetapan.",
+        "Lima jenis: <b>Benda, Bangunan, Struktur, Situs, Kawasan</b> Cagar Budaya.",
+        "Kriteria benda, bangunan, struktur: berusia <b>50 tahun atau lebih</b>; mewakili masa gaya minimal 50 tahun; punya arti khusus bagi sejarah, ilmu pengetahuan, pendidikan, agama, dan/atau kebudayaan; punya nilai budaya bagi penguatan kepribadian bangsa.",
+        "Kawasan = satuan ruang geografis berisi dua situs cagar budaya atau lebih yang letaknya berdekatan.",
+        "Peringkat: nasional, provinsi, kabupaten/kota, atas rekomendasi Tim Ahli Cagar Budaya (TACB)."]},
+      {h:"Data penetapan", li:[
+        "<span class=\"new\">2025</span>Kementerian Kebudayaan menetapkan <b>85 Cagar Budaya Peringkat Nasional</b> (rekor; tahun 2024 hanya 10), termasuk Masjid Raya Baiturrahman, Aceh. Total 2013–2025: <b>313</b>.",
+        "2026: ratusan objek lagi direkomendasikan untuk peringkat nasional; angka berubah cepat, cek berita terbaru."]},
+      {h:"Warisan Dunia UNESCO di Indonesia (10)", table:{cols:["Tahun","Situs","Jenis"], rows:[
+        ["1991","Kompleks Candi Borobudur","Budaya"],
+        ["1991","Kompleks Candi Prambanan","Budaya"],
+        ["1991","Taman Nasional Ujung Kulon","Alam"],
+        ["1991","Taman Nasional Komodo","Alam"],
+        ["1996","Situs Manusia Purba Sangiran","Budaya"],
+        ["1999","Taman Nasional Lorentz","Alam"],
+        ["2004","Hutan Hujan Tropis Sumatra","Alam"],
+        ["2012","Lanskap Budaya Bali: Sistem Subak","Budaya"],
+        ["2019","Warisan Tambang Batubara Ombilin, Sawahlunto","Budaya"],
+        ["2023","Sumbu Filosofi Yogyakarta","Budaya"]]}}
+    ],
+    traps:["Batas 50 tahun adalah syarat untuk benda, bangunan, dan struktur.","Sumbu Filosofi Yogyakarta (2023) adalah Warisan Dunia budaya terbaru Indonesia.","Cagar budaya = kebendaan; tradisi dan seni masuk Warisan Budaya Takbenda."]},
+
+  { code:"BUD-02", title:"Warisan Budaya Takbenda", scope:"Nasional dan UNESCO", src:"Konvensi 2003 · UNESCO", tier:1,
+    sum:"Lima domain, penetapan nasional (2.727 sampai 2025), dan 16 elemen Indonesia di daftar UNESCO.",
+    blocks:[
+      {h:"Konsep", li:[
+        "Dasar: Konvensi UNESCO 2003, diratifikasi lewat <b>Perpres 78/2007</b>; penetapan nasional diatur Permendikbud 106/2013.",
+        "Lima domain: tradisi dan ekspresi lisan; seni pertunjukan; adat istiadat, ritus, dan perayaan; pengetahuan dan kebiasaan tentang alam semesta; kemahiran kerajinan tradisional.",
+        "Tiga daftar UNESCO: Daftar Representatif (RL), Daftar Perlu Pelindungan Mendesak (USL), Register Praktik Baik Pelindungan."]},
+      {h:"Penetapan nasional (WBTbI)", li:[
+        "Penetapan tahunan sejak 2013 (77 karya budaya pada tahun pertama).",
+        "<span class=\"new\">2025</span><b>514</b> WBTbI ditetapkan (dari 804 usulan, 35 provinsi), diumumkan 15 Des 2025. Total 2013–2025: <b>2.727</b>.",
+        "DIY terbanyak secara kumulatif (245); Jawa Tengah terbanyak pada 2025 (57)."]},
+      {h:"16 elemen Indonesia di UNESCO", wide:true, table:{cols:["Tahun","Elemen","Daftar","Catatan"], rows:[
+        ["2008","Wayang","RL","Hari Wayang Nasional 7 November"],
+        ["2008","Keris","RL",""],
+        ["2009","Batik","RL","Ditetapkan 2 Okt 2009 → Hari Batik Nasional"],
+        ["2009","Pendidikan dan pelatihan batik (Museum Batik Pekalongan)","Praktik Baik","Terpisah dari elemen Batik"],
+        ["2010","Angklung","RL",""],
+        ["2011","Tari Saman","USL","Aceh (Gayo)"],
+        ["2012","Noken","USL","Papua"],
+        ["2015","Tiga genre tari tradisional Bali","RL",""],
+        ["2017","Seni pembuatan kapal Pinisi","RL","Sulawesi Selatan"],
+        ["2019","Tradisi Pencak Silat","RL",""],
+        ["2020","Pantun","RL","Bersama Malaysia"],
+        ["2021","Gamelan","RL",""],
+        ["2023","Budaya sehat Jamu","RL",""],
+        ["2024","Reog Ponorogo","USL","Jawa Timur"],
+        ["2024","Kebaya","RL","Bersama Brunei, Malaysia, Singapura, Thailand"],
+        ["2024","Kolintang","RL","Perluasan elemen Balafon (Mali, Burkina Faso, Pantai Gading)"]]}},
+      {h:"Hari peringatan", li:["Hari Batik Nasional 2 Oktober; Hari Wayang Nasional 7 November; Hari Kebaya Nasional 24 Juli; Hari Musik Nasional 9 Maret (lahir W.R. Supratman)."]}
+    ],
+    traps:["Saman, Noken, Reog ada di daftar Perlu Pelindungan Mendesak (USL), bukan Daftar Representatif.","WBTb Indonesia (ribuan, ditetapkan pemerintah) berbeda dari WBTb UNESCO (16 elemen).","Ada dua “batik” di UNESCO: Batik (2009, RL) dan pendidikan batik Pekalongan (2009, Praktik Baik)."]},
+
+  { code:"BUD-03", title:"Warisan bersama budaya takbenda", scope:"Pengusulan multinasional", src:"UNESCO", tier:1,
+    sum:"Budaya yang hidup di lebih dari satu negara dan diakui UNESCO lewat pengusulan bersama atau perluasan.",
+    blocks:[
+      {h:"Konsep", li:[
+        "Pengusulan <b>multinasional</b>: beberapa negara mengajukan satu elemen bersama. <b>Perluasan (extension)</b>: negara bergabung ke elemen yang sudah tercatat.",
+        "Cara ini meredam sengketa klaim budaya antartetangga (contoh polemik lama: lagu Rasa Sayange, 2007).",
+        "Catatan: di peta ini istilah lomba ditafsirkan sebagai pengusulan bersama. Pastikan ke panitia."]},
+      {h:"Yang sudah diakui", table:{cols:["Tahun","Elemen","Negara"], rows:[
+        ["2020","Pantun","Indonesia, Malaysia — multinasional pertama Indonesia"],
+        ["2024","Kebaya","Indonesia, Brunei, Malaysia, Singapura, Thailand — multinasional kedua"],
+        ["2024","Balafon dan Kolintang","Mali, Burkina Faso, Pantai Gading + Indonesia (perluasan); kolintang dari Minahasa, Sulut"]]}},
+      {h:"Sedang diajukan", li:[
+        "Diajukan Maret 2025, keputusan diharapkan pada sidang UNESCO akhir 2026: <b>Tempe</b> (Indonesia sendiri), <b>Jaranan</b> (bersama Suriname, diaspora Jawa), <b>Teater Mak Yong</b> (perluasan elemen Malaysia 2008).",
+        "<span class=\"new\">2026</span><b>Tari Zapin</b>: Indonesia, Malaysia, Brunei, Singapura mengajukan bersama pada 30 Sep 2026, untuk siklus 2027."]},
+      {h:"Warisan dokumenter bersama (Ingatan Kolektif Dunia)", li:[
+        "Cerita Panji (2017; Indonesia, Kamboja, Malaysia, Belanda, Inggris).",
+        "2025: Karya Hamzah Fansuri (bersama Malaysia), Surat-surat Kartini (bersama Belanda), Arsip pembentukan ASEAN (bersama Malaysia, Singapura, Thailand)."]}
+    ],
+    traps:["Pantun = multinasional pertama; Kebaya = kedua.","Kolintang tidak diajukan sendirian: Indonesia bergabung ke elemen balafon dari Afrika Barat."]},
+
+  { code:"BUD-04", title:"Lagu nasional", scope:"Judul dan pencipta", src:"Daftar tertutup", tier:1,
+    sum:"Pasangan judul–pencipta yang sering ditanya, plus aturan tentang lagu kebangsaan.",
+    blocks:[
+      {h:"Indonesia Raya", li:[
+        "Ciptaan <b>W.R. Supratman</b>; pertama diperdengarkan (instrumental biola) di Kongres Pemuda II, 28 Oktober 1928.",
+        "Terdiri atas 3 stanza. Diatur PP 44/1958 dan UU 24/2009 tentang Bendera, Bahasa, dan Lambang Negara, serta Lagu Kebangsaan."]},
+      {h:"Judul dan pencipta", wide:true, table:{cols:["Lagu","Pencipta","Catatan"], rows:[
+        ["Ibu Kita Kartini","W.R. Supratman",""],
+        ["Indonesia Pusaka","Ismail Marzuki","Juga dikenal “Indonesia Tanah Air Beta”"],
+        ["Rayuan Pulau Kelapa","Ismail Marzuki",""],
+        ["Gugur Bunga","Ismail Marzuki",""],
+        ["Sepasang Mata Bola","Ismail Marzuki",""],
+        ["Halo-Halo Bandung","umumnya dikaitkan dengan Ismail Marzuki <span class=\"cek\">cek</span>","Tentang Bandung Lautan Api 1946"],
+        ["Maju Tak Gentar","Cornel Simanjuntak",""],
+        ["Sorak-Sorak Bergembira","Cornel Simanjuntak",""],
+        ["Bangun Pemudi Pemuda","Alfred Simanjuntak",""],
+        ["Satu Nusa Satu Bangsa","L. Manik",""],
+        ["Desaku","L. Manik",""],
+        ["Bagimu Negeri","Kusbini",""],
+        ["Hari Merdeka (17 Agustus 1945)","H. Mutahar","Mutahar juga pendiri Paskibraka"],
+        ["Syukur","H. Mutahar",""],
+        ["Tanah Airku","Ibu Sud",""],
+        ["Berkibarlah Benderaku","Ibu Sud",""],
+        ["Garuda Pancasila","Sudharnoto",""],
+        ["Dari Sabang Sampai Merauke","R. Suharjo",""],
+        ["Mengheningkan Cipta","Truno Prawit",""],
+        ["Hymne Guru","Sartono",""]]}}
+    ],
+    traps:["Ismail Marzuki menciptakan banyak lagu; nama Taman Ismail Marzuki (TIM) diambil darinya.","Ada dua Simanjuntak: Cornel (Maju Tak Gentar) dan Alfred (Bangun Pemudi Pemuda)."]},
+
+  { code:"BUD-05", title:"Lagu daerah", scope:"Lagu dan provinsinya", src:"Daftar tertutup", tier:1,
+    sum:"Satu sampai empat lagu paling dikenal dari tiap provinsi.",
+    blocks:[
+      {h:"Per provinsi", wide:true, table:{cols:["Provinsi","Lagu"], rows:[
+        ["Aceh","Bungong Jeumpa"],
+        ["Sumatra Utara","Butet, Sinanggar Tulo, Rambadia, Piso Surit (Karo), Sing Sing So"],
+        ["Sumatra Barat","Ayam Den Lapeh, Kampuang Nan Jauh di Mato, Kambanglah Bungo"],
+        ["Riau","Lancang Kuning, Soleram"],
+        ["Kepulauan Riau","Segantang Lada"],
+        ["Jambi","Batanghari, Pinang Muda"],
+        ["Sumatra Selatan","Cuk Mak Ilang, Dek Sangke, Kabile-bile"],
+        ["Bengkulu","Lalan Belek"],
+        ["Lampung","Lipang Lipandang, Tanoh Lado"],
+        ["Banten","Dayung Sampan"],
+        ["DKI Jakarta","Kicir-Kicir, Jali-Jali, Ondel-Ondel, Sirih Kuning"],
+        ["Jawa Barat","Manuk Dadali, Bubuy Bulan, Tokecang, Es Lilin, Cing Cangkeling, Peuyeum Bandung"],
+        ["Jawa Tengah","Gundul Pacul, Gambang Suling, Lir-Ilir, Cublak-Cublak Suweng"],
+        ["DI Yogyakarta","Suwe Ora Jamu, Pitik Tukung"],
+        ["Jawa Timur","Rek Ayo Rek, Tanduk Majeng (Madura), Keraban Sapi"],
+        ["Bali","Mejangeran, Ratu Anom, Janger, Putri Cening Ayu, Meyong-Meyong"],
+        ["Nusa Tenggara Barat","Orlen-Orlen <span class=\"cek\">cek</span>"],
+        ["Nusa Tenggara Timur","Bolelebo, Anak Kambing Saya, Gemu Fa Mi Re, Flobamora"],
+        ["Kalimantan Barat","Cik-Cik Periuk, Aek Kapuas"],
+        ["Kalimantan Tengah","Kalayar, Naluya"],
+        ["Kalimantan Selatan","Ampar-Ampar Pisang, Paris Barantai"],
+        ["Kalimantan Timur","Indung-Indung"],
+        ["Sulawesi Utara","O Ina Ni Keke, Si Patokaan, Esa Mokan"],
+        ["Gorontalo","Binde Biluhuta"],
+        ["Sulawesi Tengah","Tondok Kadadiangku"],
+        ["Sulawesi Barat","Tenggang-Tenggang Lopi"],
+        ["Sulawesi Selatan","Anging Mamiri, Ma Rencong-Rencong, Ati Raja"],
+        ["Sulawesi Tenggara","Peia Tawa-Tawa"],
+        ["Maluku","Rasa Sayange, Ayo Mama, Burung Tantina, Gandong, Sarinande, Ole Sio"],
+        ["Maluku Utara","Borero"],
+        ["Papua","Apuse, Yamko Rambe Yamko, Sajojo, E Mambo Simbo"]]}}
+    ],
+    traps:["Rasa Sayange (Maluku) sempat dipakai iklan pariwisata Malaysia tahun 2007 dan memicu polemik.","Lir-Ilir dikaitkan dengan Sunan Kalijaga (dakwah lewat tembang)."]},
+
+  { code:"BUD-06", title:"Ingatan Kolektif Dunia", scope:"Memory of the World", src:"UNESCO", tier:3,
+    sum:"16 warisan dokumenter Indonesia. Tidak disebut di daftar materi, tetapi dekat dengan topik museum dan arsip.",
+    blocks:[
+      {h:"Sebelum 2025 (11)", li:[
+        "Arsip VOC (2003, bersama Belanda, India, Sri Lanka, Afrika Selatan); La Galigo (2011); Babad Diponegoro (2013); Negarakertagama (2013); Arsip Konferensi Asia Afrika (2015); Arsip restorasi Borobudur (2017); Arsip tsunami Aceh (2017); Cerita Panji (2017).",
+        "2023: Hikayat Aceh; pidato Sukarno “To Build the World Anew”; arsip KTT I Gerakan Non-Blok."]},
+      {h:"Ditetapkan 11 April 2025 (5)", li:[
+        "Arsip tari Mangkunegaran (1861–1944); naskah <i>Sanghyang Siksa Kandang Karesian</i> (Sunda kuno, abad 16); karya Hamzah Fansuri; surat-surat Kartini; arsip pembentukan ASEAN (1967–1976)."]}
+    ],
+    traps:["Negarakertagama dan Babad Diponegoro sama-sama tercatat tahun 2013."]}
+  ]},
+
+{ id:"mus", name:"Permuseuman dan Cagar Budaya", weight:30, c:"var(--patina)", soft:"var(--patina-soft)",
+  note:"Sumber: PP 66/2015, Permendikbudristek 24/2022, UU 11/2010, dan berita resmi Kementerian Kebudayaan.",
+  topics:[
+  { code:"MUS-01", title:"Perkembangan museum di Indonesia", scope:"1778 – sekarang", src:"Materi 3a", tier:1,
+    sum:"Dari Bataviaasch Genootschap sampai Indonesian Heritage Agency, dengan tanggal dan tokoh yang sering ditanya.",
+    blocks:[
+      {h:"Masa kolonial", table:{cols:["Tahun","Peristiwa"], rows:[
+        ["1778","Bataviaasch Genootschap van Kunsten en Wetenschappen berdiri (24 April); J.C.M. Radermacher menyumbangkan rumah dan koleksi. Cikal bakal Museum Nasional"],
+        ["1868","Gedung museum di Koningsplein West (kini Jl. Medan Merdeka Barat 12) dibuka untuk umum"],
+        ["1871","Raja Chulalongkorn dari Siam menghadiahkan patung gajah perunggu → “Museum Gajah”"],
+        ["1890","Museum Radya Pustaka, Surakarta (KRA Sosrodiningrat IV) — museum tertua yang didirikan bangsa Indonesia <span class=\"cek\">cek tanggal: 28 atau 18 Okt</span>"],
+        ["1894","Museum Zoologi Bogor"],
+        ["1929","Museum Geologi Bandung"],
+        ["1932","Museum Bali, Denpasar dibuka <span class=\"cek\">cek</span>"],
+        ["1933","Stedelijk Historisch Museum Surabaya (kini Museum Mpu Tantular)"],
+        ["1935","Museum Sonobudoyo, Yogyakarta (dari Java Instituut), 6 November"]]}},
+      {h:"Masa kemerdekaan", table:{cols:["Tahun","Peristiwa"], rows:[
+        ["1950","Bataviaasch Genootschap berganti nama menjadi Lembaga Kebudayaan Indonesia"],
+        ["1962","Lembaga diserahkan kepada pemerintah RI (17 Sep) → Museum Pusat"],
+        ["1962","<b>Musyawarah Museum se-Indonesia I</b>, Yogyakarta, 12–14 Oktober → dasar Hari Museum Indonesia"],
+        ["1979","Museum Pusat menjadi <b>Museum Nasional</b> (28 Mei)"],
+        ["2010–2014","Tahun Kunjung Museum 2010 dan Gerakan Nasional Cinta Museum (revitalisasi museum)"],
+        ["2015","PP 66/2015 tentang Museum; <b>Hari Museum Indonesia 12 Oktober</b> diresmikan"],
+        ["2019","Tercatat 439 museum di Indonesia (data Kemendikbud)"],
+        ["2022","Permendikbudristek 24/2022 (pelaksanaan PP 66/2015)"],
+        ["Mei 2024","<b>Indonesian Heritage Agency</b> (BLU Museum dan Cagar Budaya) diluncurkan di Benteng Vredeburg; mengelola 18 museum/galeri dan 34 cagar budaya"],
+        ["Okt 2024","Kementerian Kebudayaan berdiri sendiri; menteri Fadli Zon"]]}},
+      {h:"Repatriasi benda budaya", li:[
+        "2020: keris Pangeran Diponegoro kembali dari Belanda.",
+        "2023: gelombang besar dari Belanda, antara lain arca-arca Singhasari, Harta Lombok, keris Klungkung.",
+        "2024: 288 benda, termasuk arca Singhasari lainnya dan koleksi Puputan Badung.",
+        "<span class=\"new\">2025</span>Koleksi fosil Dubois (±28 ribu fosil) diserahkan, September 2025.",
+        "<span class=\"new\">2026</span>Kesepakatan pengembalian Arca Shiwa dan Prasasti Damalung (31 Mar 2026)."]}
+    ],
+    traps:["Hari Museum Indonesia 12 Oktober ≠ Hari Museum Internasional 18 Mei (ICOM).","Museum tertua di Indonesia: cikal bakalnya Bataviaasch Genootschap (1778). Museum tertua yang didirikan orang Indonesia: Radya Pustaka (1890)."]},
+
+  { code:"MUS-02", title:"Museum Nasional Indonesia", scope:"Profil mendalam", src:"Materi 3a", tier:1,
+    sum:"Julukan, gedung, koleksi unggulan, kebakaran 2023, dan pembukaan kembali 2024.",
+    blocks:[
+      {h:"Profil", li:[
+        "Julukan <b>Museum Gajah</b> dari patung gajah hadiah Raja Chulalongkorn (Siam), 1871.",
+        "Gedung A (dibuka 1868) dan Gedung B (Gedung Arca, 2007).",
+        "Dikelola Indonesian Heritage Agency bersama Galeri Nasional; ada usulan menjadi BLU mandiri (2026)."]},
+      {h:"Koleksi unggulan", li:[
+        "Arca Prajnaparamita (Singhasari; dikembalikan Belanda 1978).",
+        "Arca Bhairawa (Adityawarman) dari Padang Roco, Sumatra Barat, tinggi ±4,4 m.",
+        "Prasasti Yupa (Kutai), Prasasti Tugu (Tarumanegara), Harta Karun Wonoboyo (Klaten, ditemukan 1990), nekara, keramik."]},
+      {h:"Kebakaran dan pembukaan kembali", li:[
+        "<b>16 September 2023</b> malam: kebakaran di Gedung A; enam ruang rusak, termasuk ruang koleksi prasejarah (sebagian koleksi yang rusak adalah replika).",
+        "<b>15 Oktober 2024</b>: dibuka kembali dengan pameran “Repatriasi: Kembalinya Warisan Budaya dan Pengetahuan Nusantara”."]}
+    ],
+    traps:["Kebakaran 2023 terjadi di Gedung A (gedung lama), bukan Gedung Arca."]},
+
+  { code:"MUS-03", title:"Museum sejarah dan gedungnya", scope:"Peristiwa ↔ gedung ↔ museum", src:"Materi 3a", tier:2,
+    sum:"Gedung bersejarah yang kini menjadi museum. Soal sering berbentuk “gedung ini dulunya…”.",
+    blocks:[
+      {h:"Pasangan museum dan peristiwa", wide:true, table:{cols:["Museum","Gedung / lokasi","Kaitan"], rows:[
+        ["Museum Kebangkitan Nasional","Gedung STOVIA, Jakarta","Kelahiran Budi Utomo, 1908"],
+        ["Museum Sumpah Pemuda","Jl. Kramat Raya 106, Jakarta","Rapat ketiga Kongres Pemuda II, 1928"],
+        ["Museum Perumusan Naskah Proklamasi","Rumah Laksamana Maeda, Jl. Imam Bonjol 1","Perumusan naskah, 16–17 Agu 1945"],
+        ["Museum Joang 45","Gedung Menteng 31","Asrama pemuda pejuang"],
+        ["Museum Benteng Vredeburg","Benteng peninggalan VOC, Yogyakarta","Diorama perjuangan; tempat peluncuran IHA (2024)"],
+        ["Museum Konferensi Asia Afrika","Gedung Merdeka, Bandung","KAA 1955; museum diresmikan 1980"],
+        ["Museum Sejarah Jakarta (Fatahillah)","Balai Kota Batavia (Stadhuis, 1710)","Sejarah kota Batavia–Jakarta"],
+        ["Museum Sejarah Nasional di Monas","Monumen Nasional","51 diorama sejarah"],
+        ["Monumen Pancasila Sakti","Lubang Buaya","Peristiwa G30S 1965"],
+        ["Museum Palagan Ambarawa","Ambarawa","Pertempuran Ambarawa 1945"],
+        ["Museum Tugu Pahlawan","Surabaya","Pertempuran 10 November 1945"],
+        ["Museum Batik Pekalongan","Pekalongan","Program pendidikan batik (Register Praktik Baik UNESCO 2009)"],
+        ["Museum Manusia Purba Sangiran","Sragen","Fosil manusia purba; Warisan Dunia 1996"],
+        ["Museum Basoeki Abdullah","Rumah sang pelukis, Jakarta","Koleksi pelukis Basoeki Abdullah"]]}}
+    ],
+    traps:["Museum Sumpah Pemuda dulu pondokan pelajar; Museum Kebangkitan Nasional dulu sekolah kedokteran STOVIA."]},
+
+  { code:"MUS-04", title:"Peraturan permuseuman dan cagar budaya", scope:"1931 – 2022", src:"Materi 3b", tier:1,
+    sum:"Daftar regulasi dari masa kolonial sampai sekarang, dan isi pokok PP 66/2015 serta UU 5/2017.",
+    blocks:[
+      {h:"Urutan regulasi", wide:true, table:{cols:["Tahun","Regulasi","Isi"], rows:[
+        ["1931","Monumenten Ordonnantie (Staatsblad 1931 No. 238)","Perlindungan benda purbakala masa Hindia Belanda"],
+        ["1989","Keppres 26/1989","Ratifikasi Konvensi Warisan Dunia UNESCO 1972"],
+        ["1992","UU 5/1992","Benda Cagar Budaya (dicabut UU 11/2010)"],
+        ["1993","PP 10/1993","Pelaksanaan UU 5/1992"],
+        ["1995","PP 19/1995","Pemeliharaan dan pemanfaatan benda cagar budaya di museum (dicabut PP 66/2015)"],
+        ["2007","Perpres 78/2007","Ratifikasi Konvensi UNESCO 2003 tentang Warisan Budaya Takbenda"],
+        ["2010","<b>UU 11/2010</b>","Cagar Budaya"],
+        ["2013","Permendikbud 106/2013","Warisan Budaya Takbenda Indonesia"],
+        ["2015","<b>PP 66/2015</b>","Museum (19 Agustus 2015); pelaksanaan Pasal 18 ayat (5) UU 11/2010"],
+        ["2017","<b>UU 5/2017</b>","Pemajuan Kebudayaan"],
+        ["2021","PP 87/2021","Pelaksanaan UU Pemajuan Kebudayaan"],
+        ["2022","PP 1/2022","Register Nasional dan Pelestarian Cagar Budaya"],
+        ["2022","<b>Permendikbudristek 24/2022</b>","Pelaksanaan PP 66/2015: pendaftaran, standardisasi, evaluasi, SDM, pengelolaan koleksi"]]}},
+      {h:"Isi pokok PP 66/2015", li:[
+        "Museum = lembaga yang berfungsi <b>melindungi, mengembangkan, memanfaatkan koleksi, dan mengomunikasikannya kepada masyarakat</b>.",
+        "Tujuan layanan: pengkajian, pendidikan, dan kesenangan.",
+        "Dapat didirikan oleh Pemerintah, Pemerintah Daerah, setiap orang, atau masyarakat hukum adat.",
+        "Syarat pendirian: visi dan misi, koleksi, lokasi/bangunan, sumber daya manusia, sumber pendanaan tetap, nama museum.",
+        "Museum didaftarkan untuk mendapat <b>nomor pendaftaran nasional</b>; standardisasi paling lambat 2 tahun sesudahnya, hasilnya <b>tipe A, B, atau C</b>.",
+        "Tenaga teknis antara lain register, kurator, konservator, penata pameran, edukator, humas dan pemasaran <span class=\"cek\">cek teks PP</span>."]},
+      {h:"Isi pokok UU 11/2010 (pelestarian)", li:[
+        "Pelestarian = pelindungan, pengembangan, dan pemanfaatan.",
+        "Pelindungan: penyelamatan, pengamanan, zonasi, pemeliharaan, pemugaran. Pengembangan: penelitian, revitalisasi, adaptasi.",
+        "Zonasi: zona inti, zona penyangga, zona pengembangan, zona penunjang.",
+        "Penemu benda yang diduga cagar budaya wajib melapor ke instansi berwenang."]},
+      {h:"Isi pokok UU 5/2017", li:[
+        "<b>10 Objek Pemajuan Kebudayaan</b>: tradisi lisan, manuskrip, adat istiadat, ritus, pengetahuan tradisional, teknologi tradisional, seni, bahasa, permainan rakyat, olahraga tradisional.",
+        "Empat langkah: pelindungan, pengembangan, pemanfaatan, pembinaan.",
+        "Dokumen: Pokok Pikiran Kebudayaan Daerah (PPKD) → Strategi Kebudayaan (Kongres Kebudayaan 2018) → Rencana Induk Pemajuan Kebudayaan; Dana Indonesiana."]}
+    ],
+    traps:["PP 66/2015 mencabut PP 19/1995; UU 11/2010 mencabut UU 5/1992.","10 OPK (UU 5/2017) berbeda dengan 5 jenis cagar budaya (UU 11/2010) dan 5 domain WBTb (UNESCO)."]},
+
+  { code:"MUS-05", title:"Dasar-dasar museologi", scope:"Istilah dan profesi", src:"Materi 3", tier:2,
+    sum:"Istilah yang muncul dalam soal definisi: definisi ICOM, profesi museum, jenis pameran, perawatan koleksi.",
+    blocks:[
+      {h:"Definisi dan lembaga", li:[
+        "<b>ICOM</b> (International Council of Museums) memperbarui definisi museum di Praha, 24 Agustus 2022: lembaga nirlaba dan permanen yang melayani masyarakat, meneliti, mengumpulkan, merawat, menafsirkan, dan memamerkan warisan benda dan takbenda; terbuka, mudah diakses, inklusif.",
+        "Hari Museum Internasional: 18 Mei."]},
+      {h:"Profesi", li:[
+        "<b>Kurator</b>: meneliti dan menafsirkan koleksi, menyusun cerita pameran.",
+        "<b>Konservator</b>: merawat dan memperbaiki koleksi.",
+        "<b>Registrar</b>: mencatat dan mendokumentasikan koleksi.",
+        "<b>Edukator</b>: program pendidikan pengunjung. <b>Preparator/penata pameran</b>: menata pameran."]},
+      {h:"Istilah", li:[
+        "Konservasi (perawatan dan pengawetan), preservasi (pencegahan kerusakan), restorasi (pengembalian ke keadaan semula).",
+        "Pameran tetap, temporer, dan keliling; alur cerita (storyline).",
+        "Jenis museum menurut koleksi: umum dan khusus; menurut pengelola: pemerintah, pemerintah daerah, swasta/masyarakat. Museum situs berdiri di lokasi temuan (misalnya Sangiran)."]}
+    ],
+    traps:["Kurator menafsirkan koleksi; konservator merawatnya. Soal sering menukar keduanya."]},
+
+  { code:"MUS-06", title:"Isu terkini 2024–2026", scope:"Berita yang mungkin ditanya", src:"Berita resmi", tier:2,
+    sum:"Peristiwa baru yang sering dipakai panitia untuk soal pembeda.",
+    blocks:[
+      {h:"Kelembagaan", li:[
+        "Kementerian Kebudayaan berdiri Oktober 2024 (Menteri Fadli Zon, Wakil Menteri Giring Ganesha).",
+        "Indonesian Heritage Agency diluncurkan Mei 2024 di Benteng Vredeburg."]},
+      {h:"Sejarah resmi", li:[
+        "<span class=\"new\">2025</span>Buku <i>Sejarah Indonesia: Dinamika Kebangsaan dalam Arus Global</i>, 10 jilid, ditulis 123 sejarawan, diluncurkan 14 Desember 2025 (Hari Sejarah Nasional). Jilid 1 “Akar Peradaban Nusantara”; jilid 9 Orde Baru; jilid 10 Reformasi (1998–2024).",
+        "Buku ini menggantikan <i>Sejarah Nasional Indonesia</i> (6 jilid, 1975; editor Sartono Kartodirdjo, Marwati Djoened Poesponegoro, Nugroho Notosusanto)."]},
+      {h:"Angka penetapan 2025", li:[
+        "85 Cagar Budaya Peringkat Nasional (total 313).",
+        "514 Warisan Budaya Takbenda Indonesia (total 2.727).",
+        "5 warisan dokumenter masuk Ingatan Kolektif Dunia (total 16)."]},
+      {h:"Temuan dan repatriasi", li:[
+        "Seni cadas tertua di dunia: Liang Metanduno, Muna, minimal 67.800 tahun (diumumkan 2026).",
+        "Koleksi fosil Dubois diserahkan Belanda (2025); Arca Shiwa dan Prasasti Damalung disepakati kembali (2026)."]}
+    ],
+    traps:["Angka penetapan berubah tiap tahun. Selalu sebut tahunnya saat menjawab."]}
+  ]}
+];
+
+const ERAS = [
+  {yr:"s.d. ±400 M", nm:"Praaksara", an:"Sangiran, Trinil, Pacitan", to:"SNI-02"},
+  {yr:"±400–1500", nm:"Hindu–Buddha", an:"Yupa, Sriwijaya, Majapahit", to:"SNI-04"},
+  {yr:"abad 13–18", nm:"Islam", an:"Samudra Pasai, Demak, Mataram", to:"SNI-05"},
+  {yr:"1511–1900-an", nm:"Kolonial", an:"Malaka 1511, VOC 1602, Tanam Paksa", to:"SNI-06"},
+  {yr:"1908–1942", nm:"Pergerakan", an:"Budi Utomo, Sumpah Pemuda", to:"SNI-07"},
+  {yr:"1942–1945", nm:"Pendudukan Jepang", an:"Kalijati, PETA, BPUPKI", to:"SNI-08"},
+  {yr:"1945–1949", nm:"Revolusi", an:"Proklamasi, 10 Nov, KMB", to:"SNI-09"},
+  {yr:"1950–1959", nm:"Demokrasi Liberal", an:"7 kabinet, KAA, Pemilu 1955", to:"SNI-10"},
+  {yr:"1959–1966", nm:"Demokrasi Terpimpin", an:"Dekret 1959, Trikora, G30S", to:"SNI-10"},
+  {yr:"1966–1998", nm:"Orde Baru", an:"Supersemar, ASEAN, Repelita", to:"SNI-11"},
+  {yr:"1998–kini", nm:"Reformasi", an:"21 Mei 1998, amandemen UUD", to:"SNI-11"}
+];
+
+const TIER = {1:["t1","Inti"],2:["t2","Penting"],3:["t3","Pelengkap"]};
+const KEY = "peta-materi-lomba-v1";
+let done = new Set();
+try { done = new Set(JSON.parse(localStorage.getItem(KEY) || "[]")); } catch(e) {}
+function save(){ try { localStorage.setItem(KEY, JSON.stringify([...done])); } catch(e) {} }
+
+const byCode = {};
+DOMAINS.forEach(d => d.topics.forEach(t => { byCode[t.code] = {t, d}; }));
+
+function hl(str, re){
+  if(!re) return str;
+  return str.split(/(<[^>]+>)/g).map(p => p.startsWith("<") ? p : p.replace(re, m => "<mark>" + m + "</mark>")).join("");
+}
+function plain(t){
+  const parts = [t.code, t.title, t.scope, t.src, t.sum];
+  t.blocks.forEach(b => { parts.push(b.h); (b.li||[]).forEach(x => parts.push(x)); if(b.table){ parts.push(b.table.cols.join(" ")); b.table.rows.forEach(r => parts.push(r.join(" "))); } });
+  (t.traps||[]).forEach(x => parts.push(x));
+  return parts.join(" ").replace(/<[^>]+>/g, " ");
+}
+function bodyHTML(t, re){
+  let h = "";
+  t.blocks.forEach(b => {
+    h += '<div class="blk' + (b.wide || (b.table && b.table.cols.length > 2) ? ' wide' : '') + '"><h4>' + hl(b.h, re) + '</h4>';
+    if(b.li) h += "<ul>" + b.li.map(x => "<li>" + hl(x, re) + "</li>").join("") + "</ul>";
+    if(b.table){
+      h += '<div class="tbl"><table><thead><tr>' + b.table.cols.map(c => "<th>" + c + "</th>").join("") + "</tr></thead><tbody>" +
+        b.table.rows.map(r => "<tr>" + r.map(c => "<td>" + hl(c, re) + "</td>").join("") + "</tr>").join("") + "</tbody></table></div>";
+    }
+    h += "</div>";
+  });
+  if(t.traps && t.traps.length) h += '<div class="traps"><h4>Jebakan soal</h4><ul>' + t.traps.map(x => "<li>" + hl(x, re) + "</li>").join("") + "</ul></div>";
+  return h;
+}
+
+function render(){
+  const map = document.getElementById("map");
+  const host = document.getElementById("domains");
+  let total = 0;
+  DOMAINS.forEach(d => {
+    total += d.topics.length;
+    const col = document.createElement("div");
+    col.className = "mcol"; col.style.setProperty("--c", d.c); col.style.setProperty("--soft", d.soft);
+    col.innerHTML = '<h3><span>' + d.name + '</span><span class="mono">' + d.weight + '%</span></h3><ul>' +
+      d.topics.map(t => '<li><a class="chip" data-code="' + t.code + '" href="#t-' + t.code + '"><span class="mono">' + t.code + '</span><span>' + t.title + ' <span class="tier ' + TIER[t.tier][0] + '">' + TIER[t.tier][1] + '</span></span></a></li>').join("") + "</ul>";
+    map.appendChild(col);
+
+    const sec = document.createElement("section");
+    sec.id = "d-" + d.id; sec.style.setProperty("--c", d.c); sec.style.setProperty("--soft", d.soft);
+    sec.innerHTML = '<div class="domain-head"><h2>' + d.name + '</h2><span class="w">' + d.weight + '% soal</span><p>' + d.note + '</p></div>';
+    d.topics.forEach(t => {
+      const a = document.createElement("article");
+      a.className = "card"; a.id = "t-" + t.code; a.dataset.code = t.code;
+      a.innerHTML = '<div class="card-head"><button class="toggle" type="button" aria-expanded="false" aria-controls="b-' + t.code + '">' +
+        '<span class="code">' + t.code + '</span>' +
+        '<span class="ttl"><span class="caret" aria-hidden="true">›</span>' + t.title + ' <span class="tier ' + TIER[t.tier][0] + '">' + TIER[t.tier][1] + '</span></span>' +
+        '<span class="meta"><span>' + t.scope + '</span><span>Sumber: ' + t.src + '</span></span>' +
+        '<span class="sum">' + t.sum + '</span></button>' +
+        '<label class="done-box"><input type="checkbox" id="done-' + t.code + '"> Dikuasai</label></div>' +
+        '<div class="body" id="b-' + t.code + '" hidden>' + bodyHTML(t, null) + '</div>';
+      sec.appendChild(a);
+    });
+    host.appendChild(sec);
+  });
+  document.getElementById("nodeCount").textContent = total;
+
+  const eras = document.getElementById("eras");
+  eras.innerHTML = ERAS.map(e => '<li><button type="button" data-code="' + e.to + '"><span class="yr">' + e.yr + '</span><span class="nm">' + e.nm + '</span><span class="an">' + e.an + '</span></button></li>').join("");
+}
+
+function setOpen(card, open){
+  card.classList.toggle("open", open);
+  card.querySelector(".body").hidden = !open;
+  card.querySelector(".toggle").setAttribute("aria-expanded", open ? "true" : "false");
+}
+function goTo(code){
+  const card = document.getElementById("t-" + code);
+  if(!card) return;
+  card.hidden = false;
+  setOpen(card, true);
+  card.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"});
+}
+function progress(){
+  let overall = 0;
+  DOMAINS.forEach(d => {
+    const n = d.topics.length, k = d.topics.filter(t => done.has(t.code)).length;
+    document.getElementById("bar-" + d.id).style.width = (k / n * 100) + "%";
+    document.getElementById("pg-" + d.id).textContent = k + " dari " + n + " dikuasai";
+    overall += d.weight * k / n;
+  });
+  document.getElementById("overall").textContent = Math.round(overall) + "%";
+  document.querySelectorAll(".chip").forEach(c => c.classList.toggle("done", done.has(c.dataset.code)));
+  document.querySelectorAll(".card").forEach(c => {
+    const on = done.has(c.dataset.code);
+    c.classList.toggle("is-done", on);
+    const box = c.querySelector('input[type="checkbox"]'); if(box) box.checked = on;
+  });
+}
+function search(q){
+  q = q.trim();
+  const re = q.length >= 2 ? new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi") : null;
+  let hits = 0;
+  document.querySelectorAll(".card").forEach(card => {
+    const t = byCode[card.dataset.code].t;
+    const body = card.querySelector(".body");
+    if(!re){ card.hidden = false; body.innerHTML = bodyHTML(t, null); setOpen(card, false); return; }
+    const match = new RegExp(re.source, "i").test(plain(t));
+    card.hidden = !match;
+    body.innerHTML = bodyHTML(t, match ? re : null);
+    setOpen(card, match);
+    if(match) hits++;
+  });
+  document.getElementById("hits").textContent = re ? (hits ? hits + " simpul cocok" : "Tidak ada yang cocok. Coba kata lain atau ejaan lain.") : "";
+}
+
+render();
+progress();
+
+document.addEventListener("click", e => {
+  const tg = e.target.closest(".toggle");
+  if(tg){ const card = tg.closest(".card"); setOpen(card, !card.classList.contains("open")); return; }
+  const chip = e.target.closest("[data-code]");
+  if(chip && (chip.classList.contains("chip") || chip.tagName === "BUTTON")){ e.preventDefault(); goTo(chip.dataset.code); }
+});
+document.addEventListener("change", e => {
+  if(e.target.matches('.done-box input')){
+    const code = e.target.closest(".card").dataset.code;
+    e.target.checked ? done.add(code) : done.delete(code);
+    save(); progress();
+  }
+});
+let timer;
+document.getElementById("q").addEventListener("input", e => { clearTimeout(timer); timer = setTimeout(() => search(e.target.value), 150); });
+document.getElementById("openAll").addEventListener("click", () => document.querySelectorAll(".card:not([hidden])").forEach(c => setOpen(c, true)));
+document.getElementById("closeAll").addEventListener("click", () => document.querySelectorAll(".card").forEach(c => setOpen(c, false)));
+if(location.hash && location.hash.startsWith("#t-")) goTo(location.hash.slice(3));
+</script>

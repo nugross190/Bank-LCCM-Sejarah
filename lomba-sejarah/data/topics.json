@@ -1,0 +1,52 @@
+{
+  "map_url": "peta.html",
+  "domains": [
+    {
+      "id": "SNI",
+      "name": "Sejarah Nasional Indonesia",
+      "short": "Sejarah",
+      "weight": 40,
+      "topics": {
+        "SNI-01": "Konsep dasar ilmu sejarah",
+        "SNI-02": "Praaksara dan manusia purba",
+        "SNI-03": "Asal-usul nenek moyang dan Jalur Rempah",
+        "SNI-04": "Kerajaan Hindu–Buddha",
+        "SNI-05": "Kerajaan Islam",
+        "SNI-06": "Kolonialisme dan perlawanan",
+        "SNI-07": "Pergerakan kebangsaan",
+        "SNI-08": "Pendudukan Jepang dan Proklamasi",
+        "SNI-09": "Mempertahankan kemerdekaan",
+        "SNI-10": "Demokrasi Liberal dan Demokrasi Terpimpin",
+        "SNI-11": "Orde Baru dan Reformasi"
+      }
+    },
+    {
+      "id": "BUD",
+      "name": "Kebudayaan",
+      "short": "Kebudayaan",
+      "weight": 30,
+      "topics": {
+        "BUD-01": "Cagar budaya dan Warisan Dunia",
+        "BUD-02": "Warisan Budaya Takbenda",
+        "BUD-03": "Warisan bersama budaya takbenda",
+        "BUD-04": "Lagu nasional",
+        "BUD-05": "Lagu daerah",
+        "BUD-06": "Ingatan Kolektif Dunia"
+      }
+    },
+    {
+      "id": "MUS",
+      "name": "Permuseuman dan Cagar Budaya",
+      "short": "Museum",
+      "weight": 30,
+      "topics": {
+        "MUS-01": "Perkembangan museum di Indonesia",
+        "MUS-02": "Museum Nasional Indonesia",
+        "MUS-03": "Museum sejarah dan gedungnya",
+        "MUS-04": "Peraturan permuseuman dan cagar budaya",
+        "MUS-05": "Dasar-dasar museologi",
+        "MUS-06": "Isu terkini 2024–2026"
+      }
+    }
+  ]
+}
