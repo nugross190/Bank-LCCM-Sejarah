@@ -22,6 +22,7 @@ HEAD = ('<!doctype html>\n<html lang="id">\n<meta charset="utf-8">\n'
 ARTIFACT_URLS = {
     "peta.html": "https://claude.ai/artifact/D5VQvyvvDqr9rVwHTMX3eP",
     "bank.html": "https://claude.ai/artifact/Qs1xt8ZCrkrKMiHbq2BGFg",
+    "simulasi.html": "https://claude.ai/artifact/VfVV7k9nBakQALRRybY526",
 }
 
 
