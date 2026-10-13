@@ -2,8 +2,8 @@
 
 Usage:  python scripts/build.py              # build docs/ for GitHub Pages
         python scripts/build.py --artifact   # also write build/*.fragment.html for the claude.ai copies
-Reads:  data/topics.json, data/questions.csv, templates/peta.html, templates/bank.html
-Writes: docs/questions.json, docs/peta.html, docs/bank.html
+Reads:  data/topics.json, data/questions.csv, templates/*.html
+Writes: docs/questions.json and one docs/<name>.html per template
 Exits with status 1 (and writes nothing) if the data has errors.
 """
 import csv
@@ -72,17 +72,21 @@ def report(topics, rows):
 
 
 def pages(topics, questions, links):
-    """Return {file name: page body} with cross-page links resolved through `links`."""
-    data = dict(topics, map_url=links["peta.html"])
+    """Return {file name: page body} for every template, with cross-page links resolved through `links`.
+
+    A template that contains /*__DATA__*/ gets the topics and questions injected there.
+    Every href="<page>.html" that names a page in `links` is rewritten to its target.
+    """
+    data = dict(topics, map_url=links.get("peta.html", "peta.html"))
     payload = json.dumps({"topics": data, "questions": questions}, ensure_ascii=False).replace("</", "<\\/")
-    bank = (ROOT / "templates/bank.html").read_text(encoding="utf-8")
-    if "/*__DATA__*/" not in bank:
-        sys.exit("templates/bank.html is missing the /*__DATA__*/ placeholder")
-    peta = (ROOT / "templates/peta.html").read_text(encoding="utf-8")
-    return {
-        "bank.html": bank.replace("/*__DATA__*/", "const DATA = " + payload + ";"),
-        "peta.html": peta.replace('href="bank.html"', 'href="' + links["bank.html"] + '"'),
-    }
+    out = {}
+    for path in sorted((ROOT / "templates").glob("*.html")):
+        body = path.read_text(encoding="utf-8")
+        body = body.replace("/*__DATA__*/", "const DATA = " + payload + ";")
+        for name, target in links.items():
+            body = body.replace('href="' + name, 'href="' + target)
+        out[path.name] = body
+    return out
 
 
 def build(topics, rows, artifact):
@@ -93,15 +97,17 @@ def build(topics, rows, artifact):
     docs = ROOT / "docs"
     docs.mkdir(exist_ok=True)
     (docs / "questions.json").write_text(json.dumps(questions, ensure_ascii=False, indent=1), encoding="utf-8")
-    for name, body in pages(topics, questions, {n: n for n in ARTIFACT_URLS}).items():
+    built = pages(topics, questions, {})
+    for name, body in built.items():
         (docs / name).write_text(HEAD + body, encoding="utf-8")
-    print("Wrote docs/questions.json, docs/peta.html, docs/bank.html")
+    print("Wrote docs/questions.json, " + ", ".join("docs/" + n for n in built))
     if artifact:
         out = ROOT / "build"
         out.mkdir(exist_ok=True)
         for name, body in pages(topics, questions, ARTIFACT_URLS).items():
-            (out / name.replace(".html", ".fragment.html")).write_text(body, encoding="utf-8")
-        print("Wrote build/peta.fragment.html, build/bank.fragment.html")
+            if name in ARTIFACT_URLS:
+                (out / name.replace(".html", ".fragment.html")).write_text(body, encoding="utf-8")
+        print("Wrote build/*.fragment.html for " + ", ".join(ARTIFACT_URLS))
 
 
 def main():
