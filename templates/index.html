@@ -1,0 +1,48 @@
+<title>Bank LCCM Sejarah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&family=Literata:opsz,wght@7..72,400;7..72,600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: a short index card for the three tools, in study order. */
+:root{
+  --bg:#F3F4F7; --surface:#FFFFFF; --ink:#1A1F33; --muted:#585E73; --line:#D6DAE3;
+  --indigo:#2B3A78; --soga:#8A5526; --patina:#2C6B63;
+  --f-label:"Archivo Narrow","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Literata",Georgia,serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#11131A;--surface:#191C26;--ink:#E7E9F0;--muted:#A3A9BC;--line:#2E3345;--indigo:#A3B1F2;--soga:#E0A974;--patina:#76C7B9;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#11131A;--surface:#191C26;--ink:#E7E9F0;--muted:#A3A9BC;--line:#2E3345;--indigo:#A3B1F2;--soga:#E0A974;--patina:#76C7B9;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6}
+.wrap{max-width:860px;margin:0 auto;padding-inline:20px;padding-block:40px 64px}
+h1,h2{font-family:var(--f-label);line-height:1.15;margin:0;text-wrap:balance}
+h1{font-size:clamp(2rem,6vw,3.2rem)}
+h2{font-size:1.4rem}
+p{margin:0}
+.eyebrow{font-family:var(--f-label);font-weight:600;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.lead{color:var(--muted);font-size:1.05rem;margin-top:12px;max-width:62ch}
+.weights{display:grid;grid-template-columns:40fr 30fr 30fr;gap:4px;margin-top:22px;font-family:var(--f-label);font-weight:700;font-size:.9rem}
+.weights span{border-top:6px solid var(--c);padding-top:4px;color:var(--c);min-width:0}
+.tools{list-style:none;margin:30px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
+.tools a{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+.tools a:hover,.tools a:focus-visible{border-color:var(--ink);outline:none}
+.tools .n{font-family:var(--f-mono);color:var(--muted);grid-row:span 2;padding-top:4px}
+.tools p{color:var(--muted)}
+footer{margin-top:36px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);padding-top:14px}
+@media (max-width:480px){.wrap{padding-inline:16px}}
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">Persiapan lomba · sejarah, kebudayaan, permuseuman</div>
+  <h1 style="margin-top:8px">Bank LCCM Sejarah</h1>
+  <p class="lead">Tiga alat belajar untuk lomba bermateri Sejarah Nasional Indonesia, Kebudayaan, serta Permuseuman dan Cagar Budaya. Pakai berurutan: pahami petanya, latih soalnya, lalu uji diri dalam simulasi babak.</p>
+  <div class="weights" aria-label="Bobot materi"><span style="--c:var(--indigo)">Sejarah 40%</span><span style="--c:var(--soga)">Kebudayaan 30%</span><span style="--c:var(--patina)">Museum 30%</span></div>
+  <ol class="tools">
+    <li><a href="peta.html"><span class="n">1</span><h2>Peta Materi</h2><p>23 simpul dari praaksara sampai Reformasi, kebudayaan, dan permuseuman, lengkap dengan fakta kunci dan jebakan soal.</p></a></li>
+    <li><a href="bank.html"><span class="n">2</span><h2>Bank Soal</h2><p>Latihan tanya-jawab per simpul atau campuran 40/30/30, dengan catatan kemajuan dan simpul yang perlu diulang.</p></a></li>
+    <li><a href="simulasi.html"><span class="n">3</span><h2>Simulasi Babak</h2><p>Babak wajib dan rebutan untuk satu sampai tiga regu, dipandu seorang moderator, dengan papan skor dan daftar soal yang terlewat.</p></a></li>
+  </ol>
+  <footer>Data per Oktober 2026. Soal dan sumbernya ada di repositori ini; lihat README untuk cara menambah soal.</footer>
+</div>

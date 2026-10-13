@@ -1,0 +1,310 @@
+<title>Simulasi Babak LCCM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: moderator console. Scoreboard strip on top, one stage below it (setup → wajib → rebutan → hasil). Same tokens as the map and the bank. */
+:root{
+  --bg:#F3F4F7; --surface:#FFFFFF; --sunk:#E9EBF1; --ink:#1A1F33; --muted:#585E73; --line:#D6DAE3;
+  --indigo:#2B3A78; --soga:#8A5526; --patina:#2C6B63;
+  --indigo-soft:#E4E8F6; --soga-soft:#F3E9DF; --patina-soft:#DFEFEC;
+  --ok:#2C6B3F; --ok-soft:#E1F0E5; --bad:#A3361C; --bad-soft:#F8E6DF;
+  --f-label:"Archivo Narrow","Arial Narrow","Roboto Condensed",system-ui,sans-serif;
+  --f-body:"Literata",Georgia,"Times New Roman",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#11131A; --surface:#191C26; --sunk:#222634; --ink:#E7E9F0; --muted:#A3A9BC; --line:#2E3345;
+  --indigo:#A3B1F2; --soga:#E0A974; --patina:#76C7B9;
+  --indigo-soft:#232A47; --soga-soft:#33271C; --patina-soft:#1C3330;
+  --ok:#8FD3A2; --ok-soft:#1B3324; --bad:#F0A58A; --bad-soft:#3A221B; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11131A; --surface:#191C26; --sunk:#222634; --ink:#E7E9F0; --muted:#A3A9BC; --line:#2E3345;
+  --indigo:#A3B1F2; --soga:#E0A974; --patina:#76C7B9;
+  --indigo-soft:#232A47; --soga-soft:#33271C; --patina-soft:#1C3330;
+  --ok:#8FD3A2; --ok-soft:#1B3324; --bad:#F0A58A; --bad-soft:#3A221B; color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6}
+.wrap{max-width:1040px;margin:0 auto;padding-inline:20px;padding-block:28px 64px}
+h1,h2,h3{font-family:var(--f-label);text-wrap:balance;line-height:1.15;margin:0}
+h1{font-size:clamp(2rem,5vw,3rem);font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.5rem;font-weight:700}
+h3{font-size:1.1rem;font-weight:700}
+p{margin:0}
+a{color:inherit}
+.eyebrow{font-family:var(--f-label);font-weight:600;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.lead{max-width:64ch;color:var(--muted);font-size:1.05rem;margin-top:10px}
+.lbl{font-family:var(--f-label);font-weight:600;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.btn{font-family:var(--f-label);font-weight:700;font-size:1rem;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);padding:10px 16px;border-radius:6px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn:hover{border-color:var(--ink)}
+.btn:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.btn.primary{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.btn.ok{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.btn.bad{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+.btn.small{font-size:.88rem;padding:6px 12px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+input[type="text"],input[type="number"]{font:inherit;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:5px;padding:7px 9px;width:100%;min-width:0}
+input[type="number"]{font-variant-numeric:tabular-nums}
+
+/* scoreboard */
+.board{display:grid;grid-template-columns:repeat(var(--n,3),minmax(0,1fr));gap:10px;margin-top:22px}
+.team{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;min-width:0}
+.team.turn{border-color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.team .nm{font-family:var(--f-label);font-weight:700;font-size:1.05rem;overflow-wrap:anywhere}
+.team .sc{font-family:var(--f-label);font-weight:700;font-size:2.2rem;line-height:1.1;font-variant-numeric:tabular-nums}
+.team .dl{font-family:var(--f-mono);font-size:.8rem;min-height:1.2em}
+.dl.up{color:var(--ok)} .dl.down{color:var(--bad)}
+
+.stage{margin-top:20px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px 24px}
+.stage-head{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;justify-content:space-between;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:16px}
+.stage-head span{font-family:var(--f-label);color:var(--muted)}
+
+/* setup */
+.setup{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:18px 28px}
+.field{display:flex;flex-direction:column;gap:5px;min-width:0}
+.rule{display:grid;grid-template-columns:1fr 90px;gap:8px;align-items:center;font-size:.95rem}
+.fs{border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;min-width:0}
+.fs legend{padding:0;margin-bottom:6px}
+.note{font-size:.88rem;color:var(--muted);max-width:70ch}
+
+/* question */
+.qmeta{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-family:var(--f-label);font-size:.92rem;color:var(--muted)}
+.code{font-family:var(--f-mono);font-size:.82rem;color:var(--c);text-decoration:none;border:1px solid var(--c);border-radius:4px;padding:1px 6px;white-space:nowrap}
+.lv{font-family:var(--f-label);font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:3px;border:1.3px solid var(--muted);color:var(--muted)}
+.qtext{font-size:clamp(1.3rem,3.4vw,1.75rem);line-height:1.45;max-width:46ch;margin-top:14px}
+.answer{margin-top:14px;background:var(--soft,var(--sunk));border-radius:8px;padding:12px 16px}
+.answer .a{font-size:1.2rem;font-weight:600}
+.answer .x{font-size:.95rem;color:var(--muted)}
+.timer{height:8px;background:var(--sunk);border-radius:4px;overflow:hidden;margin-top:14px}
+.timer i{display:block;height:100%;width:100%;background:var(--c,var(--ink))}
+.secs{font-family:var(--f-mono);font-size:.85rem;color:var(--muted);margin-top:4px}
+.decide{margin-top:18px;display:flex;flex-direction:column;gap:10px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.row .who{font-family:var(--f-label);font-weight:700;min-width:7em}
+.status{font-family:var(--f-label);color:var(--muted);font-size:.95rem}
+
+/* results */
+.rank{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.rank li{display:grid;grid-template-columns:2.2em 1fr auto;gap:10px;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--line)}
+.rank .pos{font-family:var(--f-mono);color:var(--muted)}
+.rank .pts{font-family:var(--f-label);font-weight:700;font-size:1.4rem;font-variant-numeric:tabular-nums}
+.missed{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+.missed li{display:grid;grid-template-columns:auto 1fr;gap:4px 12px}
+.missed .a{font-weight:600}
+.missed .code{align-self:start}
+.topics{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+footer{margin-top:40px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);padding-top:14px}
+@media (max-width:640px){.board{grid-template-columns:repeat(min(var(--n,3),2),minmax(0,1fr))}.stage{padding:18px 16px}.row .who{min-width:0;flex-basis:100%}}
+@media (max-width:480px){.wrap{padding-inline:16px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Simulasi babak · untuk moderator</div>
+    <h1 style="margin-top:8px">Simulasi Babak LCCM</h1>
+    <p class="lead">Satu orang menjadi moderator: membacakan soal, melihat jawaban, dan menekan tombol hasil. Soal diambil dari <a href="bank.html">Bank Soal Lomba Sejarah</a> dengan perbandingan 40/30/30, tanpa soal berulang dalam satu simulasi. Untuk latihan sendiri, isi satu regu saja.</p>
+  </header>
+  <div class="board" id="board" aria-label="Papan skor"></div>
+  <section class="stage" id="stage" aria-live="polite"></section>
+  <footer>Aturan nilai di sini adalah perkiraan berdasarkan format cerdas cermat yang umum, karena aturan resmi lomba belum diketahui. Ubah angkanya di layar pengaturan begitu juknis panitia keluar. Kode simpul pada setiap soal membuka topiknya di <a href="peta.html">Peta Materi Lomba Sejarah</a>.</footer>
+</div>
+
+<script>
+/*__DATA__*/
+const COLORS = {SNI:["var(--indigo)","var(--indigo-soft)"], BUD:["var(--soga)","var(--soga-soft)"], MUS:["var(--patina)","var(--patina-soft)"]};
+const LV = {1:"Mudah",2:"Sedang",3:"Sulit"};
+const Q = DATA.questions, DOMS = DATA.topics.domains, MAP = DATA.topics.map_url;
+const TITLE = {}, DOM_OF = {};
+DOMS.forEach(d => Object.entries(d.topics).forEach(([c,t]) => { TITLE[c] = t; DOM_OF[c] = d.id; }));
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+const cfg = {teams:["Regu A","Regu B","Regu C"], wajibPer:5, wajibRight:100, lemparRight:50, lemparWrong:0, rebutanN:15, rebutRight:100, rebutWrong:-50, secs:10, showAnswer:false};
+let S = null;            // running simulation
+let tick = null;
+
+/* ---------- question drawing: 40/30/30, no repeats ---------- */
+function draw(){
+  const left = Q.filter(q => !S.used.has(q.id));
+  if(!left.length) return null;
+  const avail = DOMS.filter(d => left.some(q => DOM_OF[q.t] === d.id));
+  let r = Math.random() * avail.reduce((a,d) => a + d.weight, 0), dom = avail[avail.length-1];
+  for(const d of avail){ r -= d.weight; if(r <= 0){ dom = d; break; } }
+  const pool = left.filter(q => DOM_OF[q.t] === dom.id);
+  const q = pool[Math.floor(Math.random() * pool.length)];
+  S.used.add(q.id);
+  return q;
+}
+
+/* ---------- scoreboard ---------- */
+function renderBoard(){
+  const b = $("board");
+  const teams = S ? S.teams : cfg.teams.filter(Boolean).map(n => ({name:n, score:0, delta:0}));
+  b.style.setProperty("--n", teams.length);
+  const turn = S && S.phase === "wajib" ? S.turnTeam : -1;
+  b.innerHTML = teams.map((t,i) => '<div class="team' + (i === turn ? ' turn' : '') + '"><div class="nm">' + esc(t.name) + '</div><div class="sc">' + t.score + '</div><div class="dl ' + (t.delta > 0 ? "up" : t.delta < 0 ? "down" : "") + '">' + (t.delta ? (t.delta > 0 ? "+" : "") + t.delta : "") + '</div></div>').join("");
+}
+function award(i, pts){
+  S.teams.forEach(t => t.delta = 0);
+  S.teams[i].score += pts; S.teams[i].delta = pts;
+  renderBoard();
+}
+
+/* ---------- setup ---------- */
+function num(id, v){ return '<input type="number" id="' + id + '" value="' + v + '" step="10">'; }
+function renderSetup(){
+  stopTimer();
+  $("stage").innerHTML =
+    '<div class="stage-head"><h2>Pengaturan</h2><span>' + Q.length + ' soal tersedia</span></div>' +
+    '<div class="setup">' +
+      '<fieldset class="fs"><legend class="lbl">Regu (kosongkan untuk mengurangi)</legend>' +
+        [0,1,2].map(i => '<input type="text" id="team' + i + '" value="' + esc(cfg.teams[i] || "") + '" placeholder="Nama regu ' + (i+1) + '" aria-label="Nama regu ' + (i+1) + '">').join("") +
+      '</fieldset>' +
+      '<fieldset class="fs"><legend class="lbl">Babak wajib</legend>' +
+        '<label class="rule" for="wajibPer">Soal per regu ' + '<input type="number" id="wajibPer" value="' + cfg.wajibPer + '" min="0" max="20"></label>' +
+        '<label class="rule" for="wajibRight">Benar ' + num("wajibRight", cfg.wajibRight) + '</label>' +
+        '<label class="rule" for="lemparRight">Lemparan benar ' + num("lemparRight", cfg.lemparRight) + '</label>' +
+        '<label class="rule" for="lemparWrong">Lemparan salah ' + num("lemparWrong", cfg.lemparWrong) + '</label>' +
+      '</fieldset>' +
+      '<fieldset class="fs"><legend class="lbl">Babak rebutan</legend>' +
+        '<label class="rule" for="rebutanN">Jumlah soal <input type="number" id="rebutanN" value="' + cfg.rebutanN + '" min="0" max="60"></label>' +
+        '<label class="rule" for="rebutRight">Benar ' + num("rebutRight", cfg.rebutRight) + '</label>' +
+        '<label class="rule" for="rebutWrong">Salah ' + num("rebutWrong", cfg.rebutWrong) + '</label>' +
+        '<label class="rule" for="secs">Waktu (detik) <input type="number" id="secs" value="' + cfg.secs + '" min="0" max="60"></label>' +
+      '</fieldset>' +
+    '</div>' +
+    '<label class="row" for="showAnswer" style="margin-top:16px;cursor:pointer"><input type="checkbox" id="showAnswer"' + (cfg.showAnswer ? " checked" : "") + '> Tampilkan jawaban sejak awal (untuk moderator; matikan bila layar dilihat peserta)</label>' +
+    '<p class="note" style="margin-top:12px">Babak wajib: setiap regu mendapat soal sendiri bergiliran. Bila salah, soal dilempar ke regu lain. Babak rebutan: semua regu berebut menjawab; jawaban salah dikurangi nilai. Waktu 0 berarti tanpa batas waktu.</p>' +
+    '<div class="row" style="margin-top:18px"><button class="btn primary" type="button" id="start">Mulai simulasi</button><span class="status" id="setupMsg"></span></div>';
+  ["team0","team1","team2"].forEach(id => $(id).addEventListener("input", () => { readSetup(); renderBoard(); }));
+  $("start").addEventListener("click", start);
+}
+function readSetup(){
+  cfg.teams = [0,1,2].map(i => $("team" + i).value.trim());
+  const n = id => { const v = parseInt($(id).value, 10); return Number.isFinite(v) ? v : 0; };
+  Object.assign(cfg, {wajibPer:Math.max(0,n("wajibPer")), wajibRight:n("wajibRight"), lemparRight:n("lemparRight"), lemparWrong:n("lemparWrong"),
+    rebutanN:Math.max(0,n("rebutanN")), rebutRight:n("rebutRight"), rebutWrong:n("rebutWrong"), secs:Math.max(0,n("secs")), showAnswer:$("showAnswer").checked});
+}
+function start(){
+  readSetup();
+  const teams = cfg.teams.filter(Boolean);
+  if(!teams.length){ $("setupMsg").textContent = "Isi minimal satu nama regu."; return; }
+  const need = teams.length * cfg.wajibPer + cfg.rebutanN;
+  if(!need){ $("setupMsg").textContent = "Atur minimal satu soal di babak wajib atau rebutan."; return; }
+  if(need > Q.length){ $("setupMsg").textContent = "Butuh " + need + " soal, hanya ada " + Q.length + ". Kurangi jumlah soal."; return; }
+  S = {teams: teams.map(n => ({name:n, score:0, delta:0, right:0, wrong:0})), used:new Set(), log:[], phase:"wajib", turnTeam:0, wajibDone:0, rebutDone:0, cur:null};
+  if(!cfg.wajibPer) S.phase = "rebutan";
+  nextQuestion();
+}
+
+/* ---------- running ---------- */
+function stopTimer(){ if(tick){ clearInterval(tick); tick = null; } }
+function startTimer(){
+  stopTimer();
+  if(!cfg.secs) return;
+  const total = cfg.secs * 1000, t0 = Date.now();
+  tick = setInterval(() => {
+    const left = Math.max(0, total - (Date.now() - t0));
+    const bar = document.querySelector(".timer i"), sec = document.querySelector(".secs");
+    if(bar) bar.style.width = (left / total * 100) + "%";
+    if(sec) sec.textContent = left ? Math.ceil(left / 1000) + " detik" : "Waktu habis";
+    if(!left){ stopTimer(); S.revealed = true; renderQuestion(); }
+  }, 100);
+}
+function nextQuestion(){
+  stopTimer();
+  const totalWajib = S.teams.length * cfg.wajibPer;
+  if(S.phase === "wajib" && S.wajibDone >= totalWajib){ S.phase = cfg.rebutanN ? "rebutan" : "hasil"; }
+  if(S.phase === "rebutan" && S.rebutDone >= cfg.rebutanN){ S.phase = "hasil"; }
+  if(S.phase === "hasil"){ S.teams.forEach(t => t.delta = 0); renderBoard(); renderResults(); return; }
+  if(S.phase === "wajib") S.turnTeam = S.wajibDone % S.teams.length;
+  S.cur = draw();
+  if(!S.cur){ S.phase = "hasil"; renderResults(); return; }
+  S.revealed = cfg.showAnswer; S.thrown = false; S.triedWrong = new Set();
+  S.teams.forEach(t => t.delta = 0);
+  renderBoard(); renderQuestion(); startTimer();
+}
+function finish(outcome){
+  // outcome: {team: index|null, right: bool}
+  S.log.push({q:S.cur, phase:S.phase, ...outcome});
+  if(S.phase === "wajib") S.wajibDone++; else S.rebutDone++;
+  nextQuestion();
+}
+function renderQuestion(){
+  const q = S.cur, dom = DOM_OF[q.t];
+  const totalWajib = S.teams.length * cfg.wajibPer;
+  const head = S.phase === "wajib"
+    ? '<h2>Babak wajib</h2><span>Soal ' + (S.wajibDone + 1) + ' dari ' + totalWajib + (S.thrown ? ' · lemparan' : ' · untuk ' + esc(S.teams[S.turnTeam].name)) + '</span>'
+    : '<h2>Babak rebutan</h2><span>Soal ' + (S.rebutDone + 1) + ' dari ' + cfg.rebutanN + '</span>';
+  let decide = "";
+  if(S.phase === "wajib" && !S.thrown){
+    const t = S.teams[S.turnTeam].name;
+    decide = '<div class="row"><span class="who">' + esc(t) + '</span><button class="btn ok" type="button" data-act="wajibRight">Benar +' + cfg.wajibRight + '</button>' +
+      (S.teams.length > 1 ? '<button class="btn bad" type="button" data-act="throw">Salah, lempar soal</button>' : '<button class="btn bad" type="button" data-act="none">Salah</button>') + '</div>';
+  } else if(S.phase === "wajib"){
+    decide = S.teams.map((t,i) => i === S.turnTeam || S.triedWrong.has(i) ? "" :
+      '<div class="row"><span class="who">' + esc(t.name) + '</span><button class="btn ok" type="button" data-act="lemparRight" data-i="' + i + '">Benar ' + fmt(cfg.lemparRight) + '</button><button class="btn bad" type="button" data-act="lemparWrong" data-i="' + i + '">Salah ' + fmt(cfg.lemparWrong) + '</button></div>').join("") +
+      '<div class="row"><button class="btn" type="button" data-act="none">Tidak ada yang menjawab benar</button></div>';
+  } else {
+    decide = S.teams.map((t,i) => S.triedWrong.has(i) ? '<div class="row"><span class="who">' + esc(t.name) + '</span><span class="status">sudah menjawab salah</span></div>' :
+      '<div class="row"><span class="who">' + esc(t.name) + '</span><button class="btn ok" type="button" data-act="rebutRight" data-i="' + i + '">Benar ' + fmt(cfg.rebutRight) + '</button><button class="btn bad" type="button" data-act="rebutWrong" data-i="' + i + '">Salah ' + fmt(cfg.rebutWrong) + '</button></div>').join("") +
+      '<div class="row"><button class="btn" type="button" data-act="none">Tidak ada yang menjawab benar</button></div>';
+  }
+  $("stage").innerHTML = '<div class="stage-head">' + head + '</div>' +
+    '<div class="qmeta"><a class="code" href="' + MAP + '#t-' + q.t + '" target="_blank" rel="noopener">' + q.t + '</a><span>' + esc(TITLE[q.t]) + '</span><span class="lv">' + LV[q.lv] + '</span></div>' +
+    '<p class="qtext">' + esc(q.q) + '</p>' +
+    (cfg.secs ? '<div class="timer" aria-hidden="true"><i></i></div><div class="secs">' + cfg.secs + ' detik</div>' : '') +
+    (S.revealed ? '<div class="answer"><span class="lbl">Jawaban</span><div class="a">' + esc(q.a) + '</div>' + (q.x ? '<div class="x">' + esc(q.x) + '</div>' : '') + '</div>'
+               : '<div class="row" style="margin-top:14px"><button class="btn" type="button" data-act="reveal">Lihat jawaban</button></div>') +
+    '<div class="decide">' + decide + '</div>' +
+    '<div class="row" style="margin-top:18px;justify-content:space-between"><span class="status">Soal dipakai: ' + S.used.size + '</span><button class="btn small" type="button" data-act="stop">Akhiri simulasi</button></div>';
+  $("stage").querySelector(".qmeta").style.setProperty("--c", COLORS[dom][0]);
+  $("stage").style.setProperty("--c", COLORS[dom][0]); $("stage").style.setProperty("--soft", COLORS[dom][1]);
+}
+const fmt = v => (v > 0 ? "+" : "") + v;
+
+$("stage").addEventListener("click", e => {
+  const b = e.target.closest("[data-act]"); if(!b || !S) return;
+  const i = b.dataset.i !== undefined ? +b.dataset.i : null;
+  switch(b.dataset.act){
+    case "reveal": S.revealed = true; renderQuestion(); break;
+    case "wajibRight": stopTimer(); award(S.turnTeam, cfg.wajibRight); S.teams[S.turnTeam].right++; finish({team:S.turnTeam, right:true}); break;
+    case "throw": S.thrown = true; S.teams[S.turnTeam].wrong++; renderQuestion(); startTimer(); break;
+    case "lemparRight": stopTimer(); award(i, cfg.lemparRight); S.teams[i].right++; finish({team:i, right:true}); break;
+    case "lemparWrong": award(i, cfg.lemparWrong); S.teams[i].wrong++; S.triedWrong.add(i); afterWrong(); break;
+    case "rebutRight": stopTimer(); award(i, cfg.rebutRight); S.teams[i].right++; finish({team:i, right:true}); break;
+    case "rebutWrong": award(i, cfg.rebutWrong); S.teams[i].wrong++; S.triedWrong.add(i); afterWrong(); break;
+    case "none": stopTimer(); if(S.phase === "wajib" && !S.thrown) S.teams[S.turnTeam].wrong++; finish({team:null, right:false}); break;
+    case "stop": stopTimer(); S.phase = "hasil"; S.teams.forEach(t => t.delta = 0); renderBoard(); renderResults(); break;
+  }
+});
+function afterWrong(){
+  const others = S.teams.map((_,j) => j).filter(j => !S.triedWrong.has(j) && !(S.phase === "wajib" && j === S.turnTeam));
+  if(!others.length){ stopTimer(); finish({team:null, right:false}); } else renderQuestion();
+}
+
+/* ---------- results ---------- */
+function renderResults(){
+  stopTimer();
+  const ranked = S.teams.map((t,i) => ({...t, i})).sort((a,b) => b.score - a.score);
+  const missed = S.log.filter(l => !l.right);
+  const weakTopics = {};
+  missed.forEach(l => weakTopics[l.q.t] = (weakTopics[l.q.t] || 0) + 1);
+  const weak = Object.entries(weakTopics).sort((a,b) => b[1] - a[1]);
+  $("stage").innerHTML = '<div class="stage-head"><h2>Hasil</h2><span>' + S.log.length + ' soal dimainkan</span></div>' +
+    '<ol class="rank">' + ranked.map((t,k) => '<li><span class="pos">' + (k+1) + '.</span><span><b>' + esc(t.name) + '</b> <span class="status">· ' + t.right + ' benar, ' + t.wrong + ' salah</span></span><span class="pts">' + t.score + '</span></li>').join("") + '</ol>' +
+    (weak.length ? '<h3 style="margin-top:22px">Topik yang perlu diulang</h3><div class="topics">' + weak.map(([c,n]) =>
+      '<a class="code" style="--c:' + COLORS[DOM_OF[c]][0] + '" href="' + MAP + '#t-' + c + '" target="_blank" rel="noopener" title="' + esc(TITLE[c]) + '">' + c + ' ×' + n + '</a>').join("") + '</div>' +
+      '<h3 style="margin-top:22px">Soal yang tidak terjawab benar</h3><ol class="missed">' + missed.map(l =>
+        '<li><a class="code" style="--c:' + COLORS[DOM_OF[l.q.t]][0] + '" href="' + MAP + '#t-' + l.q.t + '" target="_blank" rel="noopener">' + l.q.t + '</a><div><div>' + esc(l.q.q) + '</div><div class="a">' + esc(l.q.a) + '</div></div></li>').join("") + '</ol>'
+      : (S.log.length ? '<p class="note" style="margin-top:16px">Semua soal terjawab benar.</p>' : '')) +
+    '<div class="row" style="margin-top:22px"><button class="btn primary" type="button" id="again">Simulasi baru</button></div>';
+  $("again").addEventListener("click", () => { S = null; renderBoard(); renderSetup(); });
+}
+
+renderBoard();
+renderSetup();
+</script>
