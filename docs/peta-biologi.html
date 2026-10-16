@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="id">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}</style>
+<title>Peta Materi Biologi SMA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: generic subject map, same catalogue look as the history map. Domain progress → path strip → map overview → catalogue cards per domain. Content comes from data/maps/<subject>.json. */
+:root{
+  --bg:#F3F4F7; --surface:#FFFFFF; --sunk:#E9EBF1; --ink:#1A1F33; --muted:#585E73; --line:#D6DAE3;
+  --d1:#2B3A78; --d2:#8A5526; --d3:#2C6B63; --d4:#6E3466; --d5:#5A6420; --d6:#9A3B1F; --d7:#3D5A80;
+  --s1:#E4E8F6; --s2:#F3E9DF; --s3:#DFEFEC; --s4:#F1E3EE; --s5:#ECEEDC; --s6:#F8E6DF; --s7:#E2E9F2;
+  --mark:#F6DE8D; --warn:#9A3B1F; --warn-soft:#F8E6DF; --ok:#2C6B3F;
+  --f-label:"Archivo Narrow","Arial Narrow","Roboto Condensed",system-ui,sans-serif;
+  --f-body:"Literata",Georgia,"Times New Roman",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#11131A; --surface:#191C26; --sunk:#222634; --ink:#E7E9F0; --muted:#A3A9BC; --line:#2E3345;
+  --d1:#A3B1F2; --d2:#E0A974; --d3:#76C7B9; --d4:#D9A0CF; --d5:#C3CC7E; --d6:#F0A58A; --d7:#9DBBE0;
+  --s1:#232A47; --s2:#33271C; --s3:#1C3330; --s4:#33202F; --s5:#2A2D1A; --s6:#3A221B; --s7:#1F2A3A;
+  --mark:#6D5A1C; --warn:#F0A58A; --warn-soft:#3A221B; --ok:#8FD3A2; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11131A; --surface:#191C26; --sunk:#222634; --ink:#E7E9F0; --muted:#A3A9BC; --line:#2E3345;
+  --d1:#A3B1F2; --d2:#E0A974; --d3:#76C7B9; --d4:#D9A0CF; --d5:#C3CC7E; --d6:#F0A58A; --d7:#9DBBE0;
+  --s1:#232A47; --s2:#33271C; --s3:#1C3330; --s4:#33202F; --s5:#2A2D1A; --s6:#3A221B; --s7:#1F2A3A;
+  --mark:#6D5A1C; --warn:#F0A58A; --warn-soft:#3A221B; --ok:#8FD3A2; color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:20px;padding-block:28px 64px}
+h1,h2,h3{font-family:var(--f-label);text-wrap:balance;line-height:1.15;margin:0}
+h1{font-size:clamp(2rem,5vw,3.1rem);font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.65rem;font-weight:700}
+h3{font-size:1.15rem;font-weight:600}
+p{margin:0}
+a{color:inherit}
+mark{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}
+sub,sup{line-height:0}
+.eyebrow{font-family:var(--f-label);font-weight:600;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.mono{font-family:var(--f-mono);font-size:.82em}
+.lead{max-width:66ch;color:var(--muted);font-size:1.05rem;margin-top:12px}
+section{margin-top:44px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 16px;margin-bottom:16px;border-bottom:2px solid var(--ink);padding-bottom:8px}
+.sec-head p{color:var(--muted);font-size:.95rem;max-width:62ch}
+
+.progress{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,140px),1fr));gap:8px;margin-top:22px}
+.pg{display:flex;flex-direction:column;gap:5px;text-decoration:none;min-width:0}
+.pg b{font-family:var(--f-label);font-size:.92rem;color:var(--c)}
+.pg .bar{height:10px;background:var(--sunk);border-radius:2px;overflow:hidden;position:relative}
+.pg .bar i{position:absolute;inset:0 auto 0 0;background:var(--c);width:0;transition:width .3s}
+.pg .bar::after{content:"";position:absolute;inset:0;border:1.5px solid var(--c);border-radius:2px}
+.pg span{font-size:.78rem;color:var(--muted);font-family:var(--f-label)}
+.pg:focus-visible{outline:2px solid var(--c);outline-offset:3px}
+
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:22px}
+.search{flex:1 1 260px;min-width:0;display:flex;align-items:center;gap:8px;background:var(--surface);border:1.5px solid var(--line);border-radius:6px;padding:0 12px}
+.search:focus-within{border-color:var(--ink)}
+.search input{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:inherit;padding:10px 0;outline:none}
+.btn{font-family:var(--f-label);font-weight:600;font-size:.92rem;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);padding:9px 14px;border-radius:6px;cursor:pointer}
+.btn:hover{border-color:var(--ink)}
+.btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+#hits{font-size:.9rem;color:var(--muted);font-family:var(--f-label)}
+.overall{font-family:var(--f-label);font-size:.95rem;color:var(--muted);margin-top:10px}
+.overall b{color:var(--ink);font-variant-numeric:tabular-nums}
+
+.path-wrap{overflow-x:auto;padding-bottom:6px}
+.path{list-style:none;margin:0;padding:0;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(130px,1fr);min-width:max-content}
+.path li{border-top:2px solid var(--ink);padding:0 10px 0 0;position:relative}
+.path li::before{content:"";position:absolute;left:0;top:-7px;width:12px;height:12px;border-radius:50%;background:var(--ink)}
+.path button{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:4px;padding-top:14px;max-width:16em}
+.path button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.path .lb{font-family:var(--f-mono);font-size:.74rem;color:var(--muted)}
+.path .nm{font-family:var(--f-label);font-weight:700;font-size:1rem;line-height:1.15}
+.path .an{font-size:.8rem;color:var(--muted);line-height:1.35}
+
+.map{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:14px}
+.mcol{border-top:4px solid var(--c);background:var(--surface);border-radius:0 0 8px 8px;padding:14px;min-width:0}
+.mcol h3{color:var(--c);display:flex;justify-content:space-between;gap:8px}
+.mcol ul{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.chip{display:flex;gap:10px;align-items:baseline;text-decoration:none;padding:6px 8px;border-radius:5px;background:var(--soft);font-size:.93rem;line-height:1.35}
+.chip:hover{outline:1.5px solid var(--c)}
+.chip:focus-visible{outline:2px solid var(--c)}
+.chip .mono{color:var(--c);flex:none}
+.chip.done{text-decoration:line-through;text-decoration-color:var(--muted);opacity:.72}
+.tier{display:inline-block;font-family:var(--f-label);font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:3px;white-space:nowrap}
+.t1{background:var(--ink);color:var(--bg)}
+.t2{border:1.3px solid var(--ink)}
+.t3{border:1.3px dashed var(--muted);color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:12px;font-size:.88rem;color:var(--muted);align-items:center}
+
+.domain-head{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;border-bottom:2px solid var(--c);padding-bottom:8px;margin-bottom:14px}
+.domain-head h2{color:var(--c)}
+.domain-head .w{font-family:var(--f-mono);font-size:1rem;color:var(--c)}
+.domain-head p{color:var(--muted);font-size:.92rem;flex-basis:100%}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;min-width:0;scroll-margin-top:16px}
+.card + .card{margin-top:10px}
+.card-head{display:flex;gap:12px;align-items:flex-start;padding:14px 16px}
+.toggle{all:unset;cursor:pointer;flex:1;min-width:0;display:grid;grid-template-columns:auto 1fr;gap:2px 14px}
+.toggle:focus-visible{outline:2px solid var(--c);outline-offset:4px;border-radius:4px}
+.toggle .code{font-family:var(--f-mono);font-size:.8rem;color:var(--c);padding-top:4px;grid-row:span 3}
+.toggle .ttl{font-family:var(--f-label);font-size:1.22rem;font-weight:700;line-height:1.2;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.toggle .meta{font-size:.82rem;color:var(--muted);font-family:var(--f-label);display:flex;flex-wrap:wrap;gap:4px 12px}
+.toggle .sum{font-size:.95rem;color:var(--muted);max-width:75ch}
+.caret{font-family:var(--f-mono);color:var(--muted);transition:transform .2s;display:inline-block}
+.card.open .caret{transform:rotate(90deg)}
+.done-box{flex:none;display:flex;align-items:center;gap:6px;font-family:var(--f-label);font-size:.85rem;color:var(--muted);cursor:pointer;padding-top:3px;user-select:none}
+.done-box input{width:18px;height:18px;accent-color:var(--ok);cursor:pointer}
+.card.is-done{border-color:color-mix(in srgb,var(--ok) 55%,var(--line))}
+.body{padding:2px 16px 18px 16px;border-top:1px dashed var(--line);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:18px 26px}
+.blk{min-width:0}
+.blk.wide{grid-column:1/-1}
+.blk h4{font-family:var(--f-label);font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c);margin:14px 0 6px}
+.blk ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:5px}
+.blk li{font-size:.95rem;line-height:1.55}
+.blk li::marker{color:var(--c)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:.9rem;line-height:1.4}
+th{font-family:var(--f-label);font-weight:700;text-align:left;background:var(--soft);color:var(--ink);padding:7px 10px;white-space:nowrap}
+td{padding:6px 10px;border-top:1px solid var(--line);vertical-align:top}
+.traps{grid-column:1/-1;background:var(--warn-soft);border-radius:6px;padding:12px 14px}
+.traps h4{color:var(--warn);margin-top:0}
+.traps li::marker{color:var(--warn)}
+
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:18px}
+.note{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;min-width:0}
+.note ul{margin:8px 0 0;padding-left:1.1em;display:flex;flex-direction:column;gap:6px;font-size:.93rem}
+footer{margin-top:40px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);padding-top:14px}
+
+@media (max-width:480px){
+  .wrap{padding-inline:16px}
+  .toggle{grid-template-columns:1fr}
+  .toggle .code{grid-row:auto;padding-top:0}
+  .card-head{flex-direction:column;gap:8px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+.home-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-label);font-weight:600;font-size:.9rem;color:var(--muted);text-decoration:none;margin-bottom:14px}
+.home-link:hover,.home-link:focus-visible{color:var(--ink);text-decoration:underline;outline:none}
+</style>
+
+<div class="wrap">
+  <a class="home-link" href="index.html">← Semua mata pelajaran</a>
+  <header>
+    <div class="eyebrow" id="eyebrow"></div>
+    <h1 style="margin-top:8px" id="title"></h1>
+    <p class="lead" id="lead"></p>
+    <nav class="progress" id="progress" aria-label="Kemajuan per bidang"></nav>
+    <div class="tools">
+      <label class="search" for="q"><span class="mono" aria-hidden="true">⌕</span><input id="q" type="search" placeholder="Cari konsep, rumus, tokoh…" autocomplete="off"></label>
+      <button class="btn" id="openAll" type="button">Buka semua</button>
+      <button class="btn" id="closeAll" type="button">Tutup semua</button>
+      <span id="hits" aria-live="polite"></span>
+    </div>
+    <p class="overall">Simpul yang sudah dikuasai: <b id="overall">0</b></p>
+  </header>
+
+  <section id="alur" aria-labelledby="h-alur" hidden>
+    <div class="sec-head"><h2 id="h-alur"></h2><p id="pathNote"></p></div>
+    <div class="path-wrap"><ol class="path" id="path"></ol></div>
+  </section>
+
+  <section id="peta" aria-labelledby="h-peta">
+    <div class="sec-head"><h2 id="h-peta">Peta</h2><p>Setiap simpul punya kode. Klik untuk membuka isinya.</p></div>
+    <div class="map" id="map"></div>
+    <div class="legend"><span><span class="tier t1">Inti</span> pelajari dulu</span><span><span class="tier t2">Penting</span> sering keluar</span><span><span class="tier t3">Pelengkap</span> pendalaman</span></div>
+  </section>
+
+  <div id="domains"></div>
+
+  <section id="catatan" aria-labelledby="h-catatan">
+    <div class="sec-head"><h2 id="h-catatan">Catatan</h2><p id="sourceNote"></p></div>
+    <div class="notes" id="notes"></div>
+  </section>
+
+  <footer>Bagian dari kumpulan peta materi SMA. <a href="index.html">Lihat semua peta</a>.</footer>
+</div>
+
+<script>
+const MAP = {"id": "biologi", "subject": "Biologi", "title": "Peta Materi Biologi SMA", "lead": "Seluruh materi Biologi SMA, dari keanekaragaman hayati sampai bioteknologi, disusun sebagai satu peta. Setiap simpul memuat konsep kunci, tokoh, dan jebakan soal yang sering muncul. Centang “Dikuasai” di tiap simpul; kemajuan tersimpan di peramban ini saja.", "blurb": "Keanekaragaman hayati dan ekosistem, sel, tumbuhan, sistem organ manusia, metabolisme, genetika, evolusi, dan bioteknologi.", "source_note": "Urutan mengikuti buku Biologi Kurikulum Merdeka: kelas X (dalam IPA), kelas XI (delapan bab: sel, transpor membran, tumbuhan, sistem organ, pertahanan tubuh, mobilitas, reproduksi, tumbuh kembang), dan kelas XII. Sistem organ dipecah per sistem agar mudah dipelajari; cocokkan dengan buku sekolah.", "path_title": "Alur prasyarat", "path_note": "Urutan belajar yang disarankan, dari tingkat organisasi kehidupan yang besar ke yang kecil, lalu ke pewarisan dan perubahan makhluk hidup.", "path": [{"label": "Ragam", "title": "Keanekaragaman hayati", "note": "Gen, spesies, ekosistem", "to": "KEH-01"}, {"label": "Lingkungan", "title": "Ekosistem", "note": "Rantai makanan, daur materi", "to": "KEH-04"}, {"label": "Sel", "title": "Struktur sel", "note": "Organel dan fungsinya", "to": "SEL-01"}, {"label": "Membran", "title": "Transpor membran", "note": "Difusi, osmosis, pompa", "to": "SEL-02"}, {"label": "Tumbuhan", "title": "Jaringan tumbuhan", "note": "Meristem, xilem, floem", "to": "TUM-01"}, {"label": "Tubuh", "title": "Sistem organ manusia", "note": "Pencernaan sampai koordinasi", "to": "MAN-01"}, {"label": "Energi", "title": "Metabolisme", "note": "Enzim, respirasi, fotosintesis", "to": "MET-01"}, {"label": "Gen", "title": "Materi genetik", "note": "DNA, sintesis protein", "to": "GEN-01"}, {"label": "Waris", "title": "Hukum Mendel", "note": "Monohibrid, dihibrid", "to": "GEN-03"}, {"label": "Perubahan", "title": "Evolusi", "note": "Seleksi alam, Hardy-Weinberg", "to": "GEN-06"}], "domains": [{"id": "KEH", "name": "Keanekaragaman dan lingkungan", "short": "Lingkungan", "note": "Keanekaragaman hayati, klasifikasi, virus, ekosistem, dan perubahan lingkungan.", "topics": [{"code": "KEH-01", "title": "Keanekaragaman hayati", "scope": "Tingkat, persebaran, pelestarian", "src": "Kelas X", "tier": 1, "sum": "Tiga tingkat keanekaragaman hayati, persebaran flora dan fauna Indonesia, spesies endemik, dan upaya pelestarian.", "blocks": [{"h": "Tingkat keanekaragaman", "li": ["Gen: variasi dalam satu spesies (warna bunga mawar, jenis mangga).", "Spesies: variasi antarjenis dalam satu genus atau famili (harimau, singa, kucing).", "Ekosistem: variasi lingkungan beserta makhluk hidupnya (hutan bakau, terumbu karang, padang rumput)."]}, {"h": "Fauna Indonesia", "table": {"cols": ["Wilayah", "Batas", "Contoh hewan"], "rows": [["Asiatis (barat)", "Di barat garis Wallace", "Harimau, gajah, badak, orang utan"], ["Peralihan (Wallacea)", "Di antara garis Wallace dan garis Weber", "Anoa, babirusa, komodo, maleo, tarsius"], ["Australis (timur)", "Di timur garis Weber", "Kanguru pohon, kasuari, cenderawasih"]]}}, {"h": "Endemik dan pelestarian", "li": ["Garis Wallace memisahkan Bali–Lombok dan Kalimantan–Sulawesi.", "Spesies endemik: komodo (NTT), anoa (Sulawesi), Rafflesia arnoldii (Sumatra), Amorphophallus titanum (Sumatra).", "Pelestarian <b>in situ<\/b> (di habitat asli: taman nasional, cagar alam, suaka margasatwa) dan ex situ (di luar habitat: kebun raya, kebun binatang, bank gen)."]}], "traps": ["Kebun raya dan kebun binatang adalah pelestarian ex situ, bukan in situ."]}, {"code": "KEH-02", "title": "Klasifikasi makhluk hidup", "scope": "Takson, binomial, kingdom", "src": "Kelas X", "tier": 1, "sum": "Tingkatan takson, tata nama ganda Linnaeus, sistem lima kingdom Whittaker, dan sistem tiga domain.", "blocks": [{"h": "Takson dan tata nama", "li": ["Urutan takson: kingdom – filum (hewan) atau divisio (tumbuhan) – kelas – ordo – famili – genus – spesies.", "Makin rendah takson, makin banyak persamaan ciri anggotanya.", "<b>Tata nama binomial<\/b> (Carolus Linnaeus): nama genus berhuruf kapital, nama spesies huruf kecil, dicetak miring atau digarisbawahi. Contoh: Oryza sativa (padi)."]}, {"h": "Sistem lima kingdom (Whittaker, 1969)", "wide": true, "table": {"cols": ["Kingdom", "Ciri", "Contoh"], "rows": [["Monera", "Prokariot (tanpa membran inti)", "Bakteri, Cyanobacteria"], ["Protista", "Eukariot sederhana", "Amoeba, Paramecium, alga, jamur lendir"], ["Fungi", "Eukariot, heterotrof, dinding sel kitin", "Rhizopus, Penicillium, Saccharomyces, jamur merang"], ["Plantae", "Eukariot, autotrof, berklorofil, dinding sel selulosa", "Lumut, paku, tumbuhan berbiji"], ["Animalia", "Eukariot, heterotrof, multiseluler, tanpa dinding sel", "Cacing, serangga, ikan, mamalia"]]}}, {"h": "Sistem lain", "li": ["Enam kingdom memisahkan Monera menjadi Archaebacteria dan Eubacteria. Sistem tiga domain (Carl Woese, 1990): Bacteria, Archaea, Eukarya."]}], "traps": ["Jamur (Fungi) bukan tumbuhan: tidak berklorofil dan dinding selnya dari kitin."]}, {"code": "KEH-03", "title": "Virus", "scope": "Struktur, replikasi, penyakit", "src": "Kelas X", "tier": 2, "sum": "Ciri dan struktur virus, sejarah penemuannya, daur litik dan lisogenik, serta penyakit akibat virus dan pencegahannya.", "blocks": [{"h": "Ciri dan penemuan", "li": ["Aseluler; materi genetik DNA atau RNA dibungkus selubung protein (kapsid).", "Hanya dapat berkembang biak di dalam sel hidup (parasit obligat).", "Penemuan lewat virus mosaik tembakau (TMV): Ivanovsky (1892), Beijerinck (1898); Stanley mengkristalkan TMV (1935)."]}, {"h": "Replikasi", "li": ["<b>Daur litik<\/b>: adsorpsi (menempel), penetrasi (memasukkan materi genetik), sintesis, perakitan, lisis (sel inang pecah).", "Daur lisogenik: materi genetik virus menyatu dengan DNA inang (profag) dan ikut tereplikasi tanpa memecah sel."]}, {"h": "Penyakit", "li": ["Influenza, campak, polio, hepatitis, HPV, COVID-19 (SARS-CoV-2), demam berdarah (dengue, ditularkan nyamuk Aedes aegypti).", "HIV adalah retrovirus yang menyerang sel T helper dan menyebabkan AIDS.", "Pencegahan utama: vaksinasi; antibiotik tidak mempan terhadap virus."]}], "traps": ["Antibiotik membunuh bakteri, bukan virus."]}, {"code": "KEH-04", "title": "Ekosistem", "scope": "Komponen, aliran energi, daur", "src": "Kelas X", "tier": 1, "sum": "Komponen ekosistem, rantai dan jaring makanan, piramida ekologi, daur biogeokimia, interaksi antarorganisme, dan suksesi.", "blocks": [{"h": "Komponen dan energi", "li": ["Biotik (produsen, konsumen, pengurai) dan abiotik (cahaya, air, suhu, tanah).", "Rantai makanan bercabang membentuk jaring makanan.", "Piramida ekologi: jumlah, biomassa, dan energi. Hanya sekitar 10% energi berpindah ke tingkat trofik berikutnya."]}, {"h": "Daur nitrogen", "li": ["Fiksasi N₂ oleh bakteri seperti Rhizobium (bersimbiosis dengan akar kacang-kacangan).", "Nitrifikasi: amonia → nitrit (Nitrosomonas) → nitrat (Nitrobacter).", "Denitrifikasi mengembalikan nitrat menjadi N₂ ke udara."]}, {"h": "Interaksi dan suksesi", "li": ["Mutualisme (keduanya untung), komensalisme (satu untung, lainnya tidak terpengaruh), parasitisme (satu dirugikan), predasi, kompetisi.", "Suksesi primer di lahan yang belum pernah berkehidupan (diawali lumut kerak); suksesi sekunder di lahan yang rusak tetapi tanahnya masih ada."]}], "traps": ["Piramida energi selalu tegak; piramida jumlah bisa terbalik (satu pohon dengan banyak ulat)."]}, {"code": "KEH-05", "title": "Perubahan lingkungan", "scope": "Pencemaran, pemanasan global", "src": "Kelas X", "tier": 2, "sum": "Jenis pencemaran, dampaknya, efek rumah kaca dan pemanasan global, serta upaya pengelolaan limbah.", "blocks": [{"h": "Pencemaran", "li": ["Air: limbah pupuk memicu eutrofikasi (ledakan alga); kadar pencemaran organik diukur dengan BOD.", "Udara: CO dari pembakaran tidak sempurna; SO₂ dan NOx menyebabkan hujan asam; CFC menipiskan lapisan ozon.", "Lumut kerak (lichen) menjadi indikator udara bersih karena peka terhadap SO₂."]}, {"h": "Pengelolaan", "li": ["Efek rumah kaca berlebih akibat CO₂ dan metana memicu pemanasan global.", "Prinsip 3R: reduce, reuse, recycle. Limbah B3 (bahan berbahaya dan beracun) memerlukan penanganan khusus."]}], "traps": ["Penipisan ozon (oleh CFC) dan pemanasan global (oleh gas rumah kaca) adalah dua masalah berbeda."]}]}, {"id": "SEL", "name": "Sel", "short": "Sel", "note": "Struktur sel, organel, dan pergerakan zat melalui membran.", "topics": [{"code": "SEL-01", "title": "Struktur dan fungsi sel", "scope": "Teori sel, organel", "src": "Kelas XI", "tier": 1, "sum": "Sejarah teori sel, perbedaan sel prokariot dan eukariot, organel dan fungsinya, serta perbedaan sel hewan dan tumbuhan.", "blocks": [{"h": "Teori sel", "li": ["Robert Hooke (1665) mengamati sel gabus dan memakai istilah “cell”.", "Schleiden (tumbuhan, 1838) dan Schwann (hewan, 1839): makhluk hidup tersusun atas sel.", "Virchow (1855): omnis cellula e cellula, setiap sel berasal dari sel sebelumnya.", "Prokariot tidak punya membran inti (bakteri); eukariot punya (hewan, tumbuhan, jamur, protista)."]}, {"h": "Organel", "wide": true, "table": {"cols": ["Organel", "Fungsi"], "rows": [["Inti (nukleus)", "Pusat pengendali sel; menyimpan DNA"], ["Ribosom", "Sintesis protein"], ["Retikulum endoplasma kasar", "Bertempel ribosom; sintesis dan transpor protein"], ["Retikulum endoplasma halus", "Sintesis lipid, detoksifikasi"], ["Badan Golgi", "Memodifikasi, membungkus, dan menyekresikan zat"], ["Mitokondria", "Respirasi sel; menghasilkan ATP"], ["Kloroplas", "Fotosintesis (hanya sel tumbuhan dan alga)"], ["Lisosom", "Pencernaan intrasel (terutama sel hewan)"], ["Vakuola", "Menyimpan cadangan makanan dan zat sisa; besar pada sel tumbuhan"], ["Sentriol", "Membentuk benang spindel saat pembelahan (sel hewan)"], ["Dinding sel", "Pelindung dan penguat; dari selulosa pada tumbuhan"]]}}], "traps": ["Sel tumbuhan juga punya mitokondria; kloroplas tidak menggantikan fungsi respirasi."]}, {"code": "SEL-02", "title": "Pergerakan zat melalui membran", "scope": "Transpor pasif dan aktif", "src": "Kelas XI", "tier": 1, "sum": "Struktur membran sel, transpor pasif (difusi, osmosis), transpor aktif, endositosis dan eksositosis, serta pengaruh larutan pada sel.", "blocks": [{"h": "Membran dan transpor pasif", "li": ["Model mosaik fluida (Singer dan Nicolson, 1972): lapisan ganda fosfolipid dengan protein.", "Difusi: zat bergerak dari konsentrasi tinggi ke rendah tanpa energi. Difusi terfasilitasi memakai protein pembawa.", "<b>Osmosis<\/b>: perpindahan air melalui membran semipermeabel dari larutan hipotonis ke hipertonis."]}, {"h": "Pengaruh larutan", "table": {"cols": ["Larutan luar", "Sel hewan (darah merah)", "Sel tumbuhan"], "rows": [["Hipertonis", "Mengerut (krenasi)", "Plasmolisis"], ["Isotonis", "Normal", "Lembek (layu)"], ["Hipotonis", "Pecah (hemolisis)", "Turgid (tegang)"]]}}, {"h": "Transpor aktif", "li": ["Melawan gradien konsentrasi dan memerlukan ATP. Contoh: pompa natrium-kalium (3 Na⁺ keluar, 2 K⁺ masuk).", "Endositosis (fagositosis untuk partikel padat, pinositosis untuk cairan) dan eksositosis."]}], "traps": ["Pada osmosis yang berpindah adalah air (pelarut), bukan zat terlarut."]}]}, {"id": "TUM", "name": "Tumbuhan dan perkembangan", "short": "Tumbuhan", "note": "Jaringan dan organ tumbuhan, transportasi, reproduksi, iritabilitas, serta pertumbuhan dan perkembangan makhluk hidup.", "topics": [{"code": "TUM-01", "title": "Jaringan dan organ tumbuhan", "scope": "Meristem, pengangkut, dikotil-monokotil", "src": "Kelas XI", "tier": 1, "sum": "Jaringan meristem dan dewasa pada tumbuhan, fungsi xilem dan floem, organ akar-batang-daun, serta perbedaan dikotil dan monokotil.", "blocks": [{"h": "Jaringan", "li": ["Meristem apikal (ujung batang dan akar) untuk pertumbuhan primer; meristem lateral (kambium) untuk pertumbuhan sekunder (membesar).", "Epidermis (pelindung; memiliki stomata dan trikoma), parenkim (pengisi), kolenkim dan sklerenkim (penguat).", "<b>Xilem<\/b> mengangkut air dan mineral dari akar ke daun; floem mengangkut hasil fotosintesis ke seluruh tubuh.", "Totipotensi (sel dapat tumbuh menjadi individu utuh) adalah dasar kultur jaringan."]}, {"h": "Dikotil dan monokotil", "table": {"cols": ["Ciri", "Dikotil", "Monokotil"], "rows": [["Akar", "Tunggang", "Serabut"], ["Berkas pengangkut", "Teratur melingkar, berkambium", "Tersebar, tanpa kambium"], ["Tulang daun", "Menyirip atau menjari", "Sejajar atau melengkung"], ["Bagian bunga", "Kelipatan 4 atau 5", "Kelipatan 3"], ["Contoh", "Mangga, kacang", "Padi, jagung, kelapa"]]}}], "traps": ["Batang monokotil umumnya tidak bisa membesar karena tidak punya kambium."]}, {"code": "TUM-02", "title": "Transportasi, reproduksi, dan iritabilitas tumbuhan", "scope": "Pengangkutan, pembuahan, gerak", "src": "Kelas XI", "tier": 2, "sum": "Pengangkutan air dan hasil fotosintesis, reproduksi generatif dan vegetatif, pembuahan ganda, dan gerak pada tumbuhan.", "blocks": [{"h": "Transportasi", "li": ["Air diserap akar secara osmosis, lewat jalur apoplas (dinding sel) dan simplas (sitoplasma).", "Naik di xilem karena daya isap daun (transpirasi), kohesi-adhesi air, dan tekanan akar.", "Hasil fotosintesis diangkut floem (translokasi)."]}, {"h": "Reproduksi", "li": ["<b>Pembuahan ganda<\/b> (Angiospermae): sperma + ovum → zigot (2n); sperma + inti kandung lembaga sekunder → endosperma (3n).", "Vegetatif alami: umbi, rizom, stolon, tunas. Buatan: stek, cangkok, okulasi, merunduk."]}, {"h": "Iritabilitas", "li": ["Tropisme: gerak bagian tumbuhan yang arahnya ditentukan rangsang (fototropisme, geotropisme, hidrotropisme, tigmotropisme).", "Nasti: tidak ditentukan arah rangsang (seismonasti daun putri malu, niktinasti daun menutup di malam hari).", "Taksis: gerak seluruh tubuh berpindah tempat (kemotaksis sperma lumut)."]}], "traps": ["Gerak daun putri malu saat disentuh adalah seismonasti, bukan tigmotropisme."]}, {"code": "TUM-03", "title": "Pertumbuhan dan perkembangan", "scope": "Hormon, faktor, metamorfosis", "src": "Kelas XI", "tier": 2, "sum": "Perbedaan pertumbuhan dan perkembangan, hormon tumbuhan, faktor luar, perkecambahan, dan metamorfosis pada hewan.", "blocks": [{"h": "Konsep dan hormon", "li": ["Pertumbuhan: bertambah ukuran, kuantitatif, tidak dapat kembali (irreversibel). Perkembangan: menuju kedewasaan, kualitatif.", "Auksin: pemanjangan sel, dominansi apikal. Giberelin: tumbuh raksasa, buah tanpa biji (partenokarpi). Sitokinin: pembelahan sel, menunda penuaan.", "Etilen: pematangan buah. Asam absisat: dormansi, menutup stomata saat kekeringan."]}, {"h": "Faktor luar dan perkecambahan", "li": ["Cahaya menghambat pemanjangan batang; kecambah di tempat gelap tumbuh lebih panjang dan pucat (etiolasi).", "Perkecambahan epigeal: kotiledon terangkat ke atas tanah (kacang hijau). Hipogeal: kotiledon tetap di dalam tanah (jagung, kacang kapri)."]}, {"h": "Metamorfosis", "li": ["Sempurna: telur – larva – pupa – imago (kupu-kupu). Tidak sempurna: telur – nimfa – imago (belalang)."]}], "traps": ["Tanaman di tempat gelap justru tumbuh lebih tinggi (etiolasi) karena auksin tidak dirusak cahaya."]}]}, {"id": "MAN", "name": "Sistem organ manusia", "short": "Tubuh manusia", "note": "Pencernaan, pernapasan, peredaran darah, ekskresi, pertahanan tubuh, gerak, koordinasi, dan reproduksi.", "topics": [{"code": "MAN-01", "title": "Sistem pencernaan", "scope": "Saluran, enzim, penyerapan", "src": "Kelas XI", "tier": 1, "sum": "Organ pencernaan, enzim dan fungsinya di tiap organ, penyerapan sari makanan, dan gangguan pencernaan.", "blocks": [{"h": "Organ dan enzim", "table": {"cols": ["Organ", "Zat atau enzim", "Fungsi"], "rows": [["Mulut", "Amilase (ptialin)", "Amilum → maltosa"], ["Lambung", "HCl, pepsin, renin", "HCl membunuh kuman dan mengaktifkan pepsin; pepsin: protein → pepton; renin menggumpalkan susu"], ["Usus halus (dari pankreas)", "Amilase, tripsin, lipase", "Amilum, protein, dan lemak dicerna lebih lanjut"], ["Usus halus (dari hati)", "Empedu", "Mengemulsikan lemak (tidak mengandung enzim)"], ["Usus besar", "Bakteri E. coli", "Penyerapan air; pembusukan sisa makanan; membentuk vitamin K"]]}}, {"h": "Penyerapan dan gangguan", "li": ["Sari makanan diserap di usus halus melalui jonjot (vili) yang memperluas permukaan.", "Gangguan: gastritis (maag), diare, sembelit (konstipasi), apendisitis (radang usus buntu)."]}], "traps": ["Empedu membantu pencernaan lemak tetapi bukan enzim."]}, {"code": "MAN-02", "title": "Sistem pernapasan", "scope": "Saluran, mekanisme, volume paru", "src": "Kelas XI", "tier": 1, "sum": "Saluran pernapasan, pertukaran gas di alveolus, mekanisme pernapasan dada dan perut, volume udara paru, dan gangguannya.", "blocks": [{"h": "Saluran dan pertukaran gas", "li": ["Rongga hidung → faring → laring → trakea → bronkus → bronkiolus → alveolus.", "Pertukaran O₂ dan CO₂ di alveolus terjadi secara difusi.", "O₂ diangkut hemoglobin sebagai oksihemoglobin; sebagian besar CO₂ diangkut dalam plasma sebagai ion bikarbonat (HCO₃⁻)."]}, {"h": "Mekanisme", "li": ["Pernapasan dada: otot antartulang rusuk. Pernapasan perut: otot diafragma.", "Inspirasi: diafragma berkontraksi (mendatar), rongga dada membesar, tekanan turun, udara masuk.", "Volume menurut buku SMA: udara pernapasan (tidal) ±500 mL, kapasitas vital ±3.500 mL, kapasitas total paru ±4.500 mL."]}, {"h": "Gangguan", "li": ["Asma, bronkitis, pneumonia, dan tuberkulosis (bakteri Mycobacterium tuberculosis)."]}], "traps": ["Saat inspirasi diafragma berkontraksi dan mendatar, bukan melengkung ke atas."]}, {"code": "MAN-03", "title": "Sistem peredaran darah", "scope": "Darah, jantung, golongan darah", "src": "Kelas XI", "tier": 1, "sum": "Komponen darah, pembekuan darah, jantung dan peredaran ganda, golongan darah ABO dan rhesus, serta gangguannya.", "blocks": [{"h": "Darah", "li": ["Plasma (±55%), eritrosit (mengangkut O₂ dengan hemoglobin, tanpa inti), leukosit (pertahanan), trombosit (pembekuan).", "Pembekuan: trombokinase mengubah protrombin menjadi trombin (perlu vitamin K dan Ca²⁺); trombin mengubah fibrinogen menjadi fibrin.", "Rhesus: Rh⁺ memiliki antigen D. Ibu Rh⁻ yang mengandung janin Rh⁺ berisiko eritroblastosis fetalis pada kehamilan berikutnya."]}, {"h": "Peredaran ganda", "li": ["Kecil: bilik kanan → arteri pulmonalis → paru-paru → vena pulmonalis → serambi kiri.", "Besar: bilik kiri → aorta → seluruh tubuh → vena kava → serambi kanan.", "Arteri pulmonalis membawa darah kaya CO₂; vena pulmonalis membawa darah kaya O₂."]}, {"h": "Golongan darah ABO", "table": {"cols": ["Golongan", "Antigen di eritrosit", "Antibodi di plasma"], "rows": [["A", "A", "Anti-B"], ["B", "B", "Anti-A"], ["AB", "A dan B", "Tidak ada (resipien universal)"], ["O", "Tidak ada", "Anti-A dan anti-B (donor universal)"]]}}], "traps": ["Pada orang dewasa, arteri pulmonalis adalah satu-satunya arteri yang membawa darah miskin oksigen."]}, {"code": "MAN-04", "title": "Sistem ekskresi", "scope": "Ginjal, kulit, hati, paru", "src": "Kelas XI", "tier": 1, "sum": "Organ ekskresi dan zat yang dikeluarkannya, tahap pembentukan urine di ginjal, peran hormon ADH, dan gangguan ekskresi.", "blocks": [{"h": "Organ ekskresi", "li": ["Ginjal: urine. Kulit: keringat. Paru-paru: CO₂ dan uap air. Hati: urea (dibentuk di hati) dan zat warna empedu (bilirubin)."]}, {"h": "Pembentukan urine", "table": {"cols": ["Tahap", "Tempat", "Hasil"], "rows": [["Filtrasi", "Glomerulus", "Urine primer (filtrat glomerulus)"], ["Reabsorpsi", "Tubulus kontortus proksimal", "Urine sekunder"], ["Augmentasi", "Tubulus kontortus distal", "Urine sesungguhnya"]]}}, {"h": "Pengaturan dan gangguan", "li": ["ADH (hormon antidiuretik) meningkatkan penyerapan kembali air sehingga urine lebih pekat.", "Gangguan: batu ginjal, nefritis, albuminuria (protein dalam urine), diabetes insipidus (kekurangan ADH)."]}], "traps": ["Urine primer masih mengandung glukosa; glukosa diserap kembali saat reabsorpsi."]}, {"code": "MAN-05", "title": "Sistem pertahanan tubuh", "scope": "Nonspesifik, spesifik, imunitas", "src": "Kelas XI", "tier": 2, "sum": "Pertahanan nonspesifik dan spesifik, peran limfosit B dan T, jenis antibodi, jenis kekebalan, dan gangguan sistem imun.", "blocks": [{"h": "Lapisan pertahanan", "li": ["Nonspesifik eksternal: kulit, mukosa, air mata (lisozim). Internal: fagositosis (neutrofil, makrofag), inflamasi, demam.", "Spesifik humoral: limfosit B menjadi sel plasma (menghasilkan antibodi) dan sel B memori.", "Spesifik seluler: limfosit T (T helper, T sitotoksik, T supresor)."]}, {"h": "Antibodi dan kekebalan", "li": ["IgG paling banyak dan dapat menembus plasenta; IgE berperan dalam alergi.", "<b>Aktif<\/b>: tubuh membuat antibodi sendiri (sembuh dari sakit, vaksinasi). Pasif: menerima antibodi jadi (ASI, plasenta, serum).", "Gangguan: alergi, autoimun, dan AIDS (HIV menyerang sel T helper)."]}], "traps": ["Vaksinasi menghasilkan kekebalan aktif buatan; suntikan serum antibodi menghasilkan kekebalan pasif buatan."]}, {"code": "MAN-06", "title": "Sistem gerak", "scope": "Rangka, sendi, otot", "src": "Kelas XI", "tier": 2, "sum": "Rangka aksial dan apendikular, jenis tulang dan sendi, tiga jenis otot, mekanisme kontraksi, dan gangguan sistem gerak.", "blocks": [{"h": "Rangka dan sendi", "li": ["Tulang belakang 33 ruas: 7 leher, 12 punggung, 5 pinggang, 5 kelangkang (menyatu), 4 ekor.", "Sendi mati (sinartrosis, tulang tengkorak), kaku (amfiartrosis, antarruas tulang belakang), gerak (diartrosis).", "Sendi gerak: engsel (siku, lutut), peluru (bahu, pangkal paha), putar (atlas-aksis di leher), pelana (ibu jari), geser."]}, {"h": "Otot", "li": ["Otot lurik (rangka, sadar), otot polos (organ dalam, tidak sadar), otot jantung (lurik tetapi tidak sadar).", "Kontraksi melibatkan aktin dan miosin, ion Ca²⁺, dan ATP.", "Antagonis: bisep (fleksi) dan trisep (ekstensi) pada lengan atas."]}, {"h": "Gangguan", "li": ["Osteoporosis, rakitis (kekurangan vitamin D), skoliosis, lordosis, kifosis, artritis."]}], "traps": ["Otot jantung tampak lurik tetapi bekerja tidak sadar."]}, {"code": "MAN-07", "title": "Sistem koordinasi dan indra", "scope": "Saraf, hormon, indra", "src": "Kelas XI", "tier": 1, "sum": "Neuron dan penghantaran impuls, gerak refleks, bagian otak, saraf otonom, kelenjar hormon, serta mata dan telinga.", "blocks": [{"h": "Saraf", "li": ["Neuron: dendrit, badan sel, akson (berselubung mielin dengan nodus Ranvier). Jenis: sensorik, motorik, interneuron.", "Impuls menyeberangi sinapsis lewat neurotransmiter, misalnya asetilkolin.", "<b>Gerak refleks<\/b>: reseptor → neuron sensorik → sumsum tulang belakang → neuron motorik → efektor, tanpa melalui otak sehingga lebih cepat.", "Otak besar (berpikir, kesadaran), otak kecil (keseimbangan), sumsum lanjutan (napas, detak jantung).", "Saraf otonom: simpatik dan parasimpatik bekerja berlawanan (simpatik mempercepat detak jantung dan melebarkan pupil)."]}, {"h": "Hormon", "table": {"cols": ["Kelenjar", "Hormon", "Fungsi"], "rows": [["Hipofisis anterior", "GH, TSH, FSH, LH", "Pertumbuhan; merangsang kelenjar lain"], ["Hipofisis posterior", "ADH, oksitosin", "Penyerapan air di ginjal; kontraksi rahim"], ["Tiroid", "Tiroksin", "Metabolisme; kekurangan menyebabkan kretinisme (anak) atau gondok"], ["Pankreas", "Insulin, glukagon", "Insulin menurunkan gula darah; glukagon menaikkannya"], ["Adrenal", "Adrenalin", "Respons darurat: detak jantung dan gula darah naik"]]}}, {"h": "Indra", "li": ["Mata: sel batang peka cahaya redup, sel kerucut peka warna. Telinga: koklea untuk pendengaran, saluran setengah lingkaran untuk keseimbangan."]}], "traps": ["Insulin menurunkan kadar gula darah; kekurangannya menyebabkan diabetes melitus, bukan diabetes insipidus."]}, {"code": "MAN-08", "title": "Sistem reproduksi dan hormonnya", "scope": "Gametogenesis, menstruasi, kehamilan", "src": "Kelas XI", "tier": 1, "sum": "Pembentukan sperma dan ovum, hormon reproduksi, siklus menstruasi, fertilisasi dan kehamilan, serta penyakit menular seksual.", "blocks": [{"h": "Gametogenesis", "li": ["Spermatogenesis di tubulus seminiferus testis: satu spermatosit primer menghasilkan empat sperma.", "Oogenesis di ovarium: satu oosit primer menghasilkan satu ovum dan badan polar.", "Testosteron dihasilkan sel Leydig di testis."]}, {"h": "Hormon dan siklus menstruasi (±28 hari)", "li": ["FSH memacu pematangan folikel; folikel menghasilkan estrogen yang menebalkan dinding rahim (endometrium).", "<b>LH<\/b> memicu ovulasi (sekitar hari ke-14) dan pembentukan korpus luteum.", "Korpus luteum menghasilkan progesteron yang mempertahankan endometrium; tanpa pembuahan, kadarnya turun dan terjadi menstruasi."]}, {"h": "Kehamilan dan penyakit", "li": ["Fertilisasi di saluran telur (tuba falopi); embrio menempel di endometrium (implantasi).", "Hormon hCG dari plasenta menjadi dasar alat tes kehamilan.", "Penyakit menular seksual: gonore, sifilis, HIV/AIDS."]}], "traps": ["Ovulasi dipicu oleh lonjakan LH, bukan FSH."]}]}, {"id": "MET", "name": "Metabolisme", "short": "Metabolisme", "note": "Enzim, respirasi sel, dan fotosintesis.", "topics": [{"code": "MET-01", "title": "Enzim dan metabolisme", "scope": "Cara kerja enzim, ATP", "src": "Kelas XII", "tier": 2, "sum": "Sifat dan cara kerja enzim, faktor yang memengaruhinya, inhibitor, ATP, serta perbedaan katabolisme dan anabolisme.", "blocks": [{"h": "Enzim", "li": ["Enzim adalah biokatalisator dari protein yang bekerja spesifik pada substrat di sisi aktifnya.", "Model kerja: gembok-kunci (lock and key, Emil Fischer) dan kecocokan terinduksi (induced fit, Koshland).", "Faktor: suhu (optimum ±37 °C pada manusia; suhu tinggi merusak enzim), pH (pepsin optimum ±2, tripsin ±8), konsentrasi, dan inhibitor.", "Inhibitor kompetitif menempati sisi aktif; inhibitor nonkompetitif menempel di bagian lain dan mengubah bentuk enzim."]}, {"h": "Metabolisme", "li": ["ATP adalah pembawa energi sel.", "<b>Katabolisme<\/b> memecah molekul dan melepas energi (respirasi). Anabolisme menyusun molekul dan memerlukan energi (fotosintesis, kemosintesis)."]}], "traps": ["Enzim yang rusak karena suhu tinggi (denaturasi) tidak pulih saat suhu diturunkan."]}, {"code": "MET-02", "title": "Respirasi sel", "scope": "Aerob dan anaerob", "src": "Kelas XII", "tier": 1, "sum": "Tahap respirasi aerob dari glikolisis sampai transpor elektron, tempat dan hasil tiap tahap, serta fermentasi.", "blocks": [{"h": "Respirasi aerob", "li": ["C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + energi.", "Hasil total menurut buku SMA: ±36–38 ATP per glukosa; terbanyak dihasilkan transpor elektron."]}, {"h": "Tahap", "wide": true, "table": {"cols": ["Tahap", "Tempat", "Hasil utama"], "rows": [["Glikolisis", "Sitoplasma", "Glukosa → 2 asam piruvat; 2 ATP (bersih), 2 NADH"], ["Dekarboksilasi oksidatif", "Matriks mitokondria", "Piruvat → asetil-KoA; CO₂, NADH"], ["Siklus Krebs", "Matriks mitokondria", "CO₂, 2 ATP, NADH, FADH₂"], ["Transpor elektron", "Membran dalam mitokondria (krista)", "Sebagian besar ATP; O₂ sebagai penerima elektron terakhir membentuk H₂O"]]}}, {"h": "Respirasi anaerob (fermentasi)", "li": ["Fermentasi asam laktat di otot saat kekurangan oksigen: 2 ATP; asam laktat menyebabkan rasa lelah.", "Fermentasi alkohol oleh ragi (Saccharomyces): glukosa → etanol + CO₂ + 2 ATP."]}], "traps": ["Glikolisis terjadi di sitoplasma, bukan di mitokondria."]}, {"code": "MET-03", "title": "Fotosintesis", "scope": "Reaksi terang, siklus Calvin", "src": "Kelas XII", "tier": 1, "sum": "Persamaan fotosintesis, reaksi terang dan siklus Calvin beserta tempatnya, percobaan tokoh-tokoh fotosintesis, dan kemosintesis.", "blocks": [{"h": "Tahap", "li": ["6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂, dengan bantuan cahaya dan klorofil.", "Reaksi terang di membran tilakoid (grana): fotolisis air menghasilkan O₂; terbentuk ATP dan NADPH. Melibatkan fotosistem II (P680) dan I (P700).", "<b>Siklus Calvin<\/b> (reaksi gelap) di stroma: CO₂ diikat RuBP dengan enzim rubisco, lalu dibentuk glukosa memakai ATP dan NADPH."]}, {"h": "Percobaan", "table": {"cols": ["Tokoh", "Temuan"], "rows": [["Ingenhousz", "Fotosintesis memerlukan cahaya dan menghasilkan O₂"], ["Engelmann", "O₂ dihasilkan di kloroplas (Spirogyra); cahaya merah dan biru paling efektif"], ["Sachs", "Fotosintesis menghasilkan amilum (uji iodin pada daun)"], ["Hill", "Fotolisis air pada kloroplas yang disinari"], ["Ruben dan Kamen", "O₂ hasil fotosintesis berasal dari air (isotop ¹⁸O)"]]}}, {"h": "Kemosintesis", "li": ["Penyusunan zat organik dengan energi dari reaksi kimia, misalnya oleh bakteri nitrifikasi."]}], "traps": ["O₂ yang dilepas berasal dari air, bukan dari CO₂."]}]}, {"id": "GEN", "name": "Genetika, evolusi, dan bioteknologi", "short": "Genetika", "note": "Materi genetik, pembelahan sel, pewarisan sifat, mutasi, evolusi, dan bioteknologi.", "topics": [{"code": "GEN-01", "title": "Materi genetik dan sintesis protein", "scope": "Kromosom, DNA, RNA, kode genetik", "src": "Kelas XII", "tier": 1, "sum": "Kromosom dan gen, struktur DNA dan RNA, replikasi DNA, serta sintesis protein lewat transkripsi dan translasi.", "blocks": [{"h": "Kromosom, gen, dan DNA", "li": ["Manusia: 46 kromosom (22 pasang autosom dan 1 pasang kromosom seks). Gen terletak di lokus pada kromosom.", "<b>DNA<\/b> berbentuk heliks ganda (Watson dan Crick, 1953, dengan data difraksi Rosalind Franklin).", "Nukleotida DNA: gula deoksiribosa, fosfat, dan basa. A berpasangan dengan T (2 ikatan hidrogen), G dengan C (3).", "Purin: adenin dan guanin. Pirimidin: sitosin dan timin (DNA) atau urasil (RNA).", "Replikasi DNA bersifat semikonservatif (dibuktikan Meselson dan Stahl)."]}, {"h": "DNA dan RNA", "table": {"cols": ["Ciri", "DNA", "RNA"], "rows": [["Gula", "Deoksiribosa", "Ribosa"], ["Basa", "A, T, G, C", "A, U, G, C"], ["Rantai", "Ganda", "Tunggal"], ["Kadar dalam sel", "Tetap", "Berubah sesuai aktivitas sintesis protein"]]}}, {"h": "Sintesis protein", "li": ["Transkripsi di inti: DNA → mRNA. Translasi di ribosom: mRNA → rantai asam amino.", "Kodon terdiri atas 3 basa; tRNA membawa asam amino dengan antikodon yang cocok.", "Kodon awal AUG (metionin); kodon akhir UAA, UAG, UGA."]}], "traps": ["RNA memakai urasil, bukan timin; urasil berpasangan dengan adenin."]}, {"code": "GEN-02", "title": "Pembelahan sel", "scope": "Mitosis, meiosis", "src": "Kelas XII", "tier": 1, "sum": "Siklus sel, tahap-tahap mitosis dan meiosis, serta perbedaan hasil dan tempat terjadinya.", "blocks": [{"h": "Siklus dan mitosis", "li": ["Interfase: G1 (tumbuh), S (replikasi DNA), G2 (persiapan pembelahan).", "Mitosis: profase, metafase (kromosom berjajar di bidang ekuator), anafase (kromatid berpisah ke kutub), telofase.", "Pembelahan biner (amitosis) terjadi pada bakteri."]}, {"h": "Mitosis dan meiosis", "table": {"cols": ["Ciri", "Mitosis", "Meiosis"], "rows": [["Tempat", "Sel tubuh", "Sel kelamin (gonad)"], ["Jumlah pembelahan", "Satu", "Dua"], ["Hasil", "2 sel diploid (2n), identik", "4 sel haploid (n), bervariasi"], ["Pindah silang", "Tidak ada", "Ada, pada profase I"]]}}], "traps": ["Pada anafase I meiosis yang berpisah adalah kromosom homolog; pada anafase mitosis yang berpisah adalah kromatid."]}, {"code": "GEN-03", "title": "Pola pewarisan sifat Mendel", "scope": "Monohibrid, dihibrid, intermediet", "src": "Kelas XII", "tier": 1, "sum": "Istilah genetika, hukum Mendel I dan II, perbandingan persilangan monohibrid dan dihibrid, intermediet, serta uji silang.", "blocks": [{"h": "Istilah dan hukum", "li": ["Gregor Mendel meneliti kacang ercis (Pisum sativum) dan menerbitkan hasilnya pada 1866.", "Genotipe (susunan gen), fenotipe (sifat tampak), alel, dominan, resesif, homozigot (AA, aa), heterozigot (Aa).", "Hukum I (segregasi): alel berpisah saat pembentukan gamet. Hukum II (asortasi bebas): alel dari gen berbeda bergabung secara bebas.", "Jumlah macam gamet = 2<sup>n<\/sup>, n jumlah pasangan alel heterozigot."]}, {"h": "Perbandingan keturunan F2", "table": {"cols": ["Persilangan", "Fenotipe F2"], "rows": [["Monohibrid dominan penuh", "3 : 1 (genotipe 1 : 2 : 1)"], ["Monohibrid intermediet (bunga pukul empat merah × putih)", "1 merah : 2 merah muda : 1 putih"], ["Dihibrid dominan penuh", "9 : 3 : 3 : 1"]]}}, {"h": "Uji silang", "li": ["Testcross: menyilangkan dengan induk homozigot resesif untuk mengetahui genotipe. Backcross: menyilangkan keturunan dengan salah satu induknya."]}], "traps": ["Pada intermediet, perbandingan fenotipe sama dengan perbandingan genotipe (1 : 2 : 1)."]}, {"code": "GEN-04", "title": "Penyimpangan semu dan pewarisan pada manusia", "scope": "Interaksi gen, terpaut seks", "src": "Kelas XII", "tier": 2, "sum": "Interaksi gen yang mengubah perbandingan Mendel, penentuan jenis kelamin, pewarisan terpaut kromosom X, dan kelainan menurun.", "blocks": [{"h": "Penyimpangan semu Mendel (F2)", "table": {"cols": ["Jenis", "Perbandingan", "Contoh"], "rows": [["Atavisme", "9 : 3 : 3 : 1 (fenotipe baru)", "Jengger ayam"], ["Polimeri", "15 : 1", "Warna biji gandum"], ["Kriptomeri", "9 : 3 : 4", "Bunga Linaria maroccana"], ["Epistasis dominan", "12 : 3 : 1", "Warna kulit labu"], ["Gen komplementer", "9 : 7", "Bunga Lathyrus odoratus"]]}}, {"h": "Pewarisan pada manusia", "li": ["Jenis kelamin: XX perempuan, XY laki-laki (pada burung: ZW betina, ZZ jantan).", "Buta warna dan hemofilia: gen resesif terpaut kromosom X, sehingga lebih sering pada laki-laki.", "Golongan darah ABO diatur alel ganda I<sup>A<\/sup>, I<sup>B<\/sup>, dan i.", "Kelainan autosom resesif: albino, fenilketonuria. Autosom dominan: polidaktili, brakidaktili."]}], "traps": ["Ayah buta warna tidak menurunkan buta warna ke anak laki-lakinya, karena anak laki-laki menerima kromosom Y dari ayah."]}, {"code": "GEN-05", "title": "Mutasi", "scope": "Mutasi gen dan kromosom, mutagen", "src": "Kelas XII", "tier": 2, "sum": "Mutasi gen dan mutasi kromosom (struktur dan jumlah), contoh sindrom pada manusia, dan jenis mutagen.", "blocks": [{"h": "Jenis mutasi", "li": ["Mutasi gen (titik): substitusi basa, insersi, delesi; insersi dan delesi menggeser kerangka baca.", "Struktur kromosom: delesi, duplikasi, inversi, translokasi.", "Jumlah kromosom: euploidi (poliploidi, misalnya semangka tanpa biji 3n) dan aneuploidi."]}, {"h": "Sindrom dan mutagen", "table": {"cols": ["Sindrom", "Kromosom"], "rows": [["Down", "Trisomi 21 (47 kromosom)"], ["Klinefelter", "XXY (laki-laki)"], ["Turner", "XO, 45 kromosom (perempuan)"]]}}, {"h": "Mutagen", "li": ["Fisik: sinar UV, sinar-X, radioaktif. Kimia: kolkisin (memicu poliploidi), pestisida. Biologi: virus."]}]}, {"code": "GEN-06", "title": "Evolusi", "scope": "Teori, bukti, Hardy-Weinberg", "src": "Kelas XII", "tier": 2, "sum": "Asal-usul kehidupan, teori evolusi Lamarck dan Darwin, petunjuk evolusi, spesiasi, dan hukum Hardy-Weinberg.", "blocks": [{"h": "Asal-usul kehidupan", "li": ["Abiogenesis (generatio spontanea) dibantah lewat percobaan Redi, Spallanzani, dan Pasteur (labu leher angsa), sehingga berlaku biogenesis.", "Teori evolusi kimia Oparin-Haldane; percobaan Miller-Urey (1953) membentuk asam amino dari gas sederhana."]}, {"h": "Teori dan bukti", "li": ["Lamarck: sifat yang diperoleh karena sering dipakai diwariskan (leher jerapah). Teori ini ditolak.", "Darwin: <i>On the Origin of Species<\/i> (1859); seleksi alam, berdasar pengamatan di Galápagos (burung finch). Wallace mengemukakan gagasan serupa.", "Bukti: fosil, organ homolog (asal sama, fungsi beda), organ analog (fungsi sama, asal beda), organ vestigial (usus buntu), embriologi, biokimia.", "Spesiasi terjadi lewat isolasi geografis atau isolasi reproduksi."]}, {"h": "Hardy-Weinberg", "li": ["<b>p + q = 1 dan p² + 2pq + q² = 1<\/b> (p, q frekuensi dua alel).", "Berlaku bila populasi besar, kawin acak, dan tidak ada mutasi, migrasi, atau seleksi."]}], "traps": ["Sayap burung dan sayap kupu-kupu adalah organ analog; sayap kelelawar dan lengan manusia adalah organ homolog."]}, {"code": "GEN-07", "title": "Bioteknologi", "scope": "Konvensional dan modern", "src": "Kelas X dan XII", "tier": 2, "sum": "Bioteknologi konvensional dengan mikroorganisme, bioteknologi modern (DNA rekombinan, kultur jaringan, kloning, PCR), dan dampaknya.", "blocks": [{"h": "Konvensional", "table": {"cols": ["Produk", "Mikroorganisme"], "rows": [["Tempe", "Rhizopus oryzae, Rhizopus oligosporus"], ["Tapai, roti", "Saccharomyces cerevisiae"], ["Yogurt", "Lactobacillus bulgaricus, Streptococcus thermophilus"], ["Kecap", "Aspergillus oryzae"], ["Nata de coco", "Acetobacter xylinum"], ["Oncom merah", "Neurospora sitophila"]]}}, {"h": "Modern", "li": ["DNA rekombinan: gen disisipkan ke plasmid bakteri memakai enzim restriksi (pemotong) dan ligase (penyambung). Contoh: insulin manusia dibuat bakteri E. coli.", "Kultur jaringan (berdasar totipotensi), kloning (domba Dolly, 1996, lewat transfer inti sel), PCR (memperbanyak DNA).", "Tanaman transgenik (misalnya tanaman Bt tahan hama) dan antibodi monoklonal (sel hibridoma).", "Dampak yang dibahas: keamanan pangan, keanekaragaman genetik, dan etika."]}], "traps": ["Enzim restriksi memotong DNA; ligase menyambungnya. Keduanya mudah tertukar."]}]}], "notes": [{"title": "Perlu diperhatikan", "items": ["Kelas X Kurikulum Merdeka membahas biologi di dalam IPA. Buku kelas XI memuat delapan bab; sistem organ manusia di peta ini dipecah per sistem.", "Pembagian bab kelas XII belum terkonfirmasi dari buku resmi; genetika, evolusi, dan bioteknologi tercantum di ringkasan, sedangkan metabolisme ditempatkan di kelas XII mengikuti susunan umum.", "Angka volume paru dan jumlah ATP berbeda antarbuku; peta ini memakai angka yang lazim di buku SMA."]}, {"title": "Rujukan", "items": ["Buku teks Biologi Kurikulum Merdeka kelas XI dan XII (Kemendikbudristek). Daftar bab dicocokkan lewat ringkasan Tirto, Kherysuryawan, Gramedia, dan Mamikos karena PDF resmi tidak dapat dibuka dari lingkungan kerja."]}]};
+const TIER = {1:["t1","Inti"],2:["t2","Penting"],3:["t3","Pelengkap"]};
+const KEY = "peta-" + MAP.id + "-v1";
+let done = new Set();
+try { done = new Set(JSON.parse(localStorage.getItem(KEY) || "[]")); } catch(e) {}
+function save(){ try { localStorage.setItem(KEY, JSON.stringify([...done])); } catch(e) {} }
+const $ = id => document.getElementById(id);
+// The text faces lack most Unicode superscript/subscript digits, so turn runs of them into <sup>/<sub>.
+const SUP = "⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺", SUB = "₀₁₂₃₄₅₆₇₈₉", PLAIN = "0123456789-+";
+function scripts(s){
+  return s.replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]+/g, m => "<sup>" + [...m].map(c => PLAIN[SUP.indexOf(c)]).join("").replace("-", "−") + "</sup>")
+          .replace(/[₀₁₂₃₄₅₆₇₈₉]+/g, m => "<sub>" + [...m].map(c => PLAIN[SUB.indexOf(c)]).join("") + "</sub>");
+}
+(function walk(o){ for(const k in o){ if(typeof o[k] === "string") o[k] = scripts(o[k]); else if(o[k] && typeof o[k] === "object") walk(o[k]); } })(MAP);
+const byCode = {};
+MAP.domains.forEach((d,i) => { d.c = "var(--d" + (i % 7 + 1) + ")"; d.soft = "var(--s" + (i % 7 + 1) + ")"; d.topics.forEach(t => byCode[t.code] = {t, d}); });
+
+function hl(str, re){
+  if(!re) return str;
+  return str.split(/(<[^>]+>)/g).map(p => p.startsWith("<") ? p : p.replace(re, m => "<mark>" + m + "</mark>")).join("");
+}
+function plain(t){
+  const parts = [t.code, t.title, t.scope, t.src, t.sum];
+  t.blocks.forEach(b => { parts.push(b.h); (b.li||[]).forEach(x => parts.push(x)); if(b.table){ parts.push(b.table.cols.join(" ")); b.table.rows.forEach(r => parts.push(r.join(" "))); } });
+  (t.traps||[]).forEach(x => parts.push(x));
+  return parts.join(" ").replace(/<[^>]+>/g, " ");
+}
+function bodyHTML(t, re){
+  let h = "";
+  t.blocks.forEach(b => {
+    h += '<div class="blk' + (b.wide || (b.table && b.table.cols.length > 2) ? ' wide' : '') + '"><h4>' + hl(b.h, re) + '</h4>';
+    if(b.li) h += "<ul>" + b.li.map(x => "<li>" + hl(x, re) + "</li>").join("") + "</ul>";
+    if(b.table) h += '<div class="tbl"><table><thead><tr>' + b.table.cols.map(c => "<th>" + c + "</th>").join("") + "</tr></thead><tbody>" +
+      b.table.rows.map(r => "<tr>" + r.map(c => "<td>" + hl(c, re) + "</td>").join("") + "</tr>").join("") + "</tbody></table></div>";
+    h += "</div>";
+  });
+  if(t.traps && t.traps.length) h += '<div class="traps"><h4>Jebakan soal</h4><ul>' + t.traps.map(x => "<li>" + hl(x, re) + "</li>").join("") + "</ul></div>";
+  return h;
+}
+
+function render(){
+  const total = Object.keys(byCode).length;
+  document.title = MAP.title;
+  $("eyebrow").textContent = "Peta materi · " + MAP.subject + " · " + MAP.domains.length + " bidang · " + total + " simpul";
+  $("title").textContent = MAP.title;
+  $("lead").innerHTML = MAP.lead;
+  $("sourceNote").textContent = MAP.source_note || "";
+  $("progress").innerHTML = MAP.domains.map(d => '<a class="pg" href="#d-' + d.id + '" style="--c:' + d.c + '"><b>' + d.short + '</b><div class="bar"><i id="bar-' + d.id + '"></i></div><span id="pg-' + d.id + '"></span></a>').join("");
+  if(MAP.path && MAP.path.length){
+    $("alur").hidden = false;
+    $("h-alur").textContent = MAP.path_title || "Alur belajar";
+    $("pathNote").textContent = MAP.path_note || "";
+    $("path").innerHTML = MAP.path.map(e => '<li><button type="button" data-code="' + e.to + '"><span class="lb">' + e.label + '</span><span class="nm">' + e.title + '</span><span class="an">' + e.note + '</span></button></li>').join("");
+  }
+  const map = $("map"), host = $("domains");
+  MAP.domains.forEach(d => {
+    const col = document.createElement("div");
+    col.className = "mcol"; col.style.setProperty("--c", d.c); col.style.setProperty("--soft", d.soft);
+    col.innerHTML = '<h3><span>' + d.name + '</span><span class="mono">' + d.topics.length + '</span></h3><ul>' +
+      d.topics.map(t => '<li><a class="chip" data-code="' + t.code + '" href="#t-' + t.code + '"><span class="mono">' + t.code + '</span><span>' + t.title + ' <span class="tier ' + TIER[t.tier][0] + '">' + TIER[t.tier][1] + '</span></span></a></li>').join("") + "</ul>";
+    map.appendChild(col);
+    const sec = document.createElement("section");
+    sec.id = "d-" + d.id; sec.style.setProperty("--c", d.c); sec.style.setProperty("--soft", d.soft);
+    sec.innerHTML = '<div class="domain-head"><h2>' + d.name + '</h2><span class="w">' + d.topics.length + ' simpul</span><p>' + (d.note || "") + '</p></div>';
+    d.topics.forEach(t => {
+      const a = document.createElement("article");
+      a.className = "card"; a.id = "t-" + t.code; a.dataset.code = t.code;
+      a.innerHTML = '<div class="card-head"><button class="toggle" type="button" aria-expanded="false" aria-controls="b-' + t.code + '">' +
+        '<span class="code">' + t.code + '</span>' +
+        '<span class="ttl"><span class="caret" aria-hidden="true">›</span>' + t.title + ' <span class="tier ' + TIER[t.tier][0] + '">' + TIER[t.tier][1] + '</span></span>' +
+        '<span class="meta"><span>' + t.scope + '</span><span>' + t.src + '</span></span>' +
+        '<span class="sum">' + t.sum + '</span></button>' +
+        '<label class="done-box"><input type="checkbox" id="done-' + t.code + '"> Dikuasai</label></div>' +
+        '<div class="body" id="b-' + t.code + '" hidden>' + bodyHTML(t, null) + '</div>';
+      sec.appendChild(a);
+    });
+    host.appendChild(sec);
+  });
+  $("notes").innerHTML = (MAP.notes || []).map(n => '<div class="note"><h3>' + n.title + '</h3><ul>' + n.items.map(i => "<li>" + i + "</li>").join("") + "</ul></div>").join("");
+}
+function setOpen(card, open){
+  card.classList.toggle("open", open);
+  card.querySelector(".body").hidden = !open;
+  card.querySelector(".toggle").setAttribute("aria-expanded", open ? "true" : "false");
+}
+function goTo(code){
+  const card = $("t-" + code); if(!card) return;
+  card.hidden = false; setOpen(card, true);
+  card.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"});
+}
+function progress(){
+  let k = 0, n = 0;
+  MAP.domains.forEach(d => {
+    const dn = d.topics.filter(t => done.has(t.code)).length;
+    k += dn; n += d.topics.length;
+    $("bar-" + d.id).style.width = (dn / d.topics.length * 100) + "%";
+    $("pg-" + d.id).textContent = dn + " dari " + d.topics.length;
+  });
+  $("overall").textContent = k + " dari " + n;
+  document.querySelectorAll(".chip").forEach(c => c.classList.toggle("done", done.has(c.dataset.code)));
+  document.querySelectorAll(".card").forEach(c => { const on = done.has(c.dataset.code); c.classList.toggle("is-done", on); c.querySelector('input[type="checkbox"]').checked = on; });
+}
+function search(q){
+  q = q.trim();
+  const re = q.length >= 2 ? new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi") : null;
+  let hits = 0;
+  document.querySelectorAll(".card").forEach(card => {
+    const t = byCode[card.dataset.code].t, body = card.querySelector(".body");
+    if(!re){ card.hidden = false; body.innerHTML = bodyHTML(t, null); setOpen(card, false); return; }
+    const match = new RegExp(re.source, "i").test(plain(t));
+    card.hidden = !match; body.innerHTML = bodyHTML(t, match ? re : null); setOpen(card, match);
+    if(match) hits++;
+  });
+  $("hits").textContent = re ? (hits ? hits + " simpul cocok" : "Tidak ada yang cocok. Coba kata lain.") : "";
+}
+
+render();
+progress();
+document.addEventListener("click", e => {
+  const tg = e.target.closest(".toggle");
+  if(tg){ const card = tg.closest(".card"); setOpen(card, !card.classList.contains("open")); return; }
+  const chip = e.target.closest("[data-code]");
+  if(chip && (chip.classList.contains("chip") || chip.tagName === "BUTTON")){ e.preventDefault(); goTo(chip.dataset.code); }
+});
+document.addEventListener("change", e => {
+  if(e.target.matches(".done-box input")){
+    const code = e.target.closest(".card").dataset.code;
+    e.target.checked ? done.add(code) : done.delete(code);
+    save(); progress();
+  }
+});
+let timer;
+$("q").addEventListener("input", e => { clearTimeout(timer); timer = setTimeout(() => search(e.target.value), 150); });
+$("openAll").addEventListener("click", () => document.querySelectorAll(".card:not([hidden])").forEach(c => setOpen(c, true)));
+$("closeAll").addEventListener("click", () => document.querySelectorAll(".card").forEach(c => setOpen(c, false)));
+if(location.hash.startsWith("#t-")) goTo(location.hash.slice(3));
+</script>
