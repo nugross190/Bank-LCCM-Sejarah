@@ -10,6 +10,7 @@ High-school study maps, starting with tools for a history competition in the Lom
 | `docs/simulasi.html` | Round simulator for a moderator: compulsory round (babak wajib) with passed-on questions, buzzer round (babak rebutan), 1–3 teams, scoreboard, and a list of missed questions. |
 | `docs/peta-fisika.html` | Knowledge map for high-school physics (30 topics), the first of the general subject maps. |
 | `docs/peta-matematika.html` | Knowledge map for high-school mathematics (28 topics), covering Matematika and Matematika Tingkat Lanjut. |
+| `docs/peta-kimia.html` | Knowledge map for high-school chemistry (26 topics), from atomic structure to macromolecules. |
 | `docs/404.html` | Shown by GitHub Pages for any missing address, with links back to the start page. |
 
 Every question carries the code of the topic it tests, so a weak result links straight back to the map. Pages are static HTML; practice progress is stored in the viewer's own browser.

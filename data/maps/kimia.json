@@ -1,0 +1,436 @@
+{
+  "id": "kimia",
+  "subject": "Kimia",
+  "title": "Peta Materi Kimia SMA",
+  "lead": "Seluruh materi Kimia SMA, dari struktur atom sampai makromolekul, disusun sebagai satu peta. Setiap simpul memuat konsep, rumus inti, dan jebakan soal yang sering muncul. Centang “Dikuasai” di tiap simpul; kemajuan tersimpan di peramban ini saja.",
+  "blurb": "Struktur atom dan ikatan, stoikiometri, energi dan laju reaksi, larutan, elektrokimia, sampai kimia karbon dan makromolekul.",
+  "source_note": "Urutan mengikuti buku Kimia Kurikulum Merdeka: kelas X (dalam IPA), kelas XI dan XII (mata pelajaran pilihan). Pembagian kelas mengikuti ringkasan umum; beberapa topik (misalnya stoikiometri) ditempatkan di kelas berbeda oleh sumber yang berbeda. Cocokkan dengan buku sekolah.",
+  "path_title": "Alur prasyarat",
+  "path_note": "Urutan belajar yang disarankan. Struktur atom menjelaskan ikatan; konsep mol dipakai di hampir semua hitungan sesudahnya.",
+  "path": [
+    {"label": "Atom", "title": "Struktur atom", "note": "Partikel, konfigurasi elektron", "to": "STR-02"},
+    {"label": "Tabel", "title": "Sistem periodik", "note": "Golongan, sifat periodik", "to": "STR-04"},
+    {"label": "Ikatan", "title": "Ikatan dan bentuk molekul", "note": "Ion, kovalen, VSEPR", "to": "STR-05"},
+    {"label": "Reaksi", "title": "Tata nama dan persamaan", "note": "Nama senyawa, menyetarakan", "to": "STO-01"},
+    {"label": "Mol", "title": "Stoikiometri", "note": "Mol, pereaksi pembatas", "to": "STO-03"},
+    {"label": "Energi", "title": "Termokimia", "note": "Entalpi, hukum Hess", "to": "ENE-01"},
+    {"label": "Laju", "title": "Laju dan kesetimbangan", "note": "Orde, Le Chatelier", "to": "ENE-02"},
+    {"label": "Larutan", "title": "Asam, basa, larutan", "note": "pH, penyangga, Ksp", "to": "LAR-01"},
+    {"label": "Sel", "title": "Elektrokimia", "note": "Volta, elektrolisis", "to": "ELK-01"},
+    {"label": "Karbon", "title": "Kimia organik", "note": "Gugus fungsi, polimer", "to": "ORG-01"}
+  ],
+  "domains": [
+    {
+      "id": "STR", "name": "Struktur materi", "short": "Struktur",
+      "note": "Hakikat ilmu kimia, struktur atom, sistem periodik, ikatan kimia, dan bentuk molekul.",
+      "topics": [
+        {"code": "STR-01", "title": "Hakikat ilmu kimia dan kimia hijau", "scope": "Metode ilmiah, keselamatan", "src": "Kelas X", "tier": 3,
+         "sum": "Peran ilmu kimia, metode ilmiah, keselamatan kerja di laboratorium, simbol bahaya bahan kimia, dan prinsip kimia hijau.",
+         "blocks": [
+           {"h": "Konsep", "li": [
+             "Metode ilmiah: merumuskan masalah, hipotesis, eksperimen, analisis data, kesimpulan.",
+             "Simbol bahaya bahan kimia (sistem GHS) antara lain: mudah terbakar, korosif, beracun, iritan, mudah meledak, berbahaya bagi lingkungan.",
+             "Kimia hijau: merancang proses dan produk kimia yang mengurangi atau menghilangkan zat berbahaya. Dua belas prinsipnya dirumuskan Paul Anastas dan John Warner (1998).",
+             "Contoh prinsip: mencegah limbah lebih baik daripada mengolahnya; memaksimalkan ekonomi atom; memakai pelarut dan bahan baku yang lebih aman dan terbarukan."]}
+         ]},
+
+        {"code": "STR-02", "title": "Struktur atom dan partikel penyusunnya", "scope": "Proton, neutron, elektron, isotop", "src": "Kelas X", "tier": 1,
+         "sum": "Partikel penyusun atom dan penemunya, nomor atom dan nomor massa, isotop-isobar-isoton, serta perkembangan model atom.",
+         "blocks": [
+           {"h": "Partikel dasar", "table": {"cols": ["Partikel", "Muatan", "Penemu"], "rows": [
+             ["Elektron", "−1", "J.J. Thomson (1897), lewat sinar katode"],
+             ["Proton", "+1", "Eugen Goldstein (sinar terusan, 1886); dikenal sebagai proton lewat Rutherford"],
+             ["Neutron", "0", "James Chadwick (1932)"]]}},
+           {"h": "Notasi dan istilah", "li": [
+             "Notasi <sup>A</sup><sub>Z</sub>X: Z nomor atom (jumlah proton), A nomor massa (proton + neutron). Jumlah neutron = A − Z.",
+             "Atom netral: jumlah elektron = jumlah proton. Ion X<sup>n+</sup> kehilangan n elektron; X<sup>n−</sup> menerima n elektron.",
+             "Isotop: Z sama (¹²C dan ¹⁴C). Isobar: A sama. Isoton: jumlah neutron sama."]},
+           {"h": "Model atom", "li": [
+             "Dalton (bola pejal) → Thomson (roti kismis) → Rutherford (inti bermuatan positif) → Bohr (lintasan berenergi tertentu) → mekanika kuantum (orbital)."]}
+         ],
+         "traps": ["Ion Na⁺ punya 10 elektron, bukan 11: ion positif kehilangan elektron.", "Isotop punya sifat kimia sama (elektron sama), tetapi massanya berbeda."]},
+
+        {"code": "STR-03", "title": "Konfigurasi elektron dan bilangan kuantum", "scope": "Aufbau, Hund, Pauli", "src": "Kelas XI", "tier": 1,
+         "sum": "Cara menyusun elektron dalam orbital, empat bilangan kuantum, dan cara menentukan golongan dan periode dari konfigurasi.",
+         "blocks": [
+           {"h": "Aturan pengisian", "li": [
+             "<b>Aufbau</b>: elektron mengisi orbital dari energi terendah: 1s 2s 2p 3s 3p 4s 3d 4p 5s 4d 5p 6s 4f 5d 6p 7s.",
+             "Pauli: tidak ada dua elektron dalam satu atom dengan empat bilangan kuantum sama; satu orbital berisi paling banyak 2 elektron.",
+             "Hund: pada subkulit berorbital lebih dari satu, elektron mengisi orbital satu per satu dulu sebelum berpasangan.",
+             "Pengecualian penting: Cr = [Ar] 3d⁵ 4s¹ dan Cu = [Ar] 3d¹⁰ 4s¹ (subkulit d setengah penuh atau penuh lebih stabil)."]},
+           {"h": "Bilangan kuantum", "table": {"cols": ["Bilangan", "Lambang", "Menyatakan", "Nilai"], "rows": [
+             ["Utama", "n", "Kulit", "1, 2, 3, …"], ["Azimut", "l", "Subkulit (s, p, d, f)", "0 sampai n − 1"],
+             ["Magnetik", "m", "Orbital", "−l sampai +l"], ["Spin", "s", "Arah putar elektron", "+½ atau −½"]]}},
+           {"h": "Letak dalam tabel periodik", "li": [
+             "Periode = nomor kulit terbesar. Golongan A = jumlah elektron valensi pada subkulit s dan p terluar.",
+             "Konfigurasi berakhir di s atau p: golongan A (utama). Berakhir di d: golongan B (transisi)."]}
+         ],
+         "traps": ["Subkulit 4s diisi sebelum 3d, tetapi saat membentuk ion, elektron 4s yang dilepas lebih dulu (Fe²⁺ = [Ar] 3d⁶)."]},
+
+        {"code": "STR-04", "title": "Sistem periodik unsur", "scope": "Sejarah tabel, sifat periodik", "src": "Kelas X", "tier": 1,
+         "sum": "Perkembangan tabel periodik dari Döbereiner sampai Moseley, susunan golongan dan periode, dan kecenderungan sifat periodik.",
+         "blocks": [
+           {"h": "Perkembangan", "table": {"cols": ["Tokoh", "Dasar pengelompokan"], "rows": [
+             ["Döbereiner", "Triade: tiga unsur bersifat mirip, massa atom unsur tengah ≈ rata-rata dua lainnya"],
+             ["Newlands", "Hukum oktaf: sifat berulang tiap unsur kedelapan"],
+             ["Mendeleev", "Kenaikan massa atom; menyisakan tempat kosong dan meramalkan unsur yang belum ditemukan (ekasilikon = germanium)"],
+             ["Moseley", "Kenaikan nomor atom; dasar tabel periodik modern"]]}},
+           {"h": "Tabel modern dan sifat periodik", "li": [
+             "18 golongan dan 7 periode. IA alkali, IIA alkali tanah, VIIA halogen, VIIIA gas mulia.",
+             "<b>Jari-jari atom</b>: bertambah dari atas ke bawah dalam satu golongan; berkurang dari kiri ke kanan dalam satu periode.",
+             "Energi ionisasi, afinitas elektron, dan keelektronegatifan cenderung berkebalikan dengan jari-jari: berkurang ke bawah, bertambah ke kanan.",
+             "Keelektronegatifan tertinggi: fluor (F)."]}
+         ],
+         "traps": ["Gas mulia tidak dihitung dalam kecenderungan keelektronegatifan karena hampir tidak membentuk ikatan."]},
+
+        {"code": "STR-05", "title": "Ikatan kimia", "scope": "Ion, kovalen, logam, polaritas", "src": "Kelas XI", "tier": 1,
+         "sum": "Kestabilan atom, aturan oktet, ikatan ion, kovalen, kovalen koordinasi, dan logam, serta kepolaran molekul.",
+         "blocks": [
+           {"h": "Jenis ikatan", "table": {"cols": ["Ikatan", "Terjadi antara", "Ciri"], "rows": [
+             ["Ion", "Logam dan nonlogam", "Serah-terima elektron; contoh NaCl; titik leleh tinggi, lelehan dan larutannya menghantar listrik"],
+             ["Kovalen", "Nonlogam dan nonlogam", "Pemakaian bersama pasangan elektron; tunggal, rangkap dua, rangkap tiga"],
+             ["Kovalen koordinasi", "Satu atom menyumbang pasangan elektron", "Contoh NH₄⁺ dan H₃O⁺"],
+             ["Logam", "Atom-atom logam", "Lautan elektron; menghantar listrik dan dapat ditempa"]]}},
+           {"h": "Oktet dan kepolaran", "li": [
+             "Aturan oktet: atom cenderung mencapai 8 elektron valensi seperti gas mulia (H cukup 2, duplet).",
+             "Pengecualian oktet: BF₃ (B hanya 6 elektron), PCl₅ dan SF₆ (lebih dari 8).",
+             "Kovalen polar: beda keelektronegatifan besar dan bentuk molekul tidak simetris (H₂O, NH₃, HCl).",
+             "Kovalen nonpolar: atom sama (Cl₂) atau bentuk simetris (CO₂, CH₄, BF₃)."]}
+         ],
+         "traps": ["CO₂ punya ikatan polar tetapi molekulnya nonpolar karena bentuknya linear dan simetris."]},
+
+        {"code": "STR-06", "title": "Bentuk molekul dan gaya antarmolekul", "scope": "VSEPR, hibridisasi", "src": "Kelas XI", "tier": 2,
+         "sum": "Meramalkan bentuk molekul dengan teori VSEPR dan hibridisasi, serta gaya London, dipol-dipol, dan ikatan hidrogen.",
+         "blocks": [
+           {"h": "Bentuk molekul (A pusat, X pasangan ikatan, E pasangan bebas)", "wide": true, "table": {"cols": ["Tipe", "Bentuk", "Sudut", "Contoh", "Hibridisasi"], "rows": [
+             ["AX₂", "Linear", "180°", "CO₂, BeCl₂", "sp"],
+             ["AX₃", "Segitiga datar", "120°", "BF₃", "sp²"],
+             ["AX₄", "Tetrahedral", "109,5°", "CH₄", "sp³"],
+             ["AX₃E", "Piramida segitiga", "±107°", "NH₃", "sp³"],
+             ["AX₂E₂", "Bentuk V (bengkok)", "±104,5°", "H₂O", "sp³"],
+             ["AX₅", "Bipiramida segitiga", "90° dan 120°", "PCl₅", "sp³d"],
+             ["AX₆", "Oktahedral", "90°", "SF₆", "sp³d²"]]}},
+           {"h": "Gaya antarmolekul", "li": [
+             "Gaya London (dispersi): pada semua molekul, makin kuat bila massa molekul makin besar.",
+             "Dipol-dipol: antara molekul polar.",
+             "<b>Ikatan hidrogen</b>: H yang terikat pada F, O, atau N; paling kuat di antara ketiganya. Menjelaskan titik didih air yang tinggi."]}
+         ],
+         "traps": ["Pasangan elektron bebas menekan sudut ikatan: sudut H₂O lebih kecil daripada NH₃, yang lebih kecil daripada CH₄."]}
+      ]
+    },
+    {
+      "id": "STO", "name": "Reaksi dan stoikiometri", "short": "Stoikiometri",
+      "note": "Tata nama, persamaan reaksi, hukum dasar, konsep mol, redoks, dan larutan elektrolit.",
+      "topics": [
+        {"code": "STO-01", "title": "Tata nama senyawa dan persamaan reaksi", "scope": "Nama IUPAC, menyetarakan reaksi", "src": "Kelas X", "tier": 2,
+         "sum": "Aturan penamaan senyawa ion, kovalen biner, asam, dan basa, serta cara menulis dan menyetarakan persamaan reaksi.",
+         "blocks": [
+           {"h": "Tata nama", "li": [
+             "Senyawa ion: nama kation lalu anion. NaCl natrium klorida; CaCO₃ kalsium karbonat.",
+             "Logam dengan beberapa muatan memakai angka Romawi: FeCl₂ besi(II) klorida, FeCl₃ besi(III) klorida.",
+             "Kovalen biner memakai awalan mono-, di-, tri-, tetra-, penta-: CO karbon monoksida, N₂O₅ dinitrogen pentaoksida.",
+             "Asam: HCl asam klorida, H₂SO₄ asam sulfat, HNO₃ asam nitrat, CH₃COOH asam asetat (asam etanoat)."]},
+           {"h": "Persamaan reaksi", "li": [
+             "Wujud ditulis (s) padat, (l) cair, (g) gas, (aq) larutan dalam air.",
+             "Menyetarakan: jumlah atom tiap unsur di ruas kiri sama dengan di ruas kanan; yang diubah hanya koefisien, bukan indeks rumus kimia."]}
+         ]},
+
+        {"code": "STO-02", "title": "Hukum dasar kimia", "scope": "Lavoisier sampai Avogadro", "src": "Kelas X", "tier": 1,
+         "sum": "Lima hukum dasar kimia dan tokohnya: kekekalan massa, perbandingan tetap, kelipatan perbandingan, perbandingan volume, dan hipotesis Avogadro.",
+         "blocks": [
+           {"h": "Hukum", "table": {"cols": ["Hukum", "Tokoh", "Isi"], "rows": [
+             ["Kekekalan massa", "Lavoisier", "Massa zat sebelum dan sesudah reaksi sama (dalam sistem tertutup)"],
+             ["Perbandingan tetap", "Proust", "Perbandingan massa unsur dalam suatu senyawa selalu tetap"],
+             ["Kelipatan perbandingan", "Dalton", "Bila dua unsur membentuk lebih dari satu senyawa, perbandingan massanya berupa bilangan bulat sederhana"],
+             ["Perbandingan volume", "Gay-Lussac", "Pada suhu dan tekanan sama, perbandingan volume gas yang bereaksi berupa bilangan bulat sederhana"],
+             ["Hipotesis Avogadro", "Avogadro", "Pada suhu dan tekanan sama, gas bervolume sama mengandung jumlah molekul sama"]]}}
+         ],
+         "traps": ["Hukum Proust tentang satu senyawa; hukum Dalton tentang dua unsur yang membentuk beberapa senyawa."]},
+
+        {"code": "STO-03", "title": "Konsep mol dan stoikiometri", "scope": "Mol, rumus empiris, pereaksi pembatas", "src": "Kelas X–XI", "tier": 1,
+         "sum": "Hubungan mol dengan massa, jumlah partikel, dan volume gas; rumus empiris dan molekul; perhitungan reaksi dan pereaksi pembatas.",
+         "blocks": [
+           {"h": "Hubungan mol", "li": [
+             "<b>n = m/M<sub>r</sub> = N/N<sub>A</sub></b>, dengan N<sub>A</sub> = 6,02 × 10²³ partikel/mol.",
+             "Gas pada STP (0 °C, 1 atm): V = n × 22,4 L. Pada RTP (25 °C, 1 atm): ±24,4 L/mol.",
+             "Gas ideal: PV = nRT, dengan R = 0,082 L·atm/(mol·K).",
+             "Molaritas M = n/V (mol/L)."]},
+           {"h": "Stoikiometri", "li": [
+             "Perbandingan koefisien reaksi = perbandingan mol (dan volume, untuk gas pada suhu dan tekanan sama).",
+             "Pereaksi pembatas: zat yang habis lebih dulu; tentukan dengan membandingkan mol/koefisien tiap pereaksi, yang terkecil membatasi.",
+             "Rumus empiris dari perbandingan mol unsur; rumus molekul = (rumus empiris)<sub>n</sub> dengan n = M<sub>r</sub> molekul / M<sub>r</sub> empiris.",
+             "Kadar unsur dalam senyawa = (jumlah atom × A<sub>r</sub> / M<sub>r</sub>) × 100%."]}
+         ],
+         "traps": ["Volume 22,4 L/mol hanya untuk gas pada STP, bukan untuk cairan atau padatan.", "Hasil reaksi dihitung dari pereaksi pembatas, bukan dari pereaksi yang tersisa."]},
+
+        {"code": "STO-04", "title": "Reaksi redoks", "scope": "Bilangan oksidasi, oksidator, reduktor", "src": "Kelas X", "tier": 1,
+         "sum": "Perkembangan konsep reduksi-oksidasi, aturan bilangan oksidasi, oksidator dan reduktor, serta reaksi autoredoks.",
+         "blocks": [
+           {"h": "Konsep", "li": [
+             "Oksidasi: pengikatan oksigen, pelepasan elektron, atau <b>kenaikan bilangan oksidasi</b>. Reduksi kebalikannya.",
+             "Reduktor mengalami oksidasi; oksidator mengalami reduksi.",
+             "Autoredoks (disproporsionasi): satu zat mengalami oksidasi dan reduksi sekaligus, contoh Cl₂ + 2NaOH → NaCl + NaClO + H₂O."]},
+           {"h": "Aturan bilangan oksidasi", "li": [
+             "Unsur bebas: 0. Jumlah biloks dalam senyawa netral: 0; dalam ion: sama dengan muatannya.",
+             "Logam golongan IA: +1; IIA: +2.",
+             "H umumnya +1, kecuali dalam hidrida logam (NaH): −1.",
+             "O umumnya −2, kecuali peroksida (H₂O₂): −1, dan OF₂: +2."]}
+         ],
+         "traps": ["Reduktor adalah zat yang teroksidasi, bukan yang tereduksi."]},
+
+        {"code": "STO-05", "title": "Larutan elektrolit dan nonelektrolit", "scope": "Daya hantar listrik", "src": "Kelas X", "tier": 2,
+         "sum": "Penggolongan larutan berdasarkan daya hantar listrik dan derajat ionisasinya.",
+         "blocks": [
+           {"h": "Penggolongan", "table": {"cols": ["Jenis", "Derajat ionisasi α", "Pengamatan uji", "Contoh"], "rows": [
+             ["Elektrolit kuat", "α = 1", "Lampu menyala terang, banyak gelembung", "NaCl, HCl, NaOH, H₂SO₄"],
+             ["Elektrolit lemah", "0 &lt; α &lt; 1", "Lampu redup atau mati, sedikit gelembung", "CH₃COOH, NH₃, HF"],
+             ["Nonelektrolit", "α = 0", "Lampu mati, tidak ada gelembung", "Gula, urea, alkohol"]]}}
+         ],
+         "traps": ["Senyawa kovalen polar seperti HCl bersifat elektrolit kuat bila dilarutkan dalam air."]}
+      ]
+    },
+    {
+      "id": "ENE", "name": "Energi, laju, dan kesetimbangan", "short": "Energi & laju",
+      "note": "Perubahan entalpi, laju reaksi, dan kesetimbangan kimia.",
+      "topics": [
+        {"code": "ENE-01", "title": "Termokimia", "scope": "Entalpi, Hess, energi ikatan", "src": "Kelas XI", "tier": 1,
+         "sum": "Reaksi eksoterm dan endoterm, jenis perubahan entalpi standar, kalorimetri, hukum Hess, dan energi ikatan.",
+         "blocks": [
+           {"h": "Konsep", "li": [
+             "ΔH = H<sub>produk</sub> − H<sub>reaktan</sub>. Eksoterm: ΔH &lt; 0 (melepas kalor, lingkungan memanas). Endoterm: ΔH &gt; 0.",
+             "Entalpi standar: pembentukan (ΔH<sub>f</sub>°), penguraian (ΔH<sub>d</sub>°), pembakaran (ΔH<sub>c</sub>°), diukur per 1 mol pada 25 °C dan 1 atm.",
+             "ΔH<sub>f</sub>° unsur dalam bentuk paling stabil = 0."]},
+           {"h": "Menghitung ΔH", "li": [
+             "Kalorimeter: q = m · c · ΔT; ΔH = −q/n.",
+             "<b>Hukum Hess</b>: ΔH reaksi hanya bergantung pada keadaan awal dan akhir, tidak pada jalannya reaksi.",
+             "Dari entalpi pembentukan: ΔH = ΣΔH<sub>f</sub>° produk − ΣΔH<sub>f</sub>° reaktan.",
+             "Dari energi ikatan: ΔH = Σ energi ikatan yang diputus − Σ energi ikatan yang dibentuk."]}
+         ],
+         "traps": ["Rumus energi ikatan urutannya reaktan dikurangi produk, kebalikan rumus entalpi pembentukan.", "Membalik persamaan reaksi membalik tanda ΔH; mengalikan koefisien mengalikan ΔH."]},
+
+        {"code": "ENE-02", "title": "Laju reaksi", "scope": "Faktor, orde, persamaan laju", "src": "Kelas XI", "tier": 1,
+         "sum": "Pengertian laju reaksi, teori tumbukan, faktor-faktor yang memengaruhi, serta persamaan laju dan orde reaksi.",
+         "blocks": [
+           {"h": "Konsep", "li": [
+             "Laju = perubahan konsentrasi per satuan waktu (M/s).",
+             "Teori tumbukan: reaksi terjadi bila partikel bertumbukan dengan arah tepat dan energi ≥ energi aktivasi (E<sub>a</sub>).",
+             "Faktor yang mempercepat: konsentrasi lebih besar, luas permukaan lebih besar (serbuk), suhu lebih tinggi, dan katalis.",
+             "Katalis mempercepat reaksi dengan menurunkan energi aktivasi, tanpa ikut habis bereaksi."]},
+           {"h": "Persamaan laju", "li": [
+             "Untuk reaksi aA + bB → produk: <b>v = k[A]<sup>x</sup>[B]<sup>y</sup></b>; x + y = orde total.",
+             "Orde ditentukan dari data percobaan, tidak dari koefisien reaksi (kecuali reaksi elementer).",
+             "Pada banyak soal dinyatakan laju menjadi 2 kali tiap kenaikan suhu 10 °C; gunakan angka yang diberikan soal."]}
+         ],
+         "traps": ["Katalis tidak mengubah ΔH reaksi dan tidak menggeser kesetimbangan."]},
+
+        {"code": "ENE-03", "title": "Kesetimbangan kimia", "scope": "Kc, Kp, Le Chatelier", "src": "Kelas XI", "tier": 1,
+         "sum": "Kesetimbangan dinamis, tetapan kesetimbangan Kc dan Kp, asas Le Chatelier, dan penerapannya di industri.",
+         "blocks": [
+           {"h": "Tetapan kesetimbangan", "li": [
+             "Untuk aA + bB ⇌ cC + dD: K<sub>c</sub> = [C]<sup>c</sup>[D]<sup>d</sup>/([A]<sup>a</sup>[B]<sup>b</sup>). Zat padat dan cair murni tidak dimasukkan.",
+             "K<sub>p</sub> = K<sub>c</sub>(RT)<sup>Δn</sup>, Δn = jumlah koefisien gas produk − reaktan.",
+             "Derajat disosiasi α = mol terurai / mol mula-mula."]},
+           {"h": "Asas Le Chatelier", "li": [
+             "Konsentrasi zat ditambah: kesetimbangan bergeser menjauhi zat itu.",
+             "Tekanan dinaikkan (volume diperkecil): bergeser ke ruas dengan jumlah mol gas lebih kecil.",
+             "Suhu dinaikkan: bergeser ke arah reaksi endoterm.",
+             "Industri: proses Haber-Bosch (N₂ + 3H₂ ⇌ 2NH₃, ΔH = −92 kJ) dan proses kontak (2SO₂ + O₂ ⇌ 2SO₃, katalis V₂O₅)."]}
+         ],
+         "traps": ["Hanya perubahan suhu yang mengubah nilai K; konsentrasi dan tekanan hanya menggeser posisi kesetimbangan."]}
+      ]
+    },
+    {
+      "id": "LAR", "name": "Larutan", "short": "Larutan",
+      "note": "Asam basa, larutan penyangga, hidrolisis, kelarutan, sifat koligatif, dan koloid.",
+      "topics": [
+        {"code": "LAR-01", "title": "Asam, basa, dan pH", "scope": "Teori asam basa, pH, titrasi", "src": "Kelas XI–XII", "tier": 1,
+         "sum": "Teori asam-basa Arrhenius, Brønsted-Lowry, dan Lewis; menghitung pH asam dan basa kuat dan lemah; indikator dan titrasi.",
+         "blocks": [
+           {"h": "Teori", "table": {"cols": ["Teori", "Asam", "Basa"], "rows": [
+             ["Arrhenius", "Menghasilkan H⁺ dalam air", "Menghasilkan OH⁻ dalam air"],
+             ["Brønsted-Lowry", "Donor proton (H⁺)", "Akseptor proton; membentuk pasangan asam-basa konjugasi"],
+             ["Lewis", "Akseptor pasangan elektron", "Donor pasangan elektron"]]}},
+           {"h": "Menghitung pH (25 °C)", "li": [
+             "pH = −log[H⁺]; pOH = −log[OH⁻]; pH + pOH = 14 (K<sub>w</sub> = 10⁻¹⁴).",
+             "Asam kuat: [H⁺] = a · M (a = valensi asam). Basa kuat: [OH⁻] = b · M.",
+             "Asam lemah: <b>[H⁺] = √(K<sub>a</sub> · M)</b>. Basa lemah: [OH⁻] = √(K<sub>b</sub> · M)."]},
+           {"h": "Indikator dan titrasi", "li": [
+             "Fenolftalein: tidak berwarna → merah muda pada pH ±8,3–10. Metil oranye: merah → kuning pada pH ±3,1–4,4. Bromtimol biru: kuning → biru pada pH ±6,0–7,6.",
+             "Titrasi: pada titik ekuivalen mol H⁺ = mol OH⁻, yaitu a · M<sub>a</sub> · V<sub>a</sub> = b · M<sub>b</sub> · V<sub>b</sub>."]}
+         ],
+         "traps": ["Pengenceran 10 kali asam kuat menaikkan pH 1 satuan; pH asam lemah naik lebih sedikit."]},
+
+        {"code": "LAR-02", "title": "Larutan penyangga", "scope": "Buffer asam dan basa", "src": "Kelas XII", "tier": 1,
+         "sum": "Komponen larutan penyangga, cara menghitung pH-nya, dan peran penyangga dalam tubuh.",
+         "blocks": [
+           {"h": "Rumus", "li": [
+             "Penyangga asam (asam lemah + basa konjugasinya, misalnya CH₃COOH + CH₃COONa): [H⁺] = K<sub>a</sub> × (mol asam / mol basa konjugasi).",
+             "Penyangga basa (basa lemah + asam konjugasinya, misalnya NH₃ + NH₄Cl): [OH⁻] = K<sub>b</sub> × (mol basa / mol asam konjugasi).",
+             "Penyangga dapat terbentuk dari asam lemah berlebih yang direaksikan dengan basa kuat.",
+             "pH penyangga hampir tidak berubah bila ditambah sedikit asam, basa, atau diencerkan."]},
+           {"h": "Dalam tubuh", "li": ["Darah: penyangga karbonat (H₂CO₃/HCO₃⁻) menjaga pH ±7,4. Dalam sel: penyangga fosfat (H₂PO₄⁻/HPO₄²⁻)."]}
+         ],
+         "traps": ["Penyangga dari asam lemah dan basa kuat hanya terbentuk bila asam lemahnya bersisa; bila habis tepat, yang terjadi hidrolisis."]},
+
+        {"code": "LAR-03", "title": "Hidrolisis garam", "scope": "Sifat larutan garam", "src": "Kelas XII", "tier": 2,
+         "sum": "Reaksi ion garam dengan air dan cara menghitung pH larutan garam menurut asam dan basa pembentuknya.",
+         "blocks": [
+           {"h": "Jenis dan rumus", "table": {"cols": ["Garam dari", "Sifat", "Rumus"], "rows": [
+             ["Asam kuat + basa kuat (NaCl)", "Netral, tidak terhidrolisis", "pH = 7"],
+             ["Asam lemah + basa kuat (CH₃COONa)", "Basa, hidrolisis sebagian", "[OH⁻] = √((K<sub>w</sub>/K<sub>a</sub>) · [anion])"],
+             ["Asam kuat + basa lemah (NH₄Cl)", "Asam, hidrolisis sebagian", "[H⁺] = √((K<sub>w</sub>/K<sub>b</sub>) · [kation])"],
+             ["Asam lemah + basa lemah (CH₃COONH₄)", "Bergantung K<sub>a</sub> dan K<sub>b</sub>, hidrolisis total", "[H⁺] = √(K<sub>w</sub> · K<sub>a</sub>/K<sub>b</sub>)"]]}}
+         ],
+         "traps": ["Sifat garam mengikuti komponen yang kuat: garam dari asam kuat dan basa lemah bersifat asam."]},
+
+        {"code": "LAR-04", "title": "Kelarutan dan hasil kali kelarutan", "scope": "Ksp, ion senama, pengendapan", "src": "Kelas XII", "tier": 2,
+         "sum": "Hubungan kelarutan dengan Ksp, pengaruh ion senama, dan cara meramalkan terbentuknya endapan.",
+         "blocks": [
+           {"h": "Rumus", "li": [
+             "Untuk A<sub>x</sub>B<sub>y</sub>: K<sub>sp</sub> = (xs)<sup>x</sup>(ys)<sup>y</sup>, s = kelarutan (mol/L).",
+             "Contoh: AgCl, K<sub>sp</sub> = s²; Ag₂CrO₄, K<sub>sp</sub> = 4s³.",
+             "Ion senama memperkecil kelarutan.",
+             "Pengendapan: hitung Q<sub>c</sub> dari konsentrasi ion. Q<sub>c</sub> &lt; K<sub>sp</sub> belum jenuh; = jenuh; &gt; terbentuk endapan."]}
+         ],
+         "traps": ["Ksp lebih kecil tidak selalu berarti kelarutan lebih kecil bila rumus garamnya berbeda tipe (AgCl dibanding Ag₂CrO₄)."]},
+
+        {"code": "LAR-05", "title": "Sifat koligatif larutan", "scope": "ΔP, ΔTb, ΔTf, tekanan osmotik", "src": "Kelas XII", "tier": 1,
+         "sum": "Empat sifat koligatif yang bergantung pada jumlah partikel zat terlarut, termasuk faktor van't Hoff untuk elektrolit.",
+         "blocks": [
+           {"h": "Rumus", "li": [
+             "Penurunan tekanan uap: ΔP = X<sub>terlarut</sub> · P°.",
+             "Kenaikan titik didih: ΔT<sub>b</sub> = K<sub>b</sub> · m · i. Penurunan titik beku: ΔT<sub>f</sub> = K<sub>f</sub> · m · i.",
+             "Tekanan osmotik: π = M · R · T · i.",
+             "Faktor van't Hoff: i = 1 + (n − 1)α; nonelektrolit i = 1.",
+             "Untuk air: K<sub>b</sub> = 0,52 °C/m; K<sub>f</sub> = 1,86 °C/m."]},
+           {"h": "Penerapan", "li": ["Garam di jalan bersalju, cairan infus isotonik, pengawetan dengan garam, dan desalinasi air laut (osmosis balik)."]}
+         ],
+         "traps": ["Molalitas (m, mol per kg pelarut) berbeda dari molaritas (M, mol per liter larutan).", "NaCl 0,1 m menurunkan titik beku sekitar dua kali glukosa 0,1 m, karena i ≈ 2."]},
+
+        {"code": "LAR-06", "title": "Sistem koloid", "scope": "Jenis, sifat, pembuatan", "src": "Kelas XII", "tier": 2,
+         "sum": "Perbedaan larutan, koloid, dan suspensi; jenis koloid; sifat-sifatnya; dan cara pembuatannya.",
+         "blocks": [
+           {"h": "Jenis koloid", "table": {"cols": ["Fase terdispersi", "Medium", "Nama", "Contoh"], "rows": [
+             ["Padat", "Cair", "Sol", "Tinta, cat"], ["Cair", "Cair", "Emulsi", "Susu, santan, mayones"],
+             ["Gas", "Cair", "Buih", "Busa sabun"], ["Cair", "Gas", "Aerosol cair", "Kabut"],
+             ["Padat", "Gas", "Aerosol padat", "Asap"], ["Cair", "Padat", "Gel (emulsi padat)", "Agar-agar, jeli"],
+             ["Gas", "Padat", "Buih padat", "Batu apung, styrofoam"]]}},
+           {"h": "Sifat dan pembuatan", "li": [
+             "Efek Tyndall (menghamburkan cahaya), gerak Brown, adsorpsi, koagulasi, dialisis (cuci darah), elektroforesis.",
+             "Koloid liofil (suka medium, stabil) dan liofob (tidak suka medium).",
+             "Pembuatan: kondensasi (partikel kecil digabung) atau dispersi (partikel besar dipecah)."]}
+         ],
+         "traps": ["Larutan sejati tidak menunjukkan efek Tyndall; koloid menunjukkannya."]}
+      ]
+    },
+    {
+      "id": "ELK", "name": "Elektrokimia", "short": "Elektrokimia",
+      "note": "Sel volta, korosi, dan elektrolisis.",
+      "topics": [
+        {"code": "ELK-01", "title": "Sel volta dan korosi", "scope": "Potensial sel, deret volta", "src": "Kelas XII", "tier": 1,
+         "sum": "Sel yang mengubah energi kimia menjadi listrik: susunan, potensial sel standar, deret volta, sel dalam kehidupan, dan korosi.",
+         "blocks": [
+           {"h": "Sel volta", "li": [
+             "Anoda: oksidasi, kutub negatif. Katoda: reduksi, kutub positif.",
+             "<b>E°<sub>sel</sub> = E°<sub>katoda</sub> − E°<sub>anoda</sub></b>; reaksi berlangsung spontan bila E°<sub>sel</sub> &gt; 0.",
+             "Contoh: Zn | Zn²⁺ || Cu²⁺ | Cu, dengan E° Zn = −0,76 V dan Cu = +0,34 V, sehingga E°<sub>sel</sub> = 1,10 V.",
+             "Deret volta: Li K Ba Ca Na Mg Al Mn (H₂O) Zn Cr Fe Cd Co Ni Sn Pb (H) Sb Bi Cu Hg Ag Pt Au.",
+             "Logam di kiri deret lebih mudah teroksidasi dan dapat mendesak ion logam di kanannya dari larutan."]},
+           {"h": "Korosi", "li": [
+             "Perkaratan besi adalah reaksi redoks yang memerlukan oksigen dan air; karat Fe₂O₃ · xH₂O.",
+             "Pencegahan: pengecatan, pelumuran oli, galvanisasi (pelapisan seng), dan proteksi katodik (menghubungkan dengan logam lebih aktif seperti Mg)."]}
+         ],
+         "traps": ["Di sel volta anoda bermuatan negatif; di sel elektrolisis anoda bermuatan positif. Di keduanya anoda tempat oksidasi."]},
+
+        {"code": "ELK-02", "title": "Elektrolisis dan hukum Faraday", "scope": "Reaksi di elektrode, massa endapan", "src": "Kelas XII", "tier": 1,
+         "sum": "Sel yang memakai listrik untuk menjalankan reaksi: reaksi di katoda dan anoda, hukum Faraday, dan penerapannya.",
+         "blocks": [
+           {"h": "Reaksi di elektrode (larutan, elektrode inert)", "li": [
+             "Katoda (−, reduksi): ion logam aktif (golongan IA, IIA, Al, Mn) tidak tereduksi; yang tereduksi air: 2H₂O + 2e⁻ → H₂ + 2OH⁻. Ion H⁺ dan ion logam lain tereduksi.",
+             "Anoda (+, oksidasi): ion sisa asam oksi (SO₄²⁻, NO₃⁻) tidak teroksidasi; yang teroksidasi air: 2H₂O → O₂ + 4H⁺ + 4e⁻. Ion halida membentuk X₂.",
+             "Anoda tidak inert (misalnya Cu): logam anoda itu sendiri yang teroksidasi.",
+             "Lelehan (tanpa air): kation tereduksi di katoda dan anion teroksidasi di anoda."]},
+           {"h": "Hukum Faraday", "li": [
+             "<b>w = (e · i · t)/96.500</b>, dengan e = A<sub>r</sub>/muatan ion, i dalam ampere, t dalam detik.",
+             "Hukum II: untuk muatan listrik sama, w₁/w₂ = e₁/e₂.",
+             "Penerapan: penyepuhan (benda yang dilapisi di katoda), pemurnian tembaga, produksi aluminium dan NaOH."]}
+         ],
+         "traps": ["Elektrolisis larutan NaCl menghasilkan H₂ di katoda, bukan logam Na."]}
+      ]
+    },
+    {
+      "id": "ORG", "name": "Kimia karbon dan makromolekul", "short": "Organik",
+      "note": "Hidrokarbon, gugus fungsi, benzena, dan makromolekul.",
+      "topics": [
+        {"code": "ORG-01", "title": "Hidrokarbon dan minyak bumi", "scope": "Alkana, alkena, alkuna, fraksi minyak", "src": "Kelas XI", "tier": 2,
+         "sum": "Kekhasan atom karbon, golongan hidrokarbon dan tata namanya, isomer, serta pengolahan minyak bumi dan dampak pembakarannya.",
+         "blocks": [
+           {"h": "Hidrokarbon", "table": {"cols": ["Golongan", "Rumus umum", "Ikatan", "Contoh"], "rows": [
+             ["Alkana", "C<sub>n</sub>H<sub>2n+2</sub>", "Tunggal (jenuh)", "Metana CH₄"],
+             ["Alkena", "C<sub>n</sub>H<sub>2n</sub>", "Satu rangkap dua", "Etena C₂H₄"],
+             ["Alkuna", "C<sub>n</sub>H<sub>2n−2</sub>", "Satu rangkap tiga", "Etuna C₂H₂"]]}},
+           {"h": "Tata nama dan isomer", "li": [
+             "Tentukan rantai terpanjang, beri nomor dari ujung terdekat cabang (atau ikatan rangkap), lalu tulis cabang menurut abjad.",
+             "Atom C primer, sekunder, tersier, kuaterner: terikat pada 1, 2, 3, 4 atom C lain.",
+             "Isomer struktur: rumus molekul sama, susunan berbeda. Isomer geometri (cis-trans) pada alkena."]},
+           {"h": "Minyak bumi", "li": [
+             "Dipisahkan dengan distilasi bertingkat berdasarkan perbedaan titik didih.",
+             "Mutu bensin dinyatakan bilangan oktan: isooktana = 100, n-heptana = 0.",
+             "Pembakaran tidak sempurna menghasilkan CO yang beracun karena mengikat hemoglobin."]}
+         ],
+         "traps": ["Penomoran rantai dimulai dari ujung yang paling dekat dengan cabang, bukan selalu dari kiri."]},
+
+        {"code": "ORG-02", "title": "Gugus fungsi senyawa karbon", "scope": "Alkohol sampai ester", "src": "Kelas XII", "tier": 1,
+         "sum": "Gugus fungsi alkohol, eter, aldehida, keton, asam karboksilat, ester, dan haloalkana: tata nama, isomer fungsi, uji, dan reaksi.",
+         "blocks": [
+           {"h": "Gugus fungsi", "wide": true, "table": {"cols": ["Golongan", "Gugus", "Nama IUPAC", "Contoh"], "rows": [
+             ["Alkohol", "R–OH", "Alkanol", "Etanol"],
+             ["Eter", "R–O–R'", "Alkoksialkana", "Metoksimetana"],
+             ["Aldehida", "R–CHO", "Alkanal", "Metanal (formalin)"],
+             ["Keton", "R–CO–R'", "Alkanon", "Propanon (aseton)"],
+             ["Asam karboksilat", "R–COOH", "Asam alkanoat", "Asam etanoat (cuka)"],
+             ["Ester", "R–COO–R'", "Alkil alkanoat", "Etil etanoat"],
+             ["Haloalkana", "R–X", "Haloalkana", "Kloroform (triklorometana)"]]}},
+           {"h": "Isomer dan reaksi", "li": [
+             "Isomer fungsi: alkohol dengan eter, aldehida dengan keton, asam karboksilat dengan ester.",
+             "Uji Tollens (cermin perak) dan Fehling (endapan merah bata) positif untuk aldehida, negatif untuk keton.",
+             "<b>Esterifikasi</b>: asam karboksilat + alkohol → ester + air (ester beraroma buah)."]}
+         ],
+         "traps": ["Aldehida dan keton sama-sama punya gugus karbonil; bedanya letak karbonil (ujung atau tengah rantai)."]},
+
+        {"code": "ORG-03", "title": "Benzena dan turunannya", "scope": "Struktur, reaksi, turunan", "src": "Kelas XII", "tier": 2,
+         "sum": "Struktur benzena menurut Kekulé dan resonansi, reaksi substitusi, tata nama turunan benzena, dan kegunaannya.",
+         "blocks": [
+           {"h": "Konsep", "li": [
+             "Kekulé (1865) mengusulkan cincin enam atom C dengan ikatan rangkap berselang-seling; elektronnya terdelokalisasi (resonansi).",
+             "Benzena lebih mudah mengalami substitusi daripada adisi: halogenasi, nitrasi, sulfonasi, dan alkilasi (Friedel-Crafts).",
+             "Turunan: toluena (metilbenzena), fenol (hidroksibenzena), anilina (aminobenzena), asam benzoat, nitrobenzena, stirena.",
+             "Posisi dua substituen: orto (1,2), meta (1,3), para (1,4)."]}
+         ]},
+
+        {"code": "ORG-04", "title": "Makromolekul", "scope": "Polimer, karbohidrat, protein, lemak", "src": "Kelas XII", "tier": 2,
+         "sum": "Polimer sintetis dan alami, jenis karbohidrat, protein dan uji-ujinya, serta lemak dan reaksi penyabunan.",
+         "blocks": [
+           {"h": "Polimer", "li": [
+             "Polimerisasi adisi (monomer berikatan rangkap): polietena (plastik), PVC, teflon.",
+             "Polimerisasi kondensasi (melepas molekul kecil seperti air): nilon, poliester (dakron), protein, amilum."]},
+           {"h": "Biomolekul", "li": [
+             "Monosakarida: glukosa, fruktosa, galaktosa. Disakarida: sukrosa (glukosa + fruktosa), laktosa (glukosa + galaktosa), maltosa (glukosa + glukosa). Polisakarida: amilum, glikogen, selulosa.",
+             "Uji karbohidrat: iodin (amilum biru tua), Benedict atau Fehling (gula pereduksi; sukrosa negatif).",
+             "Protein tersusun dari asam amino yang dihubungkan ikatan peptida. Uji biuret (ungu, ikatan peptida), xantoproteat (jingga, cincin benzena), timbal(II) asetat (hitam, belerang).",
+             "Lemak adalah ester gliserol dan asam lemak; direaksikan dengan basa kuat menjadi sabun (saponifikasi)."]}
+         ],
+         "traps": ["Sukrosa bukan gula pereduksi, jadi uji Benedict atau Fehling-nya negatif."]}
+      ]
+    }
+  ],
+  "notes": [
+    {"title": "Perlu diperhatikan", "items": [
+      "Kelas X Kurikulum Merdeka membahas kimia di dalam mata pelajaran IPA; kelas XI dan XII memakai buku Kimia (mata pelajaran pilihan). Sumber berbeda menempatkan stoikiometri di kelas X, XI, atau XII.",
+      "Volume molar: buku sekolah memakai 22,4 L/mol untuk STP (0 °C, 1 atm). Definisi IUPAC terbaru memakai 1 bar sehingga nilainya 22,7 L/mol; ikuti angka di soal.",
+      "Rentang perubahan warna indikator dibulatkan; buku yang berbeda memberi angka sedikit berbeda."]},
+    {"title": "Rujukan", "items": [
+      "Buku teks Kimia Kurikulum Merdeka kelas XI (Munasprianto Ramli dkk., 2022) dan kelas XII (Kemendikbudristek). Daftar bab dicocokkan lewat ringkasan Tirto, Kumparan, dan Mamikos karena PDF resmi tidak dapat dibuka dari lingkungan kerja.",
+      "Data potensial elektrode, K<sub>b</sub> dan K<sub>f</sub> air, serta tetapan lain mengikuti nilai baku di buku kimia SMA."]}
+  ]
+}
