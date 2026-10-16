@@ -1,6 +1,6 @@
 # Bank LCCM Sejarah
 
-Study tools for a history competition in the Lomba Cerdas Cermat Museum (LCCM) style, with three areas: Sejarah Nasional Indonesia (40%), Kebudayaan (30%), and Permuseuman dan Cagar Budaya (30%).
+High-school study maps, starting with tools for a history competition in the Lomba Cerdas Cermat Museum (LCCM) style, with three areas: Sejarah Nasional Indonesia (40%), Kebudayaan (30%), and Permuseuman dan Cagar Budaya (30%).
 
 | Page | What it is for |
 |---|---|
@@ -8,6 +8,7 @@ Study tools for a history competition in the Lomba Cerdas Cermat Museum (LCCM) s
 | `docs/peta.html` | Knowledge map: 23 topics ("simpul"), each with a code such as `SNI-04`, key facts, and commonly confused facts. |
 | `docs/bank.html` | Question bank: practice (weighted 40/30/30, optional timer), full list, and per-topic progress. |
 | `docs/simulasi.html` | Round simulator for a moderator: compulsory round (babak wajib) with passed-on questions, buzzer round (babak rebutan), 1–3 teams, scoreboard, and a list of missed questions. |
+| `docs/peta-fisika.html` | Knowledge map for high-school physics (30 topics), the first of the general subject maps. |
 
 Every question carries the code of the topic it tests, so a weak result links straight back to the map. Pages are static HTML; practice progress is stored in the viewer's own browser.
 
@@ -16,7 +17,9 @@ Every question carries the code of the topic it tests, so a weak result links st
 ```
 data/topics.json        domains, weights, topic codes and titles
 data/questions.csv      the question bank (source of truth; edit this)
+data/maps/<id>.json     one knowledge map per subject; becomes docs/peta-<id>.html
 templates/*.html        page sources; each becomes docs/<same name>
+templates/_map.html     shared page for every subject map (files starting with _ are not built directly)
 scripts/build.py        checks the data, then builds docs/
 tests/test_build.py     tests for the checks and the build
 docs/                   the built site (GitHub Pages serves this folder)
@@ -41,11 +44,22 @@ Keep ids stable. Practice results are stored per id, so renumbering would scramb
 
 To check everything locally: `python scripts/build.py && python -m unittest discover -s tests`.
 
+## Adding a subject map
+
+The history map (`templates/peta.html`) predates this format and still has its content inside the page. New subjects use data files:
+
+1. Copy `data/maps/fisika.json` to `data/maps/<id>.json` (for example `kimia.json`) and set `"id"` to the same name.
+2. Fill in `domains` (groups of topics) and their `topics`. Each topic has a `code` starting with its domain id (`MEK-03`), a `tier` (1 inti, 2 penting, 3 pelengkap), a summary, `blocks` of bullet lists (`li`) or tables (`table`), and optional `traps` (commonly confused facts). `path` is an optional study-order strip whose steps point at topic codes.
+3. Run `python scripts/build.py`. It checks for missing fields, duplicate codes, codes outside their domain, bad tiers, malformed tables, and path steps pointing at unknown codes.
+4. Add a link to the new map in `templates/index.html`.
+
+Text may contain simple HTML (`<b>`, `<i>`, `<sub>`, `<sup>`). Unicode superscripts and subscripts such as `10⁻¹⁹` or `H₂O` are converted to `<sup>`/`<sub>` when the page loads, because the page fonts lack those glyphs.
+
 ## Publishing
 
 In the repository settings, under Pages, choose "Deploy from a branch", branch `main`, folder `/docs`. The site will be at `https://<user>.github.io/<repo>/`. GitHub Pages on a free account requires a public repository; nothing here is personal data.
 
-Private copies of the map, bank, and simulator are also hosted on claude.ai. `python scripts/build.py --artifact` writes those versions to `build/` (git-ignored); they link to each other by URL instead of by file name. The URLs are listed in `ARTIFACT_URLS` in `scripts/build.py`.
+Private copies of the history map, bank, simulator, and physics map are also hosted on claude.ai. `python scripts/build.py --artifact` writes those versions to `build/` (git-ignored); they link to each other by URL instead of by file name, and to the GitHub Pages site for pages without a hosted copy. The URLs are listed in `ARTIFACT_URLS` and `PAGES_URL` in `scripts/build.py`.
 
 ## Assumptions to confirm
 
