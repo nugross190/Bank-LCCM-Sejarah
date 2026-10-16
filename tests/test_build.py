@@ -119,5 +119,21 @@ class MapsTest(unittest.TestCase):
             self.assertIn(f"<title>{m['title']}</title>", body)
 
 
+class SiteTest(unittest.TestCase):
+    def test_build_writes_site_files(self):
+        topics, rows = build.load()
+        build.build(topics, rows, build.load_maps(), artifact=False)
+        docs = build.ROOT / "docs"
+        self.assertTrue((docs / ".nojekyll").exists(), "docs/.nojekyll stops Jekyll from processing the site")
+        page = (docs / "404.html").read_text(encoding="utf-8")
+        self.assertNotIn("__SITE_BASE__", page)
+        self.assertIn(f'href="{build.SITE_BASE}"', page)
+        self.assertTrue(build.SITE_BASE.startswith("/") and build.SITE_BASE.endswith("/"))
+
+    def test_root_index_forwards_to_docs(self):
+        page = (build.ROOT / "index.html").read_text(encoding="utf-8")
+        self.assertIn('url=docs/', page)
+
+
 if __name__ == "__main__":
     unittest.main()

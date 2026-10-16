@@ -51,7 +51,8 @@ templates/_map.html      shared page for all subject maps
 templates/*.html         other pages (history map, bank, simulator, start page)
 scripts/build.py         validation, lint, build
 tests/test_build.py      tests
-docs/                    generated site, served by GitHub Pages
+docs/                    generated site, served by GitHub Pages (includes .nojekyll and 404.html)
+index.html               root safety net: forwards to docs/ if Pages is set to the repo root
 specs/                   rules: map, questions, workflow, checklist
 ```
 

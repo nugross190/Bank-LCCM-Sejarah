@@ -1,0 +1,33 @@
+<title>Halaman Tidak Ditemukan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@600;700&family=Literata:opsz,wght@7..72,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: one centred notice. GitHub Pages serves this for any missing address, at any depth, so links are absolute. */
+:root{--bg:#F3F4F7;--surface:#FFFFFF;--ink:#1A1F33;--muted:#585E73;--line:#D6DAE3;
+  --f-label:"Archivo Narrow","Arial Narrow",system-ui,sans-serif;--f-body:"Literata",Georgia,serif;--f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#11131A;--surface:#191C26;--ink:#E7E9F0;--muted:#A3A9BC;--line:#2E3345;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#11131A;--surface:#191C26;--ink:#E7E9F0;--muted:#A3A9BC;--line:#2E3345;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6}
+.wrap{max-width:620px;margin:0 auto;padding-inline:20px;padding-block:72px 64px}
+.code{font-family:var(--f-mono);color:var(--muted);font-size:.9rem}
+h1{font-family:var(--f-label);font-size:clamp(1.8rem,5vw,2.6rem);line-height:1.15;margin:8px 0 12px;text-wrap:balance}
+p{margin:0 0 12px;color:var(--muted)}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.links a{font-family:var(--f-label);font-weight:700;text-decoration:none;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:6px;padding:9px 14px}
+.links a:hover,.links a:focus-visible{border-color:var(--ink);outline:none}
+.links a.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+@media (max-width:480px){.wrap{padding-inline:16px;padding-block:48px}}
+</style>
+
+<div class="wrap">
+  <div class="code">404</div>
+  <h1>Halaman tidak ditemukan</h1>
+  <p>Alamat ini tidak ada di situs. Mungkin salah ketik, atau halaman untuk mata pelajaran itu belum dibuat.</p>
+  <div class="links">
+    <a class="primary" href="__SITE_BASE__">Ke halaman utama</a>
+    <a href="__SITE_BASE__peta.html">Peta Sejarah</a>
+    <a href="__SITE_BASE__peta-fisika.html">Peta Fisika</a>
+  </div>
+</div>

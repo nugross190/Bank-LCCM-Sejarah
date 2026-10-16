@@ -13,6 +13,7 @@ import re
 import sys
 from collections import Counter
 from pathlib import Path
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parent.parent
 FIELDS = ["id", "simpul", "tingkat", "soal", "jawaban", "catatan"]
@@ -30,6 +31,8 @@ ARTIFACT_URLS = {
 # Pages without a hosted copy are linked through the GitHub Pages site.
 PAGES_URL = "https://nugross190.github.io/Bank-LCCM-Sejarah/"
 HOSTED_LINKS = {**ARTIFACT_URLS, "index.html": PAGES_URL}
+# Path of the site under github.io ("/Bank-LCCM-Sejarah/"), for pages that need absolute links (404.html).
+SITE_BASE = urlparse(PAGES_URL).path
 
 
 def load():
@@ -187,6 +190,7 @@ def pages(topics, questions, links):
             continue
         body = path.read_text(encoding="utf-8")
         body = body.replace("/*__DATA__*/", "const DATA = " + payload + ";")
+        body = body.replace("__SITE_BASE__", SITE_BASE)
         for name, target in links.items():
             body = body.replace('href="' + name, 'href="' + target)
         out[path.name] = body
@@ -204,6 +208,8 @@ def build(topics, rows, maps, artifact):
     built = {**pages(topics, questions, {}), **map_pages(maps, {})}
     for name, body in built.items():
         (docs / name).write_text(HEAD + body, encoding="utf-8")
+    # Tell GitHub Pages to publish docs/ as-is instead of running it through Jekyll.
+    (docs / ".nojekyll").write_text("", encoding="utf-8")
     print("Wrote docs/questions.json, " + ", ".join("docs/" + n for n in built))
     if artifact:
         out = ROOT / "build"

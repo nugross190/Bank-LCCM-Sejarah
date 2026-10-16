@@ -9,6 +9,7 @@ High-school study maps, starting with tools for a history competition in the Lom
 | `docs/bank.html` | Question bank: practice (weighted 40/30/30, optional timer), full list, and per-topic progress. |
 | `docs/simulasi.html` | Round simulator for a moderator: compulsory round (babak wajib) with passed-on questions, buzzer round (babak rebutan), 1–3 teams, scoreboard, and a list of missed questions. |
 | `docs/peta-fisika.html` | Knowledge map for high-school physics (30 topics), the first of the general subject maps. |
+| `docs/404.html` | Shown by GitHub Pages for any missing address, with links back to the start page. |
 
 Every question carries the code of the topic it tests, so a weak result links straight back to the map. Pages are static HTML; practice progress is stored in the viewer's own browser.
 
@@ -63,6 +64,8 @@ Text may contain simple HTML (`<b>`, `<i>`, `<sub>`, `<sup>`). Unicode superscri
 ## Publishing
 
 In the repository settings, under Pages, choose "Deploy from a branch", branch `main`, folder `/docs`. The site will be at `https://<user>.github.io/<repo>/`. GitHub Pages on a free account requires a public repository; nothing here is personal data.
+
+The build also writes `docs/.nojekyll`, so GitHub publishes the folder as-is instead of running it through Jekyll, and `docs/404.html`, shown for any missing address. A root `index.html` forwards visitors to `docs/`, so even if Pages is accidentally set to the repository root, the start page appears instead of this README. After changing the Pages setting, wait for the "pages build and deployment" run in the Actions tab to finish, then hard-refresh (Ctrl+Shift+R); browsers cache the previous version.
 
 Private copies of the history map, bank, simulator, and physics map are also hosted on claude.ai. `python scripts/build.py --artifact` writes those versions to `build/` (git-ignored); they link to each other by URL instead of by file name, and to the GitHub Pages site for pages without a hosted copy. The URLs are listed in `ARTIFACT_URLS` and `PAGES_URL` in `scripts/build.py`.
 
