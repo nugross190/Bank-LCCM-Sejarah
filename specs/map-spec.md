@@ -29,6 +29,7 @@ map
 | `subject` | MUST | Subject name as written in the curriculum: `Fisika`. |
 | `title` | MUST | Page title, two to five words: `Peta Materi <Subject> SMA`. |
 | `lead` | MUST | One to three sentences: what the map covers and how to use it. MAY reuse the physics wording. |
+| `blurb` | SHOULD | One sentence, ≤ 25 words, shown on the subject's card on the home page. Without it the card lists the domain names. |
 | `source_note` | SHOULD | Which curriculum and textbooks the topic order follows, and what is uncertain about grade placement. |
 | `path_title`, `path_note`, `path` | MAY | A study-order strip. Use it when the subject has real prerequisites (physics, math, chemistry). Each step: `label` (one word), `title`, `note` (≤ 6 words), `to` (an existing topic code). 5–10 steps. |
 | `domains` | MUST | 3–8 domains. |

@@ -4,7 +4,7 @@ High-school study maps, starting with tools for a history competition in the Lom
 
 | Page | What it is for |
 |---|---|
-| `docs/index.html` | Start page linking the three tools in study order. |
+| `docs/index.html` | Home page: a menu with one card per subject, generated from `data/maps/` plus the history kit. Every subject page links back to it. |
 | `docs/peta.html` | Knowledge map: 23 topics ("simpul"), each with a code such as `SNI-04`, key facts, and commonly confused facts. |
 | `docs/bank.html` | Question bank: practice (weighted 40/30/30, optional timer), full list, and per-topic progress. |
 | `docs/simulasi.html` | Round simulator for a moderator: compulsory round (babak wajib) with passed-on questions, buzzer round (babak rebutan), 1–3 teams, scoreboard, and a list of missed questions. |
@@ -57,7 +57,7 @@ The history map (`templates/peta.html`) predates this format and still has its c
 1. Copy `data/maps/fisika.json` to `data/maps/<id>.json` (for example `kimia.json`) and set `"id"` to the same name.
 2. Fill in `domains` and `topics` following [`specs/map-spec.md`](specs/map-spec.md), which defines every field and the writing rules.
 3. Run `python scripts/build.py`. It stops on structural errors (missing fields, duplicate codes, codes outside their domain, bad tiers, malformed tables, broken path steps) and prints warnings for the soft rules (sizes, tier mix, word limits, traps on core topics).
-4. Add a link to the new map in `templates/index.html`.
+4. The home page gets a card for the new map automatically (from its `subject`, `blurb` and domains).
 
 Text may contain simple HTML (`<b>`, `<i>`, `<sub>`, `<sup>`). Unicode superscripts and subscripts such as `10⁻¹⁹` or `H₂O` are converted to `<sup>`/`<sub>` when the page loads, because the page fonts lack those glyphs.
 

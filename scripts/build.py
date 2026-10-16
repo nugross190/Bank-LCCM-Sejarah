@@ -8,6 +8,7 @@ Writes: docs/questions.json, one docs/<name>.html per template, and
 Exits with status 1 (and writes nothing) if the data has errors.
 """
 import csv
+import html
 import json
 import re
 import sys
@@ -143,6 +144,10 @@ def lint_map(name, m):
         if not (0.5 <= share[1] <= 0.7 and 0.2 <= share[2] <= 0.4 and share[3] <= 0.15):
             mix = ", ".join(f"tier {k} {share[k]:.0%}" for k in (1, 2, 3))
             warnings.append(f"{where}: tier mix {mix} (spec: 50-70% / 20-40% / <=15%)")
+    if not m.get("blurb"):
+        warnings.append(f"{where}: no 'blurb' for the home-page card")
+    elif words(m["blurb"]) > 25:
+        warnings.append(f"{where}: blurb has {words(m['blurb'])} words (spec: <=25)")
     for t in topics:
         code = t.get("code", "?")
         if words(t.get("sum", "")) > 30:
@@ -176,7 +181,40 @@ def map_pages(maps, links):
     return out
 
 
-def pages(topics, questions, links):
+def subject_cards(maps, topics, n_questions):
+    """HTML cards for the home page: the history kit, then one card per subject map."""
+    e = html.escape
+    sni = topics["domains"]
+    n_topics = sum(len(d["topics"]) for d in sni)
+    cards = [
+        '<article class="subject" style="--c:var(--c-sejarah, var(--c-default))">'
+        '<span class="kind">Sejarah · ' + str(n_topics) + ' simpul · ' + str(n_questions) + ' soal</span>'
+        '<h2>Sejarah</h2>'
+        '<p>Perangkat lomba bergaya Lomba Cerdas Cermat Museum: sejarah nasional, kebudayaan, serta permuseuman dan cagar budaya.</p>'
+        '<div class="chips">' + "".join(f'<span>{e(d["short"])} {d["weight"]}%</span>' for d in sni) + '</div>'
+        '<nav class="links" aria-label="Sejarah">'
+        '<a class="primary" href="peta.html">Peta materi <span>praaksara–Reformasi</span></a>'
+        '<a href="bank.html">Bank soal <span>latihan per simpul</span></a>'
+        '<a href="simulasi.html">Simulasi babak <span>wajib dan rebutan</span></a>'
+        '</nav></article>'
+    ]
+    for m in maps.values():
+        n = sum(len(d["topics"]) for d in m["domains"])
+        blurb = m.get("blurb") or ", ".join(d["name"] for d in m["domains"]) + "."
+        cards.append(
+            f'<article class="subject" style="--c:var(--c-{e(m["id"])}, var(--c-default))">'
+            f'<span class="kind">{e(m["subject"])} · {n} simpul</span>'
+            f'<h2>{e(m["subject"])}</h2>'
+            f'<p>{e(blurb)}</p>'
+            '<div class="chips">' + "".join(f'<span>{e(d["short"])}</span>' for d in m["domains"]) + '</div>'
+            f'<nav class="links" aria-label="{e(m["subject"])}">'
+            f'<a class="primary" href="peta-{e(m["id"])}.html">Peta materi <span>{n} simpul</span></a>'
+            '</nav></article>'
+        )
+    return "\n    ".join(cards)
+
+
+def pages(topics, questions, links, maps=None):
     """Return {file name: page body} for every template, with cross-page links resolved through `links`.
 
     A template that contains /*__DATA__*/ gets the topics and questions injected there.
@@ -191,6 +229,9 @@ def pages(topics, questions, links):
         body = path.read_text(encoding="utf-8")
         body = body.replace("/*__DATA__*/", "const DATA = " + payload + ";")
         body = body.replace("__SITE_BASE__", SITE_BASE)
+        if "<!--__SUBJECT_CARDS__-->" in body:
+            cards = subject_cards(maps if maps is not None else load_maps(), topics, len(questions))
+            body = body.replace("<!--__SUBJECT_CARDS__-->", cards)
         for name, target in links.items():
             body = body.replace('href="' + name, 'href="' + target)
         out[path.name] = body
@@ -205,7 +246,7 @@ def build(topics, rows, maps, artifact):
     docs = ROOT / "docs"
     docs.mkdir(exist_ok=True)
     (docs / "questions.json").write_text(json.dumps(questions, ensure_ascii=False, indent=1), encoding="utf-8")
-    built = {**pages(topics, questions, {}), **map_pages(maps, {})}
+    built = {**pages(topics, questions, {}, maps), **map_pages(maps, {})}
     for name, body in built.items():
         (docs / name).write_text(HEAD + body, encoding="utf-8")
     # Tell GitHub Pages to publish docs/ as-is instead of running it through Jekyll.
@@ -214,7 +255,7 @@ def build(topics, rows, maps, artifact):
     if artifact:
         out = ROOT / "build"
         out.mkdir(exist_ok=True)
-        hosted = {**pages(topics, questions, HOSTED_LINKS), **map_pages(maps, HOSTED_LINKS)}
+        hosted = {**pages(topics, questions, HOSTED_LINKS, maps), **map_pages(maps, HOSTED_LINKS)}
         for name, body in hosted.items():
             if name in ARTIFACT_URLS:
                 (out / name.replace(".html", ".fragment.html")).write_text(body, encoding="utf-8")

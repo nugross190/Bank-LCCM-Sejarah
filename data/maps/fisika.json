@@ -3,6 +3,7 @@
   "subject": "Fisika",
   "title": "Peta Materi Fisika SMA",
   "lead": "Seluruh materi Fisika SMA, dari pengukuran sampai fisika inti, disusun sebagai satu peta. Setiap simpul memuat konsep, rumus inti, tokoh, dan jebakan soal yang sering muncul. Centang “Dikuasai” di tiap simpul; kemajuan tersimpan di peramban ini saja.",
+  "blurb": "Dari pengukuran dan mekanika sampai listrik-magnet dan fisika modern, lengkap dengan rumus, konstanta, dan alur prasyarat.",
   "source_note": "Urutan mengikuti buku Fisika Kurikulum Merdeka: Fase E (kelas X, sebagian dalam IPA terpadu) dan Fase F (kelas XI–XII, mata pelajaran pilihan). Pembagian kelas per simpul adalah urutan yang umum dipakai; cocokkan dengan buku sekolah.",
   "path_title": "Alur prasyarat",
   "path_note": "Urutan belajar yang disarankan. Setiap langkah memakai alat dari langkah sebelumnya: vektor untuk gerak, gerak untuk gaya, gaya untuk energi, dan seterusnya.",

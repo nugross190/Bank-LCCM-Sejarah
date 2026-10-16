@@ -50,7 +50,7 @@ Writing
 - [ ] No console errors; no horizontal page scroll.
 - [ ] Search, card open/close, path links and progress checkboxes work.
 - [ ] Formulas, superscripts and tables render correctly.
-- [ ] New pages are linked from `templates/index.html` and listed in `README.md`.
+- [ ] New subject maps appear on the home page (`docs/index.html`) and are listed in `README.md`; other new pages are linked from somewhere and listed in `README.md`.
 
 ## E. Pull request
 
