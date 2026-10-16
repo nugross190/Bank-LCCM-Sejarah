@@ -130,6 +130,22 @@ class SiteTest(unittest.TestCase):
         self.assertIn(f'href="{build.SITE_BASE}"', page)
         self.assertTrue(build.SITE_BASE.startswith("/") and build.SITE_BASE.endswith("/"))
 
+    def test_home_page_lists_every_subject(self):
+        topics, rows = build.load()
+        maps = build.load_maps()
+        home = build.pages(topics, [], {}, maps)["index.html"]
+        self.assertNotIn("__SUBJECT_CARDS__", home)
+        self.assertIn('href="peta.html"', home)
+        for m in maps.values():
+            self.assertIn(f'href="peta-{m["id"]}.html"', home, m["id"])
+
+    def test_subject_pages_link_home(self):
+        topics, rows = build.load()
+        maps = build.load_maps()
+        built = {**build.pages(topics, [], {}, maps), **build.map_pages(maps, {})}
+        for name in ["peta.html", "bank.html", "simulasi.html"] + [f"peta-{i}.html" for i in maps]:
+            self.assertIn('class="home-link" href="index.html"', built[name], name)
+
     def test_root_index_forwards_to_docs(self):
         page = (build.ROOT / "index.html").read_text(encoding="utf-8")
         self.assertIn('url=docs/', page)

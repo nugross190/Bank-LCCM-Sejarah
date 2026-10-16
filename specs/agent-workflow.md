@@ -62,7 +62,7 @@ Output: a verification log in the pull request (which facts were re-checked, wha
 
 Output: a buildable, tested change.
 
-1. Add the map to the "Peta mata pelajaran lain" list in `templates/index.html`.
+1. Nothing to add to the home page: the build creates a card for every file in `data/maps/`. Check that the card appears in `docs/index.html`.
 2. Add a row to the pages table in `README.md`.
 3. Run `python scripts/build.py && python -m unittest discover -s tests`. Both MUST pass. Commit the rebuilt `docs/`.
 
