@@ -1,0 +1,1507 @@
+{
+  "id": "biologi",
+  "subject": "Biologi",
+  "title": "Peta Materi Biologi SMA",
+  "lead": "Seluruh materi Biologi SMA, dari keanekaragaman hayati sampai bioteknologi, disusun sebagai satu peta. Setiap simpul memuat konsep kunci, tokoh, dan jebakan soal yang sering muncul. Centang “Dikuasai” di tiap simpul; kemajuan tersimpan di peramban ini saja.",
+  "blurb": "Keanekaragaman hayati dan ekosistem, sel, tumbuhan, sistem organ manusia, metabolisme, genetika, evolusi, dan bioteknologi.",
+  "source_note": "Urutan mengikuti buku Biologi Kurikulum Merdeka: kelas X (dalam IPA), kelas XI (delapan bab: sel, transpor membran, tumbuhan, sistem organ, pertahanan tubuh, mobilitas, reproduksi, tumbuh kembang), dan kelas XII. Sistem organ dipecah per sistem agar mudah dipelajari; cocokkan dengan buku sekolah.",
+  "path_title": "Alur prasyarat",
+  "path_note": "Urutan belajar yang disarankan, dari tingkat organisasi kehidupan yang besar ke yang kecil, lalu ke pewarisan dan perubahan makhluk hidup.",
+  "path": [
+    {
+      "label": "Ragam",
+      "title": "Keanekaragaman hayati",
+      "note": "Gen, spesies, ekosistem",
+      "to": "KEH-01"
+    },
+    {
+      "label": "Lingkungan",
+      "title": "Ekosistem",
+      "note": "Rantai makanan, daur materi",
+      "to": "KEH-04"
+    },
+    {
+      "label": "Sel",
+      "title": "Struktur sel",
+      "note": "Organel dan fungsinya",
+      "to": "SEL-01"
+    },
+    {
+      "label": "Membran",
+      "title": "Transpor membran",
+      "note": "Difusi, osmosis, pompa",
+      "to": "SEL-02"
+    },
+    {
+      "label": "Tumbuhan",
+      "title": "Jaringan tumbuhan",
+      "note": "Meristem, xilem, floem",
+      "to": "TUM-01"
+    },
+    {
+      "label": "Tubuh",
+      "title": "Sistem organ manusia",
+      "note": "Pencernaan sampai koordinasi",
+      "to": "MAN-01"
+    },
+    {
+      "label": "Energi",
+      "title": "Metabolisme",
+      "note": "Enzim, respirasi, fotosintesis",
+      "to": "MET-01"
+    },
+    {
+      "label": "Gen",
+      "title": "Materi genetik",
+      "note": "DNA, sintesis protein",
+      "to": "GEN-01"
+    },
+    {
+      "label": "Waris",
+      "title": "Hukum Mendel",
+      "note": "Monohibrid, dihibrid",
+      "to": "GEN-03"
+    },
+    {
+      "label": "Perubahan",
+      "title": "Evolusi",
+      "note": "Seleksi alam, Hardy-Weinberg",
+      "to": "GEN-06"
+    }
+  ],
+  "domains": [
+    {
+      "id": "KEH",
+      "name": "Keanekaragaman dan lingkungan",
+      "short": "Lingkungan",
+      "note": "Keanekaragaman hayati, klasifikasi, virus, ekosistem, dan perubahan lingkungan.",
+      "topics": [
+        {
+          "code": "KEH-01",
+          "title": "Keanekaragaman hayati",
+          "scope": "Tingkat, persebaran, pelestarian",
+          "src": "Kelas X",
+          "tier": 1,
+          "sum": "Tiga tingkat keanekaragaman hayati, persebaran flora dan fauna Indonesia, spesies endemik, dan upaya pelestarian.",
+          "blocks": [
+            {
+              "h": "Tingkat keanekaragaman",
+              "li": [
+                "Gen: variasi dalam satu spesies (warna bunga mawar, jenis mangga).",
+                "Spesies: variasi antarjenis dalam satu genus atau famili (harimau, singa, kucing).",
+                "Ekosistem: variasi lingkungan beserta makhluk hidupnya (hutan bakau, terumbu karang, padang rumput)."
+              ]
+            },
+            {
+              "h": "Fauna Indonesia",
+              "table": {
+                "cols": [
+                  "Wilayah",
+                  "Batas",
+                  "Contoh hewan"
+                ],
+                "rows": [
+                  [
+                    "Asiatis (barat)",
+                    "Di barat garis Wallace",
+                    "Harimau, gajah, badak, orang utan"
+                  ],
+                  [
+                    "Peralihan (Wallacea)",
+                    "Di antara garis Wallace dan garis Weber",
+                    "Anoa, babirusa, komodo, maleo, tarsius"
+                  ],
+                  [
+                    "Australis (timur)",
+                    "Di timur garis Weber",
+                    "Kanguru pohon, kasuari, cenderawasih"
+                  ]
+                ]
+              }
+            },
+            {
+              "h": "Endemik dan pelestarian",
+              "li": [
+                "Garis Wallace memisahkan Bali–Lombok dan Kalimantan–Sulawesi.",
+                "Spesies endemik: komodo (NTT), anoa (Sulawesi), Rafflesia arnoldii (Sumatra), Amorphophallus titanum (Sumatra).",
+                "Pelestarian <b>in situ</b> (di habitat asli: taman nasional, cagar alam, suaka margasatwa) dan ex situ (di luar habitat: kebun raya, kebun binatang, bank gen)."
+              ]
+            }
+          ],
+          "traps": [
+            "Kebun raya dan kebun binatang adalah pelestarian ex situ, bukan in situ."
+          ]
+        },
+        {
+          "code": "KEH-02",
+          "title": "Klasifikasi makhluk hidup",
+          "scope": "Takson, binomial, kingdom",
+          "src": "Kelas X",
+          "tier": 1,
+          "sum": "Tingkatan takson, tata nama ganda Linnaeus, sistem lima kingdom Whittaker, dan sistem tiga domain.",
+          "blocks": [
+            {
+              "h": "Takson dan tata nama",
+              "li": [
+                "Urutan takson: kingdom – filum (hewan) atau divisio (tumbuhan) – kelas – ordo – famili – genus – spesies.",
+                "Makin rendah takson, makin banyak persamaan ciri anggotanya.",
+                "<b>Tata nama binomial</b> (Carolus Linnaeus): nama genus berhuruf kapital, nama spesies huruf kecil, dicetak miring atau digarisbawahi. Contoh: Oryza sativa (padi)."
+              ]
+            },
+            {
+              "h": "Sistem lima kingdom (Whittaker, 1969)",
+              "wide": true,
+              "table": {
+                "cols": [
+                  "Kingdom",
+                  "Ciri",
+                  "Contoh"
+                ],
+                "rows": [
+                  [
+                    "Monera",
+                    "Prokariot (tanpa membran inti)",
+                    "Bakteri, Cyanobacteria"
+                  ],
+                  [
+                    "Protista",
+                    "Eukariot sederhana",
+                    "Amoeba, Paramecium, alga, jamur lendir"
+                  ],
+                  [
+                    "Fungi",
+                    "Eukariot, heterotrof, dinding sel kitin",
+                    "Rhizopus, Penicillium, Saccharomyces, jamur merang"
+                  ],
+                  [
+                    "Plantae",
+                    "Eukariot, autotrof, berklorofil, dinding sel selulosa",
+                    "Lumut, paku, tumbuhan berbiji"
+                  ],
+                  [
+                    "Animalia",
+                    "Eukariot, heterotrof, multiseluler, tanpa dinding sel",
+                    "Cacing, serangga, ikan, mamalia"
+                  ]
+                ]
+              }
+            },
+            {
+              "h": "Sistem lain",
+              "li": [
+                "Enam kingdom memisahkan Monera menjadi Archaebacteria dan Eubacteria. Sistem tiga domain (Carl Woese, 1990): Bacteria, Archaea, Eukarya."
+              ]
+            }
+          ],
+          "traps": [
+            "Jamur (Fungi) bukan tumbuhan: tidak berklorofil dan dinding selnya dari kitin."
+          ]
+        },
+        {
+          "code": "KEH-03",
+          "title": "Virus",
+          "scope": "Struktur, replikasi, penyakit",
+          "src": "Kelas X",
+          "tier": 2,
+          "sum": "Ciri dan struktur virus, sejarah penemuannya, daur litik dan lisogenik, serta penyakit akibat virus dan pencegahannya.",
+          "blocks": [
+            {
+              "h": "Ciri dan penemuan",
+              "li": [
+                "Aseluler; materi genetik DNA atau RNA dibungkus selubung protein (kapsid).",
+                "Hanya dapat berkembang biak di dalam sel hidup (parasit obligat).",
+                "Penemuan lewat virus mosaik tembakau (TMV): Ivanovsky (1892), Beijerinck (1898); Stanley mengkristalkan TMV (1935)."
+              ]
+            },
+            {
+              "h": "Replikasi",
+              "li": [
+                "<b>Daur litik</b>: adsorpsi (menempel), penetrasi (memasukkan materi genetik), sintesis, perakitan, lisis (sel inang pecah).",
+                "Daur lisogenik: materi genetik virus menyatu dengan DNA inang (profag) dan ikut tereplikasi tanpa memecah sel."
+              ]
+            },
+            {
+              "h": "Penyakit",
+              "li": [
+                "Influenza, campak, polio, hepatitis, HPV, COVID-19 (SARS-CoV-2), demam berdarah (dengue, ditularkan nyamuk Aedes aegypti).",
+                "HIV adalah retrovirus yang menyerang sel T helper dan menyebabkan AIDS.",
+                "Pencegahan utama: vaksinasi; antibiotik tidak mempan terhadap virus."
+              ]
+            }
+          ],
+          "traps": [
+            "Antibiotik membunuh bakteri, bukan virus."
+          ]
+        },
+        {
+          "code": "KEH-04",
+          "title": "Ekosistem",
+          "scope": "Komponen, aliran energi, daur",
+          "src": "Kelas X",
+          "tier": 1,
+          "sum": "Komponen ekosistem, rantai dan jaring makanan, piramida ekologi, daur biogeokimia, interaksi antarorganisme, dan suksesi.",
+          "blocks": [
+            {
+              "h": "Komponen dan energi",
+              "li": [
+                "Biotik (produsen, konsumen, pengurai) dan abiotik (cahaya, air, suhu, tanah).",
+                "Rantai makanan bercabang membentuk jaring makanan.",
+                "Piramida ekologi: jumlah, biomassa, dan energi. Hanya sekitar 10% energi berpindah ke tingkat trofik berikutnya."
+              ]
+            },
+            {
+              "h": "Daur nitrogen",
+              "li": [
+                "Fiksasi N₂ oleh bakteri seperti Rhizobium (bersimbiosis dengan akar kacang-kacangan).",
+                "Nitrifikasi: amonia → nitrit (Nitrosomonas) → nitrat (Nitrobacter).",
+                "Denitrifikasi mengembalikan nitrat menjadi N₂ ke udara."
+              ]
+            },
+            {
+              "h": "Interaksi dan suksesi",
+              "li": [
+                "Mutualisme (keduanya untung), komensalisme (satu untung, lainnya tidak terpengaruh), parasitisme (satu dirugikan), predasi, kompetisi.",
+                "Suksesi primer di lahan yang belum pernah berkehidupan (diawali lumut kerak); suksesi sekunder di lahan yang rusak tetapi tanahnya masih ada."
+              ]
+            }
+          ],
+          "traps": [
+            "Piramida energi selalu tegak; piramida jumlah bisa terbalik (satu pohon dengan banyak ulat)."
+          ]
+        },
+        {
+          "code": "KEH-05",
+          "title": "Perubahan lingkungan",
+          "scope": "Pencemaran, pemanasan global",
+          "src": "Kelas X",
+          "tier": 2,
+          "sum": "Jenis pencemaran, dampaknya, efek rumah kaca dan pemanasan global, serta upaya pengelolaan limbah.",
+          "blocks": [
+            {
+              "h": "Pencemaran",
+              "li": [
+                "Air: limbah pupuk memicu eutrofikasi (ledakan alga); kadar pencemaran organik diukur dengan BOD.",
+                "Udara: CO dari pembakaran tidak sempurna; SO₂ dan NOx menyebabkan hujan asam; CFC menipiskan lapisan ozon.",
+                "Lumut kerak (lichen) menjadi indikator udara bersih karena peka terhadap SO₂."
+              ]
+            },
+            {
+              "h": "Pengelolaan",
+              "li": [
+                "Efek rumah kaca berlebih akibat CO₂ dan metana memicu pemanasan global.",
+                "Prinsip 3R: reduce, reuse, recycle. Limbah B3 (bahan berbahaya dan beracun) memerlukan penanganan khusus."
+              ]
+            }
+          ],
+          "traps": [
+            "Penipisan ozon (oleh CFC) dan pemanasan global (oleh gas rumah kaca) adalah dua masalah berbeda."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SEL",
+      "name": "Sel",
+      "short": "Sel",
+      "note": "Struktur sel, organel, dan pergerakan zat melalui membran.",
+      "topics": [
+        {
+          "code": "SEL-01",
+          "title": "Struktur dan fungsi sel",
+          "scope": "Teori sel, organel",
+          "src": "Kelas XI",
+          "tier": 1,
+          "sum": "Sejarah teori sel, perbedaan sel prokariot dan eukariot, organel dan fungsinya, serta perbedaan sel hewan dan tumbuhan.",
+          "blocks": [
+            {
+              "h": "Teori sel",
+              "li": [
+                "Robert Hooke (1665) mengamati sel gabus dan memakai istilah “cell”.",
+                "Schleiden (tumbuhan, 1838) dan Schwann (hewan, 1839): makhluk hidup tersusun atas sel.",
+                "Virchow (1855): omnis cellula e cellula, setiap sel berasal dari sel sebelumnya.",
+                "Prokariot tidak punya membran inti (bakteri); eukariot punya (hewan, tumbuhan, jamur, protista)."
+              ]
+            },
+            {
+              "h": "Organel",
+              "wide": true,
+              "table": {
+                "cols": [
+                  "Organel",
+                  "Fungsi"
+                ],
+                "rows": [
+                  [
+                    "Inti (nukleus)",
+                    "Pusat pengendali sel; menyimpan DNA"
+                  ],
+                  [
+                    "Ribosom",
+                    "Sintesis protein"
+                  ],
+                  [
+                    "Retikulum endoplasma kasar",
+                    "Bertempel ribosom; sintesis dan transpor protein"
+                  ],
+                  [
+                    "Retikulum endoplasma halus",
+                    "Sintesis lipid, detoksifikasi"
+                  ],
+                  [
+                    "Badan Golgi",
+                    "Memodifikasi, membungkus, dan menyekresikan zat"
+                  ],
+                  [
+                    "Mitokondria",
+                    "Respirasi sel; menghasilkan ATP"
+                  ],
+                  [
+                    "Kloroplas",
+                    "Fotosintesis (hanya sel tumbuhan dan alga)"
+                  ],
+                  [
+                    "Lisosom",
+                    "Pencernaan intrasel (terutama sel hewan)"
+                  ],
+                  [
+                    "Vakuola",
+                    "Menyimpan cadangan makanan dan zat sisa; besar pada sel tumbuhan"
+                  ],
+                  [
+                    "Sentriol",
+                    "Membentuk benang spindel saat pembelahan (sel hewan)"
+                  ],
+                  [
+                    "Dinding sel",
+                    "Pelindung dan penguat; dari selulosa pada tumbuhan"
+                  ]
+                ]
+              }
+            }
+          ],
+          "traps": [
+            "Sel tumbuhan juga punya mitokondria; kloroplas tidak menggantikan fungsi respirasi."
+          ]
+        },
+        {
+          "code": "SEL-02",
+          "title": "Pergerakan zat melalui membran",
+          "scope": "Transpor pasif dan aktif",
+          "src": "Kelas XI",
+          "tier": 1,
+          "sum": "Struktur membran sel, transpor pasif (difusi, osmosis), transpor aktif, endositosis dan eksositosis, serta pengaruh larutan pada sel.",
+          "blocks": [
+            {
+              "h": "Membran dan transpor pasif",
+              "li": [
+                "Model mosaik fluida (Singer dan Nicolson, 1972): lapisan ganda fosfolipid dengan protein.",
+                "Difusi: zat bergerak dari konsentrasi tinggi ke rendah tanpa energi. Difusi terfasilitasi memakai protein pembawa.",
+                "<b>Osmosis</b>: perpindahan air melalui membran semipermeabel dari larutan hipotonis ke hipertonis."
+              ]
+            },
+            {
+              "h": "Pengaruh larutan",
+              "table": {
+                "cols": [
+                  "Larutan luar",
+                  "Sel hewan (darah merah)",
+                  "Sel tumbuhan"
+                ],
+                "rows": [
+                  [
+                    "Hipertonis",
+                    "Mengerut (krenasi)",
+                    "Plasmolisis"
+                  ],
+                  [
+                    "Isotonis",
+                    "Normal",
+                    "Lembek (layu)"
+                  ],
+                  [
+                    "Hipotonis",
+                    "Pecah (hemolisis)",
+                    "Turgid (tegang)"
+                  ]
+                ]
+              }
+            },
+            {
+              "h": "Transpor aktif",
+              "li": [
+                "Melawan gradien konsentrasi dan memerlukan ATP. Contoh: pompa natrium-kalium (3 Na⁺ keluar, 2 K⁺ masuk).",
+                "Endositosis (fagositosis untuk partikel padat, pinositosis untuk cairan) dan eksositosis."
+              ]
+            }
+          ],
+          "traps": [
+            "Pada osmosis yang berpindah adalah air (pelarut), bukan zat terlarut."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TUM",
+      "name": "Tumbuhan dan perkembangan",
+      "short": "Tumbuhan",
+      "note": "Jaringan dan organ tumbuhan, transportasi, reproduksi, iritabilitas, serta pertumbuhan dan perkembangan makhluk hidup.",
+      "topics": [
+        {
+          "code": "TUM-01",
+          "title": "Jaringan dan organ tumbuhan",
+          "scope": "Meristem, pengangkut, dikotil-monokotil",
+          "src": "Kelas XI",
+          "tier": 1,
+          "sum": "Jaringan meristem dan dewasa pada tumbuhan, fungsi xilem dan floem, organ akar-batang-daun, serta perbedaan dikotil dan monokotil.",
+          "blocks": [
+            {
+              "h": "Jaringan",
+              "li": [
+                "Meristem apikal (ujung batang dan akar) untuk pertumbuhan primer; meristem lateral (kambium) untuk pertumbuhan sekunder (membesar).",
+                "Epidermis (pelindung; memiliki stomata dan trikoma), parenkim (pengisi), kolenkim dan sklerenkim (penguat).",
+                "<b>Xilem</b> mengangkut air dan mineral dari akar ke daun; floem mengangkut hasil fotosintesis ke seluruh tubuh.",
+                "Totipotensi (sel dapat tumbuh menjadi individu utuh) adalah dasar kultur jaringan."
+              ]
+            },
+            {
+              "h": "Dikotil dan monokotil",
+              "table": {
+                "cols": [
+                  "Ciri",
+                  "Dikotil",
+                  "Monokotil"
+                ],
+                "rows": [
+                  [
+                    "Akar",
+                    "Tunggang",
+                    "Serabut"
+                  ],
+                  [
+                    "Berkas pengangkut",
+                    "Teratur melingkar, berkambium",
+                    "Tersebar, tanpa kambium"
+                  ],
+                  [
+                    "Tulang daun",
+                    "Menyirip atau menjari",
+                    "Sejajar atau melengkung"
+                  ],
+                  [
+                    "Bagian bunga",
+                    "Kelipatan 4 atau 5",
+                    "Kelipatan 3"
+                  ],
+                  [
+                    "Contoh",
+                    "Mangga, kacang",
+                    "Padi, jagung, kelapa"
+                  ]
+                ]
+              }
+            }
+          ],
+          "traps": [
+            "Batang monokotil umumnya tidak bisa membesar karena tidak punya kambium."
+          ]
+        },
+        {
+          "code": "TUM-02",
+          "title": "Transportasi, reproduksi, dan iritabilitas tumbuhan",
+          "scope": "Pengangkutan, pembuahan, gerak",
+          "src": "Kelas XI",
+          "tier": 2,
+          "sum": "Pengangkutan air dan hasil fotosintesis, reproduksi generatif dan vegetatif, pembuahan ganda, dan gerak pada tumbuhan.",
+          "blocks": [
+            {
+              "h": "Transportasi",
+              "li": [
+                "Air diserap akar secara osmosis, lewat jalur apoplas (dinding sel) dan simplas (sitoplasma).",
+                "Naik di xilem karena daya isap daun (transpirasi), kohesi-adhesi air, dan tekanan akar.",
+                "Hasil fotosintesis diangkut floem (translokasi)."
+              ]
+            },
+            {
+              "h": "Reproduksi",
+              "li": [
+                "<b>Pembuahan ganda</b> (Angiospermae): sperma + ovum → zigot (2n); sperma + inti kandung lembaga sekunder → endosperma (3n).",
+                "Vegetatif alami: umbi, rizom, stolon, tunas. Buatan: stek, cangkok, okulasi, merunduk."
+              ]
+            },
+            {
+              "h": "Iritabilitas",
+              "li": [
+                "Tropisme: gerak bagian tumbuhan yang arahnya ditentukan rangsang (fototropisme, geotropisme, hidrotropisme, tigmotropisme).",
+                "Nasti: tidak ditentukan arah rangsang (seismonasti daun putri malu, niktinasti daun menutup di malam hari).",
+                "Taksis: gerak seluruh tubuh berpindah tempat (kemotaksis sperma lumut)."
+              ]
+            }
+          ],
+          "traps": [
+            "Gerak daun putri malu saat disentuh adalah seismonasti, bukan tigmotropisme."
+          ]
+        },
+        {
+          "code": "TUM-03",
+          "title": "Pertumbuhan dan perkembangan",
+          "scope": "Hormon, faktor, metamorfosis",
+          "src": "Kelas XI",
+          "tier": 2,
+          "sum": "Perbedaan pertumbuhan dan perkembangan, hormon tumbuhan, faktor luar, perkecambahan, dan metamorfosis pada hewan.",
+          "blocks": [
+            {
+              "h": "Konsep dan hormon",
+              "li": [
+                "Pertumbuhan: bertambah ukuran, kuantitatif, tidak dapat kembali (irreversibel). Perkembangan: menuju kedewasaan, kualitatif.",
+                "Auksin: pemanjangan sel, dominansi apikal. Giberelin: tumbuh raksasa, buah tanpa biji (partenokarpi). Sitokinin: pembelahan sel, menunda penuaan.",
+                "Etilen: pematangan buah. Asam absisat: dormansi, menutup stomata saat kekeringan."
+              ]
+            },
+            {
+              "h": "Faktor luar dan perkecambahan",
+              "li": [
+                "Cahaya menghambat pemanjangan batang; kecambah di tempat gelap tumbuh lebih panjang dan pucat (etiolasi).",
+                "Perkecambahan epigeal: kotiledon terangkat ke atas tanah (kacang hijau). Hipogeal: kotiledon tetap di dalam tanah (jagung, kacang kapri)."
+              ]
+            },
+            {
+              "h": "Metamorfosis",
+              "li": [
+                "Sempurna: telur – larva – pupa – imago (kupu-kupu). Tidak sempurna: telur – nimfa – imago (belalang)."
+              ]
+            }
+          ],
+          "traps": [
+            "Tanaman di tempat gelap justru tumbuh lebih tinggi (etiolasi) karena auksin tidak dirusak cahaya."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MAN",
+      "name": "Sistem organ manusia",
+      "short": "Tubuh manusia",
+      "note": "Pencernaan, pernapasan, peredaran darah, ekskresi, pertahanan tubuh, gerak, koordinasi, dan reproduksi.",
+      "topics": [
+        {
+          "code": "MAN-01",
+          "title": "Sistem pencernaan",
+          "scope": "Saluran, enzim, penyerapan",
+          "src": "Kelas XI",
+          "tier": 1,
+          "sum": "Organ pencernaan, enzim dan fungsinya di tiap organ, penyerapan sari makanan, dan gangguan pencernaan.",
+          "blocks": [
+            {
+              "h": "Organ dan enzim",
+              "table": {
+                "cols": [
+                  "Organ",
+                  "Zat atau enzim",
+                  "Fungsi"
+                ],
+                "rows": [
+                  [
+                    "Mulut",
+                    "Amilase (ptialin)",
+                    "Amilum → maltosa"
+                  ],
+                  [
+                    "Lambung",
+                    "HCl, pepsin, renin",
+                    "HCl membunuh kuman dan mengaktifkan pepsin; pepsin: protein → pepton; renin menggumpalkan susu"
+                  ],
+                  [
+                    "Usus halus (dari pankreas)",
+                    "Amilase, tripsin, lipase",
+                    "Amilum, protein, dan lemak dicerna lebih lanjut"
+                  ],
+                  [
+                    "Usus halus (dari hati)",
+                    "Empedu",
+                    "Mengemulsikan lemak (tidak mengandung enzim)"
+                  ],
+                  [
+                    "Usus besar",
+                    "Bakteri E. coli",
+                    "Penyerapan air; pembusukan sisa makanan; membentuk vitamin K"
+                  ]
+                ]
+              }
+            },
+            {
+              "h": "Penyerapan dan gangguan",
+              "li": [
+                "Sari makanan diserap di usus halus melalui jonjot (vili) yang memperluas permukaan.",
+                "Gangguan: gastritis (maag), diare, sembelit (konstipasi), apendisitis (radang usus buntu)."
+              ]
+            }
+          ],
+          "traps": [
+            "Empedu membantu pencernaan lemak tetapi bukan enzim."
+          ]
+        },
+        {
+          "code": "MAN-02",
+          "title": "Sistem pernapasan",
+          "scope": "Saluran, mekanisme, volume paru",
+          "src": "Kelas XI",
+          "tier": 1,
+          "sum": "Saluran pernapasan, pertukaran gas di alveolus, mekanisme pernapasan dada dan perut, volume udara paru, dan gangguannya.",
+          "blocks": [
+            {
+              "h": "Saluran dan pertukaran gas",
+              "li": [
+                "Rongga hidung → faring → laring → trakea → bronkus → bronkiolus → alveolus.",
+                "Pertukaran O₂ dan CO₂ di alveolus terjadi secara difusi.",
+                "O₂ diangkut hemoglobin sebagai oksihemoglobin; sebagian besar CO₂ diangkut dalam plasma sebagai ion bikarbonat (HCO₃⁻)."
+              ]
+            },
+            {
+              "h": "Mekanisme",
+              "li": [
+                "Pernapasan dada: otot antartulang rusuk. Pernapasan perut: otot diafragma.",
+                "Inspirasi: diafragma berkontraksi (mendatar), rongga dada membesar, tekanan turun, udara masuk.",
+                "Volume menurut buku SMA: udara pernapasan (tidal) ±500 mL, kapasitas vital ±3.500 mL, kapasitas total paru ±4.500 mL."
+              ]
+            },
+            {
+              "h": "Gangguan",
+              "li": [
+                "Asma, bronkitis, pneumonia, dan tuberkulosis (bakteri Mycobacterium tuberculosis)."
+              ]
+            }
+          ],
+          "traps": [
+            "Saat inspirasi diafragma berkontraksi dan mendatar, bukan melengkung ke atas."
+          ]
+        },
+        {
+          "code": "MAN-03",
+          "title": "Sistem peredaran darah",
+          "scope": "Darah, jantung, golongan darah",
+          "src": "Kelas XI",
+          "tier": 1,
+          "sum": "Komponen darah, pembekuan darah, jantung dan peredaran ganda, golongan darah ABO dan rhesus, serta gangguannya.",
+          "blocks": [
+            {
+              "h": "Darah",
+              "li": [
+                "Plasma (±55%), eritrosit (mengangkut O₂ dengan hemoglobin, tanpa inti), leukosit (pertahanan), trombosit (pembekuan).",
+                "Pembekuan: trombokinase mengubah protrombin menjadi trombin (perlu vitamin K dan Ca²⁺); trombin mengubah fibrinogen menjadi fibrin.",
+                "Rhesus: Rh⁺ memiliki antigen D. Ibu Rh⁻ yang mengandung janin Rh⁺ berisiko eritroblastosis fetalis pada kehamilan berikutnya."
+              ]
+            },
+            {
+              "h": "Peredaran ganda",
+              "li": [
+                "Kecil: bilik kanan → arteri pulmonalis → paru-paru → vena pulmonalis → serambi kiri.",
+                "Besar: bilik kiri → aorta → seluruh tubuh → vena kava → serambi kanan.",
+                "Arteri pulmonalis membawa darah kaya CO₂; vena pulmonalis membawa darah kaya O₂."
+              ]
+            },
+            {
+              "h": "Golongan darah ABO",
+              "table": {
+                "cols": [
+                  "Golongan",
+                  "Antigen di eritrosit",
+                  "Antibodi di plasma"
+                ],
+                "rows": [
+                  [
+                    "A",
+                    "A",
+                    "Anti-B"
+                  ],
+                  [
+                    "B",
+                    "B",
+                    "Anti-A"
+                  ],
+                  [
+                    "AB",
+                    "A dan B",
+                    "Tidak ada (resipien universal)"
+                  ],
+                  [
+                    "O",
+                    "Tidak ada",
+                    "Anti-A dan anti-B (donor universal)"
+                  ]
+                ]
+              }
+            }
+          ],
+          "traps": [
+            "Pada orang dewasa, arteri pulmonalis adalah satu-satunya arteri yang membawa darah miskin oksigen."
+          ]
+        },
+        {
+          "code": "MAN-04",
+          "title": "Sistem ekskresi",
+          "scope": "Ginjal, kulit, hati, paru",
+          "src": "Kelas XI",
+          "tier": 1,
+          "sum": "Organ ekskresi dan zat yang dikeluarkannya, tahap pembentukan urine di ginjal, peran hormon ADH, dan gangguan ekskresi.",
+          "blocks": [
+            {
+              "h": "Organ ekskresi",
+              "li": [
+                "Ginjal: urine. Kulit: keringat. Paru-paru: CO₂ dan uap air. Hati: urea (dibentuk di hati) dan zat warna empedu (bilirubin)."
+              ]
+            },
+            {
+              "h": "Pembentukan urine",
+              "table": {
+                "cols": [
+                  "Tahap",
+                  "Tempat",
+                  "Hasil"
+                ],
+                "rows": [
+                  [
+                    "Filtrasi",
+                    "Glomerulus",
+                    "Urine primer (filtrat glomerulus)"
+                  ],
+                  [
+                    "Reabsorpsi",
+                    "Tubulus kontortus proksimal",
+                    "Urine sekunder"
+                  ],
+                  [
+                    "Augmentasi",
+                    "Tubulus kontortus distal",
+                    "Urine sesungguhnya"
+                  ]
+                ]
+              }
+            },
+            {
+              "h": "Pengaturan dan gangguan",
+              "li": [
+                "ADH (hormon antidiuretik) meningkatkan penyerapan kembali air sehingga urine lebih pekat.",
+                "Gangguan: batu ginjal, nefritis, albuminuria (protein dalam urine), diabetes insipidus (kekurangan ADH)."
+              ]
+            }
+          ],
+          "traps": [
+            "Urine primer masih mengandung glukosa; glukosa diserap kembali saat reabsorpsi."
+          ]
+        },
+        {
+          "code": "MAN-05",
+          "title": "Sistem pertahanan tubuh",
+          "scope": "Nonspesifik, spesifik, imunitas",
+          "src": "Kelas XI",
+          "tier": 2,
+          "sum": "Pertahanan nonspesifik dan spesifik, peran limfosit B dan T, jenis antibodi, jenis kekebalan, dan gangguan sistem imun.",
+          "blocks": [
+            {
+              "h": "Lapisan pertahanan",
+              "li": [
+                "Nonspesifik eksternal: kulit, mukosa, air mata (lisozim). Internal: fagositosis (neutrofil, makrofag), inflamasi, demam.",
+                "Spesifik humoral: limfosit B menjadi sel plasma (menghasilkan antibodi) dan sel B memori.",
+                "Spesifik seluler: limfosit T (T helper, T sitotoksik, T supresor)."
+              ]
+            },
+            {
+              "h": "Antibodi dan kekebalan",
+              "li": [
+                "IgG paling banyak dan dapat menembus plasenta; IgE berperan dalam alergi.",
+                "<b>Aktif</b>: tubuh membuat antibodi sendiri (sembuh dari sakit, vaksinasi). Pasif: menerima antibodi jadi (ASI, plasenta, serum).",
+                "Gangguan: alergi, autoimun, dan AIDS (HIV menyerang sel T helper)."
+              ]
+            }
+          ],
+          "traps": [
+            "Vaksinasi menghasilkan kekebalan aktif buatan; suntikan serum antibodi menghasilkan kekebalan pasif buatan."
+          ]
+        },
+        {
+          "code": "MAN-06",
+          "title": "Sistem gerak",
+          "scope": "Rangka, sendi, otot",
+          "src": "Kelas XI",
+          "tier": 2,
+          "sum": "Rangka aksial dan apendikular, jenis tulang dan sendi, tiga jenis otot, mekanisme kontraksi, dan gangguan sistem gerak.",
+          "blocks": [
+            {
+              "h": "Rangka dan sendi",
+              "li": [
+                "Tulang belakang 33 ruas: 7 leher, 12 punggung, 5 pinggang, 5 kelangkang (menyatu), 4 ekor.",
+                "Sendi mati (sinartrosis, tulang tengkorak), kaku (amfiartrosis, antarruas tulang belakang), gerak (diartrosis).",
+                "Sendi gerak: engsel (siku, lutut), peluru (bahu, pangkal paha), putar (atlas-aksis di leher), pelana (ibu jari), geser."
+              ]
+            },
+            {
+              "h": "Otot",
+              "li": [
+                "Otot lurik (rangka, sadar), otot polos (organ dalam, tidak sadar), otot jantung (lurik tetapi tidak sadar).",
+                "Kontraksi melibatkan aktin dan miosin, ion Ca²⁺, dan ATP.",
+                "Antagonis: bisep (fleksi) dan trisep (ekstensi) pada lengan atas."
+              ]
+            },
+            {
+              "h": "Gangguan",
+              "li": [
+                "Osteoporosis, rakitis (kekurangan vitamin D), skoliosis, lordosis, kifosis, artritis."
+              ]
+            }
+          ],
+          "traps": [
+            "Otot jantung tampak lurik tetapi bekerja tidak sadar."
+          ]
+        },
+        {
+          "code": "MAN-07",
+          "title": "Sistem koordinasi dan indra",
+          "scope": "Saraf, hormon, indra",
+          "src": "Kelas XI",
+          "tier": 1,
+          "sum": "Neuron dan penghantaran impuls, gerak refleks, bagian otak, saraf otonom, kelenjar hormon, serta mata dan telinga.",
+          "blocks": [
+            {
+              "h": "Saraf",
+              "li": [
+                "Neuron: dendrit, badan sel, akson (berselubung mielin dengan nodus Ranvier). Jenis: sensorik, motorik, interneuron.",
+                "Impuls menyeberangi sinapsis lewat neurotransmiter, misalnya asetilkolin.",
+                "<b>Gerak refleks</b>: reseptor → neuron sensorik → sumsum tulang belakang → neuron motorik → efektor, tanpa melalui otak sehingga lebih cepat.",
+                "Otak besar (berpikir, kesadaran), otak kecil (keseimbangan), sumsum lanjutan (napas, detak jantung).",
+                "Saraf otonom: simpatik dan parasimpatik bekerja berlawanan (simpatik mempercepat detak jantung dan melebarkan pupil)."
+              ]
+            },
+            {
+              "h": "Hormon",
+              "table": {
+                "cols": [
+                  "Kelenjar",
+                  "Hormon",
+                  "Fungsi"
+                ],
+                "rows": [
+                  [
+                    "Hipofisis anterior",
+                    "GH, TSH, FSH, LH",
+                    "Pertumbuhan; merangsang kelenjar lain"
+                  ],
+                  [
+                    "Hipofisis posterior",
+                    "ADH, oksitosin",
+                    "Penyerapan air di ginjal; kontraksi rahim"
+                  ],
+                  [
+                    "Tiroid",
+                    "Tiroksin",
+                    "Metabolisme; kekurangan menyebabkan kretinisme (anak) atau gondok"
+                  ],
+                  [
+                    "Pankreas",
+                    "Insulin, glukagon",
+                    "Insulin menurunkan gula darah; glukagon menaikkannya"
+                  ],
+                  [
+                    "Adrenal",
+                    "Adrenalin",
+                    "Respons darurat: detak jantung dan gula darah naik"
+                  ]
+                ]
+              }
+            },
+            {
+              "h": "Indra",
+              "li": [
+                "Mata: sel batang peka cahaya redup, sel kerucut peka warna. Telinga: koklea untuk pendengaran, saluran setengah lingkaran untuk keseimbangan."
+              ]
+            }
+          ],
+          "traps": [
+            "Insulin menurunkan kadar gula darah; kekurangannya menyebabkan diabetes melitus, bukan diabetes insipidus."
+          ]
+        },
+        {
+          "code": "MAN-08",
+          "title": "Sistem reproduksi dan hormonnya",
+          "scope": "Gametogenesis, menstruasi, kehamilan",
+          "src": "Kelas XI",
+          "tier": 1,
+          "sum": "Pembentukan sperma dan ovum, hormon reproduksi, siklus menstruasi, fertilisasi dan kehamilan, serta penyakit menular seksual.",
+          "blocks": [
+            {
+              "h": "Gametogenesis",
+              "li": [
+                "Spermatogenesis di tubulus seminiferus testis: satu spermatosit primer menghasilkan empat sperma.",
+                "Oogenesis di ovarium: satu oosit primer menghasilkan satu ovum dan badan polar.",
+                "Testosteron dihasilkan sel Leydig di testis."
+              ]
+            },
+            {
+              "h": "Hormon dan siklus menstruasi (±28 hari)",
+              "li": [
+                "FSH memacu pematangan folikel; folikel menghasilkan estrogen yang menebalkan dinding rahim (endometrium).",
+                "<b>LH</b> memicu ovulasi (sekitar hari ke-14) dan pembentukan korpus luteum.",
+                "Korpus luteum menghasilkan progesteron yang mempertahankan endometrium; tanpa pembuahan, kadarnya turun dan terjadi menstruasi."
+              ]
+            },
+            {
+              "h": "Kehamilan dan penyakit",
+              "li": [
+                "Fertilisasi di saluran telur (tuba falopi); embrio menempel di endometrium (implantasi).",
+                "Hormon hCG dari plasenta menjadi dasar alat tes kehamilan.",
+                "Penyakit menular seksual: gonore, sifilis, HIV/AIDS."
+              ]
+            }
+          ],
+          "traps": [
+            "Ovulasi dipicu oleh lonjakan LH, bukan FSH."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MET",
+      "name": "Metabolisme",
+      "short": "Metabolisme",
+      "note": "Enzim, respirasi sel, dan fotosintesis.",
+      "topics": [
+        {
+          "code": "MET-01",
+          "title": "Enzim dan metabolisme",
+          "scope": "Cara kerja enzim, ATP",
+          "src": "Kelas XII",
+          "tier": 2,
+          "sum": "Sifat dan cara kerja enzim, faktor yang memengaruhinya, inhibitor, ATP, serta perbedaan katabolisme dan anabolisme.",
+          "blocks": [
+            {
+              "h": "Enzim",
+              "li": [
+                "Enzim adalah biokatalisator dari protein yang bekerja spesifik pada substrat di sisi aktifnya.",
+                "Model kerja: gembok-kunci (lock and key, Emil Fischer) dan kecocokan terinduksi (induced fit, Koshland).",
+                "Faktor: suhu (optimum ±37 °C pada manusia; suhu tinggi merusak enzim), pH (pepsin optimum ±2, tripsin ±8), konsentrasi, dan inhibitor.",
+                "Inhibitor kompetitif menempati sisi aktif; inhibitor nonkompetitif menempel di bagian lain dan mengubah bentuk enzim."
+              ]
+            },
+            {
+              "h": "Metabolisme",
+              "li": [
+                "ATP adalah pembawa energi sel.",
+                "<b>Katabolisme</b> memecah molekul dan melepas energi (respirasi). Anabolisme menyusun molekul dan memerlukan energi (fotosintesis, kemosintesis)."
+              ]
+            }
+          ],
+          "traps": [
+            "Enzim yang rusak karena suhu tinggi (denaturasi) tidak pulih saat suhu diturunkan."
+          ]
+        },
+        {
+          "code": "MET-02",
+          "title": "Respirasi sel",
+          "scope": "Aerob dan anaerob",
+          "src": "Kelas XII",
+          "tier": 1,
+          "sum": "Tahap respirasi aerob dari glikolisis sampai transpor elektron, tempat dan hasil tiap tahap, serta fermentasi.",
+          "blocks": [
+            {
+              "h": "Respirasi aerob",
+              "li": [
+                "C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + energi.",
+                "Hasil total menurut buku SMA: ±36–38 ATP per glukosa; terbanyak dihasilkan transpor elektron."
+              ]
+            },
+            {
+              "h": "Tahap",
+              "wide": true,
+              "table": {
+                "cols": [
+                  "Tahap",
+                  "Tempat",
+                  "Hasil utama"
+                ],
+                "rows": [
+                  [
+                    "Glikolisis",
+                    "Sitoplasma",
+                    "Glukosa → 2 asam piruvat; 2 ATP (bersih), 2 NADH"
+                  ],
+                  [
+                    "Dekarboksilasi oksidatif",
+                    "Matriks mitokondria",
+                    "Piruvat → asetil-KoA; CO₂, NADH"
+                  ],
+                  [
+                    "Siklus Krebs",
+                    "Matriks mitokondria",
+                    "CO₂, 2 ATP, NADH, FADH₂"
+                  ],
+                  [
+                    "Transpor elektron",
+                    "Membran dalam mitokondria (krista)",
+                    "Sebagian besar ATP; O₂ sebagai penerima elektron terakhir membentuk H₂O"
+                  ]
+                ]
+              }
+            },
+            {
+              "h": "Respirasi anaerob (fermentasi)",
+              "li": [
+                "Fermentasi asam laktat di otot saat kekurangan oksigen: 2 ATP; asam laktat menyebabkan rasa lelah.",
+                "Fermentasi alkohol oleh ragi (Saccharomyces): glukosa → etanol + CO₂ + 2 ATP."
+              ]
+            }
+          ],
+          "traps": [
+            "Glikolisis terjadi di sitoplasma, bukan di mitokondria."
+          ]
+        },
+        {
+          "code": "MET-03",
+          "title": "Fotosintesis",
+          "scope": "Reaksi terang, siklus Calvin",
+          "src": "Kelas XII",
+          "tier": 1,
+          "sum": "Persamaan fotosintesis, reaksi terang dan siklus Calvin beserta tempatnya, percobaan tokoh-tokoh fotosintesis, dan kemosintesis.",
+          "blocks": [
+            {
+              "h": "Tahap",
+              "li": [
+                "6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂, dengan bantuan cahaya dan klorofil.",
+                "Reaksi terang di membran tilakoid (grana): fotolisis air menghasilkan O₂; terbentuk ATP dan NADPH. Melibatkan fotosistem II (P680) dan I (P700).",
+                "<b>Siklus Calvin</b> (reaksi gelap) di stroma: CO₂ diikat RuBP dengan enzim rubisco, lalu dibentuk glukosa memakai ATP dan NADPH."
+              ]
+            },
+            {
+              "h": "Percobaan",
+              "table": {
+                "cols": [
+                  "Tokoh",
+                  "Temuan"
+                ],
+                "rows": [
+                  [
+                    "Ingenhousz",
+                    "Fotosintesis memerlukan cahaya dan menghasilkan O₂"
+                  ],
+                  [
+                    "Engelmann",
+                    "O₂ dihasilkan di kloroplas (Spirogyra); cahaya merah dan biru paling efektif"
+                  ],
+                  [
+                    "Sachs",
+                    "Fotosintesis menghasilkan amilum (uji iodin pada daun)"
+                  ],
+                  [
+                    "Hill",
+                    "Fotolisis air pada kloroplas yang disinari"
+                  ],
+                  [
+                    "Ruben dan Kamen",
+                    "O₂ hasil fotosintesis berasal dari air (isotop ¹⁸O)"
+                  ]
+                ]
+              }
+            },
+            {
+              "h": "Kemosintesis",
+              "li": [
+                "Penyusunan zat organik dengan energi dari reaksi kimia, misalnya oleh bakteri nitrifikasi."
+              ]
+            }
+          ],
+          "traps": [
+            "O₂ yang dilepas berasal dari air, bukan dari CO₂."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GEN",
+      "name": "Genetika, evolusi, dan bioteknologi",
+      "short": "Genetika",
+      "note": "Materi genetik, pembelahan sel, pewarisan sifat, mutasi, evolusi, dan bioteknologi.",
+      "topics": [
+        {
+          "code": "GEN-01",
+          "title": "Materi genetik dan sintesis protein",
+          "scope": "Kromosom, DNA, RNA, kode genetik",
+          "src": "Kelas XII",
+          "tier": 1,
+          "sum": "Kromosom dan gen, struktur DNA dan RNA, replikasi DNA, serta sintesis protein lewat transkripsi dan translasi.",
+          "blocks": [
+            {
+              "h": "Kromosom, gen, dan DNA",
+              "li": [
+                "Manusia: 46 kromosom (22 pasang autosom dan 1 pasang kromosom seks). Gen terletak di lokus pada kromosom.",
+                "<b>DNA</b> berbentuk heliks ganda (Watson dan Crick, 1953, dengan data difraksi Rosalind Franklin).",
+                "Nukleotida DNA: gula deoksiribosa, fosfat, dan basa. A berpasangan dengan T (2 ikatan hidrogen), G dengan C (3).",
+                "Purin: adenin dan guanin. Pirimidin: sitosin dan timin (DNA) atau urasil (RNA).",
+                "Replikasi DNA bersifat semikonservatif (dibuktikan Meselson dan Stahl)."
+              ]
+            },
+            {
+              "h": "DNA dan RNA",
+              "table": {
+                "cols": [
+                  "Ciri",
+                  "DNA",
+                  "RNA"
+                ],
+                "rows": [
+                  [
+                    "Gula",
+                    "Deoksiribosa",
+                    "Ribosa"
+                  ],
+                  [
+                    "Basa",
+                    "A, T, G, C",
+                    "A, U, G, C"
+                  ],
+                  [
+                    "Rantai",
+                    "Ganda",
+                    "Tunggal"
+                  ],
+                  [
+                    "Kadar dalam sel",
+                    "Tetap",
+                    "Berubah sesuai aktivitas sintesis protein"
+                  ]
+                ]
+              }
+            },
+            {
+              "h": "Sintesis protein",
+              "li": [
+                "Transkripsi di inti: DNA → mRNA. Translasi di ribosom: mRNA → rantai asam amino.",
+                "Kodon terdiri atas 3 basa; tRNA membawa asam amino dengan antikodon yang cocok.",
+                "Kodon awal AUG (metionin); kodon akhir UAA, UAG, UGA."
+              ]
+            }
+          ],
+          "traps": [
+            "RNA memakai urasil, bukan timin; urasil berpasangan dengan adenin."
+          ]
+        },
+        {
+          "code": "GEN-02",
+          "title": "Pembelahan sel",
+          "scope": "Mitosis, meiosis",
+          "src": "Kelas XII",
+          "tier": 1,
+          "sum": "Siklus sel, tahap-tahap mitosis dan meiosis, serta perbedaan hasil dan tempat terjadinya.",
+          "blocks": [
+            {
+              "h": "Siklus dan mitosis",
+              "li": [
+                "Interfase: G1 (tumbuh), S (replikasi DNA), G2 (persiapan pembelahan).",
+                "Mitosis: profase, metafase (kromosom berjajar di bidang ekuator), anafase (kromatid berpisah ke kutub), telofase.",
+                "Pembelahan biner (amitosis) terjadi pada bakteri."
+              ]
+            },
+            {
+              "h": "Mitosis dan meiosis",
+              "table": {
+                "cols": [
+                  "Ciri",
+                  "Mitosis",
+                  "Meiosis"
+                ],
+                "rows": [
+                  [
+                    "Tempat",
+                    "Sel tubuh",
+                    "Sel kelamin (gonad)"
+                  ],
+                  [
+                    "Jumlah pembelahan",
+                    "Satu",
+                    "Dua"
+                  ],
+                  [
+                    "Hasil",
+                    "2 sel diploid (2n), identik",
+                    "4 sel haploid (n), bervariasi"
+                  ],
+                  [
+                    "Pindah silang",
+                    "Tidak ada",
+                    "Ada, pada profase I"
+                  ]
+                ]
+              }
+            }
+          ],
+          "traps": [
+            "Pada anafase I meiosis yang berpisah adalah kromosom homolog; pada anafase mitosis yang berpisah adalah kromatid."
+          ]
+        },
+        {
+          "code": "GEN-03",
+          "title": "Pola pewarisan sifat Mendel",
+          "scope": "Monohibrid, dihibrid, intermediet",
+          "src": "Kelas XII",
+          "tier": 1,
+          "sum": "Istilah genetika, hukum Mendel I dan II, perbandingan persilangan monohibrid dan dihibrid, intermediet, serta uji silang.",
+          "blocks": [
+            {
+              "h": "Istilah dan hukum",
+              "li": [
+                "Gregor Mendel meneliti kacang ercis (Pisum sativum) dan menerbitkan hasilnya pada 1866.",
+                "Genotipe (susunan gen), fenotipe (sifat tampak), alel, dominan, resesif, homozigot (AA, aa), heterozigot (Aa).",
+                "Hukum I (segregasi): alel berpisah saat pembentukan gamet. Hukum II (asortasi bebas): alel dari gen berbeda bergabung secara bebas.",
+                "Jumlah macam gamet = 2<sup>n</sup>, n jumlah pasangan alel heterozigot."
+              ]
+            },
+            {
+              "h": "Perbandingan keturunan F2",
+              "table": {
+                "cols": [
+                  "Persilangan",
+                  "Fenotipe F2"
+                ],
+                "rows": [
+                  [
+                    "Monohibrid dominan penuh",
+                    "3 : 1 (genotipe 1 : 2 : 1)"
+                  ],
+                  [
+                    "Monohibrid intermediet (bunga pukul empat merah × putih)",
+                    "1 merah : 2 merah muda : 1 putih"
+                  ],
+                  [
+                    "Dihibrid dominan penuh",
+                    "9 : 3 : 3 : 1"
+                  ]
+                ]
+              }
+            },
+            {
+              "h": "Uji silang",
+              "li": [
+                "Testcross: menyilangkan dengan induk homozigot resesif untuk mengetahui genotipe. Backcross: menyilangkan keturunan dengan salah satu induknya."
+              ]
+            }
+          ],
+          "traps": [
+            "Pada intermediet, perbandingan fenotipe sama dengan perbandingan genotipe (1 : 2 : 1)."
+          ]
+        },
+        {
+          "code": "GEN-04",
+          "title": "Penyimpangan semu dan pewarisan pada manusia",
+          "scope": "Interaksi gen, terpaut seks",
+          "src": "Kelas XII",
+          "tier": 2,
+          "sum": "Interaksi gen yang mengubah perbandingan Mendel, penentuan jenis kelamin, pewarisan terpaut kromosom X, dan kelainan menurun.",
+          "blocks": [
+            {
+              "h": "Penyimpangan semu Mendel (F2)",
+              "table": {
+                "cols": [
+                  "Jenis",
+                  "Perbandingan",
+                  "Contoh"
+                ],
+                "rows": [
+                  [
+                    "Atavisme",
+                    "9 : 3 : 3 : 1 (fenotipe baru)",
+                    "Jengger ayam"
+                  ],
+                  [
+                    "Polimeri",
+                    "15 : 1",
+                    "Warna biji gandum"
+                  ],
+                  [
+                    "Kriptomeri",
+                    "9 : 3 : 4",
+                    "Bunga Linaria maroccana"
+                  ],
+                  [
+                    "Epistasis dominan",
+                    "12 : 3 : 1",
+                    "Warna kulit labu"
+                  ],
+                  [
+                    "Gen komplementer",
+                    "9 : 7",
+                    "Bunga Lathyrus odoratus"
+                  ]
+                ]
+              }
+            },
+            {
+              "h": "Pewarisan pada manusia",
+              "li": [
+                "Jenis kelamin: XX perempuan, XY laki-laki (pada burung: ZW betina, ZZ jantan).",
+                "Buta warna dan hemofilia: gen resesif terpaut kromosom X, sehingga lebih sering pada laki-laki.",
+                "Golongan darah ABO diatur alel ganda I<sup>A</sup>, I<sup>B</sup>, dan i.",
+                "Kelainan autosom resesif: albino, fenilketonuria. Autosom dominan: polidaktili, brakidaktili."
+              ]
+            }
+          ],
+          "traps": [
+            "Ayah buta warna tidak menurunkan buta warna ke anak laki-lakinya, karena anak laki-laki menerima kromosom Y dari ayah."
+          ]
+        },
+        {
+          "code": "GEN-05",
+          "title": "Mutasi",
+          "scope": "Mutasi gen dan kromosom, mutagen",
+          "src": "Kelas XII",
+          "tier": 2,
+          "sum": "Mutasi gen dan mutasi kromosom (struktur dan jumlah), contoh sindrom pada manusia, dan jenis mutagen.",
+          "blocks": [
+            {
+              "h": "Jenis mutasi",
+              "li": [
+                "Mutasi gen (titik): substitusi basa, insersi, delesi; insersi dan delesi menggeser kerangka baca.",
+                "Struktur kromosom: delesi, duplikasi, inversi, translokasi.",
+                "Jumlah kromosom: euploidi (poliploidi, misalnya semangka tanpa biji 3n) dan aneuploidi."
+              ]
+            },
+            {
+              "h": "Sindrom dan mutagen",
+              "table": {
+                "cols": [
+                  "Sindrom",
+                  "Kromosom"
+                ],
+                "rows": [
+                  [
+                    "Down",
+                    "Trisomi 21 (47 kromosom)"
+                  ],
+                  [
+                    "Klinefelter",
+                    "XXY (laki-laki)"
+                  ],
+                  [
+                    "Turner",
+                    "XO, 45 kromosom (perempuan)"
+                  ]
+                ]
+              }
+            },
+            {
+              "h": "Mutagen",
+              "li": [
+                "Fisik: sinar UV, sinar-X, radioaktif. Kimia: kolkisin (memicu poliploidi), pestisida. Biologi: virus."
+              ]
+            }
+          ]
+        },
+        {
+          "code": "GEN-06",
+          "title": "Evolusi",
+          "scope": "Teori, bukti, Hardy-Weinberg",
+          "src": "Kelas XII",
+          "tier": 2,
+          "sum": "Asal-usul kehidupan, teori evolusi Lamarck dan Darwin, petunjuk evolusi, spesiasi, dan hukum Hardy-Weinberg.",
+          "blocks": [
+            {
+              "h": "Asal-usul kehidupan",
+              "li": [
+                "Abiogenesis (generatio spontanea) dibantah lewat percobaan Redi, Spallanzani, dan Pasteur (labu leher angsa), sehingga berlaku biogenesis.",
+                "Teori evolusi kimia Oparin-Haldane; percobaan Miller-Urey (1953) membentuk asam amino dari gas sederhana."
+              ]
+            },
+            {
+              "h": "Teori dan bukti",
+              "li": [
+                "Lamarck: sifat yang diperoleh karena sering dipakai diwariskan (leher jerapah). Teori ini ditolak.",
+                "Darwin: <i>On the Origin of Species</i> (1859); seleksi alam, berdasar pengamatan di Galápagos (burung finch). Wallace mengemukakan gagasan serupa.",
+                "Bukti: fosil, organ homolog (asal sama, fungsi beda), organ analog (fungsi sama, asal beda), organ vestigial (usus buntu), embriologi, biokimia.",
+                "Spesiasi terjadi lewat isolasi geografis atau isolasi reproduksi."
+              ]
+            },
+            {
+              "h": "Hardy-Weinberg",
+              "li": [
+                "<b>p + q = 1 dan p² + 2pq + q² = 1</b> (p, q frekuensi dua alel).",
+                "Berlaku bila populasi besar, kawin acak, dan tidak ada mutasi, migrasi, atau seleksi."
+              ]
+            }
+          ],
+          "traps": [
+            "Sayap burung dan sayap kupu-kupu adalah organ analog; sayap kelelawar dan lengan manusia adalah organ homolog."
+          ]
+        },
+        {
+          "code": "GEN-07",
+          "title": "Bioteknologi",
+          "scope": "Konvensional dan modern",
+          "src": "Kelas X dan XII",
+          "tier": 2,
+          "sum": "Bioteknologi konvensional dengan mikroorganisme, bioteknologi modern (DNA rekombinan, kultur jaringan, kloning, PCR), dan dampaknya.",
+          "blocks": [
+            {
+              "h": "Konvensional",
+              "table": {
+                "cols": [
+                  "Produk",
+                  "Mikroorganisme"
+                ],
+                "rows": [
+                  [
+                    "Tempe",
+                    "Rhizopus oryzae, Rhizopus oligosporus"
+                  ],
+                  [
+                    "Tapai, roti",
+                    "Saccharomyces cerevisiae"
+                  ],
+                  [
+                    "Yogurt",
+                    "Lactobacillus bulgaricus, Streptococcus thermophilus"
+                  ],
+                  [
+                    "Kecap",
+                    "Aspergillus oryzae"
+                  ],
+                  [
+                    "Nata de coco",
+                    "Acetobacter xylinum"
+                  ],
+                  [
+                    "Oncom merah",
+                    "Neurospora sitophila"
+                  ]
+                ]
+              }
+            },
+            {
+              "h": "Modern",
+              "li": [
+                "DNA rekombinan: gen disisipkan ke plasmid bakteri memakai enzim restriksi (pemotong) dan ligase (penyambung). Contoh: insulin manusia dibuat bakteri E. coli.",
+                "Kultur jaringan (berdasar totipotensi), kloning (domba Dolly, 1996, lewat transfer inti sel), PCR (memperbanyak DNA).",
+                "Tanaman transgenik (misalnya tanaman Bt tahan hama) dan antibodi monoklonal (sel hibridoma).",
+                "Dampak yang dibahas: keamanan pangan, keanekaragaman genetik, dan etika."
+              ]
+            }
+          ],
+          "traps": [
+            "Enzim restriksi memotong DNA; ligase menyambungnya. Keduanya mudah tertukar."
+          ]
+        }
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "title": "Perlu diperhatikan",
+      "items": [
+        "Kelas X Kurikulum Merdeka membahas biologi di dalam IPA. Buku kelas XI memuat delapan bab; sistem organ manusia di peta ini dipecah per sistem.",
+        "Pembagian bab kelas XII belum terkonfirmasi dari buku resmi; genetika, evolusi, dan bioteknologi tercantum di ringkasan, sedangkan metabolisme ditempatkan di kelas XII mengikuti susunan umum.",
+        "Angka volume paru dan jumlah ATP berbeda antarbuku; peta ini memakai angka yang lazim di buku SMA."
+      ]
+    },
+    {
+      "title": "Rujukan",
+      "items": [
+        "Buku teks Biologi Kurikulum Merdeka kelas XI dan XII (Kemendikbudristek). Daftar bab dicocokkan lewat ringkasan Tirto, Kherysuryawan, Gramedia, dan Mamikos karena PDF resmi tidak dapat dibuka dari lingkungan kerja."
+      ]
+    }
+  ]
+}
