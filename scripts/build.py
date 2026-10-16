@@ -2,8 +2,9 @@
 
 Usage:  python scripts/build.py              # build docs/ for GitHub Pages
         python scripts/build.py --artifact   # also write build/*.fragment.html for the claude.ai copies
-Reads:  data/topics.json, data/questions.csv, templates/*.html
-Writes: docs/questions.json and one docs/<name>.html per template
+Reads:  data/topics.json, data/questions.csv, data/maps/*.json, templates/*.html
+Writes: docs/questions.json, one docs/<name>.html per template, and
+        one docs/peta-<id>.html per subject map (rendered through templates/_map.html)
 Exits with status 1 (and writes nothing) if the data has errors.
 """
 import csv
@@ -23,7 +24,11 @@ ARTIFACT_URLS = {
     "peta.html": "https://claude.ai/artifact/D5VQvyvvDqr9rVwHTMX3eP",
     "bank.html": "https://claude.ai/artifact/Qs1xt8ZCrkrKMiHbq2BGFg",
     "simulasi.html": "https://claude.ai/artifact/VfVV7k9nBakQALRRybY526",
+    "peta-fisika.html": "https://claude.ai/artifact/XxSteiwD99sQx37T8teYTh",
 }
+# Pages without a hosted copy are linked through the GitHub Pages site.
+PAGES_URL = "https://nugross190.github.io/Bank-LCCM-Sejarah/"
+HOSTED_LINKS = {**ARTIFACT_URLS, "index.html": PAGES_URL}
 
 
 def load():
@@ -72,6 +77,60 @@ def report(topics, rows):
     print(f"Total {len(rows)} soal")
 
 
+def load_maps():
+    return {p.stem: json.loads(p.read_text(encoding="utf-8")) for p in sorted((ROOT / "data/maps").glob("*.json"))}
+
+
+def validate_map(name, m):
+    """Return a list of problems in one subject map."""
+    errors, codes = [], set()
+    where = f"data/maps/{name}.json"
+    for key in ("id", "subject", "title", "lead", "domains"):
+        if not m.get(key):
+            errors.append(f"{where}: missing '{key}'")
+    if m.get("id") and m["id"] != name:
+        errors.append(f"{where}: id '{m['id']}' must match the file name")
+    for d in m.get("domains", []):
+        for key in ("id", "name", "short", "topics"):
+            if not d.get(key):
+                errors.append(f"{where}: domain {d.get('id', '?')} missing '{key}'")
+        for t in d.get("topics", []):
+            code = t.get("code", "?")
+            if code in codes:
+                errors.append(f"{where}: duplicate code {code}")
+            codes.add(code)
+            if not code.startswith(d.get("id", "") + "-"):
+                errors.append(f"{where}: {code} must start with its domain id ({d.get('id')}-)")
+            for key in ("title", "scope", "src", "sum", "blocks"):
+                if not t.get(key):
+                    errors.append(f"{where}: {code} missing '{key}'")
+            if t.get("tier") not in (1, 2, 3):
+                errors.append(f"{where}: {code} tier must be 1, 2 or 3")
+            for b in t.get("blocks", []):
+                if not b.get("h") or not (b.get("li") or b.get("table")):
+                    errors.append(f"{where}: {code} has a block without a heading or content")
+                table = b.get("table")
+                if table and any(len(r) != len(table["cols"]) for r in table["rows"]):
+                    errors.append(f"{where}: {code} table '{b.get('h')}' has rows of the wrong length")
+    for step in m.get("path", []):
+        if step.get("to") not in codes:
+            errors.append(f"{where}: path step '{step.get('title')}' points to unknown code {step.get('to')}")
+    return errors
+
+
+def map_pages(maps, links):
+    """Return {file name: page body} for every subject map."""
+    template = (ROOT / "templates/_map.html").read_text(encoding="utf-8")
+    out = {}
+    for m in maps.values():
+        payload = json.dumps(m, ensure_ascii=False).replace("</", "<\\/")
+        body = template.replace("__TITLE__", m["title"]).replace("/*__MAP__*/", "const MAP = " + payload + ";")
+        for name, target in links.items():
+            body = body.replace('href="' + name, 'href="' + target)
+        out[f"peta-{m['id']}.html"] = body
+    return out
+
+
 def pages(topics, questions, links):
     """Return {file name: page body} for every template, with cross-page links resolved through `links`.
 
@@ -82,6 +141,8 @@ def pages(topics, questions, links):
     payload = json.dumps({"topics": data, "questions": questions}, ensure_ascii=False).replace("</", "<\\/")
     out = {}
     for path in sorted((ROOT / "templates").glob("*.html")):
+        if path.name.startswith("_"):  # shared templates, rendered by other steps
+            continue
         body = path.read_text(encoding="utf-8")
         body = body.replace("/*__DATA__*/", "const DATA = " + payload + ";")
         for name, target in links.items():
@@ -90,7 +151,7 @@ def pages(topics, questions, links):
     return out
 
 
-def build(topics, rows, artifact):
+def build(topics, rows, maps, artifact):
     questions = [
         {"id": r["id"], "t": r["simpul"], "lv": int(r["tingkat"]), "q": r["soal"], "a": r["jawaban"], "x": r["catatan"]}
         for r in rows
@@ -98,14 +159,15 @@ def build(topics, rows, artifact):
     docs = ROOT / "docs"
     docs.mkdir(exist_ok=True)
     (docs / "questions.json").write_text(json.dumps(questions, ensure_ascii=False, indent=1), encoding="utf-8")
-    built = pages(topics, questions, {})
+    built = {**pages(topics, questions, {}), **map_pages(maps, {})}
     for name, body in built.items():
         (docs / name).write_text(HEAD + body, encoding="utf-8")
     print("Wrote docs/questions.json, " + ", ".join("docs/" + n for n in built))
     if artifact:
         out = ROOT / "build"
         out.mkdir(exist_ok=True)
-        for name, body in pages(topics, questions, ARTIFACT_URLS).items():
+        hosted = {**pages(topics, questions, HOSTED_LINKS), **map_pages(maps, HOSTED_LINKS)}
+        for name, body in hosted.items():
             if name in ARTIFACT_URLS:
                 (out / name.replace(".html", ".fragment.html")).write_text(body, encoding="utf-8")
         print("Wrote build/*.fragment.html for " + ", ".join(ARTIFACT_URLS))
@@ -113,13 +175,16 @@ def build(topics, rows, artifact):
 
 def main():
     topics, rows = load()
-    errors = validate(topics, rows)
+    maps = load_maps()
+    errors = validate(topics, rows) + [e for name, m in maps.items() for e in validate_map(name, m)]
     if errors:
-        print(f"{len(errors)} error(s) in data/questions.csv:")
+        print(f"{len(errors)} error(s) in data/:")
         print("\n".join("  " + e for e in errors))
         sys.exit(1)
     report(topics, rows)
-    build(topics, rows, "--artifact" in sys.argv[1:])
+    for m in maps.values():
+        print(f"Peta {m['subject']}: {sum(len(d['topics']) for d in m['domains'])} simpul")
+    build(topics, rows, maps, "--artifact" in sys.argv[1:])
 
 
 if __name__ == "__main__":
