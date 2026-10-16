@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="id">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}</style>
+<title>Peta Materi Matematika SMA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: generic subject map, same catalogue look as the history map. Domain progress → path strip → map overview → catalogue cards per domain. Content comes from data/maps/<subject>.json. */
+:root{
+  --bg:#F3F4F7; --surface:#FFFFFF; --sunk:#E9EBF1; --ink:#1A1F33; --muted:#585E73; --line:#D6DAE3;
+  --d1:#2B3A78; --d2:#8A5526; --d3:#2C6B63; --d4:#6E3466; --d5:#5A6420; --d6:#9A3B1F; --d7:#3D5A80;
+  --s1:#E4E8F6; --s2:#F3E9DF; --s3:#DFEFEC; --s4:#F1E3EE; --s5:#ECEEDC; --s6:#F8E6DF; --s7:#E2E9F2;
+  --mark:#F6DE8D; --warn:#9A3B1F; --warn-soft:#F8E6DF; --ok:#2C6B3F;
+  --f-label:"Archivo Narrow","Arial Narrow","Roboto Condensed",system-ui,sans-serif;
+  --f-body:"Literata",Georgia,"Times New Roman",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#11131A; --surface:#191C26; --sunk:#222634; --ink:#E7E9F0; --muted:#A3A9BC; --line:#2E3345;
+  --d1:#A3B1F2; --d2:#E0A974; --d3:#76C7B9; --d4:#D9A0CF; --d5:#C3CC7E; --d6:#F0A58A; --d7:#9DBBE0;
+  --s1:#232A47; --s2:#33271C; --s3:#1C3330; --s4:#33202F; --s5:#2A2D1A; --s6:#3A221B; --s7:#1F2A3A;
+  --mark:#6D5A1C; --warn:#F0A58A; --warn-soft:#3A221B; --ok:#8FD3A2; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11131A; --surface:#191C26; --sunk:#222634; --ink:#E7E9F0; --muted:#A3A9BC; --line:#2E3345;
+  --d1:#A3B1F2; --d2:#E0A974; --d3:#76C7B9; --d4:#D9A0CF; --d5:#C3CC7E; --d6:#F0A58A; --d7:#9DBBE0;
+  --s1:#232A47; --s2:#33271C; --s3:#1C3330; --s4:#33202F; --s5:#2A2D1A; --s6:#3A221B; --s7:#1F2A3A;
+  --mark:#6D5A1C; --warn:#F0A58A; --warn-soft:#3A221B; --ok:#8FD3A2; color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:20px;padding-block:28px 64px}
+h1,h2,h3{font-family:var(--f-label);text-wrap:balance;line-height:1.15;margin:0}
+h1{font-size:clamp(2rem,5vw,3.1rem);font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.65rem;font-weight:700}
+h3{font-size:1.15rem;font-weight:600}
+p{margin:0}
+a{color:inherit}
+mark{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}
+sub,sup{line-height:0}
+.eyebrow{font-family:var(--f-label);font-weight:600;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.mono{font-family:var(--f-mono);font-size:.82em}
+.lead{max-width:66ch;color:var(--muted);font-size:1.05rem;margin-top:12px}
+section{margin-top:44px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 16px;margin-bottom:16px;border-bottom:2px solid var(--ink);padding-bottom:8px}
+.sec-head p{color:var(--muted);font-size:.95rem;max-width:62ch}
+
+.progress{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,140px),1fr));gap:8px;margin-top:22px}
+.pg{display:flex;flex-direction:column;gap:5px;text-decoration:none;min-width:0}
+.pg b{font-family:var(--f-label);font-size:.92rem;color:var(--c)}
+.pg .bar{height:10px;background:var(--sunk);border-radius:2px;overflow:hidden;position:relative}
+.pg .bar i{position:absolute;inset:0 auto 0 0;background:var(--c);width:0;transition:width .3s}
+.pg .bar::after{content:"";position:absolute;inset:0;border:1.5px solid var(--c);border-radius:2px}
+.pg span{font-size:.78rem;color:var(--muted);font-family:var(--f-label)}
+.pg:focus-visible{outline:2px solid var(--c);outline-offset:3px}
+
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:22px}
+.search{flex:1 1 260px;min-width:0;display:flex;align-items:center;gap:8px;background:var(--surface);border:1.5px solid var(--line);border-radius:6px;padding:0 12px}
+.search:focus-within{border-color:var(--ink)}
+.search input{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:inherit;padding:10px 0;outline:none}
+.btn{font-family:var(--f-label);font-weight:600;font-size:.92rem;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);padding:9px 14px;border-radius:6px;cursor:pointer}
+.btn:hover{border-color:var(--ink)}
+.btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+#hits{font-size:.9rem;color:var(--muted);font-family:var(--f-label)}
+.overall{font-family:var(--f-label);font-size:.95rem;color:var(--muted);margin-top:10px}
+.overall b{color:var(--ink);font-variant-numeric:tabular-nums}
+
+.path-wrap{overflow-x:auto;padding-bottom:6px}
+.path{list-style:none;margin:0;padding:0;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(130px,1fr);min-width:max-content}
+.path li{border-top:2px solid var(--ink);padding:0 10px 0 0;position:relative}
+.path li::before{content:"";position:absolute;left:0;top:-7px;width:12px;height:12px;border-radius:50%;background:var(--ink)}
+.path button{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:4px;padding-top:14px;max-width:16em}
+.path button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.path .lb{font-family:var(--f-mono);font-size:.74rem;color:var(--muted)}
+.path .nm{font-family:var(--f-label);font-weight:700;font-size:1rem;line-height:1.15}
+.path .an{font-size:.8rem;color:var(--muted);line-height:1.35}
+
+.map{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:14px}
+.mcol{border-top:4px solid var(--c);background:var(--surface);border-radius:0 0 8px 8px;padding:14px;min-width:0}
+.mcol h3{color:var(--c);display:flex;justify-content:space-between;gap:8px}
+.mcol ul{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.chip{display:flex;gap:10px;align-items:baseline;text-decoration:none;padding:6px 8px;border-radius:5px;background:var(--soft);font-size:.93rem;line-height:1.35}
+.chip:hover{outline:1.5px solid var(--c)}
+.chip:focus-visible{outline:2px solid var(--c)}
+.chip .mono{color:var(--c);flex:none}
+.chip.done{text-decoration:line-through;text-decoration-color:var(--muted);opacity:.72}
+.tier{display:inline-block;font-family:var(--f-label);font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:3px;white-space:nowrap}
+.t1{background:var(--ink);color:var(--bg)}
+.t2{border:1.3px solid var(--ink)}
+.t3{border:1.3px dashed var(--muted);color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:12px;font-size:.88rem;color:var(--muted);align-items:center}
+
+.domain-head{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;border-bottom:2px solid var(--c);padding-bottom:8px;margin-bottom:14px}
+.domain-head h2{color:var(--c)}
+.domain-head .w{font-family:var(--f-mono);font-size:1rem;color:var(--c)}
+.domain-head p{color:var(--muted);font-size:.92rem;flex-basis:100%}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;min-width:0;scroll-margin-top:16px}
+.card + .card{margin-top:10px}
+.card-head{display:flex;gap:12px;align-items:flex-start;padding:14px 16px}
+.toggle{all:unset;cursor:pointer;flex:1;min-width:0;display:grid;grid-template-columns:auto 1fr;gap:2px 14px}
+.toggle:focus-visible{outline:2px solid var(--c);outline-offset:4px;border-radius:4px}
+.toggle .code{font-family:var(--f-mono);font-size:.8rem;color:var(--c);padding-top:4px;grid-row:span 3}
+.toggle .ttl{font-family:var(--f-label);font-size:1.22rem;font-weight:700;line-height:1.2;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.toggle .meta{font-size:.82rem;color:var(--muted);font-family:var(--f-label);display:flex;flex-wrap:wrap;gap:4px 12px}
+.toggle .sum{font-size:.95rem;color:var(--muted);max-width:75ch}
+.caret{font-family:var(--f-mono);color:var(--muted);transition:transform .2s;display:inline-block}
+.card.open .caret{transform:rotate(90deg)}
+.done-box{flex:none;display:flex;align-items:center;gap:6px;font-family:var(--f-label);font-size:.85rem;color:var(--muted);cursor:pointer;padding-top:3px;user-select:none}
+.done-box input{width:18px;height:18px;accent-color:var(--ok);cursor:pointer}
+.card.is-done{border-color:color-mix(in srgb,var(--ok) 55%,var(--line))}
+.body{padding:2px 16px 18px 16px;border-top:1px dashed var(--line);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:18px 26px}
+.blk{min-width:0}
+.blk.wide{grid-column:1/-1}
+.blk h4{font-family:var(--f-label);font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c);margin:14px 0 6px}
+.blk ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:5px}
+.blk li{font-size:.95rem;line-height:1.55}
+.blk li::marker{color:var(--c)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:.9rem;line-height:1.4}
+th{font-family:var(--f-label);font-weight:700;text-align:left;background:var(--soft);color:var(--ink);padding:7px 10px;white-space:nowrap}
+td{padding:6px 10px;border-top:1px solid var(--line);vertical-align:top}
+.traps{grid-column:1/-1;background:var(--warn-soft);border-radius:6px;padding:12px 14px}
+.traps h4{color:var(--warn);margin-top:0}
+.traps li::marker{color:var(--warn)}
+
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:18px}
+.note{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;min-width:0}
+.note ul{margin:8px 0 0;padding-left:1.1em;display:flex;flex-direction:column;gap:6px;font-size:.93rem}
+footer{margin-top:40px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);padding-top:14px}
+
+@media (max-width:480px){
+  .wrap{padding-inline:16px}
+  .toggle{grid-template-columns:1fr}
+  .toggle .code{grid-row:auto;padding-top:0}
+  .card-head{flex-direction:column;gap:8px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+.home-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-label);font-weight:600;font-size:.9rem;color:var(--muted);text-decoration:none;margin-bottom:14px}
+.home-link:hover,.home-link:focus-visible{color:var(--ink);text-decoration:underline;outline:none}
+</style>
+
+<div class="wrap">
+  <a class="home-link" href="index.html">← Semua mata pelajaran</a>
+  <header>
+    <div class="eyebrow" id="eyebrow"></div>
+    <h1 style="margin-top:8px" id="title"></h1>
+    <p class="lead" id="lead"></p>
+    <nav class="progress" id="progress" aria-label="Kemajuan per bidang"></nav>
+    <div class="tools">
+      <label class="search" for="q"><span class="mono" aria-hidden="true">⌕</span><input id="q" type="search" placeholder="Cari konsep, rumus, tokoh…" autocomplete="off"></label>
+      <button class="btn" id="openAll" type="button">Buka semua</button>
+      <button class="btn" id="closeAll" type="button">Tutup semua</button>
+      <span id="hits" aria-live="polite"></span>
+    </div>
+    <p class="overall">Simpul yang sudah dikuasai: <b id="overall">0</b></p>
+  </header>
+
+  <section id="alur" aria-labelledby="h-alur" hidden>
+    <div class="sec-head"><h2 id="h-alur"></h2><p id="pathNote"></p></div>
+    <div class="path-wrap"><ol class="path" id="path"></ol></div>
+  </section>
+
+  <section id="peta" aria-labelledby="h-peta">
+    <div class="sec-head"><h2 id="h-peta">Peta</h2><p>Setiap simpul punya kode. Klik untuk membuka isinya.</p></div>
+    <div class="map" id="map"></div>
+    <div class="legend"><span><span class="tier t1">Inti</span> pelajari dulu</span><span><span class="tier t2">Penting</span> sering keluar</span><span><span class="tier t3">Pelengkap</span> pendalaman</span></div>
+  </section>
+
+  <div id="domains"></div>
+
+  <section id="catatan" aria-labelledby="h-catatan">
+    <div class="sec-head"><h2 id="h-catatan">Catatan</h2><p id="sourceNote"></p></div>
+    <div class="notes" id="notes"></div>
+  </section>
+
+  <footer>Bagian dari kumpulan peta materi SMA. <a href="index.html">Lihat semua peta</a>.</footer>
+</div>
+
+<script>
+const MAP = {"id": "matematika", "subject": "Matematika", "title": "Peta Materi Matematika SMA", "lead": "Seluruh materi Matematika SMA, dari eksponen sampai integral, disusun sebagai satu peta. Setiap simpul memuat konsep, rumus inti, dan jebakan soal yang sering muncul. Centang “Dikuasai” di tiap simpul; kemajuan tersimpan di peramban ini saja.", "blurb": "Aljabar, fungsi, trigonometri dan geometri, statistika dan peluang, sampai kalkulus, lengkap dengan rumus inti dan alur prasyarat.", "source_note": "Mencakup buku Matematika (wajib) kelas X–XII dan Matematika Tingkat Lanjut kelas XI–XII Kurikulum Merdeka. Label “lanjut” menandai materi buku Tingkat Lanjut. Pembagian kelas mengikuti ringkasan umum; cocokkan dengan buku sekolah.", "path_title": "Alur prasyarat", "path_note": "Urutan belajar yang disarankan. Aljabar dan fungsi menjadi alat untuk trigonometri, statistika, dan terutama kalkulus.", "path": [{"label": "Aljabar", "title": "Eksponen dan logaritma", "note": "Sifat pangkat, akar, log", "to": "ALJ-01"}, {"label": "Persamaan", "title": "Sistem linear", "note": "SPLTV, program linear", "to": "ALJ-04"}, {"label": "Fungsi", "title": "Fungsi kuadrat", "note": "Akar, diskriminan, puncak", "to": "FUN-01"}, {"label": "Pola", "title": "Barisan dan deret", "note": "Aritmetika, geometri", "to": "ALJ-03"}, {"label": "Sudut", "title": "Trigonometri", "note": "Perbandingan, aturan sinus", "to": "GEO-01"}, {"label": "Ruang", "title": "Vektor dan lingkaran", "note": "Hasil kali titik, garis singgung", "to": "GEO-04"}, {"label": "Data", "title": "Statistika dan peluang", "note": "Ukuran data, pencacahan", "to": "STA-01"}, {"label": "Komposisi", "title": "Fungsi lanjut", "note": "Komposisi, invers", "to": "FUN-02"}, {"label": "Kalkulus", "title": "Limit, turunan, integral", "note": "Laju dan luas", "to": "KAL-01"}], "domains": [{"id": "ALJ", "name": "Bilangan dan aljabar", "short": "Aljabar", "note": "Pangkat, logaritma, pola bilangan, sistem persamaan, matriks, polinomial, dan bilangan kompleks.", "topics": [{"code": "ALJ-01", "title": "Eksponen dan bentuk akar", "scope": "Sifat pangkat, fungsi eksponen", "src": "Kelas X", "tier": 1, "sum": "Sifat-sifat pangkat dan akar, merasionalkan penyebut, persamaan eksponen, serta model pertumbuhan dan peluruhan.", "blocks": [{"h": "Sifat pangkat", "li": ["a<sup>m<\/sup> · a<sup>n<\/sup> = a<sup>m+n<\/sup>; a<sup>m<\/sup> : a<sup>n<\/sup> = a<sup>m−n<\/sup>; (a<sup>m<\/sup>)<sup>n<\/sup> = a<sup>mn<\/sup>.", "(ab)<sup>n<\/sup> = a<sup>n<\/sup>b<sup>n<\/sup>; a⁰ = 1 untuk a ≠ 0; a<sup>−n<\/sup> = 1/a<sup>n<\/sup>.", "Pangkat pecahan: a<sup>m/n<\/sup> = <sup>n<\/sup>√(a<sup>m<\/sup>)."]}, {"h": "Bentuk akar", "li": ["√a · √b = √(ab); √(a²) = |a|.", "Merasionalkan: a/√b = a√b/b.", "Penyebut √a + √b dikalikan sekawannya: 1/(√a + √b) = (√a − √b)/(a − b)."]}, {"h": "Fungsi dan persamaan eksponen", "li": ["Persamaan a<sup>f(x)<\/sup> = a<sup>g(x)<\/sup> dengan a &gt; 0, a ≠ 1 berarti f(x) = g(x).", "Grafik f(x) = a<sup>x<\/sup> selalu melalui (0, 1) dan mendekati sumbu x (asimtot y = 0). Naik bila a &gt; 1, turun bila 0 &lt; a &lt; 1.", "Pertumbuhan: M<sub>t<\/sub> = M₀(1 + r)<sup>t<\/sup>. Peluruhan: M<sub>t<\/sub> = M₀(1 − r)<sup>t<\/sup>. Bunga majemuk memakai bentuk pertumbuhan."]}], "traps": ["(−2)² = 4, tetapi −2² = −4: pangkat dikerjakan sebelum tanda negatif.", "(a + b)² ≠ a² + b²; yang benar a² + 2ab + b²."]}, {"code": "ALJ-02", "title": "Logaritma", "scope": "Sifat log, persamaan log", "src": "Kelas X", "tier": 1, "sum": "Logaritma sebagai kebalikan eksponen, sifat-sifatnya, perubahan basis, dan syarat pada persamaan logaritma.", "blocks": [{"h": "Definisi", "li": ["<sup>a<\/sup>log b = c ⇔ a<sup>c<\/sup> = b, dengan a &gt; 0, a ≠ 1, dan b &gt; 0 (numerus positif).", "log tanpa basis berarti basis 10; ln berarti basis e ≈ 2,718.", "Nilai yang sering dipakai: log 2 ≈ 0,301; log 3 ≈ 0,477."]}, {"h": "Sifat", "li": ["log(bc) = log b + log c; log(b/c) = log b − log c; log b<sup>n<\/sup> = n log b.", "Ganti basis: <sup>a<\/sup>log b = log b / log a.", "Berantai: <sup>a<\/sup>log b · <sup>b<\/sup>log c = <sup>a<\/sup>log c; juga a<sup><sup>a<\/sup>log b<\/sup> = b.", "Basis berpangkat: <sup>a<sup>n<\/sup><\/sup>log b<sup>m<\/sup> = (m/n) · <sup>a<\/sup>log b."]}, {"h": "Persamaan logaritma", "li": ["<sup>a<\/sup>log f(x) = <sup>a<\/sup>log g(x) berarti f(x) = g(x), dengan syarat f(x) &gt; 0 dan g(x) &gt; 0.", "Setiap jawaban harus diuji ke syarat numerus; jawaban yang membuat numerus ≤ 0 dibuang."]}], "traps": ["log(a + b) ≠ log a + log b; sifat penjumlahan hanya berlaku untuk perkalian di dalam log.", "Lupa menguji syarat numerus adalah kesalahan paling sering pada persamaan logaritma."]}, {"code": "ALJ-03", "title": "Barisan dan deret", "scope": "Aritmetika, geometri, tak hingga", "src": "Kelas X", "tier": 1, "sum": "Rumus suku ke-n dan jumlah n suku barisan aritmetika dan geometri, deret geometri tak hingga, dan penerapannya.", "blocks": [{"h": "Aritmetika (beda tetap b)", "li": ["U<sub>n<\/sub> = a + (n − 1)b.", "S<sub>n<\/sub> = n/2 · (2a + (n − 1)b) = n/2 · (a + U<sub>n<\/sub>).", "Suku tengah: U<sub>t<\/sub> = (a + U<sub>n<\/sub>)/2. Menyisipkan k bilangan: beda baru b' = b/(k + 1)."]}, {"h": "Geometri (rasio tetap r)", "li": ["U<sub>n<\/sub> = a · r<sup>n−1<\/sup>.", "S<sub>n<\/sub> = a(r<sup>n<\/sup> − 1)/(r − 1) untuk r ≠ 1.", "Deret tak hingga konvergen bila |r| &lt; 1: <b>S<sub>∞<\/sub> = a/(1 − r)<\/b>."]}, {"h": "Hubungan dan penerapan", "li": ["U<sub>n<\/sub> = S<sub>n<\/sub> − S<sub>n−1<\/sub>.", "Bunga tunggal membentuk barisan aritmetika; bunga majemuk membentuk barisan geometri.", "Bola dijatuhkan dari tinggi h dan memantul dengan rasio r: panjang lintasan total = h(1 + r)/(1 − r)."]}], "traps": ["Deret geometri tak hingga hanya punya jumlah bila |r| &lt; 1.", "Pada soal bola memantul, lintasan naik dan turun dihitung terpisah; jatuhan pertama hanya sekali."]}, {"code": "ALJ-04", "title": "Sistem persamaan dan pertidaksamaan linear", "scope": "SPLTV, program linear", "src": "Kelas X", "tier": 1, "sum": "Menyelesaikan sistem persamaan linear dua dan tiga variabel, daerah penyelesaian pertidaksamaan, dan nilai optimum program linear.", "blocks": [{"h": "Sistem persamaan linear", "li": ["Metode: substitusi, eliminasi, gabungan keduanya, atau determinan (aturan Cramer).", "SPLTV (tiga variabel) diselesaikan dengan mengeliminasi satu variabel hingga menjadi SPLDV.", "Sistem bisa punya satu penyelesaian, tak hingga penyelesaian (garis berimpit), atau tidak ada (garis sejajar)."]}, {"h": "Pertidaksamaan dan program linear", "li": ["Daerah penyelesaian ditentukan dengan uji satu titik (misalnya (0, 0)) pada setiap pertidaksamaan.", "Model program linear: fungsi objektif f(x, y) = px + qy dengan kendala berupa pertidaksamaan linear.", "Nilai optimum (maksimum atau minimum) selalu tercapai di <b>titik pojok<\/b> daerah penyelesaian. Bisa juga dengan garis selidik."]}], "traps": ["Mengalikan atau membagi pertidaksamaan dengan bilangan negatif membalik tanda pertidaksamaannya.", "Kendala x ≥ 0 dan y ≥ 0 sering tersirat dalam soal cerita (jumlah barang tidak mungkin negatif)."]}, {"code": "ALJ-05", "title": "Matriks", "scope": "Operasi, determinan, invers", "src": "Kelas XI (lanjut)", "tier": 2, "sum": "Operasi matriks, determinan, invers, dan penyelesaian persamaan matriks.", "blocks": [{"h": "Operasi", "li": ["Penjumlahan hanya untuk matriks berordo sama.", "Perkalian A<sub>m×n<\/sub> · B<sub>n×p<\/sub> menghasilkan ordo m × p; umumnya AB ≠ BA.", "Transpos: (AB)<sup>T<\/sup> = B<sup>T<\/sup>A<sup>T<\/sup>."]}, {"h": "Determinan dan invers", "li": ["Matriks 2 × 2 [[a, b], [c, d]]: det = ad − bc.", "Invers: A<sup>−1<\/sup> = 1/(ad − bc) · [[d, −b], [−c, a]]. Matriks dengan det = 0 disebut singular dan tidak punya invers.", "Determinan 3 × 3 dengan aturan Sarrus.", "det(AB) = det A · det B; untuk matriks n × n, det(kA) = k<sup>n<\/sup> det A."]}, {"h": "Persamaan matriks", "li": ["AX = B → X = A<sup>−1<\/sup>B. XA = B → X = BA<sup>−1<\/sup>."]}], "traps": ["Urutan perkalian invers tidak boleh dibalik: A<sup>−1<\/sup>B berbeda dengan BA<sup>−1<\/sup>."]}, {"code": "ALJ-06", "title": "Polinomial", "scope": "Pembagian, teorema sisa", "src": "Kelas XI (lanjut)", "tier": 2, "sum": "Pembagian polinomial, teorema sisa dan teorema faktor, serta hubungan akar dengan koefisien.", "blocks": [{"h": "Pembagian", "li": ["P(x) = H(x) · Q(x) + S(x), dengan derajat sisa lebih kecil dari derajat pembagi.", "Cara: pembagian bersusun atau metode Horner.", "<b>Teorema sisa<\/b>: P(x) dibagi (x − k) bersisa P(k); dibagi (ax − b) bersisa P(b/a).", "Teorema faktor: (x − k) faktor P(x) ⇔ P(k) = 0.", "Pembagi berderajat 2 menghasilkan sisa berbentuk px + q."]}, {"h": "Akar persamaan suku banyak", "li": ["Untuk ax³ + bx² + cx + d = 0: x₁ + x₂ + x₃ = −b/a; x₁x₂ + x₁x₃ + x₂x₃ = c/a; x₁x₂x₃ = −d/a."]}], "traps": ["Sisa pembagian oleh (x + 2) adalah P(−2), bukan P(2)."]}, {"code": "ALJ-07", "title": "Bilangan kompleks", "scope": "Bentuk a + bi, bentuk polar", "src": "Kelas XI (lanjut)", "tier": 3, "sum": "Bilangan imajiner, operasi bilangan kompleks, modulus dan argumen, bentuk polar, dan rumus De Moivre.", "blocks": [{"h": "Konsep", "li": ["i² = −1. Bilangan kompleks z = a + bi; a bagian real, b bagian imajiner.", "Sekawan (konjugat) z = a − bi. Modulus |z| = √(a² + b²).", "Pembagian: kalikan pembilang dan penyebut dengan sekawan penyebut."]}, {"h": "Bentuk polar", "li": ["z = r(cos θ + i sin θ), dengan r = |z| dan θ argumen.", "Perkalian: modulus dikalikan, argumen dijumlahkan. Pembagian: modulus dibagi, argumen dikurangkan.", "De Moivre: z<sup>n<\/sup> = r<sup>n<\/sup>(cos nθ + i sin nθ)."]}]}]}, {"id": "FUN", "name": "Fungsi", "short": "Fungsi", "note": "Fungsi kuadrat, komposisi dan invers, transformasi grafik, dan fungsi trigonometri.", "topics": [{"code": "FUN-01", "title": "Persamaan dan fungsi kuadrat", "scope": "Akar, diskriminan, grafik", "src": "Kelas X", "tier": 1, "sum": "Rumus akar persamaan kuadrat, diskriminan, jumlah dan hasil kali akar, serta titik puncak dan sifat grafik fungsi kuadrat.", "blocks": [{"h": "Persamaan kuadrat ax² + bx + c = 0", "li": ["Rumus abc: x = (−b ± √D)/(2a), dengan <b>D = b² − 4ac<\/b>.", "D &gt; 0: dua akar real berbeda. D = 0: akar kembar. D &lt; 0: tidak ada akar real.", "x₁ + x₂ = −b/a; x₁ · x₂ = c/a.", "Menyusun persamaan dari akar: x² − (x₁ + x₂)x + x₁x₂ = 0."]}, {"h": "Fungsi kuadrat f(x) = ax² + bx + c", "li": ["a &gt; 0: parabola terbuka ke atas (nilai minimum); a &lt; 0: terbuka ke bawah (nilai maksimum).", "Sumbu simetri x = −b/(2a); titik puncak (−b/(2a), −D/(4a)).", "Definit positif (selalu positif): a &gt; 0 dan D &lt; 0. Definit negatif: a &lt; 0 dan D &lt; 0.", "Pertidaksamaan kuadrat diselesaikan dengan garis bilangan dari akar-akarnya."]}], "traps": ["Definit positif butuh dua syarat sekaligus: a &gt; 0 dan D &lt; 0.", "Nilai maksimum adalah nilai y puncak (−D/(4a)), bukan x-nya."]}, {"code": "FUN-02", "title": "Komposisi dan invers fungsi", "scope": "Domain, komposisi, invers", "src": "Kelas XI", "tier": 1, "sum": "Domain, kodomain dan range, operasi komposisi fungsi, serta syarat dan cara menentukan fungsi invers.", "blocks": [{"h": "Komposisi", "li": ["Fungsi memasangkan setiap anggota domain dengan tepat satu anggota kodomain; himpunan hasilnya disebut range.", "(f ∘ g)(x) = f(g(x)): g dikerjakan dulu.", "Komposisi tidak komutatif (f ∘ g ≠ g ∘ f pada umumnya), tetapi asosiatif."]}, {"h": "Invers", "li": ["Fungsi punya invers bila bijektif (korespondensi satu-satu).", "(f ∘ g)<sup>−1<\/sup> = g<sup>−1<\/sup> ∘ f<sup>−1<\/sup>.", "f(x) = (ax + b)/(cx + d) → f<sup>−1<\/sup>(x) = (−dx + b)/(cx − a).", "Invers fungsi eksponen a<sup>x<\/sup> adalah <sup>a<\/sup>log x."]}], "traps": ["f<sup>−1<\/sup>(x) adalah fungsi invers, bukan 1/f(x).", "Pada (f ∘ g)(x), fungsi yang dikerjakan lebih dulu adalah g."]}, {"code": "FUN-03", "title": "Transformasi fungsi", "scope": "Geser, cermin, regang", "src": "Kelas XII", "tier": 2, "sum": "Pengaruh penambahan dan perkalian konstanta terhadap grafik fungsi: pergeseran, pencerminan, dan peregangan.", "blocks": [{"h": "Aturan", "table": {"cols": ["Bentuk", "Efek pada grafik y = f(x)"], "rows": [["y = f(x) + k", "Geser ke atas k satuan (ke bawah bila k negatif)"], ["y = f(x − h)", "Geser ke kanan h satuan"], ["y = −f(x)", "Cermin terhadap sumbu x"], ["y = f(−x)", "Cermin terhadap sumbu y"], ["y = k · f(x)", "Regang vertikal dengan faktor k"], ["y = f(kx)", "Mampat horizontal dengan faktor 1/k"]]}}], "traps": ["f(x − 3) menggeser grafik ke kanan, bukan ke kiri."]}, {"code": "FUN-04", "title": "Fungsi trigonometri", "scope": "Grafik, periode, amplitudo", "src": "Kelas XI (lanjut)", "tier": 2, "sum": "Grafik fungsi sinus, kosinus, dan tangen, beserta amplitudo, periode, dan nilai maksimum-minimum.", "blocks": [{"h": "Bentuk umum y = A sin(kx + c) + d", "li": ["Amplitudo |A|; nilai maksimum d + |A| dan minimum d − |A|.", "Periode sin dan cos: 2π/|k| (atau 360°/|k|). Periode tan: π/|k|.", "π radian = 180°.", "Nilai sin x dan cos x selalu di antara −1 dan 1."]}], "traps": ["Pada y = 3 sin 2x, periodenya 180° (π), bukan 360°."]}]}, {"id": "GEO", "name": "Geometri dan trigonometri", "short": "Geometri", "note": "Trigonometri, vektor, lingkaran, irisan kerucut, transformasi, dan geometri ruang.", "topics": [{"code": "GEO-01", "title": "Perbandingan trigonometri", "scope": "Sudut istimewa, kuadran", "src": "Kelas X", "tier": 1, "sum": "Perbandingan sinus, kosinus, dan tangen pada segitiga siku-siku, nilai sudut istimewa, tanda di tiap kuadran, dan sudut berelasi.", "blocks": [{"h": "Dasar", "li": ["sin = depan/miring; cos = samping/miring; tan = depan/samping = sin/cos.", "Identitas dasar: <b>sin² α + cos² α = 1<\/b>.", "Kebalikan: cosec = 1/sin, sec = 1/cos, cot = 1/tan."]}, {"h": "Sudut istimewa", "table": {"cols": ["Sudut", "sin", "cos", "tan"], "rows": [["0°", "0", "1", "0"], ["30°", "½", "½√3", "√3/3"], ["45°", "½√2", "½√2", "1"], ["60°", "½√3", "½", "√3"], ["90°", "1", "0", "tidak terdefinisi"]]}}, {"h": "Kuadran dan sudut berelasi", "li": ["Tanda positif: kuadran I semua; II hanya sin; III hanya tan; IV hanya cos (jembatan keledai “Semua Sindikat Tangan Kosong”).", "sin(180° − α) = sin α; cos(180° − α) = −cos α; sin(90° − α) = cos α.", "sin(−α) = −sin α; cos(−α) = cos α."]}], "traps": ["tan 90° tidak terdefinisi, bukan nol atau tak hingga."]}, {"code": "GEO-02", "title": "Aturan sinus, kosinus, dan luas segitiga", "scope": "Segitiga sembarang", "src": "Kelas X–XI", "tier": 1, "sum": "Menghitung sisi, sudut, dan luas segitiga sembarang dengan aturan sinus, aturan kosinus, dan rumus luas.", "blocks": [{"h": "Rumus", "li": ["<b>Aturan sinus<\/b>: a/sin A = b/sin B = c/sin C = 2R (R jari-jari lingkaran luar).", "Aturan kosinus: a² = b² + c² − 2bc cos A.", "Luas segitiga: L = ½ ab sin C.", "Rumus Heron: L = √(s(s − a)(s − b)(s − c)), dengan s = ½(a + b + c)."]}, {"h": "Kapan dipakai", "li": ["Diketahui dua sudut dan satu sisi, atau dua sisi dan sudut di depan salah satunya: aturan sinus.", "Diketahui tiga sisi, atau dua sisi dan sudut apitnya: aturan kosinus."]}], "traps": ["Pada luas ½ ab sin C, sudut C harus sudut yang diapit sisi a dan b."]}, {"code": "GEO-03", "title": "Identitas dan persamaan trigonometri", "scope": "Jumlah sudut, sudut rangkap", "src": "Kelas XI (lanjut)", "tier": 2, "sum": "Rumus jumlah dan selisih sudut, sudut rangkap, dan penyelesaian umum persamaan trigonometri.", "blocks": [{"h": "Rumus", "li": ["sin(α ± β) = sin α cos β ± cos α sin β.", "cos(α ± β) = cos α cos β ∓ sin α sin β.", "Sudut rangkap: sin 2α = 2 sin α cos α; cos 2α = cos² α − sin² α = 2cos² α − 1 = 1 − 2sin² α."]}, {"h": "Persamaan trigonometri", "li": ["sin x = sin α → x = α + k · 360° atau x = (180° − α) + k · 360°.", "cos x = cos α → x = ±α + k · 360°.", "tan x = tan α → x = α + k · 180°."]}], "traps": ["Pada cos(α + β) tandanya berubah menjadi minus; pada sin(α + β) tetap plus."]}, {"code": "GEO-04", "title": "Vektor", "scope": "Operasi, hasil kali titik, proyeksi", "src": "Kelas X", "tier": 1, "sum": "Vektor di bidang dan ruang: panjang, operasi, hasil kali titik, sudut antarvektor, proyeksi, dan pembagian ruas garis.", "blocks": [{"h": "Dasar", "li": ["Vektor a = (x, y, z), panjang |a| = √(x² + y² + z²).", "Vektor dari A ke B: AB = b − a (posisi B dikurangi posisi A).", "Titik P membagi AB dengan AP : PB = m : n: p = (n·a + m·b)/(m + n)."]}, {"h": "Hasil kali titik", "li": ["a · b = |a||b| cos θ = x₁x₂ + y₁y₂ + z₁z₂.", "Dua vektor tegak lurus ⇔ a · b = 0.", "Proyeksi skalar a pada b: (a · b)/|b|. Proyeksi vektor: ((a · b)/|b|²) · b."]}], "traps": ["Hasil kali titik menghasilkan skalar (bilangan), bukan vektor.", "Proyeksi skalar dibagi |b|, proyeksi vektor dibagi |b|²."]}, {"code": "GEO-05", "title": "Lingkaran", "scope": "Persamaan, garis singgung, sudut", "src": "Kelas XI", "tier": 1, "sum": "Persamaan lingkaran, kedudukan titik dan garis, persamaan garis singgung, serta sifat sudut pusat dan sudut keliling.", "blocks": [{"h": "Persamaan", "li": ["Pusat (a, b), jari-jari r: (x − a)² + (y − b)² = r².", "Bentuk umum x² + y² + Ax + By + C = 0: pusat (−A/2, −B/2), r = √(A²/4 + B²/4 − C).", "Kedudukan titik: substitusikan; hasil &lt; r² di dalam, = r² pada lingkaran, &gt; r² di luar.", "Kedudukan garis: substitusi ke persamaan lingkaran, lalu lihat diskriminan (D &gt; 0 memotong, D = 0 menyinggung, D &lt; 0 di luar)."]}, {"h": "Garis singgung dan sudut", "li": ["Di titik (x₁, y₁) pada x² + y² = r²: x₁x + y₁y = r².", "Bergradien m pada x² + y² = r²: y = mx ± r√(1 + m²).", "Sudut keliling = ½ sudut pusat yang menghadap busur yang sama; sudut keliling yang menghadap diameter = 90°."]}], "traps": ["Rumus x₁x + y₁y = r² hanya berlaku bila titik (x₁, y₁) terletak pada lingkaran."]}, {"code": "GEO-06", "title": "Irisan kerucut", "scope": "Parabola, elips, hiperbola", "src": "Kelas XII (lanjut)", "tier": 2, "sum": "Persamaan baku parabola, elips, dan hiperbola beserta fokus, direktriks, sumbu, dan eksentrisitasnya.", "blocks": [{"h": "Persamaan baku (pusat atau puncak di O)", "table": {"cols": ["Kurva", "Persamaan", "Ciri"], "rows": [["Parabola", "y² = 4px", "Fokus (p, 0), direktriks x = −p"], ["Elips", "x²/a² + y²/b² = 1 (a &gt; b)", "c² = a² − b², fokus (±c, 0), eksentrisitas e = c/a &lt; 1"], ["Hiperbola", "x²/a² − y²/b² = 1", "c² = a² + b², asimtot y = ±(b/a)x, e = c/a &gt; 1"]]}}], "traps": ["Elips: c² = a² − b²; hiperbola: c² = a² + b². Tandanya mudah tertukar."]}, {"code": "GEO-07", "title": "Transformasi geometri", "scope": "Translasi, refleksi, rotasi, dilatasi", "src": "Kelas XI–XII", "tier": 2, "sum": "Bayangan titik oleh translasi, refleksi, rotasi, dan dilatasi, serta komposisi transformasi dengan matriks.", "blocks": [{"h": "Bayangan titik (x, y)", "table": {"cols": ["Transformasi", "Bayangan"], "rows": [["Translasi (a, b)", "(x + a, y + b)"], ["Refleksi sumbu x", "(x, −y)"], ["Refleksi sumbu y", "(−x, y)"], ["Refleksi garis y = x", "(y, x)"], ["Refleksi garis y = −x", "(−y, −x)"], ["Refleksi titik O", "(−x, −y)"], ["Rotasi 90° berlawanan arah jarum jam, pusat O", "(−y, x)"], ["Rotasi 180°, pusat O", "(−x, −y)"], ["Dilatasi pusat O, faktor k", "(kx, ky)"]]}}, {"h": "Komposisi", "li": ["Komposisi transformasi T₂ ∘ T₁ (T₁ dulu) setara dengan perkalian matriks M₂ · M₁."]}], "traps": ["Rotasi bersudut positif berarti berlawanan arah jarum jam."]}, {"code": "GEO-08", "title": "Jarak dan sudut dalam ruang", "scope": "Kubus, balok, limas", "src": "Kelas XII", "tier": 3, "sum": "Jarak titik ke titik, garis, dan bidang, serta sudut antara garis dan bidang pada bangun ruang.", "blocks": [{"h": "Kubus berusuk a", "li": ["Diagonal sisi a√2; diagonal ruang a√3.", "Jarak titik ke bidang diukur sepanjang garis yang tegak lurus bidang.", "Sudut antara garis dan bidang adalah sudut antara garis itu dan proyeksinya pada bidang."]}]}]}, {"id": "STA", "name": "Statistika dan peluang", "short": "Statistika", "note": "Ukuran pemusatan dan penyebaran data, data bivariat, kaidah pencacahan, dan peluang.", "topics": [{"code": "STA-01", "title": "Statistika", "scope": "Pemusatan, letak, penyebaran", "src": "Kelas X–XI", "tier": 1, "sum": "Rata-rata, median, modus, kuartil, jangkauan, dan simpangan baku untuk data tunggal dan data berkelompok.", "blocks": [{"h": "Data tunggal", "li": ["Rata-rata x̄ = Σx/n. Median: nilai tengah data terurut. Modus: nilai paling sering muncul.", "Jangkauan = data terbesar − data terkecil. Jangkauan antarkuartil H = Q₃ − Q₁.", "Simpangan baku s = √(Σ(x − x̄)²/n); ragam (varians) = s²."]}, {"h": "Data berkelompok", "li": ["Rata-rata x̄ = Σf·x<sub>i<\/sub>/Σf, dengan x<sub>i<\/sub> titik tengah kelas.", "Median Me = Tb + ((n/2 − F)/f) · p; Tb tepi bawah kelas median, F frekuensi kumulatif sebelum kelas, p panjang kelas.", "Modus Mo = Tb + (d₁/(d₁ + d₂)) · p; d₁ dan d₂ selisih frekuensi dengan kelas sebelum dan sesudahnya.", "Tepi bawah = batas bawah − 0,5 (untuk data bilangan bulat)."]}], "traps": ["Setiap data ditambah k: rata-rata bertambah k, simpangan baku tetap. Setiap data dikali k: keduanya ikut dikali k."]}, {"code": "STA-02", "title": "Data bivariat", "scope": "Diagram pencar, korelasi, regresi", "src": "Kelas XI", "tier": 2, "sum": "Hubungan dua variabel: diagram pencar, arah dan kekuatan korelasi, serta garis regresi linear.", "blocks": [{"h": "Konsep", "li": ["Diagram pencar menampilkan pasangan data (x, y).", "Koefisien korelasi r bernilai −1 sampai 1: positif (searah), negatif (berlawanan), mendekati 0 (lemah).", "Garis regresi linear y = a + bx dipakai untuk menduga nilai y dari x."]}], "traps": ["Korelasi kuat tidak membuktikan sebab-akibat."]}, {"code": "STA-03", "title": "Kaidah pencacahan", "scope": "Permutasi, kombinasi, binomial", "src": "Kelas XII", "tier": 1, "sum": "Aturan perkalian, faktorial, permutasi, kombinasi, dan koefisien binomial Newton.", "blocks": [{"h": "Rumus", "li": ["Aturan perkalian: tahap berurutan dengan m dan n cara menghasilkan m × n cara.", "n! = n × (n − 1) × … × 1; 0! = 1.", "Permutasi (urutan diperhatikan): P(n, r) = n!/(n − r)!.", "Permutasi dengan unsur sama: n!/(k₁! k₂! …). Permutasi siklis: (n − 1)!.", "<b>Kombinasi<\/b> (urutan tidak diperhatikan): C(n, r) = n!/(r!(n − r)!).", "Binomial Newton: koefisien suku x<sup>k<\/sup> pada (x + y)<sup>n<\/sup> adalah C(n, k)."]}], "traps": ["Memilih pengurus dengan jabatan berbeda adalah permutasi; memilih anggota tim tanpa jabatan adalah kombinasi."]}, {"code": "STA-04", "title": "Peluang", "scope": "Kejadian, harapan, bersyarat", "src": "Kelas X–XII", "tier": 1, "sum": "Peluang kejadian, komplemen, frekuensi harapan, kejadian majemuk saling lepas dan saling bebas, serta peluang bersyarat.", "blocks": [{"h": "Rumus", "li": ["P(A) = n(A)/n(S), dengan 0 ≤ P(A) ≤ 1. Komplemen: P(A<sup>c<\/sup>) = 1 − P(A).", "Frekuensi harapan F<sub>h<\/sub> = n · P(A).", "Gabungan: P(A ∪ B) = P(A) + P(B) − P(A ∩ B).", "Saling lepas: P(A ∩ B) = 0. <b>Saling bebas<\/b>: P(A ∩ B) = P(A) · P(B).", "Bersyarat: P(A | B) = P(A ∩ B)/P(B).", "Distribusi binomial: P(X = k) = C(n, k) p<sup>k<\/sup>(1 − p)<sup>n−k<\/sup>."]}], "traps": ["Saling lepas (tidak bisa terjadi bersamaan) berbeda dengan saling bebas (tidak saling memengaruhi)."]}]}, {"id": "KAL", "name": "Kalkulus", "short": "Kalkulus", "note": "Limit, turunan dan penerapannya, serta integral. Dibahas dalam Matematika Tingkat Lanjut kelas XII.", "topics": [{"code": "KAL-01", "title": "Limit fungsi", "scope": "Aljabar, tak hingga, trigonometri", "src": "Kelas XII (lanjut)", "tier": 1, "sum": "Menentukan limit dengan substitusi, faktorisasi, perkalian sekawan, limit di tak hingga, dan limit trigonometri.", "blocks": [{"h": "Cara", "li": ["Coba substitusi langsung dulu. Bila hasilnya 0/0, faktorkan, kalikan sekawan, atau pakai aturan L'Hôpital.", "Limit ada bila limit kiri sama dengan limit kanan.", "Limit di tak hingga fungsi rasional: bandingkan pangkat tertinggi pembilang dan penyebut.", "x → ∞: √(ax² + bx + c) − √(ax² + qx + r) → (b − q)/(2√a)."]}, {"h": "Limit trigonometri (x dalam radian)", "li": ["<b>lim<sub>x→0<\/sub> (sin x)/x = 1<\/b>; lim<sub>x→0<\/sub> (tan x)/x = 1.", "Akibatnya lim<sub>x→0<\/sub> (sin ax)/(bx) = a/b."]}], "traps": ["Pangkat pembilang lebih tinggi dari penyebut: limit di tak hingga menuju ±∞; lebih rendah: menuju 0."]}, {"code": "KAL-02", "title": "Turunan fungsi", "scope": "Aturan turunan", "src": "Kelas XII (lanjut)", "tier": 1, "sum": "Definisi turunan dan aturan-aturannya: pangkat, perkalian, pembagian, rantai, dan fungsi trigonometri.", "blocks": [{"h": "Aturan", "li": ["Definisi: f'(x) = lim<sub>h→0<\/sub> (f(x + h) − f(x))/h.", "<b>(x<sup>n<\/sup>)' = n x<sup>n−1<\/sup><\/b>; turunan konstanta = 0.", "(uv)' = u'v + uv'; (u/v)' = (u'v − uv')/v².", "Aturan rantai: (f(g(x)))' = f'(g(x)) · g'(x).", "(sin x)' = cos x; (cos x)' = −sin x; (tan x)' = sec² x."]}], "traps": ["Turunan cos x bertanda negatif: −sin x."]}, {"code": "KAL-03", "title": "Penerapan turunan", "scope": "Naik-turun, stasioner, optimasi", "src": "Kelas XII (lanjut)", "tier": 1, "sum": "Gradien garis singgung, interval naik dan turun, titik stasioner, nilai maksimum-minimum, dan soal optimasi.", "blocks": [{"h": "Penerapan", "li": ["Gradien garis singgung di x = a: m = f'(a); garis singgung y − y₁ = m(x − x₁).", "Naik bila f'(x) &gt; 0; turun bila f'(x) &lt; 0.", "Titik stasioner: f'(x) = 0. f''(x) &lt; 0 → maksimum; f''(x) &gt; 0 → minimum.", "Titik belok: f''(x) = 0 dan kecekungan berubah.", "Gerak: kecepatan v = s'(t); percepatan a = v'(t)."]}], "traps": ["f'(x) = 0 belum tentu titik maksimum atau minimum; bisa titik belok horizontal (contoh f(x) = x³ di x = 0)."]}, {"code": "KAL-04", "title": "Integral tak tentu", "scope": "Antiturunan, substitusi, parsial", "src": "Kelas XII (lanjut)", "tier": 1, "sum": "Integral sebagai antiturunan, rumus dasar, integral fungsi trigonometri, serta teknik substitusi dan parsial.", "blocks": [{"h": "Rumus", "li": ["<b>∫x<sup>n<\/sup> dx = x<sup>n+1<\/sup>/(n + 1) + C<\/b>, untuk n ≠ −1.", "∫k f(x) dx = k ∫f(x) dx; integral jumlah = jumlah integral.", "∫sin x dx = −cos x + C; ∫cos x dx = sin x + C.", "Substitusi: misalkan u = g(x), du = g'(x) dx.", "Parsial: ∫u dv = uv − ∫v du."]}], "traps": ["Jangan lupa konstanta C pada integral tak tentu."]}, {"code": "KAL-05", "title": "Integral tentu dan luas daerah", "scope": "Teorema dasar kalkulus", "src": "Kelas XII (lanjut)", "tier": 1, "sum": "Menghitung integral tentu dengan teorema dasar kalkulus, sifat-sifatnya, dan luas daerah di antara kurva.", "blocks": [{"h": "Rumus", "li": ["<b>∫<sub>a<\/sub><sup>b<\/sup> f(x) dx = F(b) − F(a)<\/b>, dengan F antiturunan f.", "∫<sub>a<\/sub><sup>a<\/sup> f(x) dx = 0; ∫<sub>a<\/sub><sup>b<\/sup> f(x) dx = −∫<sub>b<\/sub><sup>a<\/sup> f(x) dx.", "Luas antara dua kurva: L = ∫ (kurva atas − kurva bawah) dx.", "Luas antara parabola dan garis yang dipotongnya: L = D√D/(6a²), D diskriminan persamaan selisihnya."]}], "traps": ["Daerah di bawah sumbu x menghasilkan integral negatif; luasnya diambil nilai mutlaknya."]}]}], "notes": [{"title": "Perlu diperhatikan", "items": ["Materi berlabel “lanjut” berasal dari buku Matematika Tingkat Lanjut (mata pelajaran pilihan kelas XI–XII). Siswa yang hanya mengambil Matematika wajib tidak mempelajari kalkulus, matriks, polinomial, dan bilangan kompleks di sekolah.", "Penempatan kelas untuk transformasi geometri (GEO-07) dan geometri ruang (GEO-08) belum terkonfirmasi untuk Kurikulum Merdeka; keduanya bagian buku Kurikulum 2013. Cek buku sekolah.", "Notasi logaritma <sup>a<\/sup>log b mengikuti kebiasaan buku Indonesia; buku lain menulis log<sub>a<\/sub> b."]}, {"title": "Rujukan", "items": ["Buku teks Matematika dan Matematika Tingkat Lanjut Kurikulum Merdeka (Kemendikbudristek, SIBI). Daftar bab dicocokkan lewat ringkasan Ruangguru dan Mamikos karena PDF resmi tidak dapat dibuka dari lingkungan kerja.", "Rumus adalah materi baku matematika SMA dan diperiksa ulang satu per satu."]}]};
+const TIER = {1:["t1","Inti"],2:["t2","Penting"],3:["t3","Pelengkap"]};
+const KEY = "peta-" + MAP.id + "-v1";
+let done = new Set();
+try { done = new Set(JSON.parse(localStorage.getItem(KEY) || "[]")); } catch(e) {}
+function save(){ try { localStorage.setItem(KEY, JSON.stringify([...done])); } catch(e) {} }
+const $ = id => document.getElementById(id);
+// The text faces lack most Unicode superscript/subscript digits, so turn runs of them into <sup>/<sub>.
+const SUP = "⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺", SUB = "₀₁₂₃₄₅₆₇₈₉", PLAIN = "0123456789-+";
+function scripts(s){
+  return s.replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]+/g, m => "<sup>" + [...m].map(c => PLAIN[SUP.indexOf(c)]).join("").replace("-", "−") + "</sup>")
+          .replace(/[₀₁₂₃₄₅₆₇₈₉]+/g, m => "<sub>" + [...m].map(c => PLAIN[SUB.indexOf(c)]).join("") + "</sub>");
+}
+(function walk(o){ for(const k in o){ if(typeof o[k] === "string") o[k] = scripts(o[k]); else if(o[k] && typeof o[k] === "object") walk(o[k]); } })(MAP);
+const byCode = {};
+MAP.domains.forEach((d,i) => { d.c = "var(--d" + (i % 7 + 1) + ")"; d.soft = "var(--s" + (i % 7 + 1) + ")"; d.topics.forEach(t => byCode[t.code] = {t, d}); });
+
+function hl(str, re){
+  if(!re) return str;
+  return str.split(/(<[^>]+>)/g).map(p => p.startsWith("<") ? p : p.replace(re, m => "<mark>" + m + "</mark>")).join("");
+}
+function plain(t){
+  const parts = [t.code, t.title, t.scope, t.src, t.sum];
+  t.blocks.forEach(b => { parts.push(b.h); (b.li||[]).forEach(x => parts.push(x)); if(b.table){ parts.push(b.table.cols.join(" ")); b.table.rows.forEach(r => parts.push(r.join(" "))); } });
+  (t.traps||[]).forEach(x => parts.push(x));
+  return parts.join(" ").replace(/<[^>]+>/g, " ");
+}
+function bodyHTML(t, re){
+  let h = "";
+  t.blocks.forEach(b => {
+    h += '<div class="blk' + (b.wide || (b.table && b.table.cols.length > 2) ? ' wide' : '') + '"><h4>' + hl(b.h, re) + '</h4>';
+    if(b.li) h += "<ul>" + b.li.map(x => "<li>" + hl(x, re) + "</li>").join("") + "</ul>";
+    if(b.table) h += '<div class="tbl"><table><thead><tr>' + b.table.cols.map(c => "<th>" + c + "</th>").join("") + "</tr></thead><tbody>" +
+      b.table.rows.map(r => "<tr>" + r.map(c => "<td>" + hl(c, re) + "</td>").join("") + "</tr>").join("") + "</tbody></table></div>";
+    h += "</div>";
+  });
+  if(t.traps && t.traps.length) h += '<div class="traps"><h4>Jebakan soal</h4><ul>' + t.traps.map(x => "<li>" + hl(x, re) + "</li>").join("") + "</ul></div>";
+  return h;
+}
+
+function render(){
+  const total = Object.keys(byCode).length;
+  document.title = MAP.title;
+  $("eyebrow").textContent = "Peta materi · " + MAP.subject + " · " + MAP.domains.length + " bidang · " + total + " simpul";
+  $("title").textContent = MAP.title;
+  $("lead").innerHTML = MAP.lead;
+  $("sourceNote").textContent = MAP.source_note || "";
+  $("progress").innerHTML = MAP.domains.map(d => '<a class="pg" href="#d-' + d.id + '" style="--c:' + d.c + '"><b>' + d.short + '</b><div class="bar"><i id="bar-' + d.id + '"></i></div><span id="pg-' + d.id + '"></span></a>').join("");
+  if(MAP.path && MAP.path.length){
+    $("alur").hidden = false;
+    $("h-alur").textContent = MAP.path_title || "Alur belajar";
+    $("pathNote").textContent = MAP.path_note || "";
+    $("path").innerHTML = MAP.path.map(e => '<li><button type="button" data-code="' + e.to + '"><span class="lb">' + e.label + '</span><span class="nm">' + e.title + '</span><span class="an">' + e.note + '</span></button></li>').join("");
+  }
+  const map = $("map"), host = $("domains");
+  MAP.domains.forEach(d => {
+    const col = document.createElement("div");
+    col.className = "mcol"; col.style.setProperty("--c", d.c); col.style.setProperty("--soft", d.soft);
+    col.innerHTML = '<h3><span>' + d.name + '</span><span class="mono">' + d.topics.length + '</span></h3><ul>' +
+      d.topics.map(t => '<li><a class="chip" data-code="' + t.code + '" href="#t-' + t.code + '"><span class="mono">' + t.code + '</span><span>' + t.title + ' <span class="tier ' + TIER[t.tier][0] + '">' + TIER[t.tier][1] + '</span></span></a></li>').join("") + "</ul>";
+    map.appendChild(col);
+    const sec = document.createElement("section");
+    sec.id = "d-" + d.id; sec.style.setProperty("--c", d.c); sec.style.setProperty("--soft", d.soft);
+    sec.innerHTML = '<div class="domain-head"><h2>' + d.name + '</h2><span class="w">' + d.topics.length + ' simpul</span><p>' + (d.note || "") + '</p></div>';
+    d.topics.forEach(t => {
+      const a = document.createElement("article");
+      a.className = "card"; a.id = "t-" + t.code; a.dataset.code = t.code;
+      a.innerHTML = '<div class="card-head"><button class="toggle" type="button" aria-expanded="false" aria-controls="b-' + t.code + '">' +
+        '<span class="code">' + t.code + '</span>' +
+        '<span class="ttl"><span class="caret" aria-hidden="true">›</span>' + t.title + ' <span class="tier ' + TIER[t.tier][0] + '">' + TIER[t.tier][1] + '</span></span>' +
+        '<span class="meta"><span>' + t.scope + '</span><span>' + t.src + '</span></span>' +
+        '<span class="sum">' + t.sum + '</span></button>' +
+        '<label class="done-box"><input type="checkbox" id="done-' + t.code + '"> Dikuasai</label></div>' +
+        '<div class="body" id="b-' + t.code + '" hidden>' + bodyHTML(t, null) + '</div>';
+      sec.appendChild(a);
+    });
+    host.appendChild(sec);
+  });
+  $("notes").innerHTML = (MAP.notes || []).map(n => '<div class="note"><h3>' + n.title + '</h3><ul>' + n.items.map(i => "<li>" + i + "</li>").join("") + "</ul></div>").join("");
+}
+function setOpen(card, open){
+  card.classList.toggle("open", open);
+  card.querySelector(".body").hidden = !open;
+  card.querySelector(".toggle").setAttribute("aria-expanded", open ? "true" : "false");
+}
+function goTo(code){
+  const card = $("t-" + code); if(!card) return;
+  card.hidden = false; setOpen(card, true);
+  card.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"});
+}
+function progress(){
+  let k = 0, n = 0;
+  MAP.domains.forEach(d => {
+    const dn = d.topics.filter(t => done.has(t.code)).length;
+    k += dn; n += d.topics.length;
+    $("bar-" + d.id).style.width = (dn / d.topics.length * 100) + "%";
+    $("pg-" + d.id).textContent = dn + " dari " + d.topics.length;
+  });
+  $("overall").textContent = k + " dari " + n;
+  document.querySelectorAll(".chip").forEach(c => c.classList.toggle("done", done.has(c.dataset.code)));
+  document.querySelectorAll(".card").forEach(c => { const on = done.has(c.dataset.code); c.classList.toggle("is-done", on); c.querySelector('input[type="checkbox"]').checked = on; });
+}
+function search(q){
+  q = q.trim();
+  const re = q.length >= 2 ? new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi") : null;
+  let hits = 0;
+  document.querySelectorAll(".card").forEach(card => {
+    const t = byCode[card.dataset.code].t, body = card.querySelector(".body");
+    if(!re){ card.hidden = false; body.innerHTML = bodyHTML(t, null); setOpen(card, false); return; }
+    const match = new RegExp(re.source, "i").test(plain(t));
+    card.hidden = !match; body.innerHTML = bodyHTML(t, match ? re : null); setOpen(card, match);
+    if(match) hits++;
+  });
+  $("hits").textContent = re ? (hits ? hits + " simpul cocok" : "Tidak ada yang cocok. Coba kata lain.") : "";
+}
+
+render();
+progress();
+document.addEventListener("click", e => {
+  const tg = e.target.closest(".toggle");
+  if(tg){ const card = tg.closest(".card"); setOpen(card, !card.classList.contains("open")); return; }
+  const chip = e.target.closest("[data-code]");
+  if(chip && (chip.classList.contains("chip") || chip.tagName === "BUTTON")){ e.preventDefault(); goTo(chip.dataset.code); }
+});
+document.addEventListener("change", e => {
+  if(e.target.matches(".done-box input")){
+    const code = e.target.closest(".card").dataset.code;
+    e.target.checked ? done.add(code) : done.delete(code);
+    save(); progress();
+  }
+});
+let timer;
+$("q").addEventListener("input", e => { clearTimeout(timer); timer = setTimeout(() => search(e.target.value), 150); });
+$("openAll").addEventListener("click", () => document.querySelectorAll(".card:not([hidden])").forEach(c => setOpen(c, true)));
+$("closeAll").addEventListener("click", () => document.querySelectorAll(".card").forEach(c => setOpen(c, false)));
+if(location.hash.startsWith("#t-")) goTo(location.hash.slice(3));
+</script>
