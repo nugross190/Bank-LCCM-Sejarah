@@ -9,6 +9,7 @@ Exits with status 1 (and writes nothing) if the data has errors.
 """
 import csv
 import json
+import re
 import sys
 from collections import Counter
 from pathlib import Path
@@ -118,6 +119,47 @@ def validate_map(name, m):
     return errors
 
 
+def words(html):
+    return len(re.sub(r"<[^>]+>", " ", html).split())
+
+
+def lint_map(name, m):
+    """Return warnings for soft rules in specs/map-spec.md (sizes, tier mix, traps). They do not stop the build."""
+    warnings, where = [], f"data/maps/{name}.json"
+    domains = m.get("domains", [])
+    topics = [t for d in domains for t in d.get("topics", [])]
+    if not 3 <= len(domains) <= 8:
+        warnings.append(f"{where}: {len(domains)} domains (spec: 3-8)")
+    if not 20 <= len(topics) <= 35:
+        warnings.append(f"{where}: {len(topics)} topics (spec: 20-35)")
+    for d in domains:
+        if not 2 <= len(d.get("topics", [])) <= 10:
+            warnings.append(f"{where}: domain {d.get('id')} has {len(d.get('topics', []))} topics (spec: 2-10)")
+    if topics:
+        share = {k: sum(t.get("tier") == k for t in topics) / len(topics) for k in (1, 2, 3)}
+        if not (0.5 <= share[1] <= 0.7 and 0.2 <= share[2] <= 0.4 and share[3] <= 0.15):
+            mix = ", ".join(f"tier {k} {share[k]:.0%}" for k in (1, 2, 3))
+            warnings.append(f"{where}: tier mix {mix} (spec: 50-70% / 20-40% / <=15%)")
+    for t in topics:
+        code = t.get("code", "?")
+        if words(t.get("sum", "")) > 30:
+            warnings.append(f"{where}: {code} summary has {words(t['sum'])} words (spec: <=30)")
+        if t.get("tier") == 1 and not t.get("traps"):
+            warnings.append(f"{where}: {code} is tier 1 but has no traps")
+        if len(t.get("blocks", [])) > 5:
+            warnings.append(f"{where}: {code} has {len(t['blocks'])} blocks (spec: <=5)")
+        for b in t.get("blocks", []):
+            items = b.get("li", [])
+            if len(items) > 8:
+                warnings.append(f"{where}: {code} block '{b.get('h')}' has {len(items)} bullets (spec: <=8)")
+            for item in items + t.get("traps", []):
+                if words(item) > 35:
+                    warnings.append(f"{where}: {code} bullet over 35 words: '{re.sub(r'<[^>]+>', '', item)[:50]}...'")
+                if item.count("<b>") > 1:
+                    warnings.append(f"{where}: {code} bullet with more than one bold: '{re.sub(r'<[^>]+>', '', item)[:50]}...'")
+    return warnings
+
+
 def map_pages(maps, links):
     """Return {file name: page body} for every subject map."""
     template = (ROOT / "templates/_map.html").read_text(encoding="utf-8")
@@ -182,8 +224,10 @@ def main():
         print("\n".join("  " + e for e in errors))
         sys.exit(1)
     report(topics, rows)
-    for m in maps.values():
+    for name, m in maps.items():
         print(f"Peta {m['subject']}: {sum(len(d['topics']) for d in m['domains'])} simpul")
+        for w in lint_map(name, m):
+            print("  warning: " + w)
     build(topics, rows, maps, "--artifact" in sys.argv[1:])
 
 

@@ -12,6 +12,10 @@ High-school study maps, starting with tools for a history competition in the Lom
 
 Every question carries the code of the topic it tests, so a weak result links straight back to the map. Pages are static HTML; practice progress is stored in the viewer's own browser.
 
+## Rules and specs
+
+The rules for content, questions, and the agent workflow are in [`specs/`](specs/README.md). AI agents start from [`CLAUDE.md`](CLAUDE.md). A Claude Code skill, `.claude/skills/new-subject/`, runs the full pipeline for adding a subject map.
+
 ## Layout
 
 ```
@@ -20,6 +24,7 @@ data/questions.csv      the question bank (source of truth; edit this)
 data/maps/<id>.json     one knowledge map per subject; becomes docs/peta-<id>.html
 templates/*.html        page sources; each becomes docs/<same name>
 templates/_map.html     shared page for every subject map (files starting with _ are not built directly)
+specs/                  rules for content, questions, workflow, and quality checks
 scripts/build.py        checks the data, then builds docs/
 tests/test_build.py     tests for the checks and the build
 docs/                   the built site (GitHub Pages serves this folder)
@@ -49,8 +54,8 @@ To check everything locally: `python scripts/build.py && python -m unittest disc
 The history map (`templates/peta.html`) predates this format and still has its content inside the page. New subjects use data files:
 
 1. Copy `data/maps/fisika.json` to `data/maps/<id>.json` (for example `kimia.json`) and set `"id"` to the same name.
-2. Fill in `domains` (groups of topics) and their `topics`. Each topic has a `code` starting with its domain id (`MEK-03`), a `tier` (1 inti, 2 penting, 3 pelengkap), a summary, `blocks` of bullet lists (`li`) or tables (`table`), and optional `traps` (commonly confused facts). `path` is an optional study-order strip whose steps point at topic codes.
-3. Run `python scripts/build.py`. It checks for missing fields, duplicate codes, codes outside their domain, bad tiers, malformed tables, and path steps pointing at unknown codes.
+2. Fill in `domains` and `topics` following [`specs/map-spec.md`](specs/map-spec.md), which defines every field and the writing rules.
+3. Run `python scripts/build.py`. It stops on structural errors (missing fields, duplicate codes, codes outside their domain, bad tiers, malformed tables, broken path steps) and prints warnings for the soft rules (sizes, tier mix, word limits, traps on core topics).
 4. Add a link to the new map in `templates/index.html`.
 
 Text may contain simple HTML (`<b>`, `<i>`, `<sub>`, `<sup>`). Unicode superscripts and subscripts such as `10⁻¹⁹` or `H₂O` are converted to `<sup>`/`<sub>` when the page loads, because the page fonts lack those glyphs.

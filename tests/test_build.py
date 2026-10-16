@@ -93,6 +93,23 @@ class MapsTest(unittest.TestCase):
         for needle in ("duplicate code", "must start with", "tier must be", "unknown code"):
             self.assertIn(needle, errors)
 
+    def test_maps_follow_soft_rules(self):
+        for name, m in self.maps.items():
+            self.assertEqual(build.lint_map(name, m), [], name)
+
+    def test_lint_catches_problems(self):
+        m = json.loads(json.dumps(self.maps["fisika"]))
+        t = m["domains"][0]["topics"][0]
+        t["sum"] = "kata " * 40
+        t["traps"] = []
+        t["blocks"][0]["li"] = ["<b>a</b> dan <b>b</b>"]
+        for d in m["domains"]:
+            for topic in d["topics"]:
+                topic["tier"] = 1
+        warnings = " | ".join(build.lint_map("fisika", m))
+        for needle in ("summary has", "no traps", "more than one bold", "tier mix"):
+            self.assertIn(needle, warnings)
+
     def test_map_pages_render(self):
         pages = build.map_pages(self.maps, {})
         for m in self.maps.values():

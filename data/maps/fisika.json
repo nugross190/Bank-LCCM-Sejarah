@@ -7,562 +7,1420 @@
   "path_title": "Alur prasyarat",
   "path_note": "Urutan belajar yang disarankan. Setiap langkah memakai alat dari langkah sebelumnya: vektor untuk gerak, gerak untuk gaya, gaya untuk energi, dan seterusnya.",
   "path": [
-    {"label": "Dasar", "title": "Besaran dan vektor", "note": "Satuan SI, angka penting, resultan", "to": "DAS-01"},
-    {"label": "Gerak", "title": "Kinematika", "note": "GLB, GLBB, parabola, melingkar", "to": "MEK-01"},
-    {"label": "Gaya", "title": "Hukum Newton", "note": "Gesek, katrol, gravitasi", "to": "MEK-03"},
-    {"label": "Energi", "title": "Usaha dan momentum", "note": "Kekekalan energi dan momentum", "to": "MEK-05"},
-    {"label": "Rotasi", "title": "Benda tegar", "note": "Torsi, momen inersia", "to": "MEK-07"},
-    {"label": "Materi", "title": "Fluida dan kalor", "note": "Tekanan, Bernoulli, termodinamika", "to": "FLT-01"},
-    {"label": "Getaran", "title": "Gelombang dan optik", "note": "Bunyi, cahaya, alat optik", "to": "GEL-01"},
-    {"label": "Muatan", "title": "Listrik dan magnet", "note": "Coulomb, rangkaian, induksi", "to": "LIS-01"},
-    {"label": "Kuantum", "title": "Fisika modern", "note": "Foton, atom, relativitas, inti", "to": "MOD-01"}
+    {
+      "label": "Dasar",
+      "title": "Besaran dan vektor",
+      "note": "Satuan SI, angka penting, resultan",
+      "to": "DAS-01"
+    },
+    {
+      "label": "Gerak",
+      "title": "Kinematika",
+      "note": "GLB, GLBB, parabola, melingkar",
+      "to": "MEK-01"
+    },
+    {
+      "label": "Gaya",
+      "title": "Hukum Newton",
+      "note": "Gesek, katrol, gravitasi",
+      "to": "MEK-03"
+    },
+    {
+      "label": "Energi",
+      "title": "Usaha dan momentum",
+      "note": "Kekekalan energi dan momentum",
+      "to": "MEK-05"
+    },
+    {
+      "label": "Rotasi",
+      "title": "Benda tegar",
+      "note": "Torsi, momen inersia",
+      "to": "MEK-07"
+    },
+    {
+      "label": "Materi",
+      "title": "Fluida dan kalor",
+      "note": "Tekanan, Bernoulli, termodinamika",
+      "to": "FLT-01"
+    },
+    {
+      "label": "Getaran",
+      "title": "Gelombang dan optik",
+      "note": "Bunyi, cahaya, alat optik",
+      "to": "GEL-01"
+    },
+    {
+      "label": "Muatan",
+      "title": "Listrik dan magnet",
+      "note": "Coulomb, rangkaian, induksi",
+      "to": "LIS-01"
+    },
+    {
+      "label": "Kuantum",
+      "title": "Fisika modern",
+      "note": "Foton, atom, relativitas, inti",
+      "to": "MOD-01"
+    }
   ],
   "domains": [
     {
-      "id": "DAS", "name": "Dasar dan pengukuran", "short": "Dasar",
+      "id": "DAS",
+      "name": "Dasar dan pengukuran",
+      "short": "Dasar",
       "note": "Alat yang dipakai di semua bab: satuan, angka penting, vektor, dan konstanta.",
       "topics": [
-        {"code": "DAS-01", "title": "Besaran, satuan, dan pengukuran", "scope": "Satuan SI, dimensi, alat ukur", "src": "Kelas X", "tier": 1,
-         "sum": "Tujuh besaran pokok, analisis dimensi, aturan angka penting, dan cara membaca jangka sorong serta mikrometer.",
-         "blocks": [
-           {"h": "Tujuh besaran pokok SI", "table": {"cols": ["Besaran", "Satuan", "Lambang", "Dimensi"], "rows": [
-             ["Panjang", "meter", "m", "[L]"], ["Massa", "kilogram", "kg", "[M]"], ["Waktu", "sekon", "s", "[T]"],
-             ["Kuat arus listrik", "ampere", "A", "[I]"], ["Suhu", "kelvin", "K", "[θ]"], ["Jumlah zat", "mol", "mol", "[N]"],
-             ["Intensitas cahaya", "kandela", "cd", "[J]"]]}},
-           {"h": "Besaran turunan dan dimensi", "li": [
-             "Gaya: newton = kg·m/s², dimensi [M][L][T]⁻². Energi: joule = kg·m²/s², dimensi [M][L]²[T]⁻². Daya: watt = J/s.",
-             "Tekanan: pascal = N/m², dimensi [M][L]⁻¹[T]⁻².",
-             "Analisis dimensi dipakai untuk memeriksa rumus: kedua ruas persamaan harus berdimensi sama.",
-             "Sejak 2019, satuan SI didefinisikan dari konstanta alam yang nilainya ditetapkan tepat: h, e, k<sub>B</sub>, N<sub>A</sub>, c."]},
-           {"h": "Angka penting", "li": [
-             "Semua angka bukan nol penting; nol di antara angka bukan nol penting; nol di depan tidak penting; nol di belakang koma desimal penting.",
-             "Perkalian dan pembagian: hasil mengikuti jumlah angka penting <b>paling sedikit</b>.",
-             "Penjumlahan dan pengurangan: hasil mengikuti angka di belakang koma <b>paling sedikit</b>.",
-             "Notasi ilmiah: a × 10ⁿ dengan 1 ≤ a &lt; 10."]},
-           {"h": "Alat ukur", "li": [
-             "Mistar: ketelitian 1 mm (ketidakpastian 0,5 mm).",
-             "<b>Jangka sorong</b>: ketelitian 0,1 mm (nonius 10 skala) atau 0,05 mm (nonius 20 skala). Hasil = skala utama + skala nonius × ketelitian.",
-             "<b>Mikrometer sekrup</b>: ketelitian 0,01 mm. Hasil = skala utama + skala putar × 0,01 mm.",
-             "Pengukuran tunggal dengan alat analog: ketidakpastian = ½ skala terkecil. Pengukuran berulang: ketidakpastian dari simpangan baku."]},
-           {"h": "Awalan satuan", "li": ["piko 10⁻¹², nano 10⁻⁹, mikro 10⁻⁶, mili 10⁻³, senti 10⁻², kilo 10³, mega 10⁶, giga 10⁹, tera 10¹²."]}
-         ],
-         "traps": ["Hasil 2,5 × 3,14 ditulis dengan 2 angka penting (7,9), bukan 7,85.", "Suhu dalam besaran pokok SI memakai kelvin, bukan derajat Celsius.", "Akurasi = kedekatan dengan nilai sebenarnya; presisi = kedekatan antarhasil ukur berulang."]},
-
-        {"code": "DAS-02", "title": "Vektor", "scope": "Resultan, komponen, perkalian", "src": "Kelas X–XI", "tier": 1,
-         "sum": "Cara menjumlahkan besaran yang punya arah. Dipakai di gerak, gaya, medan listrik, dan medan magnet.",
-         "blocks": [
-           {"h": "Konsep", "li": [
-             "Besaran skalar hanya punya nilai (massa, waktu, energi); besaran vektor punya nilai dan arah (perpindahan, kecepatan, gaya).",
-             "Resultan dua vektor bersudut θ: <b>R = √(A² + B² + 2AB cos θ)</b>. Selisih: √(A² + B² − 2AB cos θ).",
-             "Searah: R = A + B (maksimum). Berlawanan: R = |A − B| (minimum). Tegak lurus: R = √(A² + B²).",
-             "Komponen: A<sub>x</sub> = A cos θ, A<sub>y</sub> = A sin θ. Vektor satuan i, j, k."]},
-           {"h": "Perkalian vektor", "li": [
-             "Perkalian titik (dot): A · B = AB cos θ, hasilnya skalar. Contoh: usaha W = F · s.",
-             "Perkalian silang (cross): |A × B| = AB sin θ, hasilnya vektor tegak lurus keduanya. Contoh: torsi τ = r × F, gaya Lorentz F = qv × B."]}
-         ],
-         "traps": ["Dua vektor 3 N dan 4 N tidak selalu menghasilkan 5 N; itu hanya bila keduanya tegak lurus. Resultannya bisa antara 1 N dan 7 N."]},
-
-        {"code": "DAS-03", "title": "Konstanta dan nilai penting", "scope": "Tabel rujukan", "src": "Semua kelas", "tier": 1,
-         "sum": "Konstanta yang sering diberikan atau harus dihafal dalam soal.",
-         "blocks": [
-           {"h": "Konstanta", "wide": true, "table": {"cols": ["Konstanta", "Lambang", "Nilai"], "rows": [
-             ["Percepatan gravitasi bumi", "g", "9,8 m/s² (sering dibulatkan 10 m/s²)"],
-             ["Konstanta gravitasi umum", "G", "6,67 × 10⁻¹¹ N·m²/kg²"],
-             ["Kecepatan cahaya di ruang hampa", "c", "3 × 10⁸ m/s"],
-             ["Konstanta Planck", "h", "6,63 × 10⁻³⁴ J·s"],
-             ["Muatan elementer", "e", "1,6 × 10⁻¹⁹ C"],
-             ["Konstanta Coulomb", "k = 1/(4πε₀)", "9 × 10⁹ N·m²/C²"],
-             ["Permitivitas ruang hampa", "ε₀", "8,85 × 10⁻¹² C²/(N·m²)"],
-             ["Permeabilitas ruang hampa", "μ₀", "4π × 10⁻⁷ Wb/(A·m)"],
-             ["Konstanta Boltzmann", "k<sub>B</sub>", "1,38 × 10⁻²³ J/K"],
-             ["Tetapan gas umum", "R", "8,314 J/(mol·K)"],
-             ["Bilangan Avogadro", "N<sub>A</sub>", "6,02 × 10²³ partikel/mol"],
-             ["Konstanta Stefan–Boltzmann", "σ", "5,67 × 10⁻⁸ W/(m²·K⁴)"],
-             ["Konstanta Wien", "C", "2,898 × 10⁻³ m·K"],
-             ["Massa elektron", "m<sub>e</sub>", "9,11 × 10⁻³¹ kg"],
-             ["Massa proton", "m<sub>p</sub>", "1,67 × 10⁻²⁷ kg"],
-             ["Satuan massa atom", "1 sma", "setara 931,5 MeV"],
-             ["Elektronvolt", "1 eV", "1,6 × 10⁻¹⁹ J"],
-             ["Tekanan udara standar", "1 atm", "1,013 × 10⁵ Pa = 76 cmHg"],
-             ["Cepat rambat bunyi di udara", "v", "±340 m/s (suhu kamar)"],
-             ["Intensitas ambang pendengaran", "I₀", "10⁻¹² W/m²"]]}}
-         ],
-         "traps": ["Pakai nilai g yang diberikan soal. Bila soal menyebut 10 m/s², jangan memakai 9,8."]}
+        {
+          "code": "DAS-01",
+          "title": "Besaran, satuan, dan pengukuran",
+          "scope": "Satuan SI, dimensi, alat ukur",
+          "src": "Kelas X",
+          "tier": 1,
+          "sum": "Tujuh besaran pokok, analisis dimensi, aturan angka penting, dan cara membaca jangka sorong serta mikrometer.",
+          "blocks": [
+            {
+              "h": "Tujuh besaran pokok SI",
+              "table": {
+                "cols": [
+                  "Besaran",
+                  "Satuan",
+                  "Lambang",
+                  "Dimensi"
+                ],
+                "rows": [
+                  [
+                    "Panjang",
+                    "meter",
+                    "m",
+                    "[L]"
+                  ],
+                  [
+                    "Massa",
+                    "kilogram",
+                    "kg",
+                    "[M]"
+                  ],
+                  [
+                    "Waktu",
+                    "sekon",
+                    "s",
+                    "[T]"
+                  ],
+                  [
+                    "Kuat arus listrik",
+                    "ampere",
+                    "A",
+                    "[I]"
+                  ],
+                  [
+                    "Suhu",
+                    "kelvin",
+                    "K",
+                    "[θ]"
+                  ],
+                  [
+                    "Jumlah zat",
+                    "mol",
+                    "mol",
+                    "[N]"
+                  ],
+                  [
+                    "Intensitas cahaya",
+                    "kandela",
+                    "cd",
+                    "[J]"
+                  ]
+                ]
+              }
+            },
+            {
+              "h": "Besaran turunan dan dimensi",
+              "li": [
+                "Gaya: newton = kg·m/s², dimensi [M][L][T]⁻². Energi: joule = kg·m²/s², dimensi [M][L]²[T]⁻². Daya: watt = J/s.",
+                "Tekanan: pascal = N/m², dimensi [M][L]⁻¹[T]⁻².",
+                "Analisis dimensi dipakai untuk memeriksa rumus: kedua ruas persamaan harus berdimensi sama.",
+                "Sejak 2019, satuan SI didefinisikan dari konstanta alam yang nilainya ditetapkan tepat: h, e, k<sub>B</sub>, N<sub>A</sub>, c."
+              ]
+            },
+            {
+              "h": "Angka penting",
+              "li": [
+                "Semua angka bukan nol penting; nol di antara angka bukan nol penting; nol di depan tidak penting; nol di belakang koma desimal penting.",
+                "Perkalian dan pembagian: hasil mengikuti jumlah angka penting <b>paling sedikit</b>.",
+                "Penjumlahan dan pengurangan: hasil mengikuti angka di belakang koma <b>paling sedikit</b>.",
+                "Notasi ilmiah: a × 10ⁿ dengan 1 ≤ a &lt; 10."
+              ]
+            },
+            {
+              "h": "Alat ukur",
+              "li": [
+                "Mistar: ketelitian 1 mm (ketidakpastian 0,5 mm).",
+                "<b>Jangka sorong</b>: ketelitian 0,1 mm (nonius 10 skala) atau 0,05 mm (nonius 20 skala). Hasil = skala utama + skala nonius × ketelitian.",
+                "<b>Mikrometer sekrup</b>: ketelitian 0,01 mm. Hasil = skala utama + skala putar × 0,01 mm.",
+                "Pengukuran tunggal dengan alat analog: ketidakpastian = ½ skala terkecil. Pengukuran berulang: ketidakpastian dari simpangan baku."
+              ]
+            },
+            {
+              "h": "Awalan satuan",
+              "li": [
+                "piko 10⁻¹², nano 10⁻⁹, mikro 10⁻⁶, mili 10⁻³, senti 10⁻², kilo 10³, mega 10⁶, giga 10⁹, tera 10¹²."
+              ]
+            }
+          ],
+          "traps": [
+            "Hasil 2,5 × 3,14 ditulis dengan 2 angka penting (7,9), bukan 7,85.",
+            "Suhu dalam besaran pokok SI memakai kelvin, bukan derajat Celsius.",
+            "Akurasi = kedekatan dengan nilai sebenarnya; presisi = kedekatan antarhasil ukur berulang."
+          ]
+        },
+        {
+          "code": "DAS-02",
+          "title": "Vektor",
+          "scope": "Resultan, komponen, perkalian",
+          "src": "Kelas X–XI",
+          "tier": 1,
+          "sum": "Cara menjumlahkan besaran yang punya arah. Dipakai di gerak, gaya, medan listrik, dan medan magnet.",
+          "blocks": [
+            {
+              "h": "Konsep",
+              "li": [
+                "Besaran skalar hanya punya nilai (massa, waktu, energi); besaran vektor punya nilai dan arah (perpindahan, kecepatan, gaya).",
+                "Resultan dua vektor bersudut θ: <b>R = √(A² + B² + 2AB cos θ)</b>. Selisih: √(A² + B² − 2AB cos θ).",
+                "Searah: R = A + B (maksimum). Berlawanan: R = |A − B| (minimum). Tegak lurus: R = √(A² + B²).",
+                "Komponen: A<sub>x</sub> = A cos θ, A<sub>y</sub> = A sin θ. Vektor satuan i, j, k."
+              ]
+            },
+            {
+              "h": "Perkalian vektor",
+              "li": [
+                "Perkalian titik (dot): A · B = AB cos θ, hasilnya skalar. Contoh: usaha W = F · s.",
+                "Perkalian silang (cross): |A × B| = AB sin θ, hasilnya vektor tegak lurus keduanya. Contoh: torsi τ = r × F, gaya Lorentz F = qv × B."
+              ]
+            }
+          ],
+          "traps": [
+            "Dua vektor 3 N dan 4 N tidak selalu menghasilkan 5 N; itu hanya bila keduanya tegak lurus. Resultannya bisa antara 1 N dan 7 N."
+          ]
+        },
+        {
+          "code": "DAS-03",
+          "title": "Konstanta dan nilai penting",
+          "scope": "Tabel rujukan",
+          "src": "Semua kelas",
+          "tier": 1,
+          "sum": "Konstanta yang sering diberikan atau harus dihafal dalam soal.",
+          "blocks": [
+            {
+              "h": "Konstanta",
+              "wide": true,
+              "table": {
+                "cols": [
+                  "Konstanta",
+                  "Lambang",
+                  "Nilai"
+                ],
+                "rows": [
+                  [
+                    "Percepatan gravitasi bumi",
+                    "g",
+                    "9,8 m/s² (sering dibulatkan 10 m/s²)"
+                  ],
+                  [
+                    "Konstanta gravitasi umum",
+                    "G",
+                    "6,67 × 10⁻¹¹ N·m²/kg²"
+                  ],
+                  [
+                    "Kecepatan cahaya di ruang hampa",
+                    "c",
+                    "3 × 10⁸ m/s"
+                  ],
+                  [
+                    "Konstanta Planck",
+                    "h",
+                    "6,63 × 10⁻³⁴ J·s"
+                  ],
+                  [
+                    "Muatan elementer",
+                    "e",
+                    "1,6 × 10⁻¹⁹ C"
+                  ],
+                  [
+                    "Konstanta Coulomb",
+                    "k = 1/(4πε₀)",
+                    "9 × 10⁹ N·m²/C²"
+                  ],
+                  [
+                    "Permitivitas ruang hampa",
+                    "ε₀",
+                    "8,85 × 10⁻¹² C²/(N·m²)"
+                  ],
+                  [
+                    "Permeabilitas ruang hampa",
+                    "μ₀",
+                    "4π × 10⁻⁷ Wb/(A·m)"
+                  ],
+                  [
+                    "Konstanta Boltzmann",
+                    "k<sub>B</sub>",
+                    "1,38 × 10⁻²³ J/K"
+                  ],
+                  [
+                    "Tetapan gas umum",
+                    "R",
+                    "8,314 J/(mol·K)"
+                  ],
+                  [
+                    "Bilangan Avogadro",
+                    "N<sub>A</sub>",
+                    "6,02 × 10²³ partikel/mol"
+                  ],
+                  [
+                    "Konstanta Stefan–Boltzmann",
+                    "σ",
+                    "5,67 × 10⁻⁸ W/(m²·K⁴)"
+                  ],
+                  [
+                    "Konstanta Wien",
+                    "C",
+                    "2,898 × 10⁻³ m·K"
+                  ],
+                  [
+                    "Massa elektron",
+                    "m<sub>e</sub>",
+                    "9,11 × 10⁻³¹ kg"
+                  ],
+                  [
+                    "Massa proton",
+                    "m<sub>p</sub>",
+                    "1,67 × 10⁻²⁷ kg"
+                  ],
+                  [
+                    "Satuan massa atom",
+                    "1 sma",
+                    "setara 931,5 MeV"
+                  ],
+                  [
+                    "Elektronvolt",
+                    "1 eV",
+                    "1,6 × 10⁻¹⁹ J"
+                  ],
+                  [
+                    "Tekanan udara standar",
+                    "1 atm",
+                    "1,013 × 10⁵ Pa = 76 cmHg"
+                  ],
+                  [
+                    "Cepat rambat bunyi di udara",
+                    "v",
+                    "±340 m/s (suhu kamar)"
+                  ],
+                  [
+                    "Intensitas ambang pendengaran",
+                    "I₀",
+                    "10⁻¹² W/m²"
+                  ]
+                ]
+              }
+            }
+          ],
+          "traps": [
+            "Pakai nilai g yang diberikan soal. Bila soal menyebut 10 m/s², jangan memakai 9,8."
+          ]
+        }
       ]
     },
     {
-      "id": "MEK", "name": "Mekanika", "short": "Mekanika",
+      "id": "MEK",
+      "name": "Mekanika",
+      "short": "Mekanika",
       "note": "Gerak, gaya, energi, momentum, rotasi, dan getaran. Bagian terbesar fisika SMA dan dasar bab-bab lain.",
       "topics": [
-        {"code": "MEK-01", "title": "Gerak lurus", "scope": "GLB, GLBB, gerak vertikal", "src": "Kelas X–XI", "tier": 1,
-         "sum": "Persamaan gerak dengan kecepatan tetap dan percepatan tetap, serta cara membaca grafiknya.",
-         "blocks": [
-           {"h": "Istilah", "li": [
-             "<b>Jarak</b> = panjang lintasan (skalar). <b>Perpindahan</b> = perubahan posisi (vektor).",
-             "<b>Kelajuan</b> = jarak/waktu. <b>Kecepatan</b> = perpindahan/waktu. <b>Percepatan</b> = perubahan kecepatan/waktu."]},
-           {"h": "Rumus", "li": [
-             "GLB (kecepatan tetap): s = v·t.",
-             "GLBB (percepatan tetap): v<sub>t</sub> = v₀ + at; s = v₀t + ½at²; v<sub>t</sub>² = v₀² + 2as.",
-             "Jatuh bebas (v₀ = 0): h = ½gt², v = √(2gh).",
-             "Vertikal ke atas: waktu ke puncak t = v₀/g; tinggi maksimum h = v₀²/(2g)."]},
-           {"h": "Grafik", "li": [
-             "Grafik s–t: kemiringan (gradien) = kecepatan.",
-             "Grafik v–t: kemiringan = percepatan; <b>luas di bawah kurva = perpindahan</b>.",
-             "Grafik a–t: luas di bawah kurva = perubahan kecepatan."]}
-         ],
-         "traps": ["Di titik tertinggi gerak vertikal, kecepatan nol tetapi percepatan tetap g ke bawah.", "Tanpa hambatan udara, benda berat dan ringan yang dijatuhkan bersamaan tiba bersamaan (Galileo)."]},
-
-        {"code": "MEK-02", "title": "Gerak parabola dan gerak melingkar", "scope": "Gerak dua dimensi", "src": "Kelas XI", "tier": 1,
-         "sum": "Gerak parabola sebagai gabungan GLB dan GLBB; gerak melingkar dengan kecepatan sudut dan percepatan sentripetal.",
-         "blocks": [
-           {"h": "Gerak parabola", "li": [
-             "Sumbu x: GLB, v<sub>x</sub> = v₀ cos α tetap. Sumbu y: GLBB dengan percepatan −g, v<sub>y</sub> = v₀ sin α − gt.",
-             "Tinggi maksimum: h<sub>maks</sub> = v₀² sin² α / (2g).",
-             "Jarak mendatar maksimum: R = v₀² sin 2α / g. R terbesar pada α = 45°.",
-             "Dua sudut yang jumlahnya 90° (misalnya 30° dan 60°) menghasilkan jarak mendatar sama."]},
-           {"h": "Gerak melingkar", "li": [
-             "Periode T = 1/f; kecepatan sudut ω = 2πf = 2π/T; kecepatan linear v = ωr.",
-             "Percepatan sentripetal a<sub>s</sub> = v²/r = ω²r, arahnya ke pusat lingkaran.",
-             "GMB: kelajuan tetap, arah kecepatan berubah. GMBB: ω<sub>t</sub> = ω₀ + αt.",
-             "Hubungan roda: sepusat → ω sama; bersinggungan atau dihubungkan tali/rantai → v sama."]}
-         ],
-         "traps": ["Di puncak lintasan parabola, kecepatan tidak nol: masih ada v<sub>x</sub>.", "Gerak melingkar beraturan tetap memiliki percepatan (sentripetal) walau kelajuannya konstan."]},
-
-        {"code": "MEK-03", "title": "Hukum Newton tentang gerak", "scope": "Dinamika partikel", "src": "Kelas X–XI", "tier": 1,
-         "sum": "Tiga hukum Newton dan penerapannya: gaya gesek, bidang miring, katrol, lift, dan gaya sentripetal.",
-         "blocks": [
-           {"h": "Tiga hukum", "li": [
-             "<b>I (kelembaman)</b>: bila ΣF = 0, benda diam tetap diam atau bergerak lurus beraturan.",
-             "<b>II</b>: ΣF = m·a.",
-             "<b>III (aksi–reaksi)</b>: gaya aksi dan reaksi sama besar, berlawanan arah, bekerja pada <b>dua benda berbeda</b>.",
-             "Isaac Newton menerbitkannya dalam <i>Philosophiæ Naturalis Principia Mathematica</i> (1687)."]},
-           {"h": "Gaya-gaya", "li": [
-             "Berat w = mg. Gaya normal N tegak lurus bidang sentuh.",
-             "Gesek statis f<sub>s</sub> ≤ μ<sub>s</sub>N (benda diam); gesek kinetis f<sub>k</sub> = μ<sub>k</sub>N (benda bergerak); umumnya μ<sub>s</sub> &gt; μ<sub>k</sub>.",
-             "Bidang miring licin: a = g sin θ. Komponen berat sejajar bidang: mg sin θ; tegak lurus bidang: mg cos θ.",
-             "Lift: naik dipercepat N = m(g + a); turun dipercepat N = m(g − a); jatuh bebas N = 0.",
-             "Katrol Atwood licin: a = (m₁ − m₂)g/(m₁ + m₂).",
-             "Gaya sentripetal F<sub>s</sub> = mv²/r. Tikungan datar: v<sub>maks</sub> = √(μgr)."]}
-         ],
-         "traps": ["Gaya normal tidak selalu sama dengan mg (berbeda di bidang miring, lift, atau bila ada gaya tarik miring).", "Berat dan gaya normal pada benda di meja bukan pasangan aksi–reaksi; keduanya bekerja pada benda yang sama."]},
-
-        {"code": "MEK-04", "title": "Gravitasi dan hukum Kepler", "scope": "Gravitasi universal", "src": "Kelas X–XI", "tier": 2,
-         "sum": "Hukum gravitasi Newton, percepatan gravitasi di berbagai ketinggian, orbit satelit, dan tiga hukum Kepler.",
-         "blocks": [
-           {"h": "Gravitasi Newton", "li": [
-             "F = G m₁m₂ / r². Nilai G pertama kali diukur Henry Cavendish (1798) dengan neraca torsi.",
-             "Percepatan gravitasi g = GM/r²; pada ketinggian h dari permukaan: g' = g (R/(R + h))².",
-             "Kecepatan orbit melingkar v = √(GM/r). Kecepatan lepas v = √(2GM/R)."]},
-           {"h": "Hukum Kepler", "li": [
-             "<b>I</b>: lintasan planet berbentuk elips dengan Matahari di salah satu titik fokus.",
-             "<b>II</b>: garis penghubung planet–Matahari menyapu luas yang sama dalam waktu yang sama (planet lebih cepat saat dekat Matahari).",
-             "<b>III</b>: T²/r³ sama untuk semua planet. Bentuk perbandingan: (T₁/T₂)² = (r₁/r₂)³."]}
-         ],
-         "traps": ["Astronaut di stasiun luar angkasa tetap ditarik gravitasi; ia “melayang” karena ikut jatuh bebas mengelilingi Bumi."]},
-
-        {"code": "MEK-05", "title": "Usaha dan energi", "scope": "Usaha, energi, daya", "src": "Kelas X–XI", "tier": 1,
-         "sum": "Usaha oleh gaya, energi kinetik dan potensial, teorema usaha–energi, kekekalan energi mekanik, dan daya.",
-         "blocks": [
-           {"h": "Rumus", "li": [
-             "Usaha W = F·s·cos θ (joule). Gaya tegak lurus perpindahan tidak melakukan usaha.",
-             "Energi kinetik E<sub>k</sub> = ½mv². Energi potensial gravitasi E<sub>p</sub> = mgh. Energi potensial pegas = ½kx².",
-             "Teorema usaha–energi: W<sub>total</sub> = ΔE<sub>k</sub>.",
-             "Kekekalan energi mekanik (tanpa gesekan): E<sub>p1</sub> + E<sub>k1</sub> = E<sub>p2</sub> + E<sub>k2</sub>.",
-             "Daya P = W/t = F·v. 1 hp ≈ 746 W. Efisiensi η = (energi keluaran/energi masukan) × 100%."]}
-         ],
-         "traps": ["Membawa beban sambil berjalan mendatar dengan kecepatan tetap: usaha oleh gaya angkat tangan = 0 (gaya tegak lurus perpindahan).", "Energi kinetik sebanding dengan v²: kecepatan dua kali lipat → energi kinetik empat kali lipat."]},
-
-        {"code": "MEK-06", "title": "Momentum, impuls, dan tumbukan", "scope": "Kekekalan momentum", "src": "Kelas XI", "tier": 1,
-         "sum": "Momentum dan impuls, hukum kekekalan momentum, jenis tumbukan, dan koefisien restitusi.",
-         "blocks": [
-           {"h": "Rumus", "li": [
-             "Momentum p = mv (vektor). Impuls I = F·Δt = Δp.",
-             "Kekekalan momentum (tanpa gaya luar): m₁v₁ + m₂v₂ = m₁v₁' + m₂v₂'.",
-             "Koefisien restitusi e = −(v₁' − v₂')/(v₁ − v₂)."]},
-           {"h": "Jenis tumbukan", "table": {"cols": ["Jenis", "e", "Energi kinetik"], "rows": [
-             ["Lenting sempurna", "1", "Kekal"], ["Lenting sebagian", "0 &lt; e &lt; 1", "Berkurang"], ["Tidak lenting sama sekali", "0", "Berkurang paling banyak; benda bergerak bersama"]]}},
-           {"h": "Penerapan", "li": [
-             "Bola dijatuhkan dari tinggi h, pantulan pertama setinggi h' = e²h; jadi e = √(h'/h).",
-             "Roket, senapan yang tertolak ke belakang (rekoil), dan kantong udara mobil (memperpanjang Δt agar gaya kecil)."]}
-         ],
-         "traps": ["Pada semua tumbukan momentum kekal; yang tidak selalu kekal adalah energi kinetik."]},
-
-        {"code": "MEK-07", "title": "Rotasi dan kesetimbangan benda tegar", "scope": "Torsi, momen inersia", "src": "Kelas XI", "tier": 1,
-         "sum": "Analog rotasi dari hukum Newton: torsi, momen inersia, momentum sudut, menggelinding, dan syarat kesetimbangan.",
-         "blocks": [
-           {"h": "Dinamika rotasi", "li": [
-             "Torsi τ = r·F·sin θ. Hukum II Newton untuk rotasi: Στ = I·α.",
-             "Momen inersia partikel I = Σmr². Momentum sudut L = Iω; kekal bila tidak ada torsi luar (penari balet menarik lengan → ω membesar).",
-             "Energi kinetik rotasi = ½Iω². Benda menggelinding: E<sub>k</sub> = ½mv²(1 + k), dengan I = kmR²."]},
-           {"h": "Momen inersia benda", "table": {"cols": ["Benda", "I"], "rows": [
-             ["Batang, poros di tengah", "1/12 mL²"], ["Batang, poros di ujung", "1/3 mL²"], ["Silinder pejal", "½ mR²"],
-             ["Silinder berongga tipis (cincin)", "mR²"], ["Bola pejal", "2/5 mR²"], ["Bola berongga tipis", "2/3 mR²"]]}},
-           {"h": "Kesetimbangan", "li": [
-             "Syarat kesetimbangan benda tegar: ΣF = 0 dan Στ = 0.",
-             "Jenis: stabil (titik berat naik bila diganggu), labil (titik berat turun), netral (titik berat tetap).",
-             "Titik berat bentuk gabungan: x = ΣA<sub>i</sub>x<sub>i</sub>/ΣA<sub>i</sub>."]}
-         ],
-         "traps": ["Dilepas bersamaan menuruni bidang miring, bola pejal tiba lebih dulu daripada silinder pejal, lalu silinder berongga (k makin kecil makin cepat)."]},
-
-        {"code": "MEK-08", "title": "Elastisitas dan getaran harmonis", "scope": "Pegas, bandul", "src": "Kelas XI", "tier": 1,
-         "sum": "Tegangan, regangan, modulus Young, hukum Hooke, susunan pegas, serta getaran pegas dan bandul.",
-         "blocks": [
-           {"h": "Elastisitas", "li": [
-             "Tegangan σ = F/A; regangan e = ΔL/L₀; modulus Young E = σ/e.",
-             "Hukum Hooke: F = kx (berlaku sampai batas elastis).",
-             "Pegas seri: 1/k<sub>s</sub> = 1/k₁ + 1/k₂ + … ; pegas paralel: k<sub>p</sub> = k₁ + k₂ + …"]},
-           {"h": "Getaran harmonis sederhana", "li": [
-             "Simpangan y = A sin ωt; kecepatan maksimum v<sub>maks</sub> = Aω; percepatan maksimum a<sub>maks</sub> = Aω².",
-             "Periode pegas T = 2π√(m/k). Periode bandul sederhana T = 2π√(L/g) (sudut kecil).",
-             "Energi getaran E = ½kA², tetap; di titik seimbang seluruhnya energi kinetik."]}
-         ],
-         "traps": ["Periode bandul tidak bergantung pada massa beban; periode pegas tidak bergantung pada percepatan gravitasi.", "Susunan pegas berkebalikan dengan susunan resistor: pegas seri dihitung seperti resistor paralel."]}
+        {
+          "code": "MEK-01",
+          "title": "Gerak lurus",
+          "scope": "GLB, GLBB, gerak vertikal",
+          "src": "Kelas X–XI",
+          "tier": 1,
+          "sum": "Persamaan gerak dengan kecepatan tetap dan percepatan tetap, serta cara membaca grafiknya.",
+          "blocks": [
+            {
+              "h": "Istilah",
+              "li": [
+                "<b>Jarak</b> = panjang lintasan (skalar).",
+                "<b>Perpindahan</b> = perubahan posisi (vektor).",
+                "<b>Kelajuan</b> = jarak/waktu; kecepatan = perpindahan/waktu.",
+                "Percepatan = perubahan kecepatan/waktu."
+              ]
+            },
+            {
+              "h": "Rumus",
+              "li": [
+                "GLB (kecepatan tetap): s = v·t.",
+                "GLBB (percepatan tetap): v<sub>t</sub> = v₀ + at; s = v₀t + ½at²; v<sub>t</sub>² = v₀² + 2as.",
+                "Jatuh bebas (v₀ = 0): h = ½gt², v = √(2gh).",
+                "Vertikal ke atas: waktu ke puncak t = v₀/g; tinggi maksimum h = v₀²/(2g)."
+              ]
+            },
+            {
+              "h": "Grafik",
+              "li": [
+                "Grafik s–t: kemiringan (gradien) = kecepatan.",
+                "Grafik v–t: kemiringan = percepatan; <b>luas di bawah kurva = perpindahan</b>.",
+                "Grafik a–t: luas di bawah kurva = perubahan kecepatan."
+              ]
+            }
+          ],
+          "traps": [
+            "Di titik tertinggi gerak vertikal, kecepatan nol tetapi percepatan tetap g ke bawah.",
+            "Tanpa hambatan udara, benda berat dan ringan yang dijatuhkan bersamaan tiba bersamaan (Galileo)."
+          ]
+        },
+        {
+          "code": "MEK-02",
+          "title": "Gerak parabola dan gerak melingkar",
+          "scope": "Gerak dua dimensi",
+          "src": "Kelas XI",
+          "tier": 1,
+          "sum": "Gerak parabola sebagai gabungan GLB dan GLBB; gerak melingkar dengan kecepatan sudut dan percepatan sentripetal.",
+          "blocks": [
+            {
+              "h": "Gerak parabola",
+              "li": [
+                "Sumbu x: GLB, v<sub>x</sub> = v₀ cos α tetap. Sumbu y: GLBB dengan percepatan −g, v<sub>y</sub> = v₀ sin α − gt.",
+                "Tinggi maksimum: h<sub>maks</sub> = v₀² sin² α / (2g).",
+                "Jarak mendatar maksimum: R = v₀² sin 2α / g. R terbesar pada α = 45°.",
+                "Dua sudut yang jumlahnya 90° (misalnya 30° dan 60°) menghasilkan jarak mendatar sama."
+              ]
+            },
+            {
+              "h": "Gerak melingkar",
+              "li": [
+                "Periode T = 1/f; kecepatan sudut ω = 2πf = 2π/T; kecepatan linear v = ωr.",
+                "Percepatan sentripetal a<sub>s</sub> = v²/r = ω²r, arahnya ke pusat lingkaran.",
+                "GMB: kelajuan tetap, arah kecepatan berubah. GMBB: ω<sub>t</sub> = ω₀ + αt.",
+                "Hubungan roda: sepusat → ω sama; bersinggungan atau dihubungkan tali/rantai → v sama."
+              ]
+            }
+          ],
+          "traps": [
+            "Di puncak lintasan parabola, kecepatan tidak nol: masih ada v<sub>x</sub>.",
+            "Gerak melingkar beraturan tetap memiliki percepatan (sentripetal) walau kelajuannya konstan."
+          ]
+        },
+        {
+          "code": "MEK-03",
+          "title": "Hukum Newton tentang gerak",
+          "scope": "Dinamika partikel",
+          "src": "Kelas X–XI",
+          "tier": 1,
+          "sum": "Tiga hukum Newton dan penerapannya: gaya gesek, bidang miring, katrol, lift, dan gaya sentripetal.",
+          "blocks": [
+            {
+              "h": "Tiga hukum",
+              "li": [
+                "<b>I (kelembaman)</b>: bila ΣF = 0, benda diam tetap diam atau bergerak lurus beraturan.",
+                "<b>II</b>: ΣF = m·a.",
+                "<b>III (aksi–reaksi)</b>: gaya aksi dan reaksi sama besar, berlawanan arah, bekerja pada dua benda berbeda.",
+                "Isaac Newton menerbitkannya dalam <i>Philosophiæ Naturalis Principia Mathematica</i> (1687)."
+              ]
+            },
+            {
+              "h": "Gaya-gaya",
+              "li": [
+                "Berat w = mg. Gaya normal N tegak lurus bidang sentuh.",
+                "Gesek statis f<sub>s</sub> ≤ μ<sub>s</sub>N (benda diam); gesek kinetis f<sub>k</sub> = μ<sub>k</sub>N (benda bergerak); umumnya μ<sub>s</sub> &gt; μ<sub>k</sub>.",
+                "Bidang miring licin: a = g sin θ. Komponen berat sejajar bidang: mg sin θ; tegak lurus bidang: mg cos θ.",
+                "Lift: naik dipercepat N = m(g + a); turun dipercepat N = m(g − a); jatuh bebas N = 0.",
+                "Katrol Atwood licin: a = (m₁ − m₂)g/(m₁ + m₂).",
+                "Gaya sentripetal F<sub>s</sub> = mv²/r. Tikungan datar: v<sub>maks</sub> = √(μgr)."
+              ]
+            }
+          ],
+          "traps": [
+            "Gaya normal tidak selalu sama dengan mg (berbeda di bidang miring, lift, atau bila ada gaya tarik miring).",
+            "Berat dan gaya normal pada benda di meja bukan pasangan aksi–reaksi; keduanya bekerja pada benda yang sama."
+          ]
+        },
+        {
+          "code": "MEK-04",
+          "title": "Gravitasi dan hukum Kepler",
+          "scope": "Gravitasi universal",
+          "src": "Kelas X–XI",
+          "tier": 2,
+          "sum": "Hukum gravitasi Newton, percepatan gravitasi di berbagai ketinggian, orbit satelit, dan tiga hukum Kepler.",
+          "blocks": [
+            {
+              "h": "Gravitasi Newton",
+              "li": [
+                "F = G m₁m₂ / r². Nilai G pertama kali diukur Henry Cavendish (1798) dengan neraca torsi.",
+                "Percepatan gravitasi g = GM/r²; pada ketinggian h dari permukaan: g' = g (R/(R + h))².",
+                "Kecepatan orbit melingkar v = √(GM/r). Kecepatan lepas v = √(2GM/R)."
+              ]
+            },
+            {
+              "h": "Hukum Kepler",
+              "li": [
+                "<b>I</b>: lintasan planet berbentuk elips dengan Matahari di salah satu titik fokus.",
+                "<b>II</b>: garis penghubung planet–Matahari menyapu luas yang sama dalam waktu yang sama (planet lebih cepat saat dekat Matahari).",
+                "<b>III</b>: T²/r³ sama untuk semua planet. Bentuk perbandingan: (T₁/T₂)² = (r₁/r₂)³."
+              ]
+            }
+          ],
+          "traps": [
+            "Astronaut di stasiun luar angkasa tetap ditarik gravitasi; ia “melayang” karena ikut jatuh bebas mengelilingi Bumi."
+          ]
+        },
+        {
+          "code": "MEK-05",
+          "title": "Usaha dan energi",
+          "scope": "Usaha, energi, daya",
+          "src": "Kelas X–XI",
+          "tier": 1,
+          "sum": "Usaha oleh gaya, energi kinetik dan potensial, teorema usaha–energi, kekekalan energi mekanik, dan daya.",
+          "blocks": [
+            {
+              "h": "Rumus",
+              "li": [
+                "Usaha W = F·s·cos θ (joule). Gaya tegak lurus perpindahan tidak melakukan usaha.",
+                "Energi kinetik E<sub>k</sub> = ½mv². Energi potensial gravitasi E<sub>p</sub> = mgh. Energi potensial pegas = ½kx².",
+                "Teorema usaha–energi: W<sub>total</sub> = ΔE<sub>k</sub>.",
+                "Kekekalan energi mekanik (tanpa gesekan): E<sub>p1</sub> + E<sub>k1</sub> = E<sub>p2</sub> + E<sub>k2</sub>.",
+                "Daya P = W/t = F·v. 1 hp ≈ 746 W. Efisiensi η = (energi keluaran/energi masukan) × 100%."
+              ]
+            }
+          ],
+          "traps": [
+            "Membawa beban sambil berjalan mendatar dengan kecepatan tetap: usaha oleh gaya angkat tangan = 0 (gaya tegak lurus perpindahan).",
+            "Energi kinetik sebanding dengan v²: kecepatan dua kali lipat → energi kinetik empat kali lipat."
+          ]
+        },
+        {
+          "code": "MEK-06",
+          "title": "Momentum, impuls, dan tumbukan",
+          "scope": "Kekekalan momentum",
+          "src": "Kelas XI",
+          "tier": 1,
+          "sum": "Momentum dan impuls, hukum kekekalan momentum, jenis tumbukan, dan koefisien restitusi.",
+          "blocks": [
+            {
+              "h": "Rumus",
+              "li": [
+                "Momentum p = mv (vektor). Impuls I = F·Δt = Δp.",
+                "Kekekalan momentum (tanpa gaya luar): m₁v₁ + m₂v₂ = m₁v₁' + m₂v₂'.",
+                "Koefisien restitusi e = −(v₁' − v₂')/(v₁ − v₂)."
+              ]
+            },
+            {
+              "h": "Jenis tumbukan",
+              "table": {
+                "cols": [
+                  "Jenis",
+                  "e",
+                  "Energi kinetik"
+                ],
+                "rows": [
+                  [
+                    "Lenting sempurna",
+                    "1",
+                    "Kekal"
+                  ],
+                  [
+                    "Lenting sebagian",
+                    "0 &lt; e &lt; 1",
+                    "Berkurang"
+                  ],
+                  [
+                    "Tidak lenting sama sekali",
+                    "0",
+                    "Berkurang paling banyak; benda bergerak bersama"
+                  ]
+                ]
+              }
+            },
+            {
+              "h": "Penerapan",
+              "li": [
+                "Bola dijatuhkan dari tinggi h, pantulan pertama setinggi h' = e²h; jadi e = √(h'/h).",
+                "Roket, senapan yang tertolak ke belakang (rekoil), dan kantong udara mobil (memperpanjang Δt agar gaya kecil)."
+              ]
+            }
+          ],
+          "traps": [
+            "Pada semua tumbukan momentum kekal; yang tidak selalu kekal adalah energi kinetik."
+          ]
+        },
+        {
+          "code": "MEK-07",
+          "title": "Rotasi dan kesetimbangan benda tegar",
+          "scope": "Torsi, momen inersia",
+          "src": "Kelas XI",
+          "tier": 2,
+          "sum": "Analog rotasi dari hukum Newton: torsi, momen inersia, momentum sudut, menggelinding, dan syarat kesetimbangan.",
+          "blocks": [
+            {
+              "h": "Dinamika rotasi",
+              "li": [
+                "Torsi τ = r·F·sin θ. Hukum II Newton untuk rotasi: Στ = I·α.",
+                "Momen inersia partikel I = Σmr². Momentum sudut L = Iω; kekal bila tidak ada torsi luar (penari balet menarik lengan → ω membesar).",
+                "Energi kinetik rotasi = ½Iω². Benda menggelinding: E<sub>k</sub> = ½mv²(1 + k), dengan I = kmR²."
+              ]
+            },
+            {
+              "h": "Momen inersia benda",
+              "table": {
+                "cols": [
+                  "Benda",
+                  "I"
+                ],
+                "rows": [
+                  [
+                    "Batang, poros di tengah",
+                    "1/12 mL²"
+                  ],
+                  [
+                    "Batang, poros di ujung",
+                    "1/3 mL²"
+                  ],
+                  [
+                    "Silinder pejal",
+                    "½ mR²"
+                  ],
+                  [
+                    "Silinder berongga tipis (cincin)",
+                    "mR²"
+                  ],
+                  [
+                    "Bola pejal",
+                    "2/5 mR²"
+                  ],
+                  [
+                    "Bola berongga tipis",
+                    "2/3 mR²"
+                  ]
+                ]
+              }
+            },
+            {
+              "h": "Kesetimbangan",
+              "li": [
+                "Syarat kesetimbangan benda tegar: ΣF = 0 dan Στ = 0.",
+                "Jenis: stabil (titik berat naik bila diganggu), labil (titik berat turun), netral (titik berat tetap).",
+                "Titik berat bentuk gabungan: x = ΣA<sub>i</sub>x<sub>i</sub>/ΣA<sub>i</sub>."
+              ]
+            }
+          ],
+          "traps": [
+            "Dilepas bersamaan menuruni bidang miring, bola pejal tiba lebih dulu daripada silinder pejal, lalu silinder berongga (k makin kecil makin cepat)."
+          ]
+        },
+        {
+          "code": "MEK-08",
+          "title": "Elastisitas dan getaran harmonis",
+          "scope": "Pegas, bandul",
+          "src": "Kelas XI",
+          "tier": 2,
+          "sum": "Tegangan, regangan, modulus Young, hukum Hooke, susunan pegas, serta getaran pegas dan bandul.",
+          "blocks": [
+            {
+              "h": "Elastisitas",
+              "li": [
+                "Tegangan σ = F/A; regangan e = ΔL/L₀; modulus Young E = σ/e.",
+                "Hukum Hooke: F = kx (berlaku sampai batas elastis).",
+                "Pegas seri: 1/k<sub>s</sub> = 1/k₁ + 1/k₂ + … ; pegas paralel: k<sub>p</sub> = k₁ + k₂ + …"
+              ]
+            },
+            {
+              "h": "Getaran harmonis sederhana",
+              "li": [
+                "Simpangan y = A sin ωt; kecepatan maksimum v<sub>maks</sub> = Aω; percepatan maksimum a<sub>maks</sub> = Aω².",
+                "Periode pegas T = 2π√(m/k). Periode bandul sederhana T = 2π√(L/g) (sudut kecil).",
+                "Energi getaran E = ½kA², tetap; di titik seimbang seluruhnya energi kinetik."
+              ]
+            }
+          ],
+          "traps": [
+            "Periode bandul tidak bergantung pada massa beban; periode pegas tidak bergantung pada percepatan gravitasi.",
+            "Susunan pegas berkebalikan dengan susunan resistor: pegas seri dihitung seperti resistor paralel."
+          ]
+        }
       ]
     },
     {
-      "id": "FLT", "name": "Fluida dan termal", "short": "Fluida & kalor",
+      "id": "FLT",
+      "name": "Fluida dan termal",
+      "short": "Fluida & kalor",
       "note": "Zat cair dan gas, suhu dan kalor, gas ideal, dan termodinamika.",
       "topics": [
-        {"code": "FLT-01", "title": "Fluida statis", "scope": "Tekanan, Pascal, Archimedes", "src": "Kelas XI", "tier": 1,
-         "sum": "Tekanan hidrostatis, hukum Pascal, hukum Archimedes, tegangan permukaan, kapilaritas, dan viskositas.",
-         "blocks": [
-           {"h": "Tekanan", "li": [
-             "Tekanan P = F/A (pascal). Tekanan hidrostatis P<sub>h</sub> = ρgh; tekanan total di kedalaman h: P = P₀ + ρgh.",
-             "Hukum pokok hidrostatika: titik-titik pada kedalaman sama dalam fluida sejenis bertekanan sama (pipa U).",
-             "<b>Hukum Pascal</b>: tekanan pada fluida tertutup diteruskan ke segala arah sama besar. F₁/A₁ = F₂/A₂ (dongkrak dan rem hidrolik)."]},
-           {"h": "Archimedes", "li": [
-             "Gaya apung F<sub>A</sub> = ρ<sub>fluida</sub>·g·V<sub>tercelup</sub>.",
-             "Terapung: ρ<sub>benda</sub> &lt; ρ<sub>fluida</sub>. Melayang: sama. Tenggelam: lebih besar.",
-             "Penerapan: kapal laut, kapal selam (mengatur air di tangki pemberat), balon udara, hidrometer."]},
-           {"h": "Sifat lain", "li": [
-             "Tegangan permukaan γ = F/L. Kapilaritas: h = 2γ cos θ / (ρgr). Air naik di pipa kaca; raksa turun.",
-             "Viskositas, hukum Stokes: F = 6πηrv. Bola jatuh dalam fluida mencapai kecepatan terminal."]}
-         ],
-         "traps": ["Tekanan hidrostatis hanya bergantung pada kedalaman dan jenis fluida, bukan bentuk atau luas wadah."]},
-
-        {"code": "FLT-02", "title": "Fluida dinamis", "scope": "Kontinuitas, Bernoulli", "src": "Kelas XI", "tier": 1,
-         "sum": "Debit, persamaan kontinuitas, persamaan Bernoulli, dan penerapannya: Torricelli, venturimeter, pitot, sayap pesawat.",
-         "blocks": [
-           {"h": "Rumus", "li": [
-             "Debit Q = V/t = A·v. Kontinuitas: A₁v₁ = A₂v₂ (pipa menyempit → aliran makin cepat).",
-             "<b>Bernoulli</b>: P + ½ρv² + ρgh = konstan.",
-             "Torricelli (kebocoran tangki): v = √(2gh); jarak pancaran mendatar x = 2√(h·H) dengan H tinggi lubang dari tanah."]},
-           {"h": "Penerapan", "li": [
-             "Venturimeter: mengukur kecepatan aliran dari beda tekanan di pipa lebar dan sempit.",
-             "Tabung pitot: mengukur kecepatan aliran gas.",
-             "Sayap pesawat: udara di atas sayap lebih cepat → tekanannya lebih kecil → gaya angkat. F = ½ρ(v<sub>atas</sub>² − v<sub>bawah</sub>²)A.",
-             "Penyemprot nyamuk dan karburator memakai prinsip yang sama."]}
-         ],
-         "traps": ["Di tempat kecepatan aliran besar, tekanan justru kecil."]},
-
-        {"code": "FLT-03", "title": "Suhu, kalor, dan perpindahan kalor", "scope": "Kalorimetri, pemuaian", "src": "Kelas XI", "tier": 1,
-         "sum": "Skala suhu, kalor jenis dan kalor laten, asas Black, pemuaian, serta konduksi, konveksi, dan radiasi.",
-         "blocks": [
-           {"h": "Suhu", "li": [
-             "Perbandingan skala C : R : F : K = 100 : 80 : 180 : 100. T<sub>F</sub> = 9/5 T<sub>C</sub> + 32; T<sub>K</sub> = T<sub>C</sub> + 273.",
-             "Pada −40°, skala Celsius dan Fahrenheit sama."]},
-           {"h": "Kalor", "li": [
-             "Q = m·c·ΔT (perubahan suhu); Q = m·L (perubahan wujud, suhu tetap). Kalor jenis air 4.200 J/(kg·K) = 1 kal/(g·°C).",
-             "<b>Asas Black</b>: Q<sub>lepas</sub> = Q<sub>terima</sub>.",
-             "Pemuaian panjang ΔL = L₀αΔT; luas β = 2α; volume γ = 3α.",
-             "Anomali air: dari 0 °C ke 4 °C volume air menyusut; massa jenis air terbesar pada 4 °C."]},
-           {"h": "Perpindahan kalor", "li": [
-             "Konduksi (tanpa perpindahan partikel): Q/t = kAΔT/L.",
-             "Konveksi (disertai perpindahan partikel): angin darat dan angin laut, sirkulasi air dipanaskan.",
-             "Radiasi (tanpa medium): P = eσAT⁴ (Stefan–Boltzmann). Benda hitam e = 1."]}
-         ],
-         "traps": ["Saat es mencair, kalor diserap tetapi suhunya tetap 0 °C sampai seluruh es mencair.", "Daya radiasi sebanding T⁴ dengan T dalam kelvin, bukan Celsius."]},
-
-        {"code": "FLT-04", "title": "Teori kinetik gas", "scope": "Gas ideal", "src": "Kelas XI", "tier": 2,
-         "sum": "Persamaan gas ideal, hukum Boyle–Gay-Lussac, energi kinetik rata-rata, kecepatan efektif, dan derajat kebebasan.",
-         "blocks": [
-           {"h": "Rumus", "li": [
-             "PV = nRT = NkT.",
-             "Boyle (T tetap): PV tetap. Charles (P tetap): V/T tetap. Gay-Lussac (V tetap): P/T tetap.",
-             "Energi kinetik rata-rata partikel E<sub>k</sub> = 3/2 kT (gas monoatomik) — hanya bergantung pada suhu.",
-             "Kecepatan efektif v<sub>rms</sub> = √(3kT/m) = √(3RT/M).",
-             "Energi dalam U = f/2 · NkT; f = 3 (monoatomik), f = 5 (diatomik suhu sedang)."]}
-         ],
-         "traps": ["Suhu dalam rumus gas selalu kelvin. Melipatduakan suhu 27 °C berarti dari 300 K ke 600 K, bukan ke 54 °C."]},
-
-        {"code": "FLT-05", "title": "Termodinamika", "scope": "Hukum I dan II, mesin kalor", "src": "Kelas XI", "tier": 1,
-         "sum": "Hukum termodinamika, empat proses gas, mesin Carnot, mesin pendingin, dan entropi.",
-         "blocks": [
-           {"h": "Hukum", "li": [
-             "Hukum ke-0: dua benda yang masing-masing setimbang termal dengan benda ketiga, setimbang termal satu sama lain (dasar termometer).",
-             "<b>Hukum I</b>: Q = ΔU + W. W positif bila gas melakukan usaha (memuai).",
-             "<b>Hukum II</b>: kalor mengalir spontan dari benda panas ke dingin; tidak ada mesin yang mengubah seluruh kalor menjadi usaha. Entropi sistem terisolasi tidak pernah berkurang."]},
-           {"h": "Proses", "table": {"cols": ["Proses", "Tetap", "Usaha"], "rows": [
-             ["Isobarik", "Tekanan", "W = P·ΔV"], ["Isokhorik", "Volume", "W = 0, Q = ΔU"],
-             ["Isotermal", "Suhu", "W = nRT ln(V₂/V₁), ΔU = 0"], ["Adiabatik", "Tanpa pertukaran kalor", "Q = 0, W = −ΔU, PV<sup>γ</sup> tetap"]]}},
-           {"h": "Mesin", "li": [
-             "Efisiensi mesin kalor η = W/Q₁ = 1 − Q₂/Q₁. Mesin Carnot: η = 1 − T₂/T₁.",
-             "Mesin pendingin: koefisien kinerja K = Q₂/W; Carnot: K = T₂/(T₁ − T₂).",
-             "Usaha pada diagram P–V = luas di bawah kurva; siklus searah jarum jam = mesin kalor."]}
-         ],
-         "traps": ["Efisiensi Carnot memakai suhu kelvin; mesin 527 °C dan 127 °C → η = 1 − 400/800 = 50%."]}
+        {
+          "code": "FLT-01",
+          "title": "Fluida statis",
+          "scope": "Tekanan, Pascal, Archimedes",
+          "src": "Kelas XI",
+          "tier": 1,
+          "sum": "Tekanan hidrostatis, hukum Pascal, hukum Archimedes, tegangan permukaan, kapilaritas, dan viskositas.",
+          "blocks": [
+            {
+              "h": "Tekanan",
+              "li": [
+                "Tekanan P = F/A (pascal). Tekanan hidrostatis P<sub>h</sub> = ρgh; tekanan total di kedalaman h: P = P₀ + ρgh.",
+                "Hukum pokok hidrostatika: titik-titik pada kedalaman sama dalam fluida sejenis bertekanan sama (pipa U).",
+                "<b>Hukum Pascal</b>: tekanan pada fluida tertutup diteruskan ke segala arah sama besar. F₁/A₁ = F₂/A₂ (dongkrak dan rem hidrolik)."
+              ]
+            },
+            {
+              "h": "Archimedes",
+              "li": [
+                "Gaya apung F<sub>A</sub> = ρ<sub>fluida</sub>·g·V<sub>tercelup</sub>.",
+                "Terapung: ρ<sub>benda</sub> &lt; ρ<sub>fluida</sub>. Melayang: sama. Tenggelam: lebih besar.",
+                "Penerapan: kapal laut, kapal selam (mengatur air di tangki pemberat), balon udara, hidrometer."
+              ]
+            },
+            {
+              "h": "Sifat lain",
+              "li": [
+                "Tegangan permukaan γ = F/L. Kapilaritas: h = 2γ cos θ / (ρgr). Air naik di pipa kaca; raksa turun.",
+                "Viskositas, hukum Stokes: F = 6πηrv. Bola jatuh dalam fluida mencapai kecepatan terminal."
+              ]
+            }
+          ],
+          "traps": [
+            "Tekanan hidrostatis hanya bergantung pada kedalaman dan jenis fluida, bukan bentuk atau luas wadah."
+          ]
+        },
+        {
+          "code": "FLT-02",
+          "title": "Fluida dinamis",
+          "scope": "Kontinuitas, Bernoulli",
+          "src": "Kelas XI",
+          "tier": 2,
+          "sum": "Debit, persamaan kontinuitas, persamaan Bernoulli, dan penerapannya: Torricelli, venturimeter, pitot, sayap pesawat.",
+          "blocks": [
+            {
+              "h": "Rumus",
+              "li": [
+                "Debit Q = V/t = A·v. Kontinuitas: A₁v₁ = A₂v₂ (pipa menyempit → aliran makin cepat).",
+                "<b>Bernoulli</b>: P + ½ρv² + ρgh = konstan.",
+                "Torricelli (kebocoran tangki): v = √(2gh); jarak pancaran mendatar x = 2√(h·H) dengan H tinggi lubang dari tanah."
+              ]
+            },
+            {
+              "h": "Penerapan",
+              "li": [
+                "Venturimeter: mengukur kecepatan aliran dari beda tekanan di pipa lebar dan sempit.",
+                "Tabung pitot: mengukur kecepatan aliran gas.",
+                "Sayap pesawat: udara di atas sayap lebih cepat → tekanannya lebih kecil → gaya angkat. F = ½ρ(v<sub>atas</sub>² − v<sub>bawah</sub>²)A.",
+                "Penyemprot nyamuk dan karburator memakai prinsip yang sama."
+              ]
+            }
+          ],
+          "traps": [
+            "Di tempat kecepatan aliran besar, tekanan justru kecil."
+          ]
+        },
+        {
+          "code": "FLT-03",
+          "title": "Suhu, kalor, dan perpindahan kalor",
+          "scope": "Kalorimetri, pemuaian",
+          "src": "Kelas XI",
+          "tier": 1,
+          "sum": "Skala suhu, kalor jenis dan kalor laten, asas Black, pemuaian, serta konduksi, konveksi, dan radiasi.",
+          "blocks": [
+            {
+              "h": "Suhu",
+              "li": [
+                "Perbandingan skala C : R : F : K = 100 : 80 : 180 : 100. T<sub>F</sub> = 9/5 T<sub>C</sub> + 32; T<sub>K</sub> = T<sub>C</sub> + 273.",
+                "Pada −40°, skala Celsius dan Fahrenheit sama."
+              ]
+            },
+            {
+              "h": "Kalor",
+              "li": [
+                "Q = m·c·ΔT (perubahan suhu); Q = m·L (perubahan wujud, suhu tetap). Kalor jenis air 4.200 J/(kg·K) = 1 kal/(g·°C).",
+                "<b>Asas Black</b>: Q<sub>lepas</sub> = Q<sub>terima</sub>.",
+                "Pemuaian panjang ΔL = L₀αΔT; luas β = 2α; volume γ = 3α.",
+                "Anomali air: dari 0 °C ke 4 °C volume air menyusut; massa jenis air terbesar pada 4 °C."
+              ]
+            },
+            {
+              "h": "Perpindahan kalor",
+              "li": [
+                "Konduksi (tanpa perpindahan partikel): Q/t = kAΔT/L.",
+                "Konveksi (disertai perpindahan partikel): angin darat dan angin laut, sirkulasi air dipanaskan.",
+                "Radiasi (tanpa medium): P = eσAT⁴ (Stefan–Boltzmann). Benda hitam e = 1."
+              ]
+            }
+          ],
+          "traps": [
+            "Saat es mencair, kalor diserap tetapi suhunya tetap 0 °C sampai seluruh es mencair.",
+            "Daya radiasi sebanding T⁴ dengan T dalam kelvin, bukan Celsius."
+          ]
+        },
+        {
+          "code": "FLT-04",
+          "title": "Teori kinetik gas",
+          "scope": "Gas ideal",
+          "src": "Kelas XI",
+          "tier": 2,
+          "sum": "Persamaan gas ideal, hukum Boyle–Gay-Lussac, energi kinetik rata-rata, kecepatan efektif, dan derajat kebebasan.",
+          "blocks": [
+            {
+              "h": "Rumus",
+              "li": [
+                "PV = nRT = NkT.",
+                "Boyle (T tetap): PV tetap. Charles (P tetap): V/T tetap. Gay-Lussac (V tetap): P/T tetap.",
+                "Energi kinetik rata-rata partikel E<sub>k</sub> = 3/2 kT (gas monoatomik) — hanya bergantung pada suhu.",
+                "Kecepatan efektif v<sub>rms</sub> = √(3kT/m) = √(3RT/M).",
+                "Energi dalam U = f/2 · NkT; f = 3 (monoatomik), f = 5 (diatomik suhu sedang)."
+              ]
+            }
+          ],
+          "traps": [
+            "Suhu dalam rumus gas selalu kelvin. Melipatduakan suhu 27 °C berarti dari 300 K ke 600 K, bukan ke 54 °C."
+          ]
+        },
+        {
+          "code": "FLT-05",
+          "title": "Termodinamika",
+          "scope": "Hukum I dan II, mesin kalor",
+          "src": "Kelas XI",
+          "tier": 1,
+          "sum": "Hukum termodinamika, empat proses gas, mesin Carnot, mesin pendingin, dan entropi.",
+          "blocks": [
+            {
+              "h": "Hukum",
+              "li": [
+                "Hukum ke-0: dua benda yang masing-masing setimbang termal dengan benda ketiga, setimbang termal satu sama lain (dasar termometer).",
+                "<b>Hukum I</b>: Q = ΔU + W. W positif bila gas melakukan usaha (memuai).",
+                "<b>Hukum II</b>: kalor mengalir spontan dari benda panas ke dingin; tidak ada mesin yang mengubah seluruh kalor menjadi usaha. Entropi sistem terisolasi tidak pernah berkurang."
+              ]
+            },
+            {
+              "h": "Proses",
+              "table": {
+                "cols": [
+                  "Proses",
+                  "Tetap",
+                  "Usaha"
+                ],
+                "rows": [
+                  [
+                    "Isobarik",
+                    "Tekanan",
+                    "W = P·ΔV"
+                  ],
+                  [
+                    "Isokhorik",
+                    "Volume",
+                    "W = 0, Q = ΔU"
+                  ],
+                  [
+                    "Isotermal",
+                    "Suhu",
+                    "W = nRT ln(V₂/V₁), ΔU = 0"
+                  ],
+                  [
+                    "Adiabatik",
+                    "Tanpa pertukaran kalor",
+                    "Q = 0, W = −ΔU, PV<sup>γ</sup> tetap"
+                  ]
+                ]
+              }
+            },
+            {
+              "h": "Mesin",
+              "li": [
+                "Efisiensi mesin kalor η = W/Q₁ = 1 − Q₂/Q₁. Mesin Carnot: η = 1 − T₂/T₁.",
+                "Mesin pendingin: koefisien kinerja K = Q₂/W; Carnot: K = T₂/(T₁ − T₂).",
+                "Usaha pada diagram P–V = luas di bawah kurva; siklus searah jarum jam = mesin kalor."
+              ]
+            }
+          ],
+          "traps": [
+            "Efisiensi Carnot memakai suhu kelvin; mesin 527 °C dan 127 °C → η = 1 − 400/800 = 50%."
+          ]
+        }
       ]
     },
     {
-      "id": "GEL", "name": "Gelombang dan optik", "short": "Gelombang",
+      "id": "GEL",
+      "name": "Gelombang dan optik",
+      "short": "Gelombang",
       "note": "Gelombang mekanik, bunyi, cahaya, gelombang elektromagnetik, dan alat optik.",
       "topics": [
-        {"code": "GEL-01", "title": "Gelombang mekanik", "scope": "Persamaan dan sifat gelombang", "src": "Kelas XI", "tier": 1,
-         "sum": "Jenis gelombang, persamaan gelombang berjalan dan stasioner, cepat rambat pada tali, dan sifat-sifat gelombang.",
-         "blocks": [
-           {"h": "Konsep", "li": [
-             "Transversal: arah getar tegak lurus arah rambat (tali, cahaya). Longitudinal: searah (bunyi, pegas slinki) dengan rapatan dan renggangan.",
-             "v = λf = λ/T.",
-             "Gelombang berjalan: y = A sin(ωt − kx), dengan ω = 2πf dan bilangan gelombang k = 2π/λ.",
-             "Cepat rambat pada tali (percobaan Melde): v = √(F/μ), μ = massa per panjang."]},
-           {"h": "Gelombang stasioner", "li": [
-             "Hasil interferensi gelombang datang dan pantul; ada simpul (amplitudo nol) dan perut (amplitudo maksimum).",
-             "Ujung terikat: ujungnya simpul. Ujung bebas: ujungnya perut. Jarak simpul ke simpul berdekatan = ½λ."]},
-           {"h": "Sifat gelombang", "li": ["Pemantulan, pembiasan, difraksi (pelenturan), interferensi (perpaduan), dispersi; polarisasi hanya pada gelombang transversal."]}
-         ],
-         "traps": ["Gelombang memindahkan energi, bukan medium; partikel medium hanya bergetar di tempat.", "Bunyi tidak dapat dipolarisasi karena longitudinal."]},
-
-        {"code": "GEL-02", "title": "Bunyi", "scope": "Pipa organa, intensitas, Doppler", "src": "Kelas XI", "tier": 1,
-         "sum": "Sumber bunyi (dawai dan pipa organa), intensitas dan taraf intensitas, efek Doppler, dan pelayangan.",
-         "blocks": [
-           {"h": "Sumber bunyi", "li": [
-             "Rentang dengar manusia (audiosonik) 20–20.000 Hz; di bawahnya infrasonik, di atasnya ultrasonik (USG, sonar, kelelawar).",
-             "Dawai dan pipa organa terbuka: f<sub>n</sub> = (n + 1)v/(2L), memuat semua harmonik.",
-             "Pipa organa tertutup: f<sub>n</sub> = (2n + 1)v/(4L), hanya harmonik ganjil.",
-             "Frekuensi dawai: f = (1/2L)√(F/μ)."]},
-           {"h": "Intensitas", "li": [
-             "I = P/(4πr²). Taraf intensitas TI = 10 log(I/I₀) desibel, I₀ = 10⁻¹² W/m².",
-             "n sumber identik: TI<sub>n</sub> = TI₁ + 10 log n. Jarak berubah: TI₂ = TI₁ − 20 log(r₂/r₁)."]},
-           {"h": "Doppler dan pelayangan", "li": [
-             "f<sub>p</sub> = (v + v<sub>p</sub>)/(v + v<sub>s</sub>) · f<sub>s</sub>, dengan v<sub>p</sub> positif bila pendengar mendekati sumber dan v<sub>s</sub> positif bila sumber menjauhi pendengar.",
-             "Saling mendekat → frekuensi terdengar lebih tinggi; saling menjauh → lebih rendah.",
-             "Pelayangan: f<sub>layangan</sub> = |f₁ − f₂|."]}
-         ],
-         "traps": ["Taraf intensitas tidak dijumlahkan biasa: dua sumber 60 dB menghasilkan ±63 dB, bukan 120 dB.", "Pipa tertutup tidak memiliki harmonik genap."]},
-
-        {"code": "GEL-03", "title": "Cahaya dan gelombang elektromagnetik", "scope": "Spektrum, interferensi, polarisasi", "src": "Kelas XI–XII", "tier": 1,
-         "sum": "Spektrum gelombang elektromagnetik dan kegunaannya, interferensi celah ganda, kisi difraksi, dan polarisasi.",
-         "blocks": [
-           {"h": "Spektrum elektromagnetik", "li": [
-             "Urutan frekuensi naik (panjang gelombang turun): radio → gelombang mikro → inframerah → cahaya tampak → ultraviolet → sinar-X → sinar gamma.",
-             "Cahaya tampak: merah (λ terpanjang) sampai ungu (λ terpendek), ±400–700 nm.",
-             "Maxwell meramalkan gelombang elektromagnetik dan c = 1/√(μ₀ε₀); Heinrich Hertz membuktikannya lewat percobaan.",
-             "Kegunaan: radio dan TV (radio), radar dan oven (mikro), remote dan termografi (inframerah), sterilisasi (UV), rontgen (sinar-X), terapi kanker dan sterilisasi alat (gamma)."]},
-           {"h": "Interferensi dan difraksi", "li": [
-             "Celah ganda Young: terang d sin θ = nλ; pada layar d·y/L = nλ. Gelap: d·y/L = (n − ½)λ.",
-             "Kisi difraksi: d = 1/N (N = jumlah garis per satuan panjang); terang d sin θ = nλ.",
-             "Celah tunggal: gelap d sin θ = nλ.",
-             "Lapisan tipis (warna gelembung sabun): 2nd cos r = (m − ½)λ untuk terang."]},
-           {"h": "Polarisasi", "li": [
-             "Sudut Brewster: tan θ<sub>B</sub> = n₂/n₁; sinar pantul terpolarisasi sempurna.",
-             "Hukum Malus: I = I₀ cos² θ. Cahaya alami melewati polarisator pertama: intensitas tinggal ½."]}
-         ],
-         "traps": ["Celah ganda: syarat terang memakai nλ; celah tunggal: nλ justru syarat gelap.", "Semua gelombang elektromagnetik merambat dengan kecepatan c di ruang hampa; yang berbeda frekuensi dan panjang gelombangnya."]},
-
-        {"code": "GEL-04", "title": "Optika geometri dan alat optik", "scope": "Cermin, lensa, mata, lup, mikroskop, teropong", "src": "Kelas XI", "tier": 1,
-         "sum": "Pemantulan dan pembiasan, rumus cermin dan lensa, cacat mata dan kacamata, serta perbesaran alat optik.",
-         "blocks": [
-           {"h": "Cermin dan lensa", "li": [
-             "1/f = 1/s + 1/s'; f = R/2 untuk cermin; perbesaran M = |s'/s|.",
-             "Tanda: cermin cekung dan lensa cembung f positif; cermin cembung dan lensa cekung f negatif.",
-             "Hukum Snellius: n₁ sin θ₁ = n₂ sin θ₂; indeks bias n = c/v.",
-             "Pemantulan sempurna terjadi dari medium rapat ke renggang bila sudut datang &gt; sudut kritis (sin θ<sub>k</sub> = n₂/n₁). Contoh: serat optik, berlian, fatamorgana.",
-             "Kekuatan lensa P = 1/f (dioptri, f dalam meter) = 100/f (f dalam cm)."]},
-           {"h": "Mata dan kacamata", "li": [
-             "Mata normal: titik dekat 25 cm, titik jauh tak terhingga.",
-             "Rabun jauh (miopi): lensa cekung, P = −100/PR (PR dalam cm).",
-             "Rabun dekat (hipermetropi): lensa cembung, P = 4 − 100/PP (PP dalam cm).",
-             "Presbiopi (mata tua): kacamata bifokal."]},
-           {"h": "Alat optik", "li": [
-             "Lup: M = 25/f (mata tak berakomodasi); M = 25/f + 1 (berakomodasi maksimum).",
-             "Mikroskop: M = M<sub>ob</sub> × M<sub>ok</sub>; bayangan akhir maya, terbalik, diperbesar.",
-             "Teropong bintang (mata tak berakomodasi): M = f<sub>ob</sub>/f<sub>ok</sub>; panjang teropong d = f<sub>ob</sub> + f<sub>ok</sub>."]}
-         ],
-         "traps": ["Lensa cembung tidak selalu membentuk bayangan nyata: benda di antara titik fokus dan lensa menghasilkan bayangan maya (prinsip lup)."]}
+        {
+          "code": "GEL-01",
+          "title": "Gelombang mekanik",
+          "scope": "Persamaan dan sifat gelombang",
+          "src": "Kelas XI",
+          "tier": 1,
+          "sum": "Jenis gelombang, persamaan gelombang berjalan dan stasioner, cepat rambat pada tali, dan sifat-sifat gelombang.",
+          "blocks": [
+            {
+              "h": "Konsep",
+              "li": [
+                "Transversal: arah getar tegak lurus arah rambat (tali, cahaya). Longitudinal: searah (bunyi, pegas slinki) dengan rapatan dan renggangan.",
+                "v = λf = λ/T.",
+                "Gelombang berjalan: y = A sin(ωt − kx), dengan ω = 2πf dan bilangan gelombang k = 2π/λ.",
+                "Cepat rambat pada tali (percobaan Melde): v = √(F/μ), μ = massa per panjang."
+              ]
+            },
+            {
+              "h": "Gelombang stasioner",
+              "li": [
+                "Hasil interferensi gelombang datang dan pantul; ada simpul (amplitudo nol) dan perut (amplitudo maksimum).",
+                "Ujung terikat: ujungnya simpul. Ujung bebas: ujungnya perut. Jarak simpul ke simpul berdekatan = ½λ."
+              ]
+            },
+            {
+              "h": "Sifat gelombang",
+              "li": [
+                "Pemantulan, pembiasan, difraksi (pelenturan), interferensi (perpaduan), dispersi; polarisasi hanya pada gelombang transversal."
+              ]
+            }
+          ],
+          "traps": [
+            "Gelombang memindahkan energi, bukan medium; partikel medium hanya bergetar di tempat.",
+            "Bunyi tidak dapat dipolarisasi karena longitudinal."
+          ]
+        },
+        {
+          "code": "GEL-02",
+          "title": "Bunyi",
+          "scope": "Pipa organa, intensitas, Doppler",
+          "src": "Kelas XI",
+          "tier": 1,
+          "sum": "Sumber bunyi (dawai dan pipa organa), intensitas dan taraf intensitas, efek Doppler, dan pelayangan.",
+          "blocks": [
+            {
+              "h": "Sumber bunyi",
+              "li": [
+                "Rentang dengar manusia (audiosonik) 20–20.000 Hz; di bawahnya infrasonik, di atasnya ultrasonik (USG, sonar, kelelawar).",
+                "Dawai dan pipa organa terbuka: f<sub>n</sub> = (n + 1)v/(2L), memuat semua harmonik.",
+                "Pipa organa tertutup: f<sub>n</sub> = (2n + 1)v/(4L), hanya harmonik ganjil.",
+                "Frekuensi dawai: f = (1/2L)√(F/μ)."
+              ]
+            },
+            {
+              "h": "Intensitas",
+              "li": [
+                "I = P/(4πr²). Taraf intensitas TI = 10 log(I/I₀) desibel, I₀ = 10⁻¹² W/m².",
+                "n sumber identik: TI<sub>n</sub> = TI₁ + 10 log n. Jarak berubah: TI₂ = TI₁ − 20 log(r₂/r₁)."
+              ]
+            },
+            {
+              "h": "Doppler dan pelayangan",
+              "li": [
+                "f<sub>p</sub> = (v + v<sub>p</sub>)/(v + v<sub>s</sub>) · f<sub>s</sub>, dengan v<sub>p</sub> positif bila pendengar mendekati sumber dan v<sub>s</sub> positif bila sumber menjauhi pendengar.",
+                "Saling mendekat → frekuensi terdengar lebih tinggi; saling menjauh → lebih rendah.",
+                "Pelayangan: f<sub>layangan</sub> = |f₁ − f₂|."
+              ]
+            }
+          ],
+          "traps": [
+            "Taraf intensitas tidak dijumlahkan biasa: dua sumber 60 dB menghasilkan ±63 dB, bukan 120 dB.",
+            "Pipa tertutup tidak memiliki harmonik genap."
+          ]
+        },
+        {
+          "code": "GEL-03",
+          "title": "Cahaya dan gelombang elektromagnetik",
+          "scope": "Spektrum, interferensi, polarisasi",
+          "src": "Kelas XI–XII",
+          "tier": 2,
+          "sum": "Spektrum gelombang elektromagnetik dan kegunaannya, interferensi celah ganda, kisi difraksi, dan polarisasi.",
+          "blocks": [
+            {
+              "h": "Spektrum elektromagnetik",
+              "li": [
+                "Urutan frekuensi naik (panjang gelombang turun): radio → gelombang mikro → inframerah → cahaya tampak → ultraviolet → sinar-X → sinar gamma.",
+                "Cahaya tampak: merah (λ terpanjang) sampai ungu (λ terpendek), ±400–700 nm.",
+                "Maxwell meramalkan gelombang elektromagnetik dan c = 1/√(μ₀ε₀); Heinrich Hertz membuktikannya lewat percobaan.",
+                "Kegunaan: radio dan TV (radio), radar dan oven (mikro), remote dan termografi (inframerah), sterilisasi (UV), rontgen (sinar-X), terapi kanker dan sterilisasi alat (gamma)."
+              ]
+            },
+            {
+              "h": "Interferensi dan difraksi",
+              "li": [
+                "Celah ganda Young: terang d sin θ = nλ; pada layar d·y/L = nλ. Gelap: d·y/L = (n − ½)λ.",
+                "Kisi difraksi: d = 1/N (N = jumlah garis per satuan panjang); terang d sin θ = nλ.",
+                "Celah tunggal: gelap d sin θ = nλ.",
+                "Lapisan tipis (warna gelembung sabun): 2nd cos r = (m − ½)λ untuk terang."
+              ]
+            },
+            {
+              "h": "Polarisasi",
+              "li": [
+                "Sudut Brewster: tan θ<sub>B</sub> = n₂/n₁; sinar pantul terpolarisasi sempurna.",
+                "Hukum Malus: I = I₀ cos² θ. Cahaya alami melewati polarisator pertama: intensitas tinggal ½."
+              ]
+            }
+          ],
+          "traps": [
+            "Celah ganda: syarat terang memakai nλ; celah tunggal: nλ justru syarat gelap.",
+            "Semua gelombang elektromagnetik merambat dengan kecepatan c di ruang hampa; yang berbeda frekuensi dan panjang gelombangnya."
+          ]
+        },
+        {
+          "code": "GEL-04",
+          "title": "Optika geometri dan alat optik",
+          "scope": "Cermin, lensa, mata, lup, mikroskop, teropong",
+          "src": "Kelas XI",
+          "tier": 1,
+          "sum": "Pemantulan dan pembiasan, rumus cermin dan lensa, cacat mata dan kacamata, serta perbesaran alat optik.",
+          "blocks": [
+            {
+              "h": "Cermin dan lensa",
+              "li": [
+                "1/f = 1/s + 1/s'; f = R/2 untuk cermin; perbesaran M = |s'/s|.",
+                "Tanda: cermin cekung dan lensa cembung f positif; cermin cembung dan lensa cekung f negatif.",
+                "Hukum Snellius: n₁ sin θ₁ = n₂ sin θ₂; indeks bias n = c/v.",
+                "Pemantulan sempurna terjadi dari medium rapat ke renggang bila sudut datang &gt; sudut kritis (sin θ<sub>k</sub> = n₂/n₁). Contoh: serat optik, berlian, fatamorgana.",
+                "Kekuatan lensa P = 1/f (dioptri, f dalam meter) = 100/f (f dalam cm)."
+              ]
+            },
+            {
+              "h": "Mata dan kacamata",
+              "li": [
+                "Mata normal: titik dekat 25 cm, titik jauh tak terhingga.",
+                "Rabun jauh (miopi): lensa cekung, P = −100/PR (PR dalam cm).",
+                "Rabun dekat (hipermetropi): lensa cembung, P = 4 − 100/PP (PP dalam cm).",
+                "Presbiopi (mata tua): kacamata bifokal."
+              ]
+            },
+            {
+              "h": "Alat optik",
+              "li": [
+                "Lup: M = 25/f (mata tak berakomodasi); M = 25/f + 1 (berakomodasi maksimum).",
+                "Mikroskop: M = M<sub>ob</sub> × M<sub>ok</sub>; bayangan akhir maya, terbalik, diperbesar.",
+                "Teropong bintang (mata tak berakomodasi): M = f<sub>ob</sub>/f<sub>ok</sub>; panjang teropong d = f<sub>ob</sub> + f<sub>ok</sub>."
+              ]
+            }
+          ],
+          "traps": [
+            "Lensa cembung tidak selalu membentuk bayangan nyata: benda di antara titik fokus dan lensa menghasilkan bayangan maya (prinsip lup)."
+          ]
+        }
       ]
     },
     {
-      "id": "LIS", "name": "Listrik dan magnet", "short": "Listrik",
+      "id": "LIS",
+      "name": "Listrik dan magnet",
+      "short": "Listrik",
       "note": "Muatan diam, arus searah, medan magnet, induksi, dan arus bolak-balik.",
       "topics": [
-        {"code": "LIS-01", "title": "Listrik statis dan kapasitor", "scope": "Coulomb, medan, potensial", "src": "Kelas XII", "tier": 1,
-         "sum": "Gaya Coulomb, medan dan potensial listrik, hukum Gauss, serta kapasitor dan susunannya.",
-         "blocks": [
-           {"h": "Muatan dan medan", "li": [
-             "<b>Hukum Coulomb</b>: F = k q₁q₂ / r². Sejenis tolak-menolak, tak sejenis tarik-menarik.",
-             "Medan listrik E = F/q = kq/r² (vektor, menjauhi muatan positif). Potensial V = kq/r (skalar).",
-             "Energi potensial listrik E<sub>p</sub> = kq₁q₂/r. Usaha memindahkan muatan W = qΔV.",
-             "Hukum Gauss: fluks total = q<sub>tertutup</sub>/ε₀. Di dalam konduktor bola bermuatan, E = 0."]},
-           {"h": "Kapasitor", "li": [
-             "C = Q/V (farad). Keping sejajar: C = ε₀A/d; dengan bahan dielektrik C = Kε₀A/d.",
-             "Seri: 1/C = 1/C₁ + 1/C₂ + … (muatan tiap kapasitor sama). Paralel: C = C₁ + C₂ + … (tegangan sama).",
-             "Energi tersimpan W = ½CV² = ½QV = Q²/(2C)."]}
-         ],
-         "traps": ["Medan listrik adalah vektor dan dijumlahkan secara vektor; potensial adalah skalar dan dijumlahkan biasa (dengan tanda).", "Susunan kapasitor berkebalikan dengan resistor."]},
-
-        {"code": "LIS-02", "title": "Listrik arus searah", "scope": "Hukum Ohm dan Kirchhoff", "src": "Kelas XII", "tier": 1,
-         "sum": "Arus, hambatan, rangkaian seri-paralel, hukum Kirchhoff, GGL dan hambatan dalam, energi dan daya listrik, alat ukur.",
-         "blocks": [
-           {"h": "Rumus", "li": [
-             "Arus I = Q/t. <b>Hukum Ohm</b>: V = IR. Hambatan kawat R = ρL/A.",
-             "Seri: R = R₁ + R₂ + … (arus sama). Paralel: 1/R = 1/R₁ + 1/R₂ + … (tegangan sama).",
-             "<b>Kirchhoff I</b>: ΣI masuk = ΣI keluar di titik cabang. <b>Kirchhoff II</b>: ΣE + ΣIR = 0 dalam satu loop.",
-             "Tegangan jepit V = ε − Ir (r hambatan dalam baterai).",
-             "Daya P = VI = I²R = V²/R. Energi W = Pt; 1 kWh = 3,6 × 10⁶ J."]},
-           {"h": "Alat ukur", "li": [
-             "Amperemeter dipasang seri; menambah batas ukur dengan hambatan shunt paralel.",
-             "Voltmeter dipasang paralel; menambah batas ukur dengan hambatan muka (multiplier) seri."]}
-         ],
-         "traps": ["Lampu “220 V 100 W” dipasang pada 110 V dayanya menjadi 25 W (P sebanding V² karena R tetap), bukan 50 W."]},
-
-        {"code": "LIS-03", "title": "Medan magnet dan gaya Lorentz", "scope": "Kemagnetan", "src": "Kelas XII", "tier": 1,
-         "sum": "Medan magnet dari arus listrik, gaya Lorentz pada kawat dan muatan bergerak, serta sifat bahan magnetik.",
-         "blocks": [
-           {"h": "Medan magnet dari arus", "li": [
-             "Hans Christian Oersted (1820): arus listrik menimbulkan medan magnet.",
-             "Kawat lurus panjang: B = μ₀I/(2πa). Pusat kawat melingkar: B = μ₀IN/(2a).",
-             "Solenoida (di pusat): B = μ₀IN/L. Toroida: B = μ₀IN/(2πr).",
-             "Arah: kaidah tangan kanan (ibu jari arah arus, lipatan jari arah medan)."]},
-           {"h": "Gaya Lorentz", "li": [
-             "Pada kawat berarus: F = BIL sin θ. Pada muatan bergerak: F = qvB sin θ.",
-             "Muatan bergerak tegak lurus medan menempuh lingkaran berjari-jari r = mv/(qB).",
-             "Dua kawat sejajar: F/L = μ₀I₁I₂/(2πa). Arus searah tarik-menarik; berlawanan tolak-menolak.",
-             "Penerapan: motor listrik, galvanometer, pengeras suara."]},
-           {"h": "Bahan magnetik", "li": ["Feromagnetik (besi, nikel, kobalt) ditarik kuat; paramagnetik ditarik lemah; diamagnetik ditolak lemah."]}
-         ],
-         "traps": ["Gaya Lorentz tegak lurus kecepatan, jadi tidak mengubah kelajuan muatan, hanya arahnya.", "Dua kawat dengan arus searah justru tarik-menarik (kebalikan muatan sejenis)."]},
-
-        {"code": "LIS-04", "title": "Induksi elektromagnetik dan arus bolak-balik", "scope": "Faraday, trafo, rangkaian RLC", "src": "Kelas XII", "tier": 1,
-         "sum": "Hukum Faraday dan Lenz, generator, transformator, induktansi, serta rangkaian arus bolak-balik RLC.",
-         "blocks": [
-           {"h": "Induksi", "li": [
-             "Fluks magnet Φ = BA cos θ (weber).",
-             "<b>Hukum Faraday</b>: ε = −N ΔΦ/Δt. <b>Hukum Lenz</b>: arus induksi melawan perubahan fluks penyebabnya (tanda minus).",
-             "Batang bergerak dalam medan: ε = BLv. Generator: ε = NBAω sin ωt, ε<sub>maks</sub> = NBAω.",
-             "Induktansi diri ε = −L ΔI/Δt; energi kumparan W = ½LI²."]},
-           {"h": "Transformator", "li": [
-             "Ideal: V<sub>s</sub>/V<sub>p</sub> = N<sub>s</sub>/N<sub>p</sub> = I<sub>p</sub>/I<sub>s</sub>.",
-             "Step-up: N<sub>s</sub> &gt; N<sub>p</sub> (tegangan naik, arus turun). Step-down sebaliknya.",
-             "Efisiensi η = P<sub>s</sub>/P<sub>p</sub> × 100%. Listrik ditransmisikan bertegangan tinggi agar arus kecil dan rugi I²R kecil."]},
-           {"h": "Arus bolak-balik", "li": [
-             "V<sub>ef</sub> = V<sub>maks</sub>/√2. Tegangan PLN 220 V adalah nilai efektif.",
-             "Reaktansi induktif X<sub>L</sub> = ωL; reaktansi kapasitif X<sub>C</sub> = 1/(ωC).",
-             "Impedansi Z = √(R² + (X<sub>L</sub> − X<sub>C</sub>)²); faktor daya cos φ = R/Z.",
-             "Resonansi X<sub>L</sub> = X<sub>C</sub>: f = 1/(2π√(LC)), Z = R minimum, arus maksimum."]}
-         ],
-         "traps": ["Transformator tidak bekerja dengan arus searah karena fluksnya tidak berubah.", "Bila frekuensi naik, X<sub>L</sub> naik tetapi X<sub>C</sub> turun."]}
+        {
+          "code": "LIS-01",
+          "title": "Listrik statis dan kapasitor",
+          "scope": "Coulomb, medan, potensial",
+          "src": "Kelas XII",
+          "tier": 1,
+          "sum": "Gaya Coulomb, medan dan potensial listrik, hukum Gauss, serta kapasitor dan susunannya.",
+          "blocks": [
+            {
+              "h": "Muatan dan medan",
+              "li": [
+                "<b>Hukum Coulomb</b>: F = k q₁q₂ / r². Sejenis tolak-menolak, tak sejenis tarik-menarik.",
+                "Medan listrik E = F/q = kq/r² (vektor, menjauhi muatan positif). Potensial V = kq/r (skalar).",
+                "Energi potensial listrik E<sub>p</sub> = kq₁q₂/r. Usaha memindahkan muatan W = qΔV.",
+                "Hukum Gauss: fluks total = q<sub>tertutup</sub>/ε₀. Di dalam konduktor bola bermuatan, E = 0."
+              ]
+            },
+            {
+              "h": "Kapasitor",
+              "li": [
+                "C = Q/V (farad). Keping sejajar: C = ε₀A/d; dengan bahan dielektrik C = Kε₀A/d.",
+                "Seri: 1/C = 1/C₁ + 1/C₂ + … (muatan tiap kapasitor sama). Paralel: C = C₁ + C₂ + … (tegangan sama).",
+                "Energi tersimpan W = ½CV² = ½QV = Q²/(2C)."
+              ]
+            }
+          ],
+          "traps": [
+            "Medan listrik adalah vektor dan dijumlahkan secara vektor; potensial adalah skalar dan dijumlahkan biasa (dengan tanda).",
+            "Susunan kapasitor berkebalikan dengan resistor."
+          ]
+        },
+        {
+          "code": "LIS-02",
+          "title": "Listrik arus searah",
+          "scope": "Hukum Ohm dan Kirchhoff",
+          "src": "Kelas XII",
+          "tier": 1,
+          "sum": "Arus, hambatan, rangkaian seri-paralel, hukum Kirchhoff, GGL dan hambatan dalam, energi dan daya listrik, alat ukur.",
+          "blocks": [
+            {
+              "h": "Rumus",
+              "li": [
+                "Arus I = Q/t. <b>Hukum Ohm</b>: V = IR. Hambatan kawat R = ρL/A.",
+                "Seri: R = R₁ + R₂ + … (arus sama). Paralel: 1/R = 1/R₁ + 1/R₂ + … (tegangan sama).",
+                "<b>Kirchhoff I</b>: ΣI masuk = ΣI keluar di titik cabang.",
+                "<b>Kirchhoff II</b>: ΣE + ΣIR = 0 dalam satu loop.",
+                "Tegangan jepit V = ε − Ir (r hambatan dalam baterai).",
+                "Daya P = VI = I²R = V²/R. Energi W = Pt; 1 kWh = 3,6 × 10⁶ J."
+              ]
+            },
+            {
+              "h": "Alat ukur",
+              "li": [
+                "Amperemeter dipasang seri; menambah batas ukur dengan hambatan shunt paralel.",
+                "Voltmeter dipasang paralel; menambah batas ukur dengan hambatan muka (multiplier) seri."
+              ]
+            }
+          ],
+          "traps": [
+            "Lampu “220 V 100 W” dipasang pada 110 V dayanya menjadi 25 W (P sebanding V² karena R tetap), bukan 50 W."
+          ]
+        },
+        {
+          "code": "LIS-03",
+          "title": "Medan magnet dan gaya Lorentz",
+          "scope": "Kemagnetan",
+          "src": "Kelas XII",
+          "tier": 1,
+          "sum": "Medan magnet dari arus listrik, gaya Lorentz pada kawat dan muatan bergerak, serta sifat bahan magnetik.",
+          "blocks": [
+            {
+              "h": "Medan magnet dari arus",
+              "li": [
+                "Hans Christian Oersted (1820): arus listrik menimbulkan medan magnet.",
+                "Kawat lurus panjang: B = μ₀I/(2πa). Pusat kawat melingkar: B = μ₀IN/(2a).",
+                "Solenoida (di pusat): B = μ₀IN/L. Toroida: B = μ₀IN/(2πr).",
+                "Arah: kaidah tangan kanan (ibu jari arah arus, lipatan jari arah medan)."
+              ]
+            },
+            {
+              "h": "Gaya Lorentz",
+              "li": [
+                "Pada kawat berarus: F = BIL sin θ. Pada muatan bergerak: F = qvB sin θ.",
+                "Muatan bergerak tegak lurus medan menempuh lingkaran berjari-jari r = mv/(qB).",
+                "Dua kawat sejajar: F/L = μ₀I₁I₂/(2πa). Arus searah tarik-menarik; berlawanan tolak-menolak.",
+                "Penerapan: motor listrik, galvanometer, pengeras suara."
+              ]
+            },
+            {
+              "h": "Bahan magnetik",
+              "li": [
+                "Feromagnetik (besi, nikel, kobalt) ditarik kuat; paramagnetik ditarik lemah; diamagnetik ditolak lemah."
+              ]
+            }
+          ],
+          "traps": [
+            "Gaya Lorentz tegak lurus kecepatan, jadi tidak mengubah kelajuan muatan, hanya arahnya.",
+            "Dua kawat dengan arus searah justru tarik-menarik (kebalikan muatan sejenis)."
+          ]
+        },
+        {
+          "code": "LIS-04",
+          "title": "Induksi elektromagnetik dan arus bolak-balik",
+          "scope": "Faraday, trafo, rangkaian RLC",
+          "src": "Kelas XII",
+          "tier": 1,
+          "sum": "Hukum Faraday dan Lenz, generator, transformator, induktansi, serta rangkaian arus bolak-balik RLC.",
+          "blocks": [
+            {
+              "h": "Induksi",
+              "li": [
+                "Fluks magnet Φ = BA cos θ (weber).",
+                "<b>Hukum Faraday</b>: ε = −N ΔΦ/Δt.",
+                "<b>Hukum Lenz</b>: arus induksi melawan perubahan fluks penyebabnya (tanda minus pada rumus Faraday).",
+                "Batang bergerak dalam medan: ε = BLv. Generator: ε = NBAω sin ωt, ε<sub>maks</sub> = NBAω.",
+                "Induktansi diri ε = −L ΔI/Δt; energi kumparan W = ½LI²."
+              ]
+            },
+            {
+              "h": "Transformator",
+              "li": [
+                "Ideal: V<sub>s</sub>/V<sub>p</sub> = N<sub>s</sub>/N<sub>p</sub> = I<sub>p</sub>/I<sub>s</sub>.",
+                "Step-up: N<sub>s</sub> &gt; N<sub>p</sub> (tegangan naik, arus turun). Step-down sebaliknya.",
+                "Efisiensi η = P<sub>s</sub>/P<sub>p</sub> × 100%. Listrik ditransmisikan bertegangan tinggi agar arus kecil dan rugi I²R kecil."
+              ]
+            },
+            {
+              "h": "Arus bolak-balik",
+              "li": [
+                "V<sub>ef</sub> = V<sub>maks</sub>/√2. Tegangan PLN 220 V adalah nilai efektif.",
+                "Reaktansi induktif X<sub>L</sub> = ωL; reaktansi kapasitif X<sub>C</sub> = 1/(ωC).",
+                "Impedansi Z = √(R² + (X<sub>L</sub> − X<sub>C</sub>)²); faktor daya cos φ = R/Z.",
+                "Resonansi X<sub>L</sub> = X<sub>C</sub>: f = 1/(2π√(LC)), Z = R minimum, arus maksimum."
+              ]
+            }
+          ],
+          "traps": [
+            "Transformator tidak bekerja dengan arus searah karena fluksnya tidak berubah.",
+            "Bila frekuensi naik, X<sub>L</sub> naik tetapi X<sub>C</sub> turun."
+          ]
+        }
       ]
     },
     {
-      "id": "MOD", "name": "Fisika modern", "short": "Modern",
+      "id": "MOD",
+      "name": "Fisika modern",
+      "short": "Modern",
       "note": "Fisika abad ke-20: kuantum cahaya, struktur atom, relativitas, dan inti atom.",
       "topics": [
-        {"code": "MOD-01", "title": "Radiasi benda hitam dan dualisme gelombang–partikel", "scope": "Planck, fotolistrik, Compton", "src": "Kelas XII", "tier": 1,
-         "sum": "Awal teori kuantum: radiasi benda hitam, foton, efek fotolistrik, efek Compton, dan gelombang de Broglie.",
-         "blocks": [
-           {"h": "Radiasi benda hitam", "li": [
-             "Stefan–Boltzmann: P = eσAT⁴.",
-             "<b>Pergeseran Wien</b>: λ<sub>maks</sub>·T = 2,898 × 10⁻³ m·K. Benda makin panas, puncak radiasinya makin ke panjang gelombang pendek.",
-             "Max Planck (1900): energi dipancarkan dalam paket (kuanta) E = hf."]},
-           {"h": "Foton dan partikel", "li": [
-             "<b>Efek fotolistrik</b> (dijelaskan Einstein, 1905): E<sub>k maks</sub> = hf − W₀; W₀ = hf₀ (fungsi kerja, f₀ frekuensi ambang).",
-             "Elektron lepas hanya bila f &gt; f₀, berapa pun intensitasnya. Intensitas menambah jumlah elektron, bukan energinya.",
-             "<b>Efek Compton</b> (1923): Δλ = (h/m<sub>e</sub>c)(1 − cos θ) — foton berperilaku seperti partikel bermomentum.",
-             "<b>de Broglie</b> (1924): partikel juga bersifat gelombang, λ = h/p = h/(mv). Dibuktikan lewat difraksi elektron.",
-             "Sinar-X ditemukan Wilhelm Röntgen (1895)."]}
-         ],
-         "traps": ["Menaikkan intensitas cahaya di bawah frekuensi ambang tidak akan melepaskan elektron.", "Energi kinetik elektron foto bergantung pada frekuensi, bukan intensitas."]},
-
-        {"code": "MOD-02", "title": "Perkembangan model atom", "scope": "Dalton sampai mekanika kuantum", "src": "Kelas XII", "tier": 1,
-         "sum": "Model atom Dalton, Thomson, Rutherford, Bohr, dan mekanika kuantum, beserta percobaan dan kelemahannya.",
-         "blocks": [
-           {"h": "Urutan model", "table": {"cols": ["Model", "Gagasan", "Bukti atau kelemahan"], "rows": [
-             ["Dalton (1803)", "Atom bola pejal tak terbagi", "Tidak menjelaskan listrik dan elektron"],
-             ["Thomson (1897–1904)", "Roti kismis: elektron tersebar dalam bola positif", "Menemukan elektron lewat sinar katode; gagal menjelaskan hamburan alfa"],
-             ["Rutherford (1911)", "Inti kecil bermuatan positif, elektron mengelilinginya", "Hamburan partikel alfa pada lempeng emas (Geiger–Marsden); tidak menjelaskan kestabilan atom dan spektrum garis"],
-             ["Bohr (1913)", "Elektron di lintasan stasioner berenergi tertentu", "Menjelaskan spektrum hidrogen; tidak berlaku untuk atom berelektron banyak"],
-             ["Mekanika kuantum", "Elektron dalam orbital (awan peluang)", "Schrödinger, Heisenberg; empat bilangan kuantum n, l, m, s"]]}},
-           {"h": "Atom hidrogen (Bohr)", "li": [
-             "Energi E<sub>n</sub> = −13,6/n² eV; jari-jari r<sub>n</sub> = 0,053n² nm.",
-             "Elektron pindah ke lintasan lebih rendah memancarkan foton: ΔE = hf.",
-             "Deret spektrum: Lyman (ke n = 1, ultraviolet), Balmer (ke n = 2, cahaya tampak), Paschen (ke n = 3), Brackett (n = 4), Pfund (n = 5) — tiga terakhir inframerah."]}
-         ],
-         "traps": ["Deret Balmer satu-satunya deret hidrogen yang sebagian berada di cahaya tampak."]},
-
-        {"code": "MOD-03", "title": "Relativitas khusus", "scope": "Einstein 1905", "src": "Kelas XII", "tier": 2,
-         "sum": "Postulat Einstein, dilatasi waktu, kontraksi panjang, massa dan energi relativistik.",
-         "blocks": [
-           {"h": "Postulat", "li": [
-             "Hukum fisika sama di semua kerangka acuan inersial.",
-             "Kecepatan cahaya di ruang hampa sama bagi semua pengamat, tidak bergantung gerak sumber.",
-             "Percobaan Michelson–Morley (1887) gagal mendeteksi eter."]},
-           {"h": "Rumus", "li": [
-             "Faktor γ = 1/√(1 − v²/c²) ≥ 1.",
-             "Dilatasi waktu Δt = γΔt₀ (jam yang bergerak berdetak lebih lambat).",
-             "Kontraksi panjang L = L₀/γ (hanya searah gerak).",
-             "Energi diam E₀ = m₀c²; energi total E = γm₀c²; energi kinetik E<sub>k</sub> = (γ − 1)m₀c².",
-             "Penjumlahan kecepatan: v = (v₁ + v₂)/(1 + v₁v₂/c²)."]}
-         ],
-         "traps": ["Untuk v = 0,6c, γ = 1,25; untuk v = 0,8c, γ = 5/3. Dua nilai ini paling sering dipakai soal."]},
-
-        {"code": "MOD-04", "title": "Inti atom dan radioaktivitas", "scope": "Energi ikat, peluruhan, fisi, fusi", "src": "Kelas XII", "tier": 1,
-         "sum": "Struktur inti, defek massa dan energi ikat, jenis peluruhan, waktu paruh, reaksi fisi dan fusi, serta pemanfaatan radioisotop.",
-         "blocks": [
-           {"h": "Inti", "li": [
-             "Notasi <sup>A</sup><sub>Z</sub>X: A nomor massa (proton + neutron), Z nomor atom (proton).",
-             "Isotop: Z sama. Isobar: A sama. Isoton: jumlah neutron sama.",
-             "Defek massa Δm = (Z m<sub>p</sub> + N m<sub>n</sub>) − m<sub>inti</sub>. Energi ikat E = Δm × 931,5 MeV (Δm dalam sma)."]},
-           {"h": "Peluruhan", "table": {"cols": ["Sinar", "Partikel", "Perubahan inti", "Daya tembus", "Daya ionisasi"], "rows": [
-             ["Alfa (α)", "Inti helium ⁴₂He", "A − 4, Z − 2", "Paling lemah (selembar kertas)", "Paling kuat"],
-             ["Beta (β⁻)", "Elektron", "A tetap, Z + 1", "Sedang (aluminium tipis)", "Sedang"],
-             ["Gamma (γ)", "Gelombang elektromagnetik", "Tidak berubah", "Paling kuat (timbal tebal)", "Paling lemah"]]}},
-           {"h": "Waktu paruh dan reaksi", "li": [
-             "N = N₀ (½)<sup>t/T½</sup>. Konstanta peluruhan λ = 0,693/T½. Aktivitas A = λN (becquerel).",
-             "Fisi: inti berat dibelah neutron (U-235) → reaktor nuklir, reaksi berantai. Fusi: inti ringan bergabung (hidrogen → helium) → energi Matahari.",
-             "Radioaktivitas ditemukan Henri Becquerel (1896); Marie dan Pierre Curie menemukan polonium dan radium.",
-             "Pemanfaatan: C-14 (penanggalan fosil), Co-60 (terapi kanker), I-131 (tiroid), Tc-99m (pencitraan medis). Detektor: pencacah Geiger–Müller, kamar kabut Wilson."]}
-         ],
-         "traps": ["Setelah 3 kali waktu paruh tersisa 1/8, bukan 1/6.", "Sinar gamma tidak mengubah nomor atom maupun nomor massa."]}
+        {
+          "code": "MOD-01",
+          "title": "Radiasi benda hitam dan dualisme gelombang–partikel",
+          "scope": "Planck, fotolistrik, Compton",
+          "src": "Kelas XII",
+          "tier": 1,
+          "sum": "Awal teori kuantum: radiasi benda hitam, foton, efek fotolistrik, efek Compton, dan gelombang de Broglie.",
+          "blocks": [
+            {
+              "h": "Radiasi benda hitam",
+              "li": [
+                "Stefan–Boltzmann: P = eσAT⁴.",
+                "<b>Pergeseran Wien</b>: λ<sub>maks</sub>·T = 2,898 × 10⁻³ m·K. Benda makin panas, puncak radiasinya makin ke panjang gelombang pendek.",
+                "Max Planck (1900): energi dipancarkan dalam paket (kuanta) E = hf."
+              ]
+            },
+            {
+              "h": "Foton dan partikel",
+              "li": [
+                "<b>Efek fotolistrik</b> (dijelaskan Einstein, 1905): E<sub>k maks</sub> = hf − W₀; W₀ = hf₀ (fungsi kerja, f₀ frekuensi ambang).",
+                "Elektron lepas hanya bila f &gt; f₀, berapa pun intensitasnya. Intensitas menambah jumlah elektron, bukan energinya.",
+                "<b>Efek Compton</b> (1923): Δλ = (h/m<sub>e</sub>c)(1 − cos θ) — foton berperilaku seperti partikel bermomentum.",
+                "<b>de Broglie</b> (1924): partikel juga bersifat gelombang, λ = h/p = h/(mv). Dibuktikan lewat difraksi elektron.",
+                "Sinar-X ditemukan Wilhelm Röntgen (1895)."
+              ]
+            }
+          ],
+          "traps": [
+            "Menaikkan intensitas cahaya di bawah frekuensi ambang tidak akan melepaskan elektron.",
+            "Energi kinetik elektron foto bergantung pada frekuensi, bukan intensitas."
+          ]
+        },
+        {
+          "code": "MOD-02",
+          "title": "Perkembangan model atom",
+          "scope": "Dalton sampai mekanika kuantum",
+          "src": "Kelas XII",
+          "tier": 2,
+          "sum": "Model atom Dalton, Thomson, Rutherford, Bohr, dan mekanika kuantum, beserta percobaan dan kelemahannya.",
+          "blocks": [
+            {
+              "h": "Urutan model",
+              "table": {
+                "cols": [
+                  "Model",
+                  "Gagasan",
+                  "Bukti atau kelemahan"
+                ],
+                "rows": [
+                  [
+                    "Dalton (1803)",
+                    "Atom bola pejal tak terbagi",
+                    "Tidak menjelaskan listrik dan elektron"
+                  ],
+                  [
+                    "Thomson (1897–1904)",
+                    "Roti kismis: elektron tersebar dalam bola positif",
+                    "Menemukan elektron lewat sinar katode; gagal menjelaskan hamburan alfa"
+                  ],
+                  [
+                    "Rutherford (1911)",
+                    "Inti kecil bermuatan positif, elektron mengelilinginya",
+                    "Hamburan partikel alfa pada lempeng emas (Geiger–Marsden); tidak menjelaskan kestabilan atom dan spektrum garis"
+                  ],
+                  [
+                    "Bohr (1913)",
+                    "Elektron di lintasan stasioner berenergi tertentu",
+                    "Menjelaskan spektrum hidrogen; tidak berlaku untuk atom berelektron banyak"
+                  ],
+                  [
+                    "Mekanika kuantum",
+                    "Elektron dalam orbital (awan peluang)",
+                    "Schrödinger, Heisenberg; empat bilangan kuantum n, l, m, s"
+                  ]
+                ]
+              }
+            },
+            {
+              "h": "Atom hidrogen (Bohr)",
+              "li": [
+                "Energi E<sub>n</sub> = −13,6/n² eV; jari-jari r<sub>n</sub> = 0,053n² nm.",
+                "Elektron pindah ke lintasan lebih rendah memancarkan foton: ΔE = hf.",
+                "Deret spektrum: Lyman (ke n = 1, ultraviolet), Balmer (ke n = 2, cahaya tampak), Paschen (ke n = 3), Brackett (n = 4), Pfund (n = 5) — tiga terakhir inframerah."
+              ]
+            }
+          ],
+          "traps": [
+            "Deret Balmer satu-satunya deret hidrogen yang sebagian berada di cahaya tampak."
+          ]
+        },
+        {
+          "code": "MOD-03",
+          "title": "Relativitas khusus",
+          "scope": "Einstein 1905",
+          "src": "Kelas XII",
+          "tier": 2,
+          "sum": "Postulat Einstein, dilatasi waktu, kontraksi panjang, massa dan energi relativistik.",
+          "blocks": [
+            {
+              "h": "Postulat",
+              "li": [
+                "Hukum fisika sama di semua kerangka acuan inersial.",
+                "Kecepatan cahaya di ruang hampa sama bagi semua pengamat, tidak bergantung gerak sumber.",
+                "Percobaan Michelson–Morley (1887) gagal mendeteksi eter."
+              ]
+            },
+            {
+              "h": "Rumus",
+              "li": [
+                "Faktor γ = 1/√(1 − v²/c²) ≥ 1.",
+                "Dilatasi waktu Δt = γΔt₀ (jam yang bergerak berdetak lebih lambat).",
+                "Kontraksi panjang L = L₀/γ (hanya searah gerak).",
+                "Energi diam E₀ = m₀c²; energi total E = γm₀c²; energi kinetik E<sub>k</sub> = (γ − 1)m₀c².",
+                "Penjumlahan kecepatan: v = (v₁ + v₂)/(1 + v₁v₂/c²)."
+              ]
+            }
+          ],
+          "traps": [
+            "Untuk v = 0,6c, γ = 1,25; untuk v = 0,8c, γ = 5/3. Dua nilai ini paling sering dipakai soal."
+          ]
+        },
+        {
+          "code": "MOD-04",
+          "title": "Inti atom dan radioaktivitas",
+          "scope": "Energi ikat, peluruhan, fisi, fusi",
+          "src": "Kelas XII",
+          "tier": 1,
+          "sum": "Struktur inti, defek massa dan energi ikat, jenis peluruhan, waktu paruh, reaksi fisi dan fusi, serta pemanfaatan radioisotop.",
+          "blocks": [
+            {
+              "h": "Inti",
+              "li": [
+                "Notasi <sup>A</sup><sub>Z</sub>X: A nomor massa (proton + neutron), Z nomor atom (proton).",
+                "Isotop: Z sama. Isobar: A sama. Isoton: jumlah neutron sama.",
+                "Defek massa Δm = (Z m<sub>p</sub> + N m<sub>n</sub>) − m<sub>inti</sub>. Energi ikat E = Δm × 931,5 MeV (Δm dalam sma)."
+              ]
+            },
+            {
+              "h": "Peluruhan",
+              "table": {
+                "cols": [
+                  "Sinar",
+                  "Partikel",
+                  "Perubahan inti",
+                  "Daya tembus",
+                  "Daya ionisasi"
+                ],
+                "rows": [
+                  [
+                    "Alfa (α)",
+                    "Inti helium ⁴₂He",
+                    "A − 4, Z − 2",
+                    "Paling lemah (selembar kertas)",
+                    "Paling kuat"
+                  ],
+                  [
+                    "Beta (β⁻)",
+                    "Elektron",
+                    "A tetap, Z + 1",
+                    "Sedang (aluminium tipis)",
+                    "Sedang"
+                  ],
+                  [
+                    "Gamma (γ)",
+                    "Gelombang elektromagnetik",
+                    "Tidak berubah",
+                    "Paling kuat (timbal tebal)",
+                    "Paling lemah"
+                  ]
+                ]
+              }
+            },
+            {
+              "h": "Waktu paruh dan reaksi",
+              "li": [
+                "N = N₀ (½)<sup>t/T½</sup>. Konstanta peluruhan λ = 0,693/T½. Aktivitas A = λN (becquerel).",
+                "Fisi: inti berat dibelah neutron (U-235) → reaktor nuklir, reaksi berantai. Fusi: inti ringan bergabung (hidrogen → helium) → energi Matahari.",
+                "Radioaktivitas ditemukan Henri Becquerel (1896); Marie dan Pierre Curie menemukan polonium dan radium.",
+                "Pemanfaatan: C-14 (penanggalan fosil), Co-60 (terapi kanker), I-131 (tiroid), Tc-99m (pencitraan medis). Detektor: pencacah Geiger–Müller, kamar kabut Wilson."
+              ]
+            }
+          ],
+          "traps": [
+            "Setelah 3 kali waktu paruh tersisa 1/8, bukan 1/6.",
+            "Sinar gamma tidak mengubah nomor atom maupun nomor massa."
+          ]
+        }
       ]
     },
     {
-      "id": "TER", "name": "Fisika terapan dan lingkungan", "short": "Terapan",
+      "id": "TER",
+      "name": "Fisika terapan dan lingkungan",
+      "short": "Terapan",
       "note": "Topik penerapan dalam Kurikulum Merdeka: energi, perubahan iklim, dan teknologi digital.",
       "topics": [
-        {"code": "TER-01", "title": "Energi terbarukan dan perubahan iklim", "scope": "Sumber energi, efek rumah kaca", "src": "Kelas X", "tier": 2,
-         "sum": "Jenis sumber energi, konversi energi pada pembangkit listrik, efek rumah kaca, pemanasan global, dan kesepakatan iklim.",
-         "blocks": [
-           {"h": "Sumber energi", "li": [
-             "Tak terbarukan: minyak bumi, gas alam, batu bara, nuklir (uranium).",
-             "Terbarukan: surya, angin, air, panas bumi, biomassa, gelombang dan pasang surut laut.",
-             "Konversi pada pembangkit: PLTA (potensial → kinetik → listrik), PLTU (kimia → kalor → kinetik → listrik), PLTS (cahaya → listrik lewat sel fotovoltaik), PLTP (panas bumi)."]},
-           {"h": "Perubahan iklim", "li": [
-             "Efek rumah kaca: gas seperti CO₂, metana (CH₄), N₂O, dan uap air menahan radiasi inframerah dari permukaan Bumi.",
-             "Pemanasan global akibat penambahan gas rumah kaca dari pembakaran bahan bakar fosil dan penggundulan hutan; dampaknya kenaikan muka laut, cuaca ekstrem, dan pemutihan karang.",
-             "Kesepakatan: Protokol Kyoto (1997) dan Persetujuan Paris (2015) yang membatasi kenaikan suhu global di bawah 2 °C dan berupaya 1,5 °C."]}
-         ],
-         "traps": ["Efek rumah kaca sendiri bersifat alami dan diperlukan; masalahnya adalah penguatan efek itu oleh manusia."]},
-
-        {"code": "TER-02", "title": "Teknologi digital", "scope": "Sinyal, logika, transmisi data", "src": "Kelas XII", "tier": 3,
-         "sum": "Perbedaan sinyal analog dan digital, sistem bilangan biner, gerbang logika, dan transmisi data.",
-         "blocks": [
-           {"h": "Konsep", "li": [
-             "Sinyal analog kontinu; sinyal digital diskret (0 dan 1). Digital lebih tahan derau dan mudah disimpan.",
-             "Bilangan biner: 1 byte = 8 bit. Contoh 1011₂ = 11₁₀.",
-             "Gerbang logika: AND (keluaran 1 bila semua masukan 1), OR (1 bila salah satu 1), NOT (membalik), NAND, NOR, XOR (1 bila masukan berbeda).",
-             "Serat optik mengirim data dengan pemantulan sempurna cahaya; kapasitasnya besar dan tahan gangguan elektromagnetik."]}
-         ],
-         "traps": ["NAND adalah kebalikan AND: keluarannya 0 hanya bila semua masukan 1."]}
+        {
+          "code": "TER-01",
+          "title": "Energi terbarukan dan perubahan iklim",
+          "scope": "Sumber energi, efek rumah kaca",
+          "src": "Kelas X",
+          "tier": 2,
+          "sum": "Jenis sumber energi, konversi energi pada pembangkit listrik, efek rumah kaca, pemanasan global, dan kesepakatan iklim.",
+          "blocks": [
+            {
+              "h": "Sumber energi",
+              "li": [
+                "Tak terbarukan: minyak bumi, gas alam, batu bara, nuklir (uranium).",
+                "Terbarukan: surya, angin, air, panas bumi, biomassa, gelombang dan pasang surut laut.",
+                "Konversi pada pembangkit: PLTA (potensial → kinetik → listrik), PLTU (kimia → kalor → kinetik → listrik), PLTS (cahaya → listrik lewat sel fotovoltaik), PLTP (panas bumi)."
+              ]
+            },
+            {
+              "h": "Perubahan iklim",
+              "li": [
+                "Efek rumah kaca: gas seperti CO₂, metana (CH₄), N₂O, dan uap air menahan radiasi inframerah dari permukaan Bumi.",
+                "Pemanasan global akibat penambahan gas rumah kaca dari pembakaran bahan bakar fosil dan penggundulan hutan; dampaknya kenaikan muka laut, cuaca ekstrem, dan pemutihan karang.",
+                "Kesepakatan: Protokol Kyoto (1997) dan Persetujuan Paris (2015) yang membatasi kenaikan suhu global di bawah 2 °C dan berupaya 1,5 °C."
+              ]
+            }
+          ],
+          "traps": [
+            "Efek rumah kaca sendiri bersifat alami dan diperlukan; masalahnya adalah penguatan efek itu oleh manusia."
+          ]
+        },
+        {
+          "code": "TER-02",
+          "title": "Teknologi digital",
+          "scope": "Sinyal, logika, transmisi data",
+          "src": "Kelas XII",
+          "tier": 3,
+          "sum": "Perbedaan sinyal analog dan digital, sistem bilangan biner, gerbang logika, dan transmisi data.",
+          "blocks": [
+            {
+              "h": "Konsep",
+              "li": [
+                "Sinyal analog kontinu; sinyal digital diskret (0 dan 1). Digital lebih tahan derau dan mudah disimpan.",
+                "Bilangan biner: 1 byte = 8 bit. Contoh 1011₂ = 11₁₀.",
+                "Gerbang logika: AND (keluaran 1 bila semua masukan 1), OR (1 bila salah satu 1), NOT (membalik), NAND, NOR, XOR (1 bila masukan berbeda).",
+                "Serat optik mengirim data dengan pemantulan sempurna cahaya; kapasitasnya besar dan tahan gangguan elektromagnetik."
+              ]
+            }
+          ],
+          "traps": [
+            "NAND adalah kebalikan AND: keluarannya 0 hanya bila semua masukan 1."
+          ]
+        }
       ]
     }
   ],
   "notes": [
-    {"title": "Perlu diperhatikan", "items": [
-      "Rumus ditulis dalam bentuk yang lazim di buku SMA Indonesia. Aturan tanda (cermin, lensa, Doppler, usaha gas) berbeda antarbuku; ikuti konvensi buku sekolah.",
-      "Pembagian kelas per simpul adalah urutan umum. Di Kurikulum Merdeka, kelas X membahas fisika dalam IPA dan topik seperti pengukuran, energi terbarukan, dan perubahan iklim; mekanika lanjut sampai fisika modern dibahas di kelas XI–XII sebagai mata pelajaran pilihan.",
-      "Konstanta di DAS-03 memakai pembulatan yang umum di soal; bila soal memberi nilai lain, pakai nilai dari soal."]},
-    {"title": "Rujukan", "items": [
-      "Buku teks Fisika Kurikulum Merdeka kelas XI dan XII (Kemendikbudristek, SIBI).",
-      "Nilai konstanta: CODATA dan definisi SI 2019 (BIPM), dibulatkan seperti di buku sekolah."]}
+    {
+      "title": "Perlu diperhatikan",
+      "items": [
+        "Rumus ditulis dalam bentuk yang lazim di buku SMA Indonesia. Aturan tanda (cermin, lensa, Doppler, usaha gas) berbeda antarbuku; ikuti konvensi buku sekolah.",
+        "Pembagian kelas per simpul adalah urutan umum. Di Kurikulum Merdeka, kelas X membahas fisika dalam IPA dan topik seperti pengukuran, energi terbarukan, dan perubahan iklim; mekanika lanjut sampai fisika modern dibahas di kelas XI–XII sebagai mata pelajaran pilihan.",
+        "Konstanta di DAS-03 memakai pembulatan yang umum di soal; bila soal memberi nilai lain, pakai nilai dari soal."
+      ]
+    },
+    {
+      "title": "Rujukan",
+      "items": [
+        "Buku teks Fisika Kurikulum Merdeka kelas XI dan XII (Kemendikbudristek, SIBI).",
+        "Nilai konstanta: CODATA dan definisi SI 2019 (BIPM), dibulatkan seperti di buku sekolah."
+      ]
+    }
   ]
 }
